@@ -1,0 +1,12 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two|Varela+Round&display=swap');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+h1, h2, h3, h4 {
+  font-family: $font-family-display;
+}
