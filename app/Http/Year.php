@@ -13,6 +13,20 @@ class Year extends Model
         return $this->hasMany('App\Yearattending');
     }
 
+    public function getFirstDayAttribute()
+    {
+        $date = Carbon::createFromFormat('Y-m-d', $this->start_date, 'America/Chicago');
+        $date->year = $this->year;
+        return $date->format('l F jS');
+    }
+
+    public function getLastDayAttribute()
+    {
+        $date = Carbon::createFromFormat('Y-m-d', $this->start_date, 'America/Chicago');
+        $date->year = $this->year;
+        return $date->addDays(6)->format('l F jS');
+    }
+
     public function getNextMuseAttribute()
     {
         $now = Carbon::now('America/Chicago');

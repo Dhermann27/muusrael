@@ -10,6 +10,7 @@ use Facebook\WebDriver\Remote\DesiredCapabilities;
 abstract class DuskTestCase extends BaseTestCase
 {
     use CreatesApplication;
+    protected static $hasSetupRun = false;
 
     /**
      * Prepare for Dusk test execution.
@@ -20,6 +21,20 @@ abstract class DuskTestCase extends BaseTestCase
     public static function prepare()
     {
         static::startChromeDriver();
+    }
+
+    public static function setUpBeforeClass()
+    {
+        parent::setUpBeforeClass();
+
+        if (!self::$hasSetupRun) {
+            $app = require __DIR__ . '/../bootstrap/app.php';
+            $kernel = $app->make(\App\Console\Kernel::class);
+            $kernel->bootstrap();
+            echo "Database migrate:refresh --seed\n";
+            $kernel->call('migrate:refresh --seed');
+            self::$hasSetupRun = true;
+        }
     }
 
     /**
