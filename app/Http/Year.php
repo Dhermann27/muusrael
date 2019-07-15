@@ -13,17 +13,23 @@ class Year extends Model
         return $this->hasMany('App\Yearattending');
     }
 
+    public function getDidBrochureAttribute() {
+        return $this->getDiffInDays($this->brochure_date);
+    }
+
+    public function getDidCheckinAttribute() {
+        return $this->getDiffInDays($this->checkin_date);
+    }
+
     public function getFirstDayAttribute()
     {
-        $date = Carbon::createFromFormat('Y-m-d', $this->start_date, 'America/Chicago');
-        $date->year = $this->year;
+        $date = Carbon::createFromFormat('Y-m-d', $this->checkin_date, 'America/Chicago');
         return $date->format('l F jS');
     }
 
     public function getLastDayAttribute()
     {
-        $date = Carbon::createFromFormat('Y-m-d', $this->start_date, 'America/Chicago');
-        $date->year = $this->year;
+        $date = Carbon::createFromFormat('Y-m-d', $this->checkin_date, 'America/Chicago');
         return $date->addDays(6)->format('l F jS');
     }
 
@@ -39,5 +45,9 @@ class Year extends Model
         } else {
             return false;
         }
+    }
+
+    private function getDiffInDays($cardate) {
+        return Carbon::createFromFormat('Y-m-d', $cardate, 'America/Chicago')->diffInDays();
     }
 }

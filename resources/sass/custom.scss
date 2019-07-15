@@ -1,6 +1,22 @@
 .carousel-caption h2 {
   font-size: 4vw;
 }
+
 .carousel-caption h4 {
   font-size: 2vw;
+}
+
+img#brochureimg {
+  border-radius: 25px 25px 0 0;
+  border-width: 10px 6px 0 4px;
+  border-color: black;
+  border-style: solid;
+  padding: 10px 10px 0 10px;
+}
+
+div#renewed {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/yoga.jpg');
+  opacity: .7;
+  background-color: $dark !important;
+  background-size: cover;
 }

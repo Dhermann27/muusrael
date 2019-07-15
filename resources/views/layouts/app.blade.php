@@ -194,7 +194,7 @@
                                 @if(!$year->is_live)
                                     <div class="dropdown-divider"></div>
                                     <h6 class="dropdown-header">
-                                        Opens {{ $year->start_date->toFormattedDateString() }}
+                                        Opens {{ $year->brochure_date->toFormattedDateString() }}
                                     </h6>
                                     <a href="#" class="dropdown-item disabled">Workshop List</a>
                                     <a href="#" class="dropdown-item disabled">Room Selection</a>
@@ -254,11 +254,11 @@
     </div>
 @endif
 
-<div id="content" class="p-0">
+<section id="content" class="p-0">
 
     @yield('content')
 
-</div>
+</section>
 
 <!-- footer start -->
 <footer class="bg-dark footer text-white">
@@ -269,7 +269,7 @@
                     <h6>Located at YMCA of the Ozarks, outside Potosi, Missouri</h6>
                 </div>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2930.017719932353!2d-90.93029498484057!3d37.946753879728526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87d99fbc4175e629%3A0xe1c9be8ab89a4075!2sTrout+Lodge%2C+Potosi%2C+MO+63664!5e1!3m2!1sen!2sus!4v1546112609663"
-                        width="360" height="288" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        width="420" height="320" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
             <div class="col-lg-2">
                 <h5 class="footer-title text-white mb-3">Camp Information</h5>
@@ -314,7 +314,7 @@
                     @if(!$year->is_live)
                         <hr />
                         <h6 class="dropdown-header">
-                            Opens {{ $year->start_date->toFormattedDateString() }}
+                            Opens {{ $year->brochure_date->toFormattedDateString() }}
                         </h6>
                         <li>Workshop List</li>
                         <li>Room Selection</li>
