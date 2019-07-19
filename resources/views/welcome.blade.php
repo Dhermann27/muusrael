@@ -162,7 +162,7 @@
                     theme topic. Services include children's stories and choral music from the Awesome Choir, led by Pam
                     Blevins Hinkle and accompanied by Bonnie Ettinger.</p>
             </div>
-            <a href="{{ url('/themespeaker') }}" class="btn btn-primary">Theme Speaker Biographies</a>
+            <a href="{{ url('/themespeaker') }}" class="btn btn-primary">Theme Speaker Biography</a>
         </div>
         <div class="card">
             <img class="card-img-top img-fluid" src="/images/scholarship@half.jpg"

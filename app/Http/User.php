@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\ResetPasswordEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -39,5 +40,10 @@ class User extends Authenticatable
     public function actions()
     {
         return $this->hasMany('App\Action');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordEmail($token));
     }
 }

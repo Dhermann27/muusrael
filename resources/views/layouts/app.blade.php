@@ -63,9 +63,13 @@
                         </li>
                     @else
                         <li class="list-inline-item">
-                            <a href="mailto:muusa@muusa.org">
-                                <i class="fas fa-mailbox"></i> muusa@muusa.org
-                            </a>
+                            @auth
+                                {{ Auth::user()->email }}
+                            @else
+                                <a href="mailto:muusa@muusa.org">
+                                    <i class="fas fa-mailbox"></i> muusa@muusa.org
+                                </a>
+                            @endif
                         </li>
                     @endif
                 </ul>
@@ -312,7 +316,7 @@
                     <li><a href="{{ url('/camper') }}">Campers</a></li>
                     <li><a href="{{ url('/payment') }}">Payment</a></li>
                     @if(!$year->is_live)
-                        <hr />
+                        <hr/>
                         <h6 class="dropdown-header">
                             Opens {{ $year->brochure_date->toFormattedDateString() }}
                         </h6>
@@ -349,6 +353,8 @@
 <!-- footer end -->
 
 <script src="{{ mix('js/app.js') }}"></script>
+
+@yield('script')
 
 </body>
 </html>
