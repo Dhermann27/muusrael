@@ -5,6 +5,9 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/contact', 'ContactController@contactIndex');
+Route::post('/contact', 'ContactController@contactStore');
+
 Route::get('/cost', 'HomeController@campcost');
 Route::get('/themespeaker', 'HomeController@themespeaker');
 Route::get('/scholarship', 'HomeController@scholarship');

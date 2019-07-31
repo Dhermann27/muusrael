@@ -9,17 +9,6 @@ use App\Year;
 
 class WelcomeTest extends DuskTestCase
 {
-    protected static $year;
-
-    public static function setUpBeforeClass()
-    {
-        parent::setUpBeforeClass();
-        $year = Year::where('is_current', 1)->first();
-        $year->is_current = 0;
-        $year->save();
-        self::$year = factory(Year::class)->create();
-
-    }
 
     public function testWelcome()
     {

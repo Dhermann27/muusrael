@@ -228,34 +228,30 @@
 
 
 @hassection('title')
-    <div class="bg-home bg-primary" id="home">
-        @if(isset($background))
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="home-img">
-                        <img src="{{ env('IMG_PATH') }}/images/{{ $background }}" alt="MUUSA"
-                             class="img-fluid mx-auto d-block">
-                    </div>
-                </div>
-            </div>
-        @endif
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="home-content text-center mb-4">
-                        <h1 class="home-title mb-4 text-white">
-                            @yield('title')
-                        </h1>
-                        @hassection('heading')
-                            <p>
-                                @yield('heading')
-                            </p>
-                        @endif
-                    </div>
-                </div>
-            </div>
+    <div class="jumbotron jumbotron-fluid bg-primary text-white">
+        <div class="container mt-5 pt-5">
+            <h1 class="display-4">
+                @yield('title')
+            </h1>
+            @hassection('heading')
+                <p class="lead">
+                    @yield('heading')
+                </p>
+            @endif
         </div>
     </div>
+{{--    <div class="bg-home " id="home">--}}
+{{--        @if(isset($background))--}}
+{{--            <div class="row justify-content-center">--}}
+{{--                <div class="col-lg-7">--}}
+{{--                    <div class="home-img">--}}
+{{--                        <img src="{{ env('IMG_PATH') }}/images/{{ $background }}" alt="MUUSA"--}}
+{{--                             class="img-fluid mx-auto d-block">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        @endif--}}
+{{--    </div>--}}
 @endif
 
 <section id="content" class="p-0">

@@ -2,15 +2,17 @@
 
 namespace Tests;
 
-use Laravel\Dusk\TestCase as BaseTestCase;
+use App\Year;
 use Facebook\WebDriver\Chrome\ChromeOptions;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Laravel\Dusk\TestCase as BaseTestCase;
 
 abstract class DuskTestCase extends BaseTestCase
 {
     use CreatesApplication;
     protected static $hasSetupRun = false;
+    protected static $year;
 
     /**
      * Prepare for Dusk test execution.
@@ -31,9 +33,10 @@ abstract class DuskTestCase extends BaseTestCase
             $app = require __DIR__ . '/../bootstrap/app.php';
             $kernel = $app->make(\App\Console\Kernel::class);
             $kernel->bootstrap();
-            echo "Database migrate:refresh --seed\n";
+            echo "Database migrate:refresh --seed";
             $kernel->call('migrate:refresh --seed');
             self::$hasSetupRun = true;
+            self::$year = Year::where('is_current', 1)->first();
         }
     }
 
@@ -52,8 +55,8 @@ abstract class DuskTestCase extends BaseTestCase
 
         return RemoteWebDriver::create(
             'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
-                ChromeOptions::CAPABILITY, $options
-            )
+            ChromeOptions::CAPABILITY, $options
+        )
         );
     }
 }
