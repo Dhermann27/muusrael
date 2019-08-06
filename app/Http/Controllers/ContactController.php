@@ -36,10 +36,6 @@ class ContactController extends Controller
 
     public function contactIndex()
     {
-        $camper = null;
-        if (Auth::check()) {
-            $camper = Auth::user()->camper;
-        }
-        return view('contactus', ['mailboxes' => Contactbox::orderBy('id')->get(), 'camper' => $camper]);
+        return view('contactus', ['mailboxes' => Contactbox::orderBy('id')->get()]);
     }
 }

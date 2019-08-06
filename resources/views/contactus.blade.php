@@ -13,9 +13,9 @@
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/contact') }}">
             @include('includes.flash')
 
-            @if(Auth::check() && !empty($camper))
+            @if(Auth::check() && !empty(Auth::user()->camper))
                 @include('includes.formgroup', ['type' => 'info', 'label' => 'Your Name', 'attribs' => ['name' => 'name'],
-                    'default' => $camper->firstname . ' ' . $camper->lastname])
+                    'default' => Auth::user()->camper->firstname . ' ' . Auth::user()->camper->lastname])
 
                 @include('includes.formgroup', ['type' => 'info', 'label' => 'Email Address', 'attribs' => ['name' => 'email'],
                     'default' => Auth::user()->email])

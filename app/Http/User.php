@@ -42,6 +42,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Action');
     }
 
+    public function camper() {
+        return $this->hasOne('App\Camper', 'email', 'email');
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordEmail($token));
