@@ -17,4 +17,8 @@ class Building extends Model
     {
         return $this->hasMany('App\Room');
     }
+    public function getImageArrayAttribute()
+    {
+        return explode(';', $this->image);
+    }
 }

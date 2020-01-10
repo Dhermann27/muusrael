@@ -227,129 +227,124 @@
 
 
 @hassection('title')
-    <div class="jumbotron jumbotron-fluid bg-primary text-white">
-        <div class="container mt-5 pt-5">
-            <h1 class="display-4">
-                @yield('title')
-            </h1>
-            @hassection('heading')
-                <p class="lead">
-                    @yield('heading')
-                </p>
-            @endif
-        </div>
-    </div>
-{{--    <div class="bg-home " id="home">--}}
-{{--        @if(isset($background))--}}
-{{--            <div class="row justify-content-center">--}}
-{{--                <div class="col-lg-7">--}}
-{{--                    <div class="home-img">--}}
-{{--                        <img src="{{ env('IMG_PATH') }}/images/{{ $background }}" alt="MUUSA"--}}
-{{--                             class="img-fluid mx-auto d-block">--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        @endif--}}
-{{--    </div>--}}
-@endif
-
-<section id="content" class="p-0">
-
-    @yield('content')
-
-</section>
-
-<!-- footer start -->
-<footer class="bg-dark footer text-white">
-    <div class="container-fluid">
-        <div class="row pt-5">
-            <div class="col-lg-6">
-                <div class="mb-3">
-                    <h6>Located at YMCA of the Ozarks, outside Potosi, Missouri</h6>
-                </div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2930.017719932353!2d-90.93029498484057!3d37.946753879728526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87d99fbc4175e629%3A0xe1c9be8ab89a4075!2sTrout+Lodge%2C+Potosi%2C+MO+63664!5e1!3m2!1sen!2sus!4v1546112609663"
-                        width="420" height="320" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-            <div class="col-lg-2">
-                <h5 class="footer-title text-white mb-3">Camp Information</h5>
-                <ul class="list-unstyled footer-list">
-                    <li><a href="{{ url('/housing') }}">Housing Options</a></li>
-                    <li><a href="{{ url('/programs') }}">Programs</a></li>
-                    <li><a href="{{ url('/workshops') }}">Workshop List</a></li>
-                    <li><a href="{{ url('/themespeaker') }}">Theme Speaker</a></li>
-                    <li><a href="{{ url('/cost') }}">Cost Calculator</a></li>
-                    <li><a href="{{ url('/scholarship') }}">Scholarships</a></li>
-                    <li><a href="{{ url('/excursions') }}">Excursions</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-2">
-                <h5 class="footer-title text-white mb-3">Details</h5>
-                <ul class="list-unstyled footer-list">
-                    @if($year->is_live)
-                        <li><a href="{{ url('/brochure') }}">Web Brochure</a></li>
+    @hasSection('image')
+        <div class="jumbotron jumbotron-fluid text-white"
+             style="background-size: cover; background-position-y: bottom; background-image: @yield('image');">
+            @else
+                <div class="jumbotron jumbotron-fluid text-white bg-primary">
                     @endif
-                    @if($year->is_calendar)
-                        <li><a href="{{ url('/calendar') }}">Daily Schedule</a></li>
-                    @endif
-                    @if($year->next_muse !== false)
-                        <li><a href="{{ url('/themuse') }}">{{ $year->next_muse }}</a></li>
-                    @endif
-                    <li><a href="{{ url('/directory') }}">Online Directory</a></li>
-                    @if($year->is_artfair)
-                        <li><a href="{{ url('/artfair') }}">Art Fair Submission</a></li>
-                    @endif
-                    <li><a href="{{ url('/volunteer') }}">Volunteer Opportunities</a></li>
-                    @if($year->is_workshop_proposal)
-                        <li><a href="{{ url('/proposal') }}">Workshop Proposal</a></li>
-                    @endif
-                </ul>
-            </div>
-            <div class="col-lg-2">
-                <h5 class="footer-title text-white mb-3">Registration</h5>
-                <ul class="list-unstyled footer-list">
-                    <li><a href="{{ url('/household') }}">Household</a></li>
-                    <li><a href="{{ url('/camper') }}">Campers</a></li>
-                    <li><a href="{{ url('/payment') }}">Payment</a></li>
-                    @if(!$year->is_live)
-                        <hr/>
-                        <h6 class="dropdown-header">
-                            Opens {{ $year->brochure_date }}
-                        </h6>
-                        <li>Workshop List</li>
-                        <li>Room Selection</li>
-                        <li>Nametags</li>
-                        <li>Confirmation</li>
-                    @else
-                        <li><a href="{{ url('/workshopchoice') }}">Workshops</a></li>
-                        <li><a href="{{ url('/roomselection') }}">Room Selection</a></li>
-                        <li><a href="{{ url('/nametag') }}">Nametags</a></li>
-                        <li><a href="{{ url('/confirm') }}">Confirmation</a></li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-        <!-- end row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="py-4">
-                    <div class="text-center">
-                        <p class="text-white-50">{{ $year->year }} &copy; Midwest Unitarian Universalist Summer
-                            Assembly. Design by <a href="https://coderthemes.com/" target="_blank"
-                                                   class="text-white">Coderthemes</a>
-                        </p>
+                    <div class="container mt-5 pt-5">
+                        <h1 class="display-4">
+                            @yield('title')
+                        </h1>
+                        @hassection('heading')
+                            <p class="lead">
+                                @yield('heading')
+                            </p>
+                        @endif
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- end row -->
-    </div>
-    <!-- container-fluid end -->
-</footer>
-<!-- footer end -->
+            @endif
 
-<script src="{{ mix('js/app.js') }}"></script>
+            <section id="content" class="p-0">
 
-@yield('script')
+                @yield('content')
+
+            </section>
+
+            <!-- footer start -->
+            <footer class="bg-dark footer text-white">
+                <div class="container-fluid">
+                    <div class="row pt-5">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <h6>Located at YMCA of the Ozarks, outside Potosi, Missouri</h6>
+                            </div>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2930.017719932353!2d-90.93029498484057!3d37.946753879728526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87d99fbc4175e629%3A0xe1c9be8ab89a4075!2sTrout+Lodge%2C+Potosi%2C+MO+63664!5e1!3m2!1sen!2sus!4v1546112609663"
+                                width="420" height="320" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                        <div class="col-lg-2">
+                            <h5 class="footer-title text-white mb-3">Camp Information</h5>
+                            <ul class="list-unstyled footer-list">
+                                <li><a href="{{ url('/housing') }}">Housing Options</a></li>
+                                <li><a href="{{ url('/programs') }}">Programs</a></li>
+                                <li><a href="{{ url('/workshops') }}">Workshop List</a></li>
+                                <li><a href="{{ url('/themespeaker') }}">Theme Speaker</a></li>
+                                <li><a href="{{ url('/cost') }}">Cost Calculator</a></li>
+                                <li><a href="{{ url('/scholarship') }}">Scholarships</a></li>
+                                <li><a href="{{ url('/excursions') }}">Excursions</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-2">
+                            <h5 class="footer-title text-white mb-3">Details</h5>
+                            <ul class="list-unstyled footer-list">
+                                @if($year->is_live)
+                                    <li><a href="{{ url('/brochure') }}">Web Brochure</a></li>
+                                @endif
+                                @if($year->is_calendar)
+                                    <li><a href="{{ url('/calendar') }}">Daily Schedule</a></li>
+                                @endif
+                                @if($year->next_muse !== false)
+                                    <li><a href="{{ url('/themuse') }}">{{ $year->next_muse }}</a></li>
+                                @endif
+                                <li><a href="{{ url('/directory') }}">Online Directory</a></li>
+                                @if($year->is_artfair)
+                                    <li><a href="{{ url('/artfair') }}">Art Fair Submission</a></li>
+                                @endif
+                                <li><a href="{{ url('/volunteer') }}">Volunteer Opportunities</a></li>
+                                @if($year->is_workshop_proposal)
+                                    <li><a href="{{ url('/proposal') }}">Workshop Proposal</a></li>
+                                @endif
+                            </ul>
+                        </div>
+                        <div class="col-lg-2">
+                            <h5 class="footer-title text-white mb-3">Registration</h5>
+                            <ul class="list-unstyled footer-list">
+                                <li><a href="{{ url('/household') }}">Household</a></li>
+                                <li><a href="{{ url('/camper') }}">Campers</a></li>
+                                <li><a href="{{ url('/payment') }}">Payment</a></li>
+                                @if(!$year->is_live)
+                                    <hr/>
+                                    <h6 class="dropdown-header">
+                                        Opens {{ $year->brochure_date }}
+                                    </h6>
+                                    <li>Workshop List</li>
+                                    <li>Room Selection</li>
+                                    <li>Nametags</li>
+                                    <li>Confirmation</li>
+                                @else
+                                    <li><a href="{{ url('/workshopchoice') }}">Workshops</a></li>
+                                    <li><a href="{{ url('/roomselection') }}">Room Selection</a></li>
+                                    <li><a href="{{ url('/nametag') }}">Nametags</a></li>
+                                    <li><a href="{{ url('/confirm') }}">Confirmation</a></li>
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="py-4">
+                                <div class="text-center">
+                                    <p class="text-white-50">{{ $year->year }} &copy; Midwest Unitarian Universalist
+                                        Summer
+                                        Assembly. Design by <a href="https://coderthemes.com/" target="_blank"
+                                                               class="text-white">Coderthemes</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- container-fluid end -->
+            </footer>
+            <!-- footer end -->
+
+            <script src="{{ mix('js/app.js') }}"></script>
+
+        @yield('script')
 
 </body>
 </html>

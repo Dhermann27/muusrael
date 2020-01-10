@@ -2,76 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/MuusaTrap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/muusrael.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/muusrael.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/components/blog.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/housing.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/programs.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/scholarship.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/themespeaker.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Year.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Year.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/TelescopeServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/TelescopeServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/YearFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/YearFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_04_204746_create_buildings.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_04_204746_create_buildings.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_04_210317_create_years.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_04_210317_create_years.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_06_230122_create_workshops.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_06_230122_create_workshops.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_10_165751_create_rates.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_165751_create_rates.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-brands-400.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-brands-400.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-brands-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-brands-400.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-brands-400.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-brands-400.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-brands-400.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-brands-400.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-brands-400.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-brands-400.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-light-300.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-light-300.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-light-300.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-light-300.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-light-300.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-light-300.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-light-300.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-light-300.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-light-300.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-light-300.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-regular-400.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-regular-400.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-regular-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-regular-400.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-regular-400.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-regular-400.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-regular-400.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-regular-400.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-regular-400.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-regular-400.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-solid-900.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-solid-900.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-solid-900.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-solid-900.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-solid-900.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-solid-900.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-solid-900.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-solid-900.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-solid-900.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-pro/webfa-solid-900.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/biographies.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/biographies.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/biographies@2x.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/biographies@2x.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/biographies@half.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/biographies@half.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/calculator.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/calculator.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/calculator@2x.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/calculator@2x.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/calculator@half.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/calculator@half.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/housing@half.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/housing@half.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/lodge1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/lodge1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/lodge1@2x.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/lodge1@2x.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/lodge2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/lodge2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/lodge2@2x.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/lodge2@2x.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/lodge3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/lodge3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/lodge3@2x.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/lodge3@2x.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/lodge4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/lodge4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/lodge4@2x.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/lodge4@2x.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/lodge5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/lodge5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/lodge5@2x.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/lodge5@2x.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/programs.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/programs.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/programs@2x.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/programs@2x.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/programs@half.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/programs@half.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/scholarship.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/scholarship.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/scholarship@2x.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/scholarship@2x.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/scholarship@half.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/scholarship@half.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/workshops.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/workshops.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/workshops@2x.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/workshops@2x.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/workshops@half.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/workshops@half.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/flash.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/flash.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Building.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Building.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/ContactTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/ContactTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/DuskTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DuskTestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -266,6 +204,9 @@
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/images" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/public/images" />
@@ -314,7 +255,7 @@
       <workItem from="1563242646207" duration="4972000" />
       <workItem from="1564369141891" duration="7879000" />
       <workItem from="1578346474671" duration="14967000" />
-      <workItem from="1578588866298" duration="3112000" />
+      <workItem from="1578588866298" duration="5606000" />
     </task>
     <servers />
   </component>
@@ -375,6 +316,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1578587565231" />
+    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1578688903341">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1578688903341" />
     <state x="229" y="100" key="SettingsEditor" timestamp="1578346510974">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -391,9 +336,9 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1578453178979" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1578685941952">
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1578688768960">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1578685941952" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1578688768960" />
   </component>
 </project>
