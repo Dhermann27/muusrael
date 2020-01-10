@@ -17,8 +17,8 @@ class CreateRates extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('building_id');
             $table->foreign('building_id')->references('id')->on('buildings');
-            $table->unsignedBigInteger('programid');
-            $table->foreign('programid')->references('id')->on('programs');
+            $table->unsignedBigInteger('program_id');
+            $table->foreign('program_id')->references('id')->on('programs');
             $table->integer('min_occupancy');
             $table->integer('max_occupancy');
             $table->double('rate');

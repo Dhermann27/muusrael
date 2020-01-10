@@ -33,7 +33,7 @@ abstract class DuskTestCase extends BaseTestCase
             $app = require __DIR__ . '/../bootstrap/app.php';
             $kernel = $app->make(\App\Console\Kernel::class);
             $kernel->bootstrap();
-            echo "Database migrate:refresh --seed";
+            echo "Database migrate:refresh --seed\n";
             $kernel->call('migrate:refresh --seed');
             self::$hasSetupRun = true;
             self::$year = Year::where('is_current', 1)->first();

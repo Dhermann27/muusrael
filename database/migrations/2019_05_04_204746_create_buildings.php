@@ -17,6 +17,7 @@ class CreateBuildings extends Migration
         Schema::create('buildings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('image')->nullable();
             $table->text('blurb')->nullable();
             $table->tinyInteger('side')->nullable();
         });

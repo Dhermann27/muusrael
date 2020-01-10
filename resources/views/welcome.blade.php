@@ -23,7 +23,7 @@
                     @include('includes.carouselcaption')
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="{{ env('IMG_PATH') }}/images/lodge5.jpg" alt="Fourth slide">
+                    <img class="d-block w-100" src="{{ env('IMG_PATH') }}/images/lodge4.jpg" alt="Fourth slide">
                     @include('includes.carouselcaption')
                 </div>
             </div>
@@ -105,8 +105,9 @@
         </div>
     </div>
     <div class="card-deck p-3">
-        <div class="card">
-            <img class="card-img-top img-fluid" src="/images/programs@half.jpg" alt="Laurel and Jim Hermann"/>
+        <div class="card px-5">
+            <img class="card-img-top img-fluid" src="/images/programs@half.jpg"
+                 alt="Loriana Stucker, moving in for the week"/>
             <div class="card-body">
                 <h4 class="card-title">
                     Programs
@@ -117,8 +118,8 @@
             </div>
             <a href="{{ url('/programs') }}" class="btn btn-primary">Program Descriptions</a>
         </div>
-        <div class="card">
-            <img class="card-img-top img-fluid" src="/images/housing@half.jpg" alt="Trout Lodge"/>
+        <div class="card px-5">
+            <img class="card-img-top img-fluid" src="/images/housing@half.jpg" alt="The Hill to Trout Lodge"/>
             <div class="card-body">
                 <h4 class="card-title">
                     Housing
@@ -129,9 +130,9 @@
             </div>
             <a href="{{ url('/housing') }}" class="btn btn-primary">Housing Options</a>
         </div>
-        <div class="card">
+        <div class="card px-5">
             <img class="card-img-top img-fluid" src="/images/workshops@half.jpg"
-                 alt="Justin and Eleanor Hobbs, performing at coffeehouse"/>
+                 alt="Jay Warner, during a photography workshop"/>
             <div class="card-body">
                 <h4 class="card-title">
                     Workshops
@@ -151,9 +152,9 @@
     </div>
 
     <div class="card-deck p-3">
-        <div class="card">
-            <img class="card-img-top img-fluid" src="/images/biographies@half.jpg"
-                 alt="Chalice lit during morning celebrations"/>
+        <div class="card px-5">
+            <img class="card-img-bottom img-fluid" src="/images/biographies@half.jpg"
+                 alt="Chalice tattoo"/>
             <div class="card-body">
                 <h4 class="card-title">
                     Morning Celebrations
@@ -164,7 +165,7 @@
             </div>
             <a href="{{ url('/themespeaker') }}" class="btn btn-primary">Theme Speaker Biography</a>
         </div>
-        <div class="card">
+        <div class="card px-5">
             <img class="card-img-top img-fluid" src="/images/scholarship@half.jpg"
                  alt="A hummingbird in dire need of a sugar scholarship"/>
             <div class="card-body">
@@ -177,9 +178,9 @@
             </div>
             <a href="{{ url('/scholarship') }}" class="btn btn-primary">Application Process</a>
         </div>
-        <div class="card">
+        <div class="card px-5">
             <img class="card-img-top img-fluid" src="/images/calculator@half.jpg"
-                 alt="Hanna Davis, Brochure Editor"/>
+                 alt="John Sandman, Treasurer"/>
             <div class="card-body">
                 <h4 class="card-title">
                     Camp Cost Calculator
@@ -192,17 +193,8 @@
         </div>
     </div>
 
-    <div id="renewed" class="p-4 py-lg-5 text-center mt-3">
-        <h2 class="display-4 text-white m-0">&quot;See you next week!&quot;</h2>
-        <h5 class="p-5 text-white lead">Where you are welcomed to a warm and loving community.
-            Where children are safe and cared for.<br/>
-            Where you'll always be accepted.
-            Where others share your values.<br/>
-            Where your spirit will be renewed!</h5>
-    </div>
 
-
-    <div class="section bg-light" id="testimonial">
+    <div class="section bg-secondary" id="testimonial">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
@@ -224,7 +216,7 @@
                         <div class="p-4">
                             <div>
                                 <h4 class="font-16 mb-1">Geeta P.</h4>
-                                <p class="text-muted mb-2">
+                                <p class="mb-2">
                                     <small> - Colorado Springs, CO</small>
                                 </p>
                             </div>
@@ -243,7 +235,7 @@
                         <div class="p-4">
                             <div>
                                 <h4 class="font-16 mb-1">Roger E.</h4>
-                                <p class="text-muted mb-2">
+                                <p class="mb-2">
                                     <small> - Atlanta, GA</small>
                                 </p>
                             </div>
@@ -260,7 +252,7 @@
                         <div class="p-4">
                             <div>
                                 <h4 class="font-16 mb-1">Greg R.</h4>
-                                <p class="text-muted mb-2">
+                                <p class="mb-2">
                                     <small> - Chicago, IL</small>
                                 </p>
                             </div>

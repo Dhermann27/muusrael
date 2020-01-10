@@ -28,12 +28,12 @@
     <meta name="application-name" content="MUUSA"/>
     <meta name="msapplication-TileColor" content="#da532c"/>
     <meta name="theme-color" content="#ffffff"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/retina.js/1.3.0/retina.min.js"></script>
 
 </head>
 <body>
-
 <a id="top" href="#content" class="sr-only">Skip to content</a>
 
 <header class="sticky">
@@ -54,7 +54,6 @@
                             </form>
                         @else
                             <a href="{{ url('/login') }}" class="pr-4">Login</a>
-                            <a href="{{ url('/register') }}">Create Account</a>
                         @endif
                     </li>
                     @if($year->next_muse !== false)
@@ -67,7 +66,7 @@
                                 {{ Auth::user()->email }}
                             @else
                                 <a href="mailto:muusa@muusa.org">
-                                    <i class="fas fa-mailbox"></i> muusa@muusa.org
+                                    Questions? <i class="fas fa-mailbox"></i> muusa@muusa.org
                                 </a>
                             @endif
                         </li>
@@ -120,7 +119,7 @@
                                aria-haspopup="true" aria-expanded="false">
                                 Camp Information
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-menu dropdown-menu-right mt-0">
                                 <a href="{{ url('/housing') }}" class="dropdown-item"><i class="far fa-bath fa-fw"></i>
                                     Housing
                                     Options</a>
@@ -151,7 +150,7 @@
                                aria-haspopup="true" aria-expanded="false">
                                 Details
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-menu dropdown-menu-right mt-0">
                                 @if($year->is_live)
                                     <a href="{{ url('/brochure') }}" class="dropdown-item">
                                         <i class="far fa-desktop fa-fw"></i> Web Brochure</a>
@@ -188,7 +187,7 @@
                                aria-haspopup="true" aria-expanded="false">
                                 Registration
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-menu dropdown-menu-right mt-0">
                                 <a href="{{ url('/household') }}" class="dropdown-item">
                                     <i class="far fa-home fa-fw"></i> Household</a>
                                 <a href="{{ url('/camper') }}" class="dropdown-item">
@@ -198,7 +197,7 @@
                                 @if(!$year->is_live)
                                     <div class="dropdown-divider"></div>
                                     <h6 class="dropdown-header">
-                                        Opens {{ $year->brochure_date->toFormattedDateString() }}
+                                        Opens {{ $year->brochure_date }}
                                     </h6>
                                     <a href="#" class="dropdown-item disabled">Workshop List</a>
                                     <a href="#" class="dropdown-item disabled">Room Selection</a>
@@ -314,7 +313,7 @@
                     @if(!$year->is_live)
                         <hr/>
                         <h6 class="dropdown-header">
-                            Opens {{ $year->brochure_date->toFormattedDateString() }}
+                            Opens {{ $year->brochure_date }}
                         </h6>
                         <li>Workshop List</li>
                         <li>Room Selection</li>

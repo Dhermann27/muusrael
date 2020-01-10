@@ -10,8 +10,8 @@ $factory->define(Year::class, function (Faker $faker) {
     $thisyear = $faker->year;
     return [
         'year' => $thisyear,
-        'checkin_date' => Carbon::parse('first Sunday of July ' . $thisyear)->toDateString(),
-        'brochure_date' => Carbon::parse('first day of February ' . $thisyear)->toDateString(),
+        'checkin' => Carbon::parse('first Sunday of July ' . $thisyear)->toDateString(),
+        'brochure' => Carbon::parse('first day of February ' . $thisyear)->toDateString(),
         'is_current' => '1',
         'is_live' => '1',
         'is_crunch' => '0',

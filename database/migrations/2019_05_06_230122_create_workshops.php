@@ -15,7 +15,8 @@ class CreateWorkshops extends Migration
     {
         Schema::create('workshops', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('year');
+            $table->unsignedBigInteger('year_id');
+            $table->foreign('year_id')->references('id')->on('years');
             $table->unsignedBigInteger('room_id');
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->unsignedBigInteger('timeslot_id');

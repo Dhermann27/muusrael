@@ -10,10 +10,11 @@ use Faker\Factory;
 use Laracasts\Behat\Context\Services\MailTrap;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
+use Tests\MuusaTrap;
 
 class ContactTest extends DuskTestCase
 {
-    use MailTrap;
+    use MuusaTrap;
 
     // Can only send 2 emails per 10 seconds
 //    public function testIndex()
@@ -66,7 +67,7 @@ class ContactTest extends DuskTestCase
         foreach ($emails as $email) {
             $this->assertContains($email, $box->emails);
         }
-        $body = $this->getBody($lastEmail['id']);
+        $body = $this->fetchBody($lastEmail['inbox_id'], $lastEmail['id']);
         $this->assertStringContainsString($fakedName . " <" . $fakedEmail . ">", $body);
         $this->assertStringContainsString($fakedGraph, $body);
     }
@@ -93,7 +94,7 @@ class ContactTest extends DuskTestCase
 
         $lastEmail = $this->fetchInbox()[0];
         $this->assertNotEquals($box->emails, $lastEmail['to_email']);
-        $body = $this->getBody($lastEmail['id']);
+        $body = $this->fetchBody($lastEmail['inbox_id'], $lastEmail['id']);
         $this->assertStringNotContainsString($fakedName . " <" . $fakedEmail . ">", $body);
     }
 
@@ -120,7 +121,7 @@ class ContactTest extends DuskTestCase
 
         $lastEmail = $this->fetchInbox()[0];
         $this->assertEquals($box->emails, $lastEmail['to_email']);
-        $body = $this->getBody($lastEmail['id']);
+        $body = $this->fetchBody($lastEmail['inbox_id'], $lastEmail['id']);
         $this->assertStringContainsString($camper->firstname . " " . $camper->lastname . " <" . $camper->email . ">", $body);
         $this->assertStringContainsString($fakedGraph, $body);
     }
