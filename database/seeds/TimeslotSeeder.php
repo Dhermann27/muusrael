@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Timeslotname;
 use Illuminate\Database\Seeder;
 
 class TimeslotSeeder extends Seeder
@@ -12,17 +13,17 @@ class TimeslotSeeder extends Seeder
     public function run()
     {
         $timeslots = array(
-            'Sunrise' => [1000, 'SR', '2001-01-01 06:30:00', '2001-01-01 07:30:00'],
-            'Morning' => [1001, 'M', '2001-01-01 09:50:00', '2001-01-01 11:50:00'],
-            'Early Afternoon' => [1002, 'EA', '2001-01-01 13:30:00', '2001-01-01 15:30:00'],
-            'Late Afternoon' => [1003, 'LA', '2001-01-01 16:00:00', '2001-01-01 17:30:00'],
-            'Evening' => [1004, 'SS', '2001-01-01 19:30:00', '2001-01-01 20:30:00'],
-            'Excursions' => [1005, 'EX', '2001-01-01 00:00:00', '2001-01-01 06:00:00']
+            Timeslotname::Sunrise => ['Sunrise', 'SR', '2001-01-01 06:30:00', '2001-01-01 07:30:00'],
+            Timeslotname::Morning => ['Morning', 'M', '2001-01-01 09:50:00', '2001-01-01 11:50:00'],
+            Timeslotname::Early_Afternoon => ['Early Afternoon', 'EA', '2001-01-01 13:30:00', '2001-01-01 15:30:00'],
+            Timeslotname::Late_Afternoon => ['Late Afternoon', 'LA', '2001-01-01 16:00:00', '2001-01-01 17:30:00'],
+            Timeslotname::Evening => ['Evening', 'SS', '2001-01-01 19:30:00', '2001-01-01 20:30:00'],
+            Timeslotname::Excursions => ['Excursions', 'EX', '2001-01-01 00:00:00', '2001-01-01 06:00:00']
         );
-        foreach ($timeslots as $name => $info) {
+        foreach ($timeslots as $id => $info) {
             DB::table('timeslots')->insert([
-                'id' => $info[0],
-                'name' => $name,
+                'id' => $id,
+                'name' => $info[0],
                 'code' => $info[1],
                 'start_time' => $info[2],
                 'end_time' => $info[3]

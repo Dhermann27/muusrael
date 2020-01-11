@@ -25,7 +25,7 @@ class CreateRooms extends Migration
             $table->integer('xcoord');
             $table->integer('ycoord');
             $table->integer('pixelsize');
-            $table->integer('connected_with');
+            $table->integer('connected_with')->default(0);
             $table->timestamps();
         });
         DB::update('ALTER TABLE rooms AUTO_INCREMENT = 1000');

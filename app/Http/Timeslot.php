@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Timeslot extends Model
 {
+    protected $dates = ['start_time', 'end_time'];
+
     /**
      * Indicates if the model should be timestamped.
      *

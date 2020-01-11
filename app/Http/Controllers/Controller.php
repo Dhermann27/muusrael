@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Year;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,7 +17,7 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $this->year = \App\Year::where('is_current', '1')->first();
+        $this->year = Year::where('is_current', '1')->first();
         View::share('year', $this->year);
     }
 }

@@ -2,6 +2,8 @@
 
 Auth::routes();
 
+// Public Pages
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -13,6 +15,9 @@ Route::get('/themespeaker', 'HomeController@themespeaker');
 Route::get('/scholarship', 'HomeController@scholarship');
 Route::get('/programs', 'HomeController@programs');
 Route::get('/housing', 'HomeController@housing');
+
+Route::get('/workshops', 'WorkshopController@display');
+Route::get('/excursions', 'WorkshopController@excursions');
 
 Route::get('/brochure', function () {
     $year = date('Y');

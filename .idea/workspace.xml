@@ -2,18 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Enums/Buildingtype.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/BuildingSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/en/blurbs.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/en/registration.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/Timeslotname.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/components/navtabs.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/excursions.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/includes/filling.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/workshops.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Browser/WorkshopTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/Buildingside.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Buildingside.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/campcost.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/campcost.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorkshopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorkshopController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Timeslot.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Timeslot.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Workshop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Workshop.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_04_213155_create_rooms.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_04_213155_create_rooms.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/TimeslotSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/TimeslotSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +197,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/database/seeds" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/Browser" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -216,11 +218,11 @@
       <recent name="$PROJECT_DIR$/public/images" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/Browser" />
       <recent name="$PROJECT_DIR$/database/seeds" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/app/Enums" />
-      <recent name="$PROJECT_DIR$/resources/sass" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.phpunit.xml">
@@ -263,7 +265,7 @@
       <workItem from="1563242646207" duration="4972000" />
       <workItem from="1564369141891" duration="7879000" />
       <workItem from="1578346474671" duration="14967000" />
-      <workItem from="1578588866298" duration="12494000" />
+      <workItem from="1578588866298" duration="19679000" />
     </task>
     <servers />
   </component>
@@ -300,6 +302,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="463" y="271" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877@0.23.1440.877" timestamp="1578587892807" />
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578766735423">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1578766735423" />
     <state x="507" y="223" key="FileChooserDialogImpl" timestamp="1578452614232">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -320,14 +326,14 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1358" height="217" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1578588676561" />
-    <state x="461" y="285" key="NewPhpClassDialog" timestamp="1578754989538">
+    <state x="461" y="285" key="NewPhpClassDialog" timestamp="1578757616625">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1578754989538" />
-    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1578755434647">
+    <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1578757616625" />
+    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1578765956997">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1578755434647" />
+    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1578765956997" />
     <state x="229" y="100" key="SettingsEditor" timestamp="1578755820713">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -344,9 +350,9 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1578453178979" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1578757255722">
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1578769087890">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1578757255722" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1578769087890" />
   </component>
 </project>
