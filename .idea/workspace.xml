@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/components/blog.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/housing.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/programs.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/scholarship.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/themespeaker.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/campcost.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/campcost.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Building.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Building.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/WelcomeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/WelcomeTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/DuskTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DuskTestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +38,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="SCSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -205,6 +204,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/js" />
       <recent name="$PROJECT_DIR$/public/images" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -255,7 +255,7 @@
       <workItem from="1563242646207" duration="4972000" />
       <workItem from="1564369141891" duration="7879000" />
       <workItem from="1578346474671" duration="14967000" />
-      <workItem from="1578588866298" duration="5606000" />
+      <workItem from="1578588866298" duration="8653000" />
     </task>
     <servers />
   </component>
@@ -316,10 +316,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1578587565231" />
-    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1578688903341">
+    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1578710141442">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1578688903341" />
+    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1578710141442" />
     <state x="229" y="100" key="SettingsEditor" timestamp="1578346510974">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -328,17 +328,17 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="399" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1578588915697" />
-    <state x="386" y="97" width="667" height="729" key="find.popup" timestamp="1578686065186">
+    <state x="386" y="97" width="667" height="729" key="find.popup" timestamp="1578709717220">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="97" width="667" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1578686065186" />
+    <state x="386" y="97" width="667" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1578709717220" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1578453178979">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1578453178979" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1578688768960">
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1578711202653">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1578688768960" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1578711202653" />
   </component>
 </project>

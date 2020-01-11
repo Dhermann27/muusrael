@@ -7,6 +7,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Laravel\Dusk\TestCase as BaseTestCase;
+use NumberFormatter;
 
 abstract class DuskTestCase extends BaseTestCase
 {
@@ -59,4 +60,10 @@ abstract class DuskTestCase extends BaseTestCase
         )
         );
     }
+
+    protected function moneyFormat($float) {
+        $fmt = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
+        $fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
+        return $fmt->formatCurrency($float, "USD");
+}
 }

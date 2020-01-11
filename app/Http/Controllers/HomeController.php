@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Building;
 use App\Program;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -17,8 +18,8 @@ class HomeController extends Controller
         return view('campcost', ['background' => 'calculator.jpg', 'rates' => DB::table('rates')
             ->join('years', function ($join) {
                 $join->on('rates.start_year', '<=', 'years.year')->on('rates.end_year', '>', 'years.year');
-            })->join('programs', 'programs.id', 'rates.programid')
-            ->whereIn('buildingid', ['1000', '1007', '1017'])->where('years.is_current', '1')
+            })->join('programs', 'programs.id', 'rates.program_id')
+            ->whereIn('building_id', ['1000', '1007', '1017'])->where('years.is_current', '1')
             ->orderBy('name')->orderBy('min_occupancy')->orderBy('max_occupancy')->get()]);
     }
 
