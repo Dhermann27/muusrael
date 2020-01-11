@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/js/campcost.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/campcost.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/Buildingtype.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/BuildingSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/en/blurbs.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/en/registration.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enums/Buildingside.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Buildingside.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/WelcomeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/WelcomeTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/DuskTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DuskTestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/campcost.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/campcost.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +195,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/database/seeds" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -200,19 +206,21 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Http" />
       <recent name="$PROJECT_DIR$/public/js" />
+      <recent name="$PROJECT_DIR$/resources/js" />
       <recent name="$PROJECT_DIR$/public/images" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/database/seeds" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/app/Enums" />
       <recent name="$PROJECT_DIR$/resources/sass" />
-      <recent name="$PROJECT_DIR$/resources/js" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.phpunit.xml">
@@ -255,7 +263,7 @@
       <workItem from="1563242646207" duration="4972000" />
       <workItem from="1564369141891" duration="7879000" />
       <workItem from="1578346474671" duration="14967000" />
-      <workItem from="1578588866298" duration="8653000" />
+      <workItem from="1578588866298" duration="12494000" />
     </task>
     <servers />
   </component>
@@ -312,33 +320,33 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1358" height="217" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1578588676561" />
-    <state x="461" y="285" key="NewPhpClassDialog" timestamp="1578587565231">
+    <state x="461" y="285" key="NewPhpClassDialog" timestamp="1578754989538">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1578587565231" />
-    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1578710141442">
+    <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1578754989538" />
+    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1578755434647">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1578710141442" />
-    <state x="229" y="100" key="SettingsEditor" timestamp="1578346510974">
+    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1578755434647" />
+    <state x="229" y="100" key="SettingsEditor" timestamp="1578755820713">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="229" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1578346510974" />
+    <state x="229" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1578755820713" />
     <state x="399" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1578588915697">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="399" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1578588915697" />
-    <state x="386" y="97" width="667" height="729" key="find.popup" timestamp="1578709717220">
+    <state x="386" y="97" width="667" height="729" key="find.popup" timestamp="1578748548422">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="97" width="667" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1578709717220" />
+    <state x="386" y="97" width="667" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1578748548422" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1578453178979">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1578453178979" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1578711202653">
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1578757255722">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1578711202653" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1578757255722" />
   </component>
 </project>

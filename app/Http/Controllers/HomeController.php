@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Building;
+use App\CampCost;
+use App\Enums\Buildingtype;
 use App\Program;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -15,12 +16,8 @@ class HomeController extends Controller
 
     public function campcost()
     {
-        return view('campcost', ['background' => 'calculator.jpg', 'rates' => DB::table('rates')
-            ->join('years', function ($join) {
-                $join->on('rates.start_year', '<=', 'years.year')->on('rates.end_year', '>', 'years.year');
-            })->join('programs', 'programs.id', 'rates.program_id')
-            ->whereIn('building_id', ['1000', '1007', '1017'])->where('years.is_current', '1')
-            ->orderBy('name')->orderBy('min_occupancy')->orderBy('max_occupancy')->get()]);
+        $rates = CampCost::whereIn('building_id', [Buildingtype::Trout, Buildingtype::Tent, Buildingtype::LakewoodCabin])->get()->groupBy('building_id');
+        return view('campcost', ['lodge' => $rates[Buildingtype::Trout], 'tent' => $rates[Buildingtype::Tent], 'lakewood' => $rates[Buildingtype::LakewoodCabin]]);
     }
 
     public function housing()

@@ -42,7 +42,7 @@
                 <div class="col-lg-6 d-sm-flex">
                     <a href="{{ url('/brochure') }}">
                         <img id="brochureimg" class="card-img-top img-fluid" src="/images/brochure.png"
-                             alt="Web Brochure cover">
+                             alt="Web Brochure cover" data-no-retina>
                     </a>
                 </div>
                 <div class="col-lg-6 d-sm-flex align-content-center d-flex align-items-center">
@@ -106,7 +106,7 @@
     </div>
     <div class="card-deck p-3">
         <div class="card px-5">
-            <img class="card-img-top img-fluid" src="/images/programs@half.jpg"
+            <img class="card-img-top img-fluid" src="/images/programs.jpg"
                  alt="Loriana Stucker, moving in for the week"/>
             <div class="card-body">
                 <h4 class="card-title">
@@ -119,7 +119,7 @@
             <a href="{{ url('/programs') }}" class="btn btn-primary">Program Descriptions</a>
         </div>
         <div class="card px-5">
-            <img class="card-img-top img-fluid" src="/images/housing@half.jpg" alt="The Hill to Trout Lodge"/>
+            <img class="card-img-top img-fluid" src="/images/housing.jpg" alt="The Hill to Trout Lodge"/>
             <div class="card-body">
                 <h4 class="card-title">
                     Housing
@@ -131,7 +131,7 @@
             <a href="{{ url('/housing') }}" class="btn btn-primary">Housing Options</a>
         </div>
         <div class="card px-5">
-            <img class="card-img-top img-fluid" src="/images/workshops@half.jpg"
+            <img class="card-img-top img-fluid" src="/images/workshops.jpg"
                  alt="Jay Warner, during a photography workshop"/>
             <div class="card-body">
                 <h4 class="card-title">
@@ -153,7 +153,7 @@
 
     <div class="card-deck p-3">
         <div class="card px-5">
-            <img class="card-img-bottom img-fluid" src="/images/biographies@half.jpg"
+            <img class="card-img-bottom img-fluid" src="/images/biographies.jpg"
                  alt="Chalice tattoo"/>
             <div class="card-body">
                 <h4 class="card-title">
@@ -166,7 +166,7 @@
             <a href="{{ url('/themespeaker') }}" class="btn btn-primary">Theme Speaker Biography</a>
         </div>
         <div class="card px-5">
-            <img class="card-img-top img-fluid" src="/images/scholarship@half.jpg"
+            <img class="card-img-top img-fluid" src="/images/scholarship.jpg"
                  alt="A hummingbird in dire need of a sugar scholarship"/>
             <div class="card-body">
                 <h4 class="card-title">
@@ -179,7 +179,7 @@
             <a href="{{ url('/scholarship') }}" class="btn btn-primary">Application Process</a>
         </div>
         <div class="card px-5">
-            <img class="card-img-top img-fluid" src="/images/calculator@half.jpg"
+            <img class="card-img-top img-fluid" src="/images/calculator.jpg"
                  alt="John Sandman, Treasurer"/>
             <div class="card-body">
                 <h4 class="card-title">

@@ -153,9 +153,9 @@
 @section('script')
     <script>
         // Adult (1-4), Burt, Cratty, Lumens, Meyer, YA, YA 18-20
-        var guestsuite = [{{ $rates->where('building_id', '1000')->implode('rate', ',') }}];
-        var tentcamp = [{{ $rates->where('building_id', '1007')->implode('rate', ',') }}];
-        var lakewood = [{{ $rates->where('building_id', '1017')->implode('rate', ',') }}];
+        var guestsuite = [{{ $lodge->implode('rate', ',') }}];
+        var tentcamp = [{{ $tent->implode('rate', ',') }}];
+        var lakewood = [{{ $lakewood->implode('rate', ',') }}];
     </script>
     <script src="/js/campcost.js" type="text/javascript"></script>
 @endsection

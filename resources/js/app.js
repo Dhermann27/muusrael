@@ -1,5 +1,6 @@
 require('./bootstrap');
 
+
 import '@fortawesome/fontawesome-pro/css/all.css';
 import '@fortawesome/fontawesome-pro/js/all.js';
 
@@ -7,7 +8,6 @@ import '@fortawesome/fontawesome-pro/js/all.js';
    Author: CoderThemes
    File Description: Main JS file of the template
 */
-
 
 !function ($) {
     "use strict";

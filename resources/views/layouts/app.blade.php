@@ -101,9 +101,9 @@
         <div class="container-fluid">
             <a class="logo text-uppercase" href="/" title="Home">
                 <img src="/images/brand35.png" class="logo-light pr-3"
-                     alt="Midwest Unitarian Universalist Summer Assembly">
+                     alt="Midwest Unitarian Universalist Summer Assembly" data-no-retina>
                 <img src="/images/brand35.png" class="logo-dark pr-3"
-                     alt="Midwest Unitarian Universalist Summer Assembly">
+                     alt="Midwest Unitarian Universalist Summer Assembly" data-no-retina>
                 MUUSA
             </a>
 
