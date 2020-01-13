@@ -43,27 +43,30 @@
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item">
                         @auth
-                            <a href="{{ url('/logout') }}"
+                            <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 Logout
                             </a>
 
-                            <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                   style="display: none;">
                                 @crsf
                             </form>
                         @else
-                            <a href="{{ url('/login') }}" class="pr-4">Login</a>
+                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
+                                    data-target="#modal-register">
+                                Login
+                            </button>
                         @endif
                     </li>
                     @if($year->next_muse !== false)
                         <li class="list-inline-item">
-                            <a href="{{ url('/themuse') }}">{{ $year->next_muse }}</a>
+                            <a href="{{ route('themuse') }}">{{ $year->next_muse }}</a>
                         </li>
                     @else
                         <li class="list-inline-item">
                             @auth
-                                {{ Auth::user()->email }}
+                                Logged in as: {{ Auth::user()->email }}
                             @else
                                 <a href="mailto:muusa@muusa.org">
                                     Questions? <i class="fas fa-mailbox"></i> muusa@muusa.org
@@ -113,38 +116,41 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto navbar-center" id="mySidenav">
-                    <li class="nav-item">
+
+                    <li class="nav-item mt-1"><a href="{{ route('contact') }}" class="nav-link">Contact Us</a></li>
+
+                    <li class="nav-item mt-1">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
                                 Camp Information
                             </a>
                             <div class="dropdown-menu dropdown-menu-right mt-0">
-                                <a href="{{ url('/housing') }}" class="dropdown-item"><i class="far fa-bath fa-fw"></i>
+                                <a href="{{ route('housing') }}" class="dropdown-item"><i class="far fa-bath fa-fw"></i>
                                     Housing
                                     Options</a>
-                                <a href="{{ url('/programs') }}" class="dropdown-item">
+                                <a href="{{ route('programs') }}" class="dropdown-item">
                                     <i class="far fa-sitemap fa-fw"></i> Programs
                                 </a>
-                                <a href="{{ url('/workshops') }}" class="dropdown-item">
+                                <a href="{{ route('workshops.display') }}" class="dropdown-item">
                                     <i class="far fa-map fa-fw"></i> Workshop List
                                 </a>
-                                <a href="{{ url('/themespeaker') }}" class="dropdown-item">
+                                <a href="{{ route('themespeaker') }}" class="dropdown-item">
                                     <i class="far fa-microphone fa-fw"></i> Theme Speakers
                                 </a>
-                                <a href="{{ url('/cost') }}" class="dropdown-item">
+                                <a href="{{ route('cost') }}" class="dropdown-item">
                                     <i class="far fa-calculator fa-fw"></i> Cost Calculator
                                 </a>
-                                <a href="{{ url('/scholarship') }}" class="dropdown-item">
+                                <a href="{{ route('scholarship') }}" class="dropdown-item">
                                     <i class="far fa-universal-access fa-fw"></i> Scholarships
                                 </a>
-                                <a href="{{ url('/excursions') }}" class="dropdown-item">
+                                <a href="{{ route('workshops.excursions') }}" class="dropdown-item">
                                     <i class="far fa-binoculars fa-fw"></i> Excursions
                                 </a>
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mt-1">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
@@ -152,27 +158,27 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right mt-0">
                                 @if($year->is_live)
-                                    <a href="{{ url('/brochure') }}" class="dropdown-item">
+                                    <a href="{{ route('brochure') }}" class="dropdown-item">
                                         <i class="far fa-desktop fa-fw"></i> Web Brochure</a>
                                 @endif
                                 @if($year->is_calendar)
-                                    <a href="{{ url('/calendar') }}" class="dropdown-item">
+                                    <a href="#" class="dropdown-item">
                                         <i class="far fa-calendar-alt fa-fw"></i> Daily Schedule</a>
                                 @endif
                                 @if($year->next_muse !== false)
-                                    <a href="{{ url('/themuse') }}" class="dropdown-item">
+                                    <a href="#" class="dropdown-item">
                                         <i class="fal fa-newspaper fa-fw"></i> {{ $year->next_muse }}</a>
                                 @endif
-                                <a href="{{ url('/directory') }}" class="dropdown-item">
+                                <a href="#" class="dropdown-item">
                                     <i class="far fa-address-book fa-fw"></i> Online Directory</a>
                                 @if($year->is_artfair)
-                                    <a href="{{ url('/artfair') }}" class="dropdown-item">
+                                    <a href="#" class="dropdown-item">
                                         <i class="far fa-shopping-bag fa-fw"></i> Art Fair Submission</a>
                                 @endif
-                                <a href="{{ url('/volunteer') }}" class="dropdown-item">
+                                <a href="#" class="dropdown-item">
                                     <i class="far fa-handshake fa-fw"></i> Volunteer Opportunities</a>
                                 @if($year->is_workshop_proposal)
-                                    <a href="{{ url('/proposal') }}" class="dropdown-item">
+                                    <a href="#" class="dropdown-item">
                                         <i class="fal fa-chalkboard-teacher fa-fw"></i> Workshop Proposal
                                     </a>
                                 @endif
@@ -180,44 +186,48 @@
                         </div>
                     </li>
 
-                    <li class="nav-item">
-
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-                                Registration
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right mt-0">
-                                <a href="{{ url('/household') }}" class="dropdown-item">
-                                    <i class="far fa-home fa-fw"></i> Household</a>
-                                <a href="{{ url('/camper') }}" class="dropdown-item">
-                                    <i class="far fa-users fa-fw"></i> Campers</a>
-                                <a href="{{ url('/payment') }}" class="dropdown-item">
-                                    <i class="far fa-usd-square fa-fw"></i> Payment</a>
-                                @if(!$year->is_live)
-                                    <div class="dropdown-divider"></div>
-                                    <h6 class="dropdown-header">
-                                        Opens {{ $year->brochure_date }}
-                                    </h6>
-                                    <a href="#" class="dropdown-item disabled">Workshop List</a>
-                                    <a href="#" class="dropdown-item disabled">Room Selection</a>
-                                    <a href="#" class="dropdown-item disabled">Nametags</a>
-                                    <a href="#" class="dropdown-item disabled">Confirmation</a>
-                                @else
-                                    <a href="{{ url('/workshopchoice') }}" class="dropdown-item">
-                                        <i class="far fa-rocket fa-fw"></i>Workshops</a>
-                                    <a href="{{ url('/roomselection') }}" class="dropdown-item">
-                                        <i class="far fa-bed fa-fw"></i> Room Selection</a>
-                                    <a href="{{ url('/nametag') }}" class="dropdown-item">
-                                        <i class="far fa-id-card fa-fw"></i> Nametags</a>
-                                    <a href="{{ url('/confirm') }}" class="dropdown-item">
-                                        <i class="far fa-envelope fa-fw"></i> Confirmation</a>
-                                @endif
+                    <li class="nav-item mt-1">
+                        @auth
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    Registration
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right mt-0">
+                                    <a href="{{ route('household') }}" class="dropdown-item">
+                                        <i class="far fa-home fa-fw"></i> Household</a>
+                                    <a href="{{ route('camper') }}" class="dropdown-item">
+                                        <i class="far fa-users fa-fw"></i> Campers</a>
+                                    <a href="{{ route('payment') }}" class="dropdown-item">
+                                        <i class="far fa-usd-square fa-fw"></i> Payment</a>
+                                    @if(!$year->is_live)
+                                        <div class="dropdown-divider"></div>
+                                        <h6 class="dropdown-header">
+                                            Opens {{ $year->brochure_date }}
+                                        </h6>
+                                        <a href="#" class="dropdown-item disabled">Workshop List</a>
+                                        <a href="#" class="dropdown-item disabled">Room Selection</a>
+                                        <a href="#" class="dropdown-item disabled">Nametags</a>
+                                        <a href="#" class="dropdown-item disabled">Confirmation</a>
+                                    @else
+                                        <a href="{{ route('workshopchoice') }}" class="dropdown-item">
+                                            <i class="far fa-rocket fa-fw"></i>Workshops</a>
+                                        <a href="{{ route('roomselection') }}" class="dropdown-item">
+                                            <i class="far fa-bed fa-fw"></i> Room Selection</a>
+                                        <a href="{{ route('nametag') }}" class="dropdown-item">
+                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>
+                                        <a href="{{ route('confirm') }}" class="dropdown-item">
+                                            <i class="far fa-envelope fa-fw"></i> Confirmation</a>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <button type="button" class="btn btn-info btn-sm my-3" data-toggle="modal"
+                                    data-target="#modal-register">
+                                Register Now <i class="fas fa-sign-in"></i>
+                            </button>
+                        @endif
                     </li>
-
-                    <li class="nav-item"><a href="{{ url('/contact') }}" class="nav-link">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -267,59 +277,66 @@
                         <div class="col-lg-2">
                             <h5 class="footer-title text-white mb-3">Camp Information</h5>
                             <ul class="list-unstyled footer-list">
-                                <li><a href="{{ url('/housing') }}">Housing Options</a></li>
-                                <li><a href="{{ url('/programs') }}">Programs</a></li>
-                                <li><a href="{{ url('/workshops') }}">Workshop List</a></li>
-                                <li><a href="{{ url('/themespeaker') }}">Theme Speaker</a></li>
-                                <li><a href="{{ url('/cost') }}">Cost Calculator</a></li>
-                                <li><a href="{{ url('/scholarship') }}">Scholarships</a></li>
-                                <li><a href="{{ url('/excursions') }}">Excursions</a></li>
+                                <li><a href="{{ route('housing') }}">Housing Options</a></li>
+                                <li><a href="{{ route('programs') }}">Programs</a></li>
+                                <li><a href="{{ route('workshops.display') }}">Workshop List</a></li>
+                                <li><a href="{{ route('themespeaker') }}">Theme Speaker</a></li>
+                                <li><a href="{{ route('cost') }}">Cost Calculator</a></li>
+                                <li><a href="{{ route('scholarship') }}">Scholarships</a></li>
+                                <li><a href="{{ route('workshops.excursions') }}">Excursions</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-2">
                             <h5 class="footer-title text-white mb-3">Details</h5>
                             <ul class="list-unstyled footer-list">
                                 @if($year->is_live)
-                                    <li><a href="{{ url('/brochure') }}">Web Brochure</a></li>
+                                    <li><a href="{{ route('brochure') }}">Web Brochure</a></li>
                                 @endif
                                 @if($year->is_calendar)
-                                    <li><a href="{{ url('/calendar') }}">Daily Schedule</a></li>
+                                    <li><a href="#">Daily Schedule</a></li>
                                 @endif
                                 @if($year->next_muse !== false)
-                                    <li><a href="{{ url('/themuse') }}">{{ $year->next_muse }}</a></li>
+                                    <li><a href="#">{{ $year->next_muse }}</a></li>
                                 @endif
-                                <li><a href="{{ url('/directory') }}">Online Directory</a></li>
+                                <li><a href="#">Online Directory</a></li>
                                 @if($year->is_artfair)
-                                    <li><a href="{{ url('/artfair') }}">Art Fair Submission</a></li>
+                                    <li><a href="#">Art Fair Submission</a></li>
                                 @endif
-                                <li><a href="{{ url('/volunteer') }}">Volunteer Opportunities</a></li>
+                                <li><a href="#">Volunteer Opportunities</a></li>
                                 @if($year->is_workshop_proposal)
-                                    <li><a href="{{ url('/proposal') }}">Workshop Proposal</a></li>
+                                    <li><a href="#">Workshop Proposal</a></li>
                                 @endif
                             </ul>
                         </div>
                         <div class="col-lg-2">
-                            <h5 class="footer-title text-white mb-3">Registration</h5>
-                            <ul class="list-unstyled footer-list">
-                                <li><a href="{{ url('/household') }}">Household</a></li>
-                                <li><a href="{{ url('/camper') }}">Campers</a></li>
-                                <li><a href="{{ url('/payment') }}">Payment</a></li>
-                                @if(!$year->is_live)
-                                    <hr/>
-                                    <h6 class="dropdown-header">
-                                        Opens {{ $year->brochure_date }}
-                                    </h6>
-                                    <li>Workshop List</li>
-                                    <li>Room Selection</li>
-                                    <li>Nametags</li>
-                                    <li>Confirmation</li>
-                                @else
-                                    <li><a href="{{ url('/workshopchoice') }}">Workshops</a></li>
-                                    <li><a href="{{ url('/roomselection') }}">Room Selection</a></li>
-                                    <li><a href="{{ url('/nametag') }}">Nametags</a></li>
-                                    <li><a href="{{ url('/confirm') }}">Confirmation</a></li>
-                                @endif
-                            </ul>
+                            @auth
+                                <h5 class="footer-title text-white mb-3">Registration</h5>
+                                <ul class="list-unstyled footer-list">
+                                    <li><a href="{{ route('household') }}">Household</a></li>
+                                    <li><a href="{{ route('camper') }}">Campers</a></li>
+                                    <li><a href="{{ route('payment') }}">Payment</a></li>
+                                    @if(!$year->is_live)
+                                        <hr/>
+                                        <h6 class="dropdown-header">
+                                            Opens {{ $year->brochure_date }}
+                                        </h6>
+                                        <li>Workshop List</li>
+                                        <li>Room Selection</li>
+                                        <li>Nametags</li>
+                                        <li>Confirmation</li>
+                                    @else
+                                        <li><a href="{{ route('workshopchoice') }}">Workshops</a></li>
+                                        <li><a href="{{ route('roomselection') }}">Room Selection</a></li>
+                                        <li><a href="{{ route('nametag') }}">Nametags</a></li>
+                                        <li><a href="{{ route('confirm') }}">Confirmation</a></li>
+                                    @endif
+                                </ul>
+                            @else
+                                <button type="button" class="btn btn-info font-weight-bold" data-toggle="modal"
+                                        data-target="#modal-register">
+                                    Register Now <i class="fas fa-sign-in"></i>
+                                </button>
+                            @endif
                         </div>
                     </div>
                     <!-- end row -->
@@ -328,9 +345,8 @@
                             <div class="py-4">
                                 <div class="text-center">
                                     <p class="text-white-50">{{ $year->year }} &copy; Midwest Unitarian Universalist
-                                        Summer
-                                        Assembly. Design by <a href="https://coderthemes.com/" target="_blank"
-                                                               class="text-white">Coderthemes</a>
+                                        Summer Assembly. Design by <a href="https://coderthemes.com/" target="_blank"
+                                                                      class="text-white">Coderthemes</a>
                                     </p>
                                 </div>
                             </div>
@@ -342,6 +358,131 @@
             </footer>
             <!-- footer end -->
 
+            <!-- Modal -->
+            <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Get Registered for {{ $year->year }}!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid mx-0">
+                                <div class="row">
+                                    <div class="col-md-6 pr-md-5">
+                                        <h5>Returning Campers</h5>
+
+                                        <div class="form-group row">
+                                            <label for="email_login" class="form-label">Email</label>
+                                            <input id="email_login" type="text" class="form-control"
+                                                   name="email">
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="password_login" class="form-label">Password</label>
+                                            <input id="password_login" type="password" class="form-control"
+                                                   name="password">
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="remember"
+                                                       id="remember">
+                                                <label class="form-check-label" for="remember">
+                                                    Remember me on this computer?
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        @if (Route::has('password.request'))
+                                            <div class="form-group row float-sm-right">
+
+                                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                    {{ __('Forgot Your Password?') }}
+                                                </a>
+                                            </div>
+                                        @endif
+
+                                        <a class="btn d-none" data-toggle="collapse" href="#login-searching"
+                                           role="button" aria-expanded="false">
+                                            #
+                                        </a>
+                                        <a class="btn d-none" data-toggle="collapse" href="#login-found" role="button"
+                                           aria-expanded="false">
+                                            #
+                                        </a>
+
+                                        <div id="login-searching" class="alert alert-info w-100 collapse">
+                                            <h6>Welcome back!</h6>
+                                            <p>Retrieving your records... <i class="fad fa-spinner-third fa-spin"></i>
+                                            </p>
+                                        </div>
+
+                                        <div id="login-found" class="form-group row w-100 collapse">
+                                            <label for="password_login" class="form-label">Which campers will be
+                                                attending?</label>
+                                            <select id="login-campers" class="custom-select" multiple
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="Hold down CTRL or Command to select multiple campers.">
+                                            </select>
+                                            <button id="selectallcampers" class="btn btn-secondary btn-sm mt-1">
+                                                <i class="fas fa-users"></i> Select All
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pl-md-5">
+                                        <h5>New Campers</h5>
+
+                                        <div class="form-group row">
+                                            <label for="email_create" class="form-label">Email</label>
+                                            <input id="email_create" type="text" class="form-control"
+                                                   name="email">
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="password_create" class="form-label">Password</label>
+                                            <input id="password_create" type="password" class="form-control"
+                                                   name="password">
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="password_create" class="form-label">Confirm Password</label>
+                                            <input id="password_create" type="password" class="form-control"
+                                                   name="password_confirmation">
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="number-spinner">
+                                                <label for="newcampers" class="form-label">How many campers will be
+                                                    attending?</label>
+                                                <div class="input-group float-sm-right">
+                                                    <div class="input-group-prepend">
+                                                        <button class="btn btn-default spinner" data-dir="up"><i
+                                                                class="far fa-plus"></i></button>
+                                                    </div>
+                                                    <input id="newcampers" class="form-control" name="newcampers"
+                                                           value="0"/>
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-default spinner" data-dir="dwn"><i
+                                                                class="far fa-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Begin Registration</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <script src="{{ mix('js/app.js') }}"></script>
 
         @yield('script')

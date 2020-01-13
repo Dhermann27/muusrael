@@ -94,3 +94,48 @@ import '@fortawesome/fontawesome-pro/js/all.js';
         "use strict";
         $.Minton.init();
     }(window.jQuery);
+
+$('[data-toggle="tooltip"]').tooltip();
+
+$("input#email_login").blur(function () {
+    var email = this.value;
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,5})+$/.test(email)) {
+        $("div#login-found").collapse('hide');
+        $("div#login-searching").collapse('show').on('shown.bs.collapse', function () {
+            $.getJSON("/data/loginsearch", {term: email})
+                .done(function (data) {
+                    $("select#login-campers").empty();
+                    $.each(data, function (i, item) {
+                        $("select#login-campers").append(new Option(item.firstname + " " + item.lastname, item.id, false, true));
+                    });
+                    $("div#login-searching").collapse('hide');
+                    $("div#login-found").collapse('show');
+                });
+        });
+    } else {
+        $("div#login-found").collapse('hide');
+        $("div#login-searching").collapse('hide');
+    }
+});
+
+$("button#selectallcampers").click(function () {
+    $("select#login-campers option").prop('selected', 'true');
+});
+
+$('button.spinner').click(function () {
+    var btn = $(this),
+        input = btn.closest('.spinner').find('input'),
+        oldValue = input.val().trim(),
+        newVal = 0;
+
+    if (btn.attr('data-dir') === 'up') {
+        newVal = parseInt(oldValue, 10) + 1;
+    } else {
+        if (oldValue > 0) {
+            newVal = parseInt(oldValue, 10) - 1;
+        } else {
+            newVal = 0;
+        }
+    }
+    input.val(newVal);
+});

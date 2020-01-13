@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Camper extends Model
 {
+    use Searchable;
+
     public function family()
     {
         return $this->hasOne('App\Family');

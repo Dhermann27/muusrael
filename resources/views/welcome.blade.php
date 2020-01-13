@@ -40,7 +40,7 @@
         <div class="container w-100 w-lg-70">
             <div class="row mt-2">
                 <div class="col-lg-6 d-sm-flex">
-                    <a href="{{ url('/brochure') }}">
+                    <a href="{{ route('brochure') }}">
                         <img id="brochureimg" class="card-img-top img-fluid" src="/images/brochure.png"
                              alt="Web Brochure cover" data-no-retina>
                     </a>
@@ -61,7 +61,7 @@
                                 currently see last year's to get an idea of what it might contain.
                             @endif
                         </p>
-                        <a href="{{ url('/brochure') }}"
+                        <a href="{{ route('brochure') }}"
                            class="mb-1 py-2 px-4 btn btn-primary btn-shadow btn-flat btn-sm btn-bold text-uppercase text-letter-spacing rounded-0">
                             <i class="far fa-file-pdf mr-2"></i> Take a look
                         </a>
@@ -73,7 +73,7 @@
 
     <div class="bg-primary py-4">
         <div class="container text-white d-lg-flex justify-content-center">
-            <h3 class="my-lg-0 mr-lg-3 font-weight-normal">
+            <h3 class="my-lg-1 mr-lg-3 font-weight-normal">
                 @switch($year->yearmessage)
                     @case(\App\Enums\Yearmessage::CheckinCountdown)
                     Just {{ $year->did_checkin }} days until check-in!
@@ -98,8 +98,10 @@
                 @endswitch
             </h3>
             <div>
-                <a href="{{ url('/registration') }}" class="btn btn-info font-weight-bold">Register Now
-                    <i class="far fa-arrow-right"></i></a>
+                <button type="button" class="btn btn-info font-weight-bold" data-toggle="modal"
+                        data-target="#modal-register">
+                    Register Now <i class="fas fa-sign-in"></i>
+                </button>
             </div>
 
         </div>
@@ -116,7 +118,7 @@
                     recreational activities while children are in programs with others near their own age, building
                     friendships that will last well beyond the week of camp.</p>
             </div>
-            <a href="{{ url('/programs') }}" class="btn btn-primary">Program Descriptions</a>
+            <a href="{{ route('programs') }}" class="btn btn-primary">Program Descriptions</a>
         </div>
         <div class="card px-5">
             <img class="card-img-top img-fluid" src="/images/housing.jpg" alt="The Hill to Trout Lodge"/>
@@ -128,7 +130,7 @@
                     on a private 360-acre lake 75 miles southwest of St. Louis, Missouri, outside of Potosi.
                     Accommodations are available for all budgets.</p>
             </div>
-            <a href="{{ url('/housing') }}" class="btn btn-primary">Housing Options</a>
+            <a href="{{ route('housing') }}" class="btn btn-primary">Housing Options</a>
         </div>
         <div class="card px-5">
             <img class="card-img-top img-fluid" src="/images/workshops.jpg"
@@ -141,7 +143,7 @@
                     excellent way to get to know other campers in a small group setting and to benefit from the
                     wonderful talents, skills, and insights the workshop leaders have to offer.</p>
             </div>
-            <a href="{{ url('/workshops') }}" class="btn btn-primary">
+            <a href="{{ route('workshops.display') }}" class="btn btn-primary">
                 @if($year->is_live)
                     Workshop List
                 @else
@@ -163,7 +165,7 @@
                     theme topic. Services include children's stories and choral music from the Awesome Choir, led by Pam
                     Blevins Hinkle and accompanied by Bonnie Ettinger.</p>
             </div>
-            <a href="{{ url('/themespeaker') }}" class="btn btn-primary">Theme Speaker Biography</a>
+            <a href="{{ route('themespeaker') }}" class="btn btn-primary">Theme Speaker Biography</a>
         </div>
         <div class="card px-5">
             <img class="card-img-top img-fluid" src="/images/scholarship.jpg"
@@ -176,7 +178,7 @@
                     hope you will apply for a scholarship. These funds strengthen our community and we want to be sure
                     you know they are available.</p>
             </div>
-            <a href="{{ url('/scholarship') }}" class="btn btn-primary">Application Process</a>
+            <a href="{{ route('scholarship') }}" class="btn btn-primary">Application Process</a>
         </div>
         <div class="card px-5">
             <img class="card-img-top img-fluid" src="/images/calculator.jpg"
@@ -189,7 +191,7 @@
                     consider sharing a room with as many others as possible to reduce your cost and make optimum use of
                     housing. Full details can be found in the brochure.</p>
             </div>
-            <a href="{{ url('/cost') }}" class="btn btn-primary">Full-Week Rates</a>
+            <a href="{{ route('cost') }}" class="btn btn-primary">Full-Week Rates</a>
         </div>
     </div>
 

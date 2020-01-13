@@ -9,8 +9,10 @@
         {{ $year->first_day }} through {{ $year->last_day }} {{ $year->year }}
     </div>
     <div>
-        <a href="{{ url('/registration') }}" id="register-button" class="btn btn-primary font-weight-bold">
-            Register for {{ $year->year }}
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#modal-register">
+            Register for {{ $year->year }} <i class="fas fa-sign-in"></i>
+        </button>
         </a>
     </div>
 </div>

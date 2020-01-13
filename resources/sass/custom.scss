@@ -40,3 +40,22 @@ div#home {
 div.dropdown-menu a.disabled {
     color: $muted !important;
 }
+
+div#modal-register div.container-fluid {
+    max-width: 100%;
+}
+
+@media(min-width: 768px) {
+    div#modal-register div.modal-body div.col-md-6:first-child {
+        border-right: 3px solid $primary;
+    }
+}
+@media(max-width: 767px) {
+    div#modal-register div.modal-body div.col-md-6:first-child {
+        border-bottom: 3px solid $primary;
+    }
+}
+
+div#modal-register div.modal-footer {
+    background-color: $lightdark;
+}
