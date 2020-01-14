@@ -124,18 +124,37 @@ $("button#selectallcampers").click(function () {
 
 $('button.spinner').click(function () {
     var btn = $(this),
-        input = btn.closest('.spinner').find('input'),
+        input = btn.parent().parent().find('input').first(),
         oldValue = input.val().trim(),
         newVal = 0;
 
     if (btn.attr('data-dir') === 'up') {
         newVal = parseInt(oldValue, 10) + 1;
     } else {
-        if (oldValue > 0) {
+        if (oldValue > 1) {
             newVal = parseInt(oldValue, 10) - 1;
         } else {
-            newVal = 0;
+            newVal = 1;
         }
     }
     input.val(newVal);
+});
+
+$('button#begin_reg').click(function () {
+
+    $(this).removeClass('btn-danger').addClass('btn-primary');
+    $('form#login, form#create').find('input.is-invalid').removeClass("is-invalid");
+
+    if ($('input#email_login').val() && $('input#password_login').val()) {
+        $('form#login').submit();
+        return;
+    }
+    if ($('input#email_create').val() && $('input#password_create').val() && $('input#confirm_create').val()) {
+        $('form#create').submit();
+        return;
+    }
+    $(this).removeClass('btn-primary').addClass('btn-danger');
+    $('form#login, form#create').find('input[required]').filter(function () {
+        return !this.value;
+    }).addClass("is-invalid");
 });

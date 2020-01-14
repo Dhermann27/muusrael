@@ -5,21 +5,17 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Camper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Camper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Church.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Church.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/contactus.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contactus.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/carouselcaption.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/carouselcaption.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/formgroup.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/formgroup.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/mail/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/mail/reset.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/ContactTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/ContactTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/WelcomeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/WelcomeTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,7 +268,7 @@
       <workItem from="1563242646207" duration="4972000" />
       <workItem from="1564369141891" duration="7879000" />
       <workItem from="1578346474671" duration="14967000" />
-      <workItem from="1578588866298" duration="37340000" />
+      <workItem from="1578588866298" duration="47366000" />
     </task>
     <servers />
   </component>
@@ -309,10 +305,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="463" y="271" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877@0.23.1440.877" timestamp="1578587892807" />
-    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578766735423">
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578969959976">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1578766735423" />
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1578969959976" />
     <state x="507" y="223" key="FileChooserDialogImpl" timestamp="1578860730249">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -349,17 +345,21 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="399" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1578588915697" />
-    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1578888864654">
+    <state x="375" y="83" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1578939751142">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1578888864654" />
+    <state x="375" y="83" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1440.877@0.23.1440.877" timestamp="1578939751142" />
+    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1578939033051">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1578939033051" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1578453178979">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1578453178979" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1578888841078">
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1578973216737">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1578888841078" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1578973216737" />
   </component>
 </project>

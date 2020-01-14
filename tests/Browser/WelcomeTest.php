@@ -21,7 +21,7 @@ class WelcomeTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($firstday) {
             $browser->visit('/')
                 ->assertSee('Midwest Unitarian Universalist Summer Assembly')
-                ->assertSeeLink('Register for ' . self::$year->year)
+                ->assertSee('Register for ' . self::$year->year)
                 ->assertSee('Sunday ' . $firstday->format('F jS') .
                     ' through Saturday July ' . $firstday->addDays(6)->format('jS') . ' ' . self::$year->year);
         });

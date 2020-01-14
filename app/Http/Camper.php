@@ -7,8 +7,6 @@ use Laravel\Scout\Searchable;
 
 class Camper extends Model
 {
-    use Searchable;
-
     public function family()
     {
         return $this->hasOne('App\Family');

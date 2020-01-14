@@ -7,43 +7,52 @@ use App\Contactbox;
 use App\Family;
 use App\User;
 use Faker\Factory;
-use Laracasts\Behat\Context\Services\MailTrap;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Tests\MuusaTrap;
+use function rand;
 
 class ContactTest extends DuskTestCase
 {
     use MuusaTrap;
 
     // Can only send 2 emails per 10 seconds
-//    public function testIndex()
-//    {
-//        $faker = Factory::create();
-//        $fakedName = $faker->name;
-//        $fakedEmail = $faker->safeEmail;
-//        $fakedGraph = $faker->paragraph;
-//        $box = factory(Contactbox::class)->create();
-//        $this->browse(function (Browser $browser) use ($box, $fakedName, $fakedEmail, $fakedGraph) {
-//            $browser->visit('/contact')
-//                ->assertSee('Contact Us')
-//                ->assertSeeIn('select#mailbox', $box->name)
-//                ->type('name', $fakedName)
-//                ->type('email', $fakedEmail)
-//                ->select('mailbox', $box->id)
-//                ->type('message', $fakedGraph)
-//                ->click('input[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-success');
-//
-//        });
-//
-//        $lastEmail = $this->fetchInbox()[0];
-//        $this->assertEquals($box->emails, $lastEmail['to_email']);
-//        $body = $this->getBody($lastEmail['id']);
-//        $this->assertStringContainsString($fakedName . " <" . $fakedEmail . ">", $body);
-//        $this->assertStringContainsString($fakedGraph, $body);
-//    }
+    public function testIndex()
+    {
+        $faker = Factory::create();
+        $fakedName = $faker->name;
+        $fakedEmail = $faker->safeEmail;
+        $fakedGraph = $faker->paragraph;
+        $box = factory(Contactbox::class)->create();
+        $this->browse(function (Browser $browser) use ($box, $fakedName, $fakedEmail, $fakedGraph) {
+            $browser->visit('/contact')
+                ->assertSee('Contact Us')
+                ->assertSeeIn('select#mailbox', $box->name)
+                ->type('name', $fakedName)
+                ->type('email', $fakedEmail)
+                ->select('mailbox', $box->id)
+                ->type('message', $fakedGraph)
+                ->click('input[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-success');
 
-    public function testMultisend()
+        });
+
+        $lastEmail = $this->fetchInbox()[0];
+        $this->assertEquals($box->emails, $lastEmail['to_email']);
+        $body = $this->fetchBody($lastEmail['inbox_id'], $lastEmail['id']);
+        $this->assertStringContainsString($fakedName . " <" . $fakedEmail . ">", $body);
+        $this->assertStringContainsString($fakedGraph, $body);
+    }
+
+    public function testSent()
+    {
+        if (rand(0, 1) == 0) {
+            $this->multisend();
+        } else {
+            $this->campersend();
+        }
+    }
+
+    private function multisend()
     {
         $faker = Factory::create();
         $fakedName = $faker->name;
@@ -98,7 +107,7 @@ class ContactTest extends DuskTestCase
         $this->assertStringNotContainsString($fakedName . " <" . $fakedEmail . ">", $body);
     }
 
-    public function testCampersend()
+    private function campersend()
     {
         $faker = Factory::create();
         $user = factory(User::class)->create();

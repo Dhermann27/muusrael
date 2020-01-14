@@ -50,13 +50,10 @@
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                   style="display: none;">
-                                @crsf
+                                @csrf
                             </form>
                         @else
-                            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal"
-                                    data-target="#modal-register">
-                                Login
-                            </button>
+                            <a href="{{ route('login') }}">Login</a>
                         @endif
                     </li>
                     @if($year->next_muse !== false)
@@ -66,7 +63,7 @@
                     @else
                         <li class="list-inline-item">
                             @auth
-                                Logged in as: {{ Auth::user()->email }}
+                                <i class="fa fa-user"></i> {{ Auth::user()->email }}
                             @else
                                 <a href="mailto:muusa@muusa.org">
                                     Questions? <i class="fas fa-mailbox"></i> muusa@muusa.org
@@ -194,36 +191,36 @@
                                     Registration
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right mt-0">
-                                    <a href="{{ route('household') }}" class="dropdown-item">
-                                        <i class="far fa-home fa-fw"></i> Household</a>
-                                    <a href="{{ route('camper') }}" class="dropdown-item">
-                                        <i class="far fa-users fa-fw"></i> Campers</a>
-                                    <a href="{{ route('payment') }}" class="dropdown-item">
-                                        <i class="far fa-usd-square fa-fw"></i> Payment</a>
-                                    @if(!$year->is_live)
-                                        <div class="dropdown-divider"></div>
-                                        <h6 class="dropdown-header">
-                                            Opens {{ $year->brochure_date }}
-                                        </h6>
-                                        <a href="#" class="dropdown-item disabled">Workshop List</a>
-                                        <a href="#" class="dropdown-item disabled">Room Selection</a>
-                                        <a href="#" class="dropdown-item disabled">Nametags</a>
-                                        <a href="#" class="dropdown-item disabled">Confirmation</a>
-                                    @else
-                                        <a href="{{ route('workshopchoice') }}" class="dropdown-item">
-                                            <i class="far fa-rocket fa-fw"></i>Workshops</a>
-                                        <a href="{{ route('roomselection') }}" class="dropdown-item">
-                                            <i class="far fa-bed fa-fw"></i> Room Selection</a>
-                                        <a href="{{ route('nametag') }}" class="dropdown-item">
-                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>
-                                        <a href="{{ route('confirm') }}" class="dropdown-item">
-                                            <i class="far fa-envelope fa-fw"></i> Confirmation</a>
-                                    @endif
+                                    {{--                                    <a href="{{ route('household') }}" class="dropdown-item">--}}
+                                    {{--                                        <i class="far fa-home fa-fw"></i> Household</a>--}}
+                                    {{--                                    <a href="{{ route('camper') }}" class="dropdown-item">--}}
+                                    {{--                                        <i class="far fa-users fa-fw"></i> Campers</a>--}}
+                                    {{--                                    <a href="{{ route('payment') }}" class="dropdown-item">--}}
+                                    {{--                                        <i class="far fa-usd-square fa-fw"></i> Payment</a>--}}
+                                    {{--                                    @if(!$year->is_live)--}}
+                                    {{--                                        <div class="dropdown-divider"></div>--}}
+                                    {{--                                        <h6 class="dropdown-header">--}}
+                                    {{--                                            Opens {{ $year->brochure_date }}--}}
+                                    {{--                                        </h6>--}}
+                                    {{--                                        <a href="#" class="dropdown-item disabled">Workshop List</a>--}}
+                                    {{--                                        <a href="#" class="dropdown-item disabled">Room Selection</a>--}}
+                                    {{--                                        <a href="#" class="dropdown-item disabled">Nametags</a>--}}
+                                    {{--                                        <a href="#" class="dropdown-item disabled">Confirmation</a>--}}
+                                    {{--                                    @else--}}
+                                    {{--                                        <a href="{{ route('workshopchoice') }}" class="dropdown-item">--}}
+                                    {{--                                            <i class="far fa-rocket fa-fw"></i>Workshops</a>--}}
+                                    {{--                                        <a href="{{ route('roomselection') }}" class="dropdown-item">--}}
+                                    {{--                                            <i class="far fa-bed fa-fw"></i> Room Selection</a>--}}
+                                    {{--                                        <a href="{{ route('nametag') }}" class="dropdown-item">--}}
+                                    {{--                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>--}}
+                                    {{--                                        <a href="{{ route('confirm') }}" class="dropdown-item">--}}
+                                    {{--                                            <i class="far fa-envelope fa-fw"></i> Confirmation</a>--}}
+                                    {{--                                    @endif--}}
                                 </div>
                             </div>
                         @else
                             <button type="button" class="btn btn-info btn-sm my-3" data-toggle="modal"
-                                    data-target="#modal-register">
+                                    data-target="#modal-register" dusk="register_now">
                                 Register Now <i class="fas fa-sign-in"></i>
                             </button>
                         @endif
@@ -312,24 +309,24 @@
                             @auth
                                 <h5 class="footer-title text-white mb-3">Registration</h5>
                                 <ul class="list-unstyled footer-list">
-                                    <li><a href="{{ route('household') }}">Household</a></li>
-                                    <li><a href="{{ route('camper') }}">Campers</a></li>
-                                    <li><a href="{{ route('payment') }}">Payment</a></li>
-                                    @if(!$year->is_live)
-                                        <hr/>
-                                        <h6 class="dropdown-header">
-                                            Opens {{ $year->brochure_date }}
-                                        </h6>
-                                        <li>Workshop List</li>
-                                        <li>Room Selection</li>
-                                        <li>Nametags</li>
-                                        <li>Confirmation</li>
-                                    @else
-                                        <li><a href="{{ route('workshopchoice') }}">Workshops</a></li>
-                                        <li><a href="{{ route('roomselection') }}">Room Selection</a></li>
-                                        <li><a href="{{ route('nametag') }}">Nametags</a></li>
-                                        <li><a href="{{ route('confirm') }}">Confirmation</a></li>
-                                    @endif
+                                    {{--                                    <li><a href="{{ route('household') }}">Household</a></li>--}}
+                                    {{--                                    <li><a href="{{ route('camper') }}">Campers</a></li>--}}
+                                    {{--                                    <li><a href="{{ route('payment') }}">Payment</a></li>--}}
+                                    {{--                                    @if(!$year->is_live)--}}
+                                    {{--                                        <hr/>--}}
+                                    {{--                                        <h6 class="dropdown-header">--}}
+                                    {{--                                            Opens {{ $year->brochure_date }}--}}
+                                    {{--                                        </h6>--}}
+                                    {{--                                        <li>Workshop List</li>--}}
+                                    {{--                                        <li>Room Selection</li>--}}
+                                    {{--                                        <li>Nametags</li>--}}
+                                    {{--                                        <li>Confirmation</li>--}}
+                                    {{--                                    @else--}}
+                                    {{--                                        <li><a href="{{ route('workshopchoice') }}">Workshops</a></li>--}}
+                                    {{--                                        <li><a href="{{ route('roomselection') }}">Room Selection</a></li>--}}
+                                    {{--                                        <li><a href="{{ route('nametag') }}">Nametags</a></li>--}}
+                                    {{--                                        <li><a href="{{ route('confirm') }}">Confirmation</a></li>--}}
+                                    {{--                                    @endif--}}
                                 </ul>
                             @else
                                 <button type="button" class="btn btn-info font-weight-bold" data-toggle="modal"
@@ -374,111 +371,121 @@
                                     <div class="col-md-6 pr-md-5">
                                         <h5>Returning Campers</h5>
 
-                                        <div class="form-group row">
-                                            <label for="email_login" class="form-label">Email</label>
-                                            <input id="email_login" type="text" class="form-control"
-                                                   name="email">
-                                        </div>
+                                        <form id="login" method="post" action="{{ url('/login') }}">
+                                            @csrf
 
-                                        <div class="form-group row">
-                                            <label for="password_login" class="form-label">Password</label>
-                                            <input id="password_login" type="password" class="form-control"
-                                                   name="password">
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="remember"
-                                                       id="remember">
-                                                <label class="form-check-label" for="remember">
-                                                    Remember me on this computer?
-                                                </label>
+                                            <div class="form-group row">
+                                                <label for="email_login" class="form-label">Email</label>
+                                                <input id="email_login" type="text" class="form-control"
+                                                       name="email" required>
                                             </div>
-                                        </div>
 
-                                        @if (Route::has('password.request'))
-                                            <div class="form-group row float-sm-right">
-
-                                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                    {{ __('Forgot Your Password?') }}
-                                                </a>
+                                            <div class="form-group row">
+                                                <label for="password_login" class="form-label">Password</label>
+                                                <input id="password_login" type="password" class="form-control"
+                                                       name="password" required>
                                             </div>
-                                        @endif
 
-                                        <a class="btn d-none" data-toggle="collapse" href="#login-searching"
-                                           role="button" aria-expanded="false">
-                                            #
-                                        </a>
-                                        <a class="btn d-none" data-toggle="collapse" href="#login-found" role="button"
-                                           aria-expanded="false">
-                                            #
-                                        </a>
+                                            <div class="form-group row">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="remember"
+                                                           id="remember">
+                                                    <label class="form-check-label" for="remember">
+                                                        Remember me on this computer?
+                                                    </label>
+                                                </div>
+                                            </div>
 
-                                        <div id="login-searching" class="alert alert-info w-100 collapse">
-                                            <h6>Welcome back!</h6>
-                                            <p>Retrieving your records... <i class="fad fa-spinner-third fa-spin"></i>
-                                            </p>
-                                        </div>
+                                            @if (Route::has('password.request'))
+                                                <div class="form-group row float-sm-right">
 
-                                        <div id="login-found" class="form-group row w-100 collapse">
-                                            <label for="password_login" class="form-label">Which campers will be
-                                                attending?</label>
-                                            <select id="login-campers" class="custom-select" multiple
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    title="Hold down CTRL or Command to select multiple campers.">
-                                            </select>
-                                            <button id="selectallcampers" class="btn btn-secondary btn-sm mt-1">
-                                                <i class="fas fa-users"></i> Select All
-                                            </button>
-                                        </div>
+                                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                        {{ __('Forgot Your Password?') }}
+                                                    </a>
+                                                </div>
+                                            @endif
+
+                                            <a class="btn d-none" data-toggle="collapse" href="#login-searching"
+                                               role="button" aria-expanded="false">
+                                                #
+                                            </a>
+                                            <a class="btn d-none" data-toggle="collapse" href="#login-found"
+                                               role="button"
+                                               aria-expanded="false">
+                                                #
+                                            </a>
+
+                                            <div id="login-searching" class="alert alert-info w-100 collapse">
+                                                <h6>Welcome back!</h6>
+                                                <p>Retrieving your records... <i
+                                                        class="fad fa-spinner-third fa-spin"></i>
+                                                </p>
+                                            </div>
+
+                                            <div id="login-found" class="form-group row w-100 collapse">
+                                                <label for="password_login" class="form-label">Which campers will be
+                                                    attending?</label>
+                                                <select id="login-campers" name="login-campers" class="custom-select"
+                                                        multiple data-toggle="tooltip" data-placement="top"
+                                                        title="Hold down CTRL or Command to select multiple campers.">
+                                                </select>
+                                                <button id="selectallcampers" class="btn btn-secondary btn-sm mt-1">
+                                                    <i class="fas fa-users"></i> Select All
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="col-md-6 pl-md-5">
                                         <h5>New Campers</h5>
 
-                                        <div class="form-group row">
-                                            <label for="email_create" class="form-label">Email</label>
-                                            <input id="email_create" type="text" class="form-control"
-                                                   name="email">
-                                        </div>
+                                        <form id="create" method="post" action="{{ url('/register') }}">
+                                            @csrf
 
-                                        <div class="form-group row">
-                                            <label for="password_create" class="form-label">Password</label>
-                                            <input id="password_create" type="password" class="form-control"
-                                                   name="password">
-                                        </div>
+                                            <div class="form-group row">
+                                                <label for="email_create" class="form-label">Email</label>
+                                                <input id="email_create" type="text" class="form-control"
+                                                       name="email" required>
+                                            </div>
 
-                                        <div class="form-group row">
-                                            <label for="password_create" class="form-label">Confirm Password</label>
-                                            <input id="password_create" type="password" class="form-control"
-                                                   name="password_confirmation">
-                                        </div>
+                                            <div class="form-group row">
+                                                <label for="password_create" class="form-label">Password</label>
+                                                <input id="password_create" type="password" class="form-control"
+                                                       name="password" required>
+                                            </div>
 
-                                        <div class="form-group row">
-                                            <div class="number-spinner">
-                                                <label for="newcampers" class="form-label">How many campers will be
-                                                    attending?</label>
-                                                <div class="input-group float-sm-right">
-                                                    <div class="input-group-prepend">
-                                                        <button class="btn btn-default spinner" data-dir="up"><i
-                                                                class="far fa-plus"></i></button>
-                                                    </div>
-                                                    <input id="newcampers" class="form-control" name="newcampers"
-                                                           value="0"/>
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-default spinner" data-dir="dwn"><i
-                                                                class="far fa-minus"></i>
-                                                        </button>
+                                            <div class="form-group row">
+                                                <label for="confirm_create" class="form-label">Confirm Password</label>
+                                                <input id="confirm_create" type="password" class="form-control"
+                                                       name="password_confirmation" required>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="number-spinner">
+                                                    <label for="newcampers" class="form-label">How many campers will be
+                                                        attending?</label>
+                                                    <div class="input-group float-sm-right">
+                                                        <div class="input-group-prepend">
+                                                            <button type="button" class="btn btn-default spinner"
+                                                                    data-dir="up"><i class="far fa-plus"></i></button>
+                                                        </div>
+                                                        <input id="newcampers" class="form-control" name="newcampers"
+                                                               value="1"/>
+                                                        <div class="input-group-append">
+                                                            <button type="button" class="btn btn-default spinner"
+                                                                    data-dir="dwn"><i class="far fa-minus"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Begin Registration</button>
+                            <button id="begin_reg" type="button" class="btn btn-primary">Begin Registration</button>
                         </div>
                     </div>
                 </div>

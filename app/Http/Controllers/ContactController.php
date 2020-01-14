@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Contactbox;
+use App\Mail\ContactUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Contactbox;
-use App\Mail\ContactUs;
 
 class ContactController extends Controller
 {
@@ -25,7 +25,7 @@ class ContactController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'mailbox' => 'required|exists:contactboxes,id',
-            'message' => 'required|min:5|not_regex:/scripture/i|not_regex:/gospel/i|not_regex:/infallible/i',
+            'message' => 'required|min:5|not_regex:/scripture/i|not_regex:/gospel/i|not_regex:/infallible/i|not_regex:/testament/i',
             'g-recaptcha-response' => '',
         ], $messages);
         $emails = explode(',', Contactbox::findOrFail($request->mailbox)->emails);

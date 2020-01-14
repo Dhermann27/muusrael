@@ -7,8 +7,6 @@ use Laravel\Scout\Searchable;
 
 class Church extends Model
 {
-    use Searchable;
-
     /**
      * The table associated with the model.
      *
