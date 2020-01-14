@@ -22,6 +22,13 @@ Route::get('/housing', 'HomeController@housing')->name('housing');
 Route::get('/workshops', 'WorkshopController@display')->name('workshops.display');
 Route::get('/excursions', 'WorkshopController@excursions')->name('workshops.excursions');
 
+Route::group(['prefix' => 'campers', 'middleware' => 'auth'], function () {
+    Route::get('', 'CamperController@index')->name('campers.index');
+    Route::post('', 'CamperController@store')->name('campers.store');
+//    Route::get('/{i}/{id}', 'CamperController@read')->name('campers.read');
+//    Route::post('/f/{id}', 'CamperController@write')->name('campers.write');
+});
+
 Route::group(['prefix' => 'data'], function () {
     Route::get('loginsearch', 'DataController@loginsearch');
     //Route::get('camperlist', 'DataController@campers')->middleware('authorsomething');

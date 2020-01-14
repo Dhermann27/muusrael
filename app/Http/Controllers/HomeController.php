@@ -7,7 +7,6 @@ use App\CampCost;
 use App\Enums\Buildingtype;
 use App\Program;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {

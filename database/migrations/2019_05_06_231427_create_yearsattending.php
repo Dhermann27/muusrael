@@ -28,6 +28,7 @@ class CreateYearsattending extends Migration
             $table->tinyInteger('is_private')->default('0');
             $table->string('nametag')->default('222215521');
             $table->timestamps();
+            $table->index(['camper_id', 'year_id']);
         });
         DB::update('ALTER TABLE yearsattending AUTO_INCREMENT = 1000');
     }
