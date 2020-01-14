@@ -110,7 +110,9 @@ $("input#email_login").blur(function () {
                     });
                     $("div#login-searching").collapse('hide');
                     $("div#login-found").collapse('show');
-                });
+                }).fail(function (data) {
+                $("div#login-searching").collapse('hide');
+            })
         });
     } else {
         $("div#login-found").collapse('hide');

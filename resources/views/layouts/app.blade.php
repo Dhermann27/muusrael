@@ -425,11 +425,12 @@
                                             <div id="login-found" class="form-group row w-100 collapse">
                                                 <label for="password_login" class="form-label">Which campers will be
                                                     attending?</label>
-                                                <select id="login-campers" name="login-campers" class="custom-select"
+                                                <select id="login-campers" name="login-campers[]" class="custom-select"
                                                         multiple data-toggle="tooltip" data-placement="top"
                                                         title="Hold down CTRL or Command to select multiple campers.">
                                                 </select>
-                                                <button id="selectallcampers" class="btn btn-secondary btn-sm mt-1">
+                                                <button type="button" id="selectallcampers"
+                                                        class="btn btn-secondary btn-sm mt-1">
                                                     <i class="fas fa-users"></i> Select All
                                                 </button>
                                             </div>

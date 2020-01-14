@@ -6,10 +6,12 @@ use App\Building;
 use App\CampCost;
 use App\Enums\Buildingtype;
 use App\Program;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view('welcome');
     }
