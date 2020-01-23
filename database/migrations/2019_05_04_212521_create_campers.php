@@ -30,7 +30,7 @@ class CreateCampers extends Migration
             $table->tinyInteger('is_handicap')->default(0);
             $table->unsignedBigInteger('foodoption_id');
             $table->foreign('foodoption_id')->references('id')->on('foodoptions');
-            $table->unsignedBigInteger('church_id');
+            $table->unsignedBigInteger('church_id')->nullable();
             $table->foreign('church_id')->references('id')->on('churches');
             $table->timestamps();
         });

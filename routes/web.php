@@ -31,8 +31,8 @@ Route::group(['prefix' => 'campers', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'data'], function () {
     Route::get('loginsearch', 'DataController@loginsearch');
-    //Route::get('camperlist', 'DataController@campers')->middleware('authorsomething');
-    //Route::get('churchlist', 'DataController@churches');
+    //Route::get('camperlist', 'DataController@campers')->middleware('auth');
+    Route::get('churchlist', 'DataController@churches')->middleware('auth');
 });
 
 Route::get('/brochure', function () {

@@ -2,18 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Campers_view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/campers.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/includes/camper.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Enums/Programname.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Browser/Components/CamperForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Camper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Camper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Camper__staff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/CamperStaff.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Campers_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Campers_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Church.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Church.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CamperController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CamperController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_06_231427_create_yearsattending.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_06_231427_create_yearsattending.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Yearattending.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Yearattending.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/CamperFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/CamperFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/ChurchFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ChurchFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/FamilyFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/FamilyFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_04_211936_create_families.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_04_211936_create_families.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_04_212521_create_campers.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_04_212521_create_campers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_14_193414_create_campers_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_14_193414_create_campers_view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/campers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/campers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/components/navtabs.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/navtabs.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/camper.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/camper.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/carouselcaption.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/carouselcaption.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/formgroup.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/formgroup.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/ContactTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/ContactTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/RegisterNowTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/RegisterNowTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,12 +194,6 @@
       <path value="$PROJECT_DIR$/vendor/league/commonmark-ext-table" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="12" />
-    <option name="y" value="34" />
-    <option name="width" value="1400" />
-    <option name="height" value="849" />
-  </component>
   <component name="ProjectId" id="1OfWS1Eq8eszNsytelGMUMgMcmb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -205,7 +220,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.scopes" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -262,7 +277,7 @@
       <workItem from="1563242646207" duration="4972000" />
       <workItem from="1564369141891" duration="7879000" />
       <workItem from="1578346474671" duration="14967000" />
-      <workItem from="1578588866298" duration="57077000" />
+      <workItem from="1578588866298" duration="84014000" />
     </task>
     <servers />
   </component>
@@ -295,14 +310,18 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="320" y="127" key="#Images/0.23.1440.877@0.23.1440.877" timestamp="1578430359140" />
+    <state x="320" y="127" key="#SQL_Dialects" timestamp="1579797023231">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="320" y="127" key="#SQL_Dialects/0.23.1440.877@0.23.1440.877" timestamp="1579797023231" />
     <state x="463" y="271" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1578587892807">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="463" y="271" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877@0.23.1440.877" timestamp="1578587892807" />
-    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1578969959976">
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579807796086">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1578969959976" />
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1579807796086" />
     <state x="507" y="223" key="FileChooserDialogImpl" timestamp="1578860730249">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -323,18 +342,18 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1358" height="217" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1578588676561" />
-    <state x="461" y="285" key="NewPhpClassDialog" timestamp="1578757616625">
+    <state x="461" y="285" key="NewPhpClassDialog" timestamp="1579639642257">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1578757616625" />
-    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1579033959109">
+    <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1579639642257" />
+    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1579799459954">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1579033959109" />
-    <state x="229" y="100" key="SettingsEditor" timestamp="1578860918436">
+    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1579799459954" />
+    <state x="229" y="100" key="SettingsEditor" timestamp="1579556700928">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="229" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1578860918436" />
+    <state x="229" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1579556700928" />
     <state x="399" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1578588915697">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -343,17 +362,17 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="375" y="83" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1440.877@0.23.1440.877" timestamp="1578939751142" />
-    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1579025521265">
+    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1579805093295">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1579025521265" />
+    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1579805093295" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1578453178979">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1578453178979" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1579037128295">
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1579809983470">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1579037128295" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1579809983470" />
   </component>
 </project>

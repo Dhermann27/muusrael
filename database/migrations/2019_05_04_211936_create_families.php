@@ -16,14 +16,13 @@ class CreateFamilies extends Migration
     {
         Schema::create('families', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
             $table->string('address1')->default('NEED ADDRESS');
             $table->string('address2')->nullable();
             $table->string('city')->default('Unknown');
-            $table->unsignedBigInteger('province_id');
+            $table->unsignedBigInteger('province_id')->nullable();
             $table->foreign('province_id')->references('id')->on('provinces');
-            $table->string('zipcd')->default('99999');
-            $table->string('country')->default('USA');
+            $table->string('zipcd')->nullable();
+            $table->string('country')->nullable();
             $table->tinyInteger('is_address_current')->default('1');
             $table->tinyInteger('is_ecomm')->default('1');
             $table->tinyInteger('is_scholar')->default('0');

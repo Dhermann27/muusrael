@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
 
 class Church extends Model
 {
+
     /**
      * The table associated with the model.
      *
@@ -16,6 +16,6 @@ class Church extends Model
 
     public function province()
     {
-        return $this->hasOne('App\Province');
+        return $this->hasOne('App\Province', 'id', 'province_id');
     }
 }

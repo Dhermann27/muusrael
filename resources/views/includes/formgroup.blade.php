@@ -46,7 +46,9 @@
             @elseif($type == 'submit')
                 {{--@include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes']])--}}
                 <div class="text-lg-right">
-                    <input type="submit" class="btn btn-primary py-3 px-4" value="{{ $attribs["name"] }}"/>
+                    <button type="submit" class="btn btn-primary py-3 px-4">
+                        {!! $attribs["name"] !!}
+                    </button>
                 </div>
             @elseif($type == 'next')
                 {{--@include('includes.formgroup', ['type' => 'next', 'label' => '', 'attribs' => ['name' => 'Next Camper']])--}}
@@ -77,7 +79,7 @@
 
 
         @error($attribs["name"])
-            <span class="invalid-feedback" role="alert">
+        <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror

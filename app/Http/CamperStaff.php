@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Camper__staff extends Model
+class CamperStaff extends Model
 {
     /**
      * Indicates if the IDs are auto-incrementing.

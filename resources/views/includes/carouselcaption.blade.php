@@ -9,10 +9,15 @@
         {{ $year->first_day }} through {{ $year->last_day }} {{ $year->year }}
     </div>
     <div>
-        <button type="button" class="btn btn-primary" data-toggle="modal"
-                data-target="#modal-register">
-            Register for {{ $year->year }} <i class="fas fa-sign-in"></i>
-        </button>
-        </a>
+        @auth
+            <a href="{{ route('campers.index') }}" class="btn btn-primary">
+                Register for {{ $year->year }} <i class="fas fa-sign-in"></i>
+            </a>
+        @else
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#modal-register">
+                Register for {{ $year->year }} <i class="fas fa-sign-in"></i>
+            </button>
+        @endif
     </div>
 </div>

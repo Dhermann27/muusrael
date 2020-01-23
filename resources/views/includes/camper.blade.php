@@ -5,11 +5,11 @@
     <div class="form-group shadow p-3 mb-5 bg-white rounded row @error('days.' . $looper) has-danger @enderror">
         <label for="days-{{ $looper }}" class="col-md-4 control-label">
             @if($readonly === false)
-                <button id="quickme" class="float-right" data-toggle="tooltip" title="@lang('messages.quickcopy')">
+                <button id="quickme" class="float-right" data-toggle="tooltip" title="@lang('registration.quickcopy')">
                     <i class="far fa-copy"></i></button>
             @else
                 <a href="#" class="p-2 float-right" data-toggle="tooltip" data-html="true"
-                   title="@lang('messages.attending')"><i class="far fa-info"></i></a>
+                   title="@lang('registration.attending')"><i class="far fa-info"></i></a>
             @endif
             Attending in {{ $year->year }}?
         </label>
@@ -50,7 +50,7 @@
     <div class="form-group row @error('pronoun_id.' . $looper) has-danger @enderror">
         <label for="pronoun_id-{{ $looper }}" class="col-md-4 control-label">
             <a href="#" class="p-2 float-right" data-toggle="tooltip" data-html="true"
-               title="@lang('messages.pronoun')"><i class="far fa-info"></i></a>
+               title="@lang('registration.pronoun')"><i class="far fa-info"></i></a>
             Gender Pronoun(s)
         </label>
 
@@ -194,7 +194,7 @@
     <div class="form-group row @error('roommate.' . $looper) has-danger @enderror">
         <label for="roommate-{{ $looper }}" class="col-md-4 control-label">
             <a href="#" class="p-2 float-right" data-toggle="tooltip" data-html="true"
-               title="@lang('messages.roommate')"><i class="far fa-info"></i></a>
+               title="@lang('registration.roommate')"><i class="far fa-info"></i></a>
             Roommate Preference
         </label>
 
@@ -215,7 +215,7 @@
     <div class="form-group row @error('sponsor.' . $looper) has-danger @enderror">
         <label for="sponsor-{{ $looper }}" class="col-md-4 control-label">
             <a href="#" class="p-2 float-right" data-toggle="tooltip" data-html="true"
-               title="@lang('messages.sponsor')"><i class="far fa-info"></i></a>
+               title="@lang('registration.sponsor')"><i class="far fa-info"></i></a>
             Sponsor (if necessary)
         </label>
 
@@ -232,19 +232,19 @@
             @enderror
         </div>
     </div>
-    <div class="form-group row @error('churchid.' . $looper) has-danger @enderror">
-        <label for="churchid-{{ $looper }}" class="col-md-4 control-label">Church Affiliation</label>
+    <div class="form-group row @error('church_id.' . $looper) has-danger @enderror">
+        <label for="church_id-{{ $looper }}" class="col-md-4 control-label">Church Affiliation</label>
         <div class="col-md-6">
-            <select id="churchid-{{ $looper }}" name="churchid[]"
-                    class="form-control churchlist @error('churchid.' . $looper) has-danger @enderror">
-                @if(isset($camper->churchid))
-                    <option value="{{ old('churchid.' . $looper, $camper->churchid) }}" selected="selected">
+            <select id="church_id-{{ $looper }}" name="church_id[]"
+                    class="form-control churchlist @error('church_id.' . $looper) has-danger @enderror">
+                @if(isset($camper->church_id))
+                    <option value="{{ old('church_id.' . $looper, $camper->church_id) }}" selected="selected">
                         {{ $camper->church->name}} ({{ $camper->church->city }}, {{ $camper->church->province->code }})
                     </option>
                 @endif
             </select>
 
-            @error('churchid.' . $looper)
+            @error('church_id.' . $looper)
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -255,7 +255,7 @@
         <label for="is_handicap-{{ $looper }}" class="col-md-8 control-label">Do you require assistance or any
             needs of which the Registrar should be aware?
             <a href="#" class="p-2 float-right" data-toggle="tooltip" data-html="true"
-               title="@lang('messages.specialneeds')"><i class="far fa-info"></i></a>
+               title="@lang('registration.specialneeds')"><i class="far fa-info"></i></a>
         </label>
         <div class="col-md-2">
             <select class="form-control @error('is_handicap.' . $looper) has-danger @enderror"

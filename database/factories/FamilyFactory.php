@@ -8,7 +8,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Family::class, function (Faker $faker) {
     return [
-        'name' => $faker->lastName,
         'address1' => $faker->streetAddress,
         'address2' => $faker->secondaryAddress,
         'city' => $faker->city,

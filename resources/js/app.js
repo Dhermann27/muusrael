@@ -3,6 +3,8 @@ require('./bootstrap');
 
 import '@fortawesome/fontawesome-pro/css/all.css';
 import '@fortawesome/fontawesome-pro/js/all.js';
+import 'bootstrap-datepicker/js/bootstrap-datepicker.js'
+import 'select2/dist/js/select2.min'
 
 /* Template Name: Minton - Bootstrap 4 Landing Page Tamplat
    Author: CoderThemes

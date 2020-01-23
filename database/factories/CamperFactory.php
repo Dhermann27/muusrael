@@ -23,6 +23,7 @@ $factory->define(Camper::class, function (Faker $faker) {
         'church_id' => function () {
             return factory(Church::class)->create()->id;
         },
+        'is_handicap' => 0,
         'foodoption_id' => function () {
             return factory(Foodoption::class)->create()->id;
         }

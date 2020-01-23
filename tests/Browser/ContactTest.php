@@ -32,7 +32,7 @@ class ContactTest extends DuskTestCase
                 ->type('email', $fakedEmail)
                 ->select('mailbox', $box->id)
                 ->type('message', $fakedGraph)
-                ->click('input[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-success');
+                ->click('button[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-success');
 
         });
 
@@ -67,7 +67,7 @@ class ContactTest extends DuskTestCase
                 ->type('email', $fakedEmail)
                 ->select('mailbox', $box->id)
                 ->type('message', $fakedGraph)
-                ->click('input[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-success');
+                ->click('button[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-success');
 
         });
 
@@ -97,7 +97,7 @@ class ContactTest extends DuskTestCase
                 ->type('email', $fakedEmail)
                 ->select('mailbox', $box->id)
                 ->type('message', $fakedGraph)
-                ->click('input[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-danger');
+                ->click('button[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-danger');
 
         });
 
@@ -124,7 +124,8 @@ class ContactTest extends DuskTestCase
                 ->assertSeeIn('select#mailbox', $box->name)
                 ->select('mailbox', $box->id)
                 ->type('message', $fakedGraph)
-                ->click('input[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-success');
+                ->click('button[type="submit"]')->waitFor('div.alert')
+                ->assertVisible('div.alert-success')->logout();
 
         });
 

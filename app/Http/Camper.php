@@ -24,7 +24,7 @@ class Camper extends Model
 
     public function church()
     {
-        return $this->hasOne('App\Church');
+        return $this->hasOne('App\Church', 'id', 'church_id');
     }
 
     public function yearsattending()

@@ -24,7 +24,7 @@ class RegisterNowTest extends DuskTestCase
                 ->type('input#email_create', $user->email)
                 ->type('input#password_create', 'password')
                 ->type('input#confirm_create', 'password')
-                ->click('button#begin_reg')->waitForLocation('/')->assertSee($user->email)->logout();
+                ->pause(50)->click('button#begin_reg')->waitForLocation('/campers')->assertSee($user->email)->logout();
         });
         $this->assertDatabaseHas('users', ['email' => $user->email]);
     }
@@ -41,7 +41,8 @@ class RegisterNowTest extends DuskTestCase
                 ->click('button[data-dir="up"]')
                 ->click('button[data-dir="up"]')
                 ->click('button[data-dir="up"]')
-                ->click('button#begin_reg')->waitForLocation('/')->assertSee($user->email)->logout();
+                ->pause(50)->click('button#begin_reg')->waitForLocation('/campers')
+                ->assertSee($user->email)->assertSee('New Camper')->logout();
         });
         $this->assertDatabaseHas('users', ['email' => $user->email]);
     }
@@ -59,7 +60,7 @@ class RegisterNowTest extends DuskTestCase
                 ->type('input#password_login', 'password')
                 ->waitFor('div#login-found')
                 ->assertSee($camper->firstname . ' ' . $camper->lastname)
-                ->click('button#begin_reg')->waitForLocation('/')->assertSee($user->email)->logout();
+                ->pause(50)->click('button#begin_reg')->waitForLocation('/campers')->assertSee($user->email)->logout();
         });
     }
 
@@ -78,7 +79,7 @@ class RegisterNowTest extends DuskTestCase
                 ->waitFor('div#login-found')
                 ->assertSee($campers[0]->firstname . ' ' . $campers[0]->lastname)
                 ->assertSee($campers[1]->firstname . ' ' . $campers[1]->lastname)
-                ->click('button#begin_reg')->waitForLocation('/')->assertSee($user->email)->logout();
+                ->pause(50)->click('button#begin_reg')->waitForLocation('/campers')->assertSee($user->email)->logout();
         });
     }
 
@@ -100,7 +101,8 @@ class RegisterNowTest extends DuskTestCase
                 $browser->assertSee($camper->firstname . ' ' . $camper->lastname);
                 $browser->script('$(\'option[value="' . $camper->id . '"]\').prop(\'selected\', ' . rand(0, 1) . ');');
             }
-            $browser->click('button#begin_reg')->waitForLocation('/')->assertSee($user->email)->logout();
+            $browser->pause(50)->click('button#begin_reg')->waitForLocation('/campers')->assertSee($user->email)->logout();
+            // TODO: check if each is attending
         });
     }
 }

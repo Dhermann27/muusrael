@@ -54,7 +54,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
         $this->guard()->login($user);
-        return $this->registered($request, $user) ?: redirect($this->redirectPath())->with('newcampers', $request->input('newcampers'));
+        return $this->registered($request, $user) ?: redirect($this->redirectTo)->with('newcampers', $request->input('newcampers'));
     }
 
 

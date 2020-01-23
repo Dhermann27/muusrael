@@ -13,6 +13,8 @@ class Yearattending extends Model
      */
     protected $table = 'yearsattending';
 
+    protected $fillable = ['camper_id', 'year_id'];
+
     public function camper()
     {
         return $this->hasOne('App\Camper');
