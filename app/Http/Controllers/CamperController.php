@@ -18,6 +18,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function array_push;
+use function count;
 
 class CamperController extends Controller
 {
@@ -92,7 +93,7 @@ class CamperController extends Controller
 
 //        Mail::to(Auth::user()->email)->send(new Confirm($this->year, $campers));
 
-        return 'You have successfully saved your changes. Click <a href="' . url('/payment') . '">here</a> to remit payment.';
+        return 'You have successfully saved your changes. Click <a href="' . url('/payment') . '">here</a> to remit payment.<i class="fa fa-chevron-right fa-2x float-right"></i>';
     }
 
     public function index(Request $request)
@@ -103,10 +104,10 @@ class CamperController extends Controller
         $campers = array();
         if (isset(Auth::user()->camper)) {
             $campers = Campers_view::where('family_id', Auth::user()->camper->family_id)->get();
-            if ($request->session()->has('login_campers') && count($request->session()->get('login_campers[]')) > 0) {
+            if($request->session()->has('login-campers') && count($request->session()->get('login-campers')) > 0) {
                 foreach ($campers as $camper) {
-                    foreach ($request->session()->get('login_campers') as $login_campers) {
-                        if ($camper->id == $login_campers)
+                    foreach ($request->session()->get('login-campers') as $login) {
+                        if ($camper->id == $login)
                             $camper->currentdays = 6;
                     }
                 }
