@@ -6,6 +6,7 @@ use App\Camper;
 use App\Family;
 use App\User;
 use App\Yearattending;
+use Carbon\Carbon;
 use Facebook\WebDriver\Exception\TimeOutException;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Components\CamperForm;
@@ -206,54 +207,48 @@ class CamperTest extends DuskTestCase
             $this->assertDatabaseHas('yearsattending', ['program_id' => $ya->program_id, 'days' => $ya->days]);
         }
     }
-//
-//    /**
-//     * @group Evra
-//     * @throws Throwable
-//     */
-//    public function testEvraDistinct()
-//    {
-//        $year = Year::where('is_current', '1')->first();
-//
-//        $user = factory(User::class)->create();
-//        $family = factory(Family::class)->create();
-//        $campers[0] = factory(Camper::class)->create(['firstname' => 'Evra', 'family_id' => $family->id, 'email' => $user->email]);
-//        $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
-//        $campers[1] = factory(Camper::class)->create(['family_id' => $family->id]);
-//        $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
-//
-//        $changes = factory(Camper::class, 2)->make();
-//        $changes[0]->firstname = "Evra";
-//        $changes[1]->email = $changes[0]->email;
-//        $cyas = factory(Yearattending::class, 2)->make(['year_id' => self::$year->id]);
-//
-//        $this->browse(function (Browser $browser) use ($user, $campers, $yas, $changes, $cyas) {
-//            $browser->loginAs($user->id)->visit('/campers')
-//                ->waitFor('form#camperinfo div.tab-content div.active');
-//            for ($i = 0; $i < count($campers); $i++) {
-//                $browser->script('window.scrollTo(0,0)');
-//                $browser->pause(250)->clickLink($campers[$i]->firstname)
-//                    ->waitFor('form#camperinfo div.tab-content div.active');
-//                $this->changeCamper($browser, $campers[$i], $yas[$i], $changes[$i], $cyas[$i]);
-//            }
-//            $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
-//                ->assertVisible('div.alert-danger')->assertPresent('span.invalid-feedback');
-//            $changes[1]->email = 'evra@email.org';
-//            $browser->script('window.scrollTo(0,0)');
-//            $browser->pause(250)->clickLink($changes[1]->firstname)
-//                ->waitFor('form#camperinfo div.tab-content div.active')
-//                ->type('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes[1]->email);
-//            $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
-//                ->assertVisible('div.alert-success');
-//        });
-//
-////        PHPUnit::assertTrue($this->messageExists('Confirm'));
-//
-//        foreach ($changes as $camper) $this->adh($camper);
-//        foreach ($cyas as $ya) {
-//            $this->assertDatabaseHas('yearsattending', ['program_id' => $ya->program_id, 'days' => $ya->days]);
-//        }
-//    }
+
+    /**
+     * @group Evra
+     * @throws Throwable
+     */
+    public function testEvraDistinct()
+    {
+        $user = factory(User::class)->create();
+        $family = factory(Family::class)->create();
+        $campers[0] = factory(Camper::class)->create(['firstname' => 'Evra', 'family_id' => $family->id, 'email' => $user->email]);
+        $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
+        $campers[1] = factory(Camper::class)->create(['family_id' => $family->id]);
+        $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
+
+        $changes = factory(Camper::class, 2)->make();
+        $changes[0]->firstname = "Evra";
+        $changes[1]->email = $changes[0]->email;
+        $cyas = factory(Yearattending::class, 2)->make(['year_id' => self::$year->id]);
+
+        $this->browse(function (Browser $browser) use ($user, $campers, $yas, $changes, $cyas) {
+            $browser->loginAs($user->id)->visit('/campers')
+                ->waitFor('form#camperinfo div.tab-content div.active');
+            for ($i = 0; $i < count($campers); $i++) {
+                $browser->script('window.scrollTo(0,0)');
+                $browser->pause(250)->clickLink($campers[$i]->firstname)->pause(250);
+                $this->changeCamper($browser, $campers[$i], $yas[$i], $changes[$i], $cyas[$i]);
+            }
+            $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
+                ->assertVisible('div.alert-danger')->assertPresent('span.invalid-feedback');
+            $changes[1]->email = 'evra@email.org';
+            $browser->script('window.scrollTo(0,0)');
+            $browser->pause(250)->clickLink($changes[1]->firstname)->pause(250)
+                ->type('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes[1]->email);
+            $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
+                ->assertVisible('div.alert-success');
+        });
+
+        foreach ($changes as $camper) $this->adh($camper);
+        foreach ($cyas as $ya) {
+            $this->assertDatabaseHas('yearsattending', ['program_id' => $ya->program_id, 'days' => $ya->days]);
+        }
+    }
 //
 //    /**
 //     * @group Franklin
@@ -340,102 +335,89 @@ class CamperTest extends DuskTestCase
 //    }
 //
 //
-//    /**
-//     * @group Geoff
-//     * @throws Throwable
-//     */
-//    public function testGeoffUniqueCamper()
-//    {
-//        $year = Year::where('is_current', '1')->first();
-//        $birth = Carbon::now();
-//        $birth->year = self::$year->year - 20;
-//
-//        $user = factory(User::class)->create();
-//        $family = factory(Family::class)->create();
-//        $dummy = new Camper;
-//        $dummy->family_id = $family->id;
-//        $dummy->email = $user->email;
-//        $dummy->save();
-//
-//        $camper = factory(Camper::class)->make(['firstname' => 'Geoff', 'birthdate' => $birth->addDays(rand(0, 364))->toDateString()]);
-//        $ya = factory(Yearattending::class)->make(['year_id' => self::$year->id]);
-//
-//        $this->browse(function (Browser $browser) use ($user, $camper, $ya) {
-//            $browser->loginAs($user->id)->visit('/campers')
-//                ->waitFor('form#camperinfo div.tab-content div.active');
-//            $this->createCamper($browser, $camper, $ya);
-//            $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
-//                ->assertVisible('div.alert-success');
-//        });
-//
-////        PHPUnit::assertTrue($this->messageExists('Confirm'));
-//
-//        $this->adh($camper);
-//        $this->assertDatabaseHas('yearsattending', ['program_id' => $ya->program_id, 'days' => $ya->days]);
-//
-//        $snowfamily = factory(Family::class)->create();
-//        $snowflake = factory(Camper::class)->create(['family_id' => $snowfamily->id]);
-//        $changes = factory(Camper::class)->make(['firstname' => 'Geoff', 'birthdate' => $birth->addDays(rand(0, 364))->toDateString(), 'email' => $snowflake->email]);
-//        $cya = factory(Yearattending::class)->make(['year_id' => self::$year->id]);
-//
-//        $this->browse(function (Browser $browser) use ($user, $camper, $ya, $changes, $cya) {
-//            $browser->loginAs($user->id)->visit('/campers')
-//                ->waitFor('form#camperinfo div.tab-content div.active');
-//            $this->changeCamper($browser, $camper, $ya, $changes, $cya);
-//            $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
-//                ->assertVisible('div.alert-danger')->assertPresent('span.invalid-feedback');
-//            $changes->email = 'geoff@email.org';
-//            $browser->clear('form#camperinfo div.tab-content div.active input[name="email[]"]');
-//            $browser->keys('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes->email, '{enter}');
-//            $browser->acceptDialog()->waitFor('div.alert')->assertVisible('div.alert-success');
-//        });
-//
-////        PHPUnit::assertTrue($this->messageExists('Confirm'));
-//
-//        $this->adh($changes);
-//        $this->assertDatabaseHas('yearsattending', ['program_id' => $cya->program_id, 'days' => $cya->days]);
-//
-//    }
-//
-//    /**
-//     * @group Henrietta
-//     * @throws Throwable
-//     */
-//    public function testHenriettaUniqueUser()
-//    {
-//        $year = Year::where('is_current', '1')->first();
-//        $birth = Carbon::now();
-//        $birth->year = self::$year->year - 20;
-//
-//        $user = factory(User::class)->create();
-//        $family = factory(Family::class)->create();
-//        $camper = factory(Camper::class)->create(['firstname' => 'Henrietta', 'family_id' => $family->id, 'email' => $user->email, 'birthdate' => $birth->addDays(rand(0, 364))->toDateString()]);
-//        $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
-//
-//        $snowfamily = factory(Family::class)->create();
-//        $snowflake = factory(Camper::class)->create(['family_id' => $snowfamily->id]);
-//        $changes = factory(Camper::class)->make(['firstname' => 'Henrietta', 'email' => $snowflake->email, 'birthdate' => $birth->addDays(rand(0, 364))->toDateString()]);
-//        $cya = factory(Yearattending::class)->make(['year_id' => self::$year->id]);
-//
-//        $this->browse(function (Browser $browser) use ($user, $camper, $ya, $changes, $cya) {
-//            $browser->loginAs($user->id)->visit('/campers')
-//                ->waitFor('form#camperinfo div.tab-content div.active');
-//            $this->changeCamper($browser, $camper, $ya, $changes, $cya);
-//            $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
-//                ->assertVisible('div.alert-danger')->assertPresent('span.invalid-feedback');
-//            $changes->email = 'henrietta@email.org';
-//            $browser->clear('form#camperinfo div.tab-content div.active input[name="email[]"]');
-//            $browser->keys('form#camperinfo div.tab-content div.active input[name="email[]"]', 'henrietta@email.org', '{enter}');
-//            $browser->acceptDialog()->waitFor('div.alert')->assertVisible('div.alert-success');
-//        });
-//
-////        PHPUnit::assertTrue($this->messageExists('Confirm'));
-//
-//        $this->assertDatabaseHas('users', ['email' => $changes->email]);
-//        $this->adh($changes);
-//        $this->assertDatabaseHas('yearsattending', ['program_id' => $cya->program_id, 'days' => $cya->days]);
-//
-//    }
+    /**
+     * @group Geoff
+     * @throws Throwable
+     */
+    public function testGeoffUniqueCamper()
+    {
+        $birth = Carbon::now();
+        $birth->year = self::$year->year - 20;
+
+        $user = factory(User::class)->create();
+
+        $camper = factory(Camper::class)->make(['firstname' => 'Geoff', 'birthdate' => $birth->addDays(rand(0, 364))->toDateString()]);
+        $ya = factory(Yearattending::class)->make(['year_id' => self::$year->id]);
+
+        $this->browse(function (Browser $browser) use ($user, $camper, $ya) {
+            $browser->loginAs($user->id)->visit('/campers')
+                ->waitFor('form#camperinfo div.tab-content div.active');
+            $this->createCamper($browser, $camper, $ya);
+            $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
+                ->assertVisible('div.alert-success');
+        });
+
+        $this->adh($camper);
+        $this->assertDatabaseHas('yearsattending', ['program_id' => $ya->program_id, 'days' => $ya->days]);
+
+        $snowfamily = factory(Family::class)->create();
+        $snowflake = factory(Camper::class)->create(['family_id' => $snowfamily->id]);
+        $changes = factory(Camper::class)->make(['firstname' => 'Geoff', 'birthdate' => $birth->addDays(rand(0, 364))->toDateString(), 'email' => $snowflake->email]);
+        $cya = factory(Yearattending::class)->make(['year_id' => self::$year->id]);
+
+        $this->browse(function (Browser $browser) use ($user, $camper, $ya, $changes, $cya) {
+            $browser->loginAs($user->id)->visit('/campers')
+                ->waitFor('form#camperinfo div.tab-content div.active');
+            $this->changeCamper($browser, $camper, $ya, $changes, $cya);
+            $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
+                ->assertVisible('div.alert-danger')->assertPresent('span.invalid-feedback');
+            $changes->email = 'geoff@email.org';
+            $browser->clear('form#camperinfo div.tab-content div.active input[name="email[]"]');
+            $browser->keys('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes->email, '{enter}');
+            $browser->acceptDialog()->waitFor('div.alert')->assertVisible('div.alert-success');
+        });
+
+        $this->adh($changes);
+        $this->assertDatabaseHas('yearsattending', ['program_id' => $cya->program_id, 'days' => $cya->days]);
+
+    }
+
+    /**
+     * @group Henrietta
+     * @throws Throwable
+     */
+    public function testHenriettaUniqueUser()
+    {
+        $birth = Carbon::now();
+        $birth->year = self::$year->year - 20;
+
+        $user = factory(User::class)->create();
+        $family = factory(Family::class)->create();
+        $camper = factory(Camper::class)->create(['firstname' => 'Henrietta', 'family_id' => $family->id, 'email' => $user->email, 'birthdate' => $birth->addDays(rand(0, 364))->toDateString()]);
+        $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
+
+        $snowfamily = factory(Family::class)->create();
+        $snowflake = factory(Camper::class)->create(['family_id' => $snowfamily->id]);
+        $changes = factory(Camper::class)->make(['firstname' => 'Henrietta', 'email' => $snowflake->email, 'birthdate' => $birth->addDays(rand(0, 364))->toDateString()]);
+        $cya = factory(Yearattending::class)->make(['year_id' => self::$year->id]);
+
+        $this->browse(function (Browser $browser) use ($user, $camper, $ya, $changes, $cya) {
+            $browser->loginAs($user->id)->visit('/campers')
+                ->waitFor('form#camperinfo div.tab-content div.active');
+            $this->changeCamper($browser, $camper, $ya, $changes, $cya);
+            $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
+                ->assertVisible('div.alert-danger')->assertPresent('span.invalid-feedback');
+            $changes->email = 'henrietta@email.org';
+            $browser->clear('form#camperinfo div.tab-content div.active input[name="email[]"]');
+            $browser->keys('form#camperinfo div.tab-content div.active input[name="email[]"]', 'henrietta@email.org', '{enter}');
+            $browser->acceptDialog()->waitFor('div.alert')->assertVisible('div.alert-success');
+        });
+
+        $this->assertDatabaseHas('users', ['email' => $changes->email]);
+        $this->adh($changes);
+        $this->assertDatabaseHas('yearsattending', ['program_id' => $cya->program_id, 'days' => $cya->days]);
+
+    }
 //
 //    /**
 //     * @group Ingrid

@@ -2,39 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Enums/Programname.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Browser/Components/CamperForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Camper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Camper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Camper__staff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/CamperStaff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Campers_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Campers_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Church.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Church.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CamperController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CamperController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Yearattending.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Yearattending.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/CamperFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/CamperFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ChurchFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ChurchFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/FamilyFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/FamilyFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_04_211936_create_families.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_04_211936_create_families.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_04_212521_create_campers.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_04_212521_create_campers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_14_193414_create_campers_view.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_14_193414_create_campers_view.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/campers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/campers.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/navtabs.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/navtabs.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/camper.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/camper.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/carouselcaption.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/carouselcaption.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/formgroup.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/formgroup.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/ContactTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/ContactTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/RegisterNowTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/RegisterNowTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/CamperTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/CamperTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +246,7 @@
       <workItem from="1563242646207" duration="4972000" />
       <workItem from="1564369141891" duration="7879000" />
       <workItem from="1578346474671" duration="14967000" />
-      <workItem from="1578588866298" duration="84014000" />
+      <workItem from="1578588866298" duration="85040000" />
     </task>
     <servers />
   </component>
