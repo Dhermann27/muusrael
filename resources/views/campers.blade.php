@@ -103,7 +103,7 @@
                     type: 'post',
                     data: form.serialize(),
                     success: function (data) {
-                        $(".nav-tabs").before("<div class='alert alert-success'>" + data + "</div>");
+                        $(".nav-tabs").before("<a href='/payment'><div class='alert alert-success' style='animation: shadow-pulse 1s infinite;'>" + data + "<i class='fa fa-chevron-right fa-2x float-right pb-1'></i></div></a>");
                         $("button:submit").val("Saved").addClass("btn-success").prop("disabled", false)
                             .find("[data-fa-i2svg]").toggleClass('fa-spinner-third').toggleClass('fa-spin')
                             .toggleClass('fa-check');

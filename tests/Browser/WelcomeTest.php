@@ -29,7 +29,7 @@ class WelcomeTest extends DuskTestCase
 
     public function testHousing()
     {
-        $building = factory(Building::class)->create(['id' => 1000]);
+        $building = factory(Building::class)->create();
 
         $this->browse(function (Browser $browser) use ($building) {
             $browser->visit('/housing')

@@ -8,6 +8,7 @@ use App\CamperStaff;
 use App\Enums\Programname;
 use App\Family;
 use App\Foodoption;
+use App\Jobs\GenerateCharges;
 use App\Program;
 use App\Pronoun;
 use App\User;
@@ -89,11 +90,11 @@ class CamperController extends Controller
             }
         }
 
-        //DB::statement('CALL generate_charges(' . $this->year->year . ');');
+        GenerateCharges::dispatch($this->year->year);
 
 //        Mail::to(Auth::user()->email)->send(new Confirm($this->year, $campers));
 
-        return 'You have successfully saved your changes. Click <a href="' . url('/payment') . '">here</a> to remit payment.<i class="fa fa-chevron-right fa-2x float-right"></i>';
+        return 'You have successfully saved your changes. Click here to remit payment and complete your registration.';
     }
 
     public function index(Request $request)
@@ -104,11 +105,10 @@ class CamperController extends Controller
         $campers = array();
         if (isset(Auth::user()->camper)) {
             $campers = Campers_view::where('family_id', Auth::user()->camper->family_id)->get();
-            if($request->session()->has('login-campers') && count($request->session()->get('login-campers')) > 0) {
+            if ($request->session()->has('login-campers') && count($request->session()->get('login-campers')) > 0) {
                 foreach ($campers as $camper) {
                     foreach ($request->session()->get('login-campers') as $login) {
-                        if ($camper->id == $login)
-                            $camper->currentdays = 6;
+                        if ($camper->id == $login) $camper->currentdays = 6;
                     }
                 }
             }
@@ -210,7 +210,7 @@ class CamperController extends Controller
         }
         $camper->birthdate = $request->input('birthdate')[$i];
         $program_id = $request->input('program_id')[$i];
-        if ($program_id == Programname::YoungAdult && Carbon::createFromFormat('Y-m-d', $camper->birthdate)->diffInYears(Carbon::createFromFormat('Y-m-d', $this->year->start_date)) < 21) {
+        if ($program_id == Programname::YoungAdult && Carbon::createFromFormat('Y-m-d', $camper->birthdate)->diffInYears(Carbon::createFromFormat('Y-m-d', $this->year->checkin)) < 21) {
             $program_id = Programname::YoungAdultUnderAge;
         }
 

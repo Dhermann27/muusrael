@@ -17,7 +17,7 @@ class CreateYears extends Migration
     {
         Schema::create('years', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('year');
+            $table->integer('year')->unique();
             $table->date('checkin');
             $table->date('brochure');
             $table->tinyInteger('is_current')->default(0);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Provincecode;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +19,8 @@ class CreateFamilies extends Migration
             $table->bigIncrements('id');
             $table->string('address1')->default('NEED ADDRESS');
             $table->string('address2')->nullable();
-            $table->string('city')->default('Unknown');
-            $table->unsignedBigInteger('province_id')->nullable();
+            $table->string('city')->nullable();
+            $table->unsignedBigInteger('province_id')->default(Provincecode::MO);
             $table->foreign('province_id')->references('id')->on('provinces');
             $table->string('zipcd')->nullable();
             $table->string('country')->nullable();

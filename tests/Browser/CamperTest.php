@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\Camper;
+use App\Enums\Chargetypename;
 use App\Family;
 use App\User;
 use App\Yearattending;
@@ -15,7 +16,6 @@ use Tests\MuusaTrap;
 use Throwable;
 use function factory;
 use function str_replace;
-use function substr;
 
 /**
  * @group Camper
@@ -44,7 +44,8 @@ class CamperTest extends DuskTestCase
         });
 
         $this->adh($camper);
-        $this->assertDatabaseHas('yearsattending', ['program_id' => $ya->program_id, 'days' => $ya->days]);
+        $camper = Camper::latest()->first();
+        $this->assertDatabaseHas('yearsattending', ['camper_id' => $camper->id, 'program_id' => $ya->program_id, 'days' => $ya->days]);
 
         $changes = factory(Camper::class)->make(['firstname' => 'Abraham']);
         $cya = factory(Yearattending::class)->make(['year_id' => self::$year->id]);
@@ -57,7 +58,8 @@ class CamperTest extends DuskTestCase
         });
 
         $this->adh($changes);
-        $this->assertDatabaseHas('yearsattending', ['program_id' => $cya->program_id, 'days' => $cya->days]);
+        $this->assertDatabaseHas('yearsattending', ['camper_id' => $camper->id, 'program_id' => $cya->program_id, 'days' => $cya->days]);
+        $this->assertDatabaseHas('gencharges', ['camper_id' => $camper->id, 'charge' => 200, 'chargetype_id' => Chargetypename::Deposit]);
 
     }
 
@@ -82,10 +84,12 @@ class CamperTest extends DuskTestCase
             $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
                 ->assertVisible('div.alert-success');
         });
+        $camper = Camper::latest()->first();
 
         $this->assertDatabaseHas('users', ['email' => $changes->email]);
         $this->adh($changes);
-        $this->assertDatabaseHas('yearsattending', ['program_id' => $cya->program_id, 'days' => $cya->days]);
+        $this->assertDatabaseHas('yearsattending', ['camper_id' => $camper->id, 'program_id' => $cya->program_id, 'days' => $cya->days]);
+        $this->assertDatabaseHas('gencharges', ['camper_id' => $camper->id, 'charge' => 200, 'chargetype_id' => Chargetypename::Deposit]);
 
     }
 //
@@ -182,6 +186,7 @@ class CamperTest extends DuskTestCase
         });
 
         foreach ($campers as $camper) $this->adh($camper);
+        $camper = Camper::orderBy('id', 'desc')->first();
         foreach ($yas as $ya) {
             $this->assertDatabaseHas('yearsattending', ['program_id' => $ya->program_id, 'days' => $ya->days]);
         }
@@ -202,10 +207,11 @@ class CamperTest extends DuskTestCase
                 ->assertVisible('div.alert-success');
         });
 
-        foreach ($changes as $camper) $this->adh($camper);
+        foreach ($changes as $change) $this->adh($change);
         foreach ($cyas as $ya) {
             $this->assertDatabaseHas('yearsattending', ['program_id' => $ya->program_id, 'days' => $ya->days]);
         }
+        $this->assertDatabaseHas('gencharges', ['camper_id' => $camper->id, 'charge' => 400, 'chargetype_id' => Chargetypename::Deposit]);
     }
 
     /**
@@ -240,14 +246,16 @@ class CamperTest extends DuskTestCase
             $browser->script('window.scrollTo(0,0)');
             $browser->pause(250)->clickLink($changes[1]->firstname)->pause(250)
                 ->type('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes[1]->email);
-            $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
-                ->assertVisible('div.alert-success');
+            $browser->pause(250)->click('button[type="submit"]')->acceptDialog()
+                ->waitFor('div.alert')->assertVisible('div.alert-success');
         });
 
         foreach ($changes as $camper) $this->adh($camper);
         foreach ($cyas as $ya) {
             $this->assertDatabaseHas('yearsattending', ['program_id' => $ya->program_id, 'days' => $ya->days]);
         }
+        $camper = Camper::orderBy('id', 'desc')->first();
+        $this->assertDatabaseHas('gencharges', ['camper_id' => $camper->id, 'charge' => 400, 'chargetype_id' => Chargetypename::Deposit]);
     }
 //
 //    /**
@@ -358,7 +366,8 @@ class CamperTest extends DuskTestCase
         });
 
         $this->adh($camper);
-        $this->assertDatabaseHas('yearsattending', ['program_id' => $ya->program_id, 'days' => $ya->days]);
+        $camper = Camper::latest()->first();
+        $this->assertDatabaseHas('yearsattending', ['camper_id' => $camper->id, 'program_id' => $ya->program_id, 'days' => $ya->days]);
 
         $snowfamily = factory(Family::class)->create();
         $snowflake = factory(Camper::class)->create(['family_id' => $snowfamily->id]);
@@ -378,7 +387,8 @@ class CamperTest extends DuskTestCase
         });
 
         $this->adh($changes);
-        $this->assertDatabaseHas('yearsattending', ['program_id' => $cya->program_id, 'days' => $cya->days]);
+        $this->assertDatabaseHas('yearsattending', ['camper_id' => $camper->id, 'program_id' => $cya->program_id, 'days' => $cya->days]);
+        $this->assertDatabaseHas('gencharges', ['camper_id' => $camper->id, 'charge' => 200, 'chargetype_id' => Chargetypename::Deposit]);
 
     }
 
@@ -415,7 +425,8 @@ class CamperTest extends DuskTestCase
 
         $this->assertDatabaseHas('users', ['email' => $changes->email]);
         $this->adh($changes);
-        $this->assertDatabaseHas('yearsattending', ['program_id' => $cya->program_id, 'days' => $cya->days]);
+        $this->assertDatabaseHas('yearsattending', ['camper_id' => $camper->id, 'program_id' => $cya->program_id, 'days' => $cya->days]);
+        $this->assertDatabaseHas('gencharges', ['camper_id' => $camper->id, 'charge' => 200, 'chargetype_id' => Chargetypename::Deposit]);
 
     }
 //
@@ -504,7 +515,7 @@ class CamperTest extends DuskTestCase
         $browser->within(new CamperForm, function ($browser) use ($camper, $ya) {
             $browser->createCamper($camper, $ya);
         })->waitFor('.select2-container--open')
-            ->type('span.select2-container input.select2-search__field', substr($camper->church->name, 0, 10))
+            ->type('span.select2-container input.select2-search__field', $camper->church->name)
             ->waitFor('li.select2-results__option--highlighted')->click('li.select2-results__option--highlighted');
     }
 
@@ -525,7 +536,7 @@ class CamperTest extends DuskTestCase
         $browser->within(new CamperForm, function ($browser) use ($camper, $ya, $changes, $cya) {
             $browser->changeCamper([$camper, $ya], [$changes, $cya]);
         })->waitFor('.select2-container--open')
-            ->type('span.select2-container input.select2-search__field', substr($changes->church->name, 0, 4))
+            ->type('span.select2-container input.select2-search__field', $changes->church->name)
             ->waitFor('li.select2-results__option--highlighted')->click('li.select2-results__option--highlighted');
     }
 

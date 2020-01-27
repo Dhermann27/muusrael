@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+use App\Year;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,15 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([ChartdaySeeder::class,
+        $this->call([BuildingSeeder::class,
+            ChargetypeSeeder::class,
+            ChartdaySeeder::class,
             CompensationLevelSeeder::class,
             PronounSeeder::class,
             ProvinceSeeder::class,
             TimeslotSeeder::class]);
 
-        // Admin data
-
-        factory(\App\User::class)->create(['email' => 'dh78@me.com']);
-        factory(\App\Year::class)->create();
+        factory(User::class)->create(['email' => 'dh78@me.com']);
     }
 }

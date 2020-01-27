@@ -37,7 +37,7 @@ abstract class DuskTestCase extends BaseTestCase
             echo "Database migrate:refresh --seed\n";
             $kernel->call('migrate:refresh --seed');
             self::$hasSetupRun = true;
-            self::$year = Year::where('is_current', 1)->first();
+            self::$year = factory(Year::class)->create(['is_current' => 1]);
         }
     }
 

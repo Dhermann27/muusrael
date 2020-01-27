@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
-class CreateOldgencharges extends Migration
+class CreateGencharges extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +14,8 @@ class CreateOldgencharges extends Migration
      */
     public function up()
     {
-        Schema::create('oldgencharges', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('gencharges', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedBigInteger('camper_id');
             $table->foreign('camper_id')->references('id')->on('campers');
             $table->float('charge');
@@ -23,9 +24,8 @@ class CreateOldgencharges extends Migration
             $table->foreign('chargetype_id')->references('id')->on('chargetypes');
             $table->unsignedBigInteger('year_id');
             $table->foreign('year_id')->references('id')->on('years');
-            $table->timestamps();
         });
-        DB::update('ALTER TABLE oldgencharges AUTO_INCREMENT = 1000');
+        DB::update('ALTER TABLE gencharges AUTO_INCREMENT = 1000');
     }
 
     /**
@@ -35,6 +35,6 @@ class CreateOldgencharges extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('oldgencharges');
+        Schema::dropIfExists('gencharges');
     }
 }
