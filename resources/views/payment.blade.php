@@ -1,0 +1,193 @@
+@extends('layouts.app')
+<?php
+$fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
+$fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
+//return $fmt->formatCurrency($float, "USD");
+?>
+@section('title')
+    Payment Information
+@endsection
+
+@section('heading')
+    Check back here to see your up-to-date billing statement, and mail via check or send payment online via PayPal.
+@endsection
+
+@section('content')
+    include('snippet.steps', ['steps' => $steps[0]])
+    <div class="container">
+        <form id="muusapayment" class="form-horizontal" role="form" method="POST" action="{{ route('payment.store') }}">
+            @include('includes.flash')
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Charge Type</th>
+                    <th class="text-right">Amount</th>
+                    <th class="text-md- center">Date</th>
+                    <th>Memo</th>
+                </tr>
+                </thead>
+                @foreach($charges as $charge)
+                    <tr>
+                        <td>{{ $charge->chargetypename }}</td>
+                        <td class="amount" align="right">{{ $fmt->formatCurrency($charge->amount, "USD") }}</td>
+                        <td class="text-md-center">{{ $charge->timestamp }}</td>
+                        <td>{{ $charge->memo }}</td>
+                    </tr>
+                @endforeach
+                <tr>
+                    <td>
+                        <label for="donation" class="control-label">Donation</label>
+                    </td>
+                    <td class="form-group @error('donation') has-danger @enderror">
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                            <input type="number" id="donation"
+                                   class="form-control @error('donation') is-invalid @enderror"
+                                   step="any" name="donation" data-number-to-fixed="2" min="0"
+                                   placeholder="Enter Donation Here"
+                                   value="{{ old('donation') }}"/>
+                        </div>
+
+                        @error('donation')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </td>
+                    <td colspan='2'>Please consider at least a $10.00 donation to the MUUSA Scholarship fund.
+                    </td>
+                </tr>
+                @if($year->is_accept_paypal)
+                    <tr class="text-md-right">
+                        <td><strong>Amount Due Now:</strong></td>
+                        <td class="text-right">
+                            <span id="amountNow">{{ $fmt->formatCurrency(max($deposit, 0), "USD") }}</span>
+                        </td>
+                        <td colspan="2"></td>
+                    </tr>
+                @endif
+                @if(!empty($housing))
+                    <tr class="text-md-right">
+                        <td><strong>Amount Due Upon Arrival:</strong></td>
+                        <td class="text-right">
+                            <span id="amountArrival">{{ $fmt->formatCurrency($charges->sum('amount'), "USD") }}</span>
+                        </td>
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                @endif
+            </table>
+            <div class="row p-7">
+                @if($year->is_accept_paypal)
+                    <div class="col-md-6">
+                        <h4>To Register via Mail:</h4>
+                        Make checks payable to <strong>MUUSA, Inc.</strong><br/>
+                        Mail check by May 31, {{ $year->year }} to<br/>
+                        MUUSA, Inc.<br/>423 North Waiola<br/>
+                        La Grange Park, IL 60526<br/> <br/>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>To Register via PayPal:</h4>
+                        <div class="form-group row @error('amount') has-danger @enderror">
+                            <label for="amount" class="control-label">Payment:</label>
+
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                <input type="number" id="amount" name="amount"
+                                       class="form-control @error('amount') is-invalid @enderror"
+                                       data-toggle="tooltip" title="Or enter another amount..."
+                                       value="{{ number_format(max($charges->sum('amount'), 0), 2, '.', '') }}"/>
+                            </div>
+
+                            <div class="input-group pt-3">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" id="addthree" name="addthree"> Add 3% to my payment to
+                                        cover the PayPal service fee
+                                    </label>
+                                </div>
+                            </div>
+
+                            @error('amount')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <input type="hidden" id="orderid" name="orderid"/>
+                        <input type="hidden" id="address1" name="address1"/>
+                        <input type="hidden" id="address2" name="address2"/>
+                        <input type="hidden" id="city" name="city"/>
+                        <input type="hidden" id="province" name="province"/>
+                        <input type="hidden" id="zipcd" name="zipcd"/>
+                        <div id="paypal-button"></div>
+                    </div>
+                @else
+                    Please bring payment to the first day of camp on {{ $year->checkin }}. While we do accept
+                    VISA, Mastercard, Discover, we prefer a check a minimize fees.
+                @endif
+            </div>
+        </form>
+    </div>
+@endsection
+
+@section('script')
+    @if($year->is_accept_paypal)
+        <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT') }}&commit=false"></script>
+        <script>
+            $(document).on('change', '#donation', function () {
+                var total = parseFloat($(this).val());
+                $("#amount").val(Math.max(0, parseFloat($("#amountNow").text().replace('$', '')) + total).toFixed(2));
+                $("td.amount").each(function () {
+                    total += parseFloat($(this).text().replace('$', ''));
+                });
+                $("#amountArrival").text(Math.max(0, total).toFixed(2));
+            });
+
+            paypal.Buttons({
+                locale: 'en_US',
+                style: {
+                    size: 'responsive',
+                    color: 'gold',
+                    shape: 'pill',
+                    label: 'pay',
+                    tagline: 'true',
+                    fundingicons: 'true',
+                    layout: 'horizontal'
+                },
+
+                createOrder: function (data, actions) {
+                    var amt = parseFloat($("#amount").val().toFixed(2));
+                    if($('input#addthree').is(':checked')) amt *= 1.03;
+                    if(amt < 0) amt *= -1;
+
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: amt.toFixed(2)
+                            }
+                        }]
+                    });
+                },
+
+                commit: false,
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                        if (details.purchase_units.length > 0) {
+                            $("#orderid").val(details.id);
+                            $("#amount").val(details.purchase_units[0].amount.value);
+                            $("#address1").val(details.purchase_units[0].shipping.address.address_line_1);
+                            $("#address2").val(details.purchase_units[0].shipping.address.address_line_2);
+                            $("#city").val(details.purchase_units[0].shipping.address.admin_area_2);
+                            $("#province").val(details.purchase_units[0].shipping.address.admin_area_1);
+                            $("#zipcd").val(details.purchase_units[0].shipping.address.postal_code);
+
+                        }
+                        $("form#muusapayment").submit();
+                    });
+                }
+            }).render('#paypal-button');
+        </script>
+    @endif
+
+@endsection

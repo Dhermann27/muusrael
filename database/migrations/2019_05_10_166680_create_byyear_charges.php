@@ -27,12 +27,12 @@ class CreateByyearCharges extends Migration
                             h.timestamp,
                             h.memo
                           FROM charges h, chargetypes g, campers c, years y
-                          WHERE h.chargetype_id = g.id AND h.camper_id = c.id AND h.year_id=y.id
+                          WHERE h.chargetype_id=g.id AND h.camper_id=c.id AND h.year_id=y.id
                           UNION ALL
                           SELECT
                             0,
-                            yg.year,
                             yg.id,
+                            yg.year,
                             c.family_id,
                             hg.camper_id,
                             hg.charge,
@@ -42,12 +42,12 @@ class CreateByyearCharges extends Migration
                             NULL,
                             hg.memo
                           FROM campers c, gencharges hg, chargetypes g, years yg
-                          WHERE c.id = hg.camper_id AND g.id = hg.chargetype_id AND hg.year_id=yg.id
+                          WHERE c.id=hg.camper_id AND g.id=hg.chargetype_id AND hg.year_id=yg.id
                           UNION ALL
                           SELECT
                             0,
-                            oy.year,
                             oy.id,
+                            oy.year,
                             c.family_id,
                             og.camper_id,
                             og.charge,
@@ -57,7 +57,7 @@ class CreateByyearCharges extends Migration
                             NULL,
                             og.memo
                           FROM campers c, oldgencharges og, chargetypes g, years oy
-                          WHERE c.id = og.camper_id AND g.id = og.chargetype_id AND og.year_id=oy.id;");
+                          WHERE c.id=og.camper_id AND g.id=og.chargetype_id AND og.year_id=oy.id;");
     }
 
     /**

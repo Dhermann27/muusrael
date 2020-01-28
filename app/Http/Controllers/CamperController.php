@@ -43,8 +43,8 @@ class CamperController extends Controller
             'pronoun_id.*' => 'exists:pronouns,id',
             'firstname.*' => 'required|max:255',
             'lastname.*' => 'required|max:255',
-            'email.*' => 'email|max:255|distinct',
-            'phonenbr.*' => 'regex:/^\d{3}-\d{3}-\d{4}$/',
+            'email.*' => 'nullable|email|max:255|distinct',
+            'phonenbr.*' => 'nullable|regex:/^\d{3}-\d{3}-\d{4}$/',
             'birthdate.*' => 'required|regex:/^\d{4}-\d{2}-\d{2}$/',
             'program_id.*' => 'required|exists:programs,id',
             'roommate.*' => 'max:255',
@@ -62,7 +62,7 @@ class CamperController extends Controller
                 $camper = Camper::findOrFail($id);
 
                 $this->validate($request, [
-                    'email.' . $i => 'unique:campers,email,' . $id,
+                    'email.' . $i => 'nullable|unique:campers,email,' . $id,
                 ], $this->messages);
 
                 if ($id == $this->logged_in->id) {
@@ -226,16 +226,13 @@ class CamperController extends Controller
 
         if ((int)$request->input('days')[$i] > 0) {
             $ya = Yearattending::where(['camper_id' => $camper->id, 'year_id' => $this->year->id])->first();
-            if ($ya) {
-                $ya->days = $request->input('days')[$i];
-                $ya->program_id = $program_id;
-            } else {
+            if (!$ya) {
                 $ya = new Yearattending();
                 $ya->camper_id = $camper->id;
                 $ya->year_id = $this->year->id;
-                $ya->days = $request->input('days')[$i];
-                $ya->program_id = $program_id;
             }
+            $ya->days = $request->input('days')[$i];
+            $ya->program_id = $program_id;
             $ya->save();
             $camper->yearattending_id = $ya->id;
             $staffs = CamperStaff::where('camper_id', $camper->id)->get();

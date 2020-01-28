@@ -29,6 +29,13 @@ Route::group(['prefix' => 'campers', 'middleware' => 'auth'], function () {
 //    Route::post('/f/{id}', 'CamperController@write')->name('campers.write');
 });
 
+Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
+    Route::get('', 'PaymentController@index')->name('payment.index');
+    Route::post('', 'PaymentController@store')->name('payment.store');
+//    Route::get('/payment/{i}/{id}', 'PaymentController@read');
+//    Route::post('/payment/f/{id}', 'PaymentController@write');
+});
+
 Route::group(['prefix' => 'data'], function () {
     Route::get('loginsearch', 'DataController@loginsearch');
     //Route::get('camperlist', 'DataController@campers')->middleware('auth');

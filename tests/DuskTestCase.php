@@ -56,14 +56,14 @@ abstract class DuskTestCase extends BaseTestCase
 
         return RemoteWebDriver::create(
             'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
-            ChromeOptions::CAPABILITY, $options
-        )
+            ChromeOptions::CAPABILITY, $options)
         );
     }
 
-    protected function moneyFormat($float) {
-        $fmt = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
+    protected function moneyFormat($float)
+    {
+        $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
         $fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
         return $fmt->formatCurrency($float, "USD");
-}
+    }
 }

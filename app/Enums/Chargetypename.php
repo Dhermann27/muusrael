@@ -11,4 +11,7 @@ class Chargetypename
     const Staffcredit = 1021;
     const Workshopfee = 1002;
     const Earlyarrival = 1014;
+    const Donation = 1008;
+    const PayPalServiceCharge = 1023;
+    const PayPalPayment = 1005;
 }

@@ -2,31 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Enums/Chargetypename.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Enums/Provincecode.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_165056_create_getage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166659_create_gencharges.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166680_create_byyear_charges.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166681_create_thisyear_charges.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166760_create_byyear_staff.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166761_create_byyear_family.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166762_create_byyear_camper.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166763_create_thisyear_family.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166764_create_thisyear_camper.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166765_create_thisyear_staff.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_194719_create_generate_charges.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/PayPalClient.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/payment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/muusrael.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/muusrael.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Enums/Chargetypename.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Chargetypename.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CamperController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CamperController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/YearFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/YearFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_04_210317_create_years.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_04_210317_create_years.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_04_211936_create_families.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_04_211936_create_families.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_06_225707_create_oldgencharges.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_06_225707_create_oldgencharges.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_10_170056_create_getrate.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_170056_create_getrate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/campers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/campers.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/CamperTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/CamperTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/WelcomeTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/WelcomeTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PaymentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_10_166658_create_charges.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166658_create_charges.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_10_166680_create_byyear_charges.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166680_create_byyear_charges.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/DuskTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DuskTestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -185,6 +173,8 @@
       <path value="$PROJECT_DIR$/vendor/phpseclib/bcmath_compat" />
       <path value="$PROJECT_DIR$/vendor/league/commonmark" />
       <path value="$PROJECT_DIR$/vendor/league/commonmark-ext-table" />
+      <path value="$PROJECT_DIR$/vendor/paypal/paypal-checkout-sdk" />
+      <path value="$PROJECT_DIR$/vendor/paypal/paypalhttp" />
     </include_path>
   </component>
   <component name="ProjectId" id="1OfWS1Eq8eszNsytelGMUMgMcmb" />
@@ -272,7 +262,7 @@
       <workItem from="1564369141891" duration="7879000" />
       <workItem from="1578346474671" duration="14967000" />
       <workItem from="1578588866298" duration="97067000" />
-      <workItem from="1579964409581" duration="11241000" />
+      <workItem from="1579964409581" duration="32283000" />
     </task>
     <servers />
   </component>
@@ -317,10 +307,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="464" y="61" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.877@0.23.1440.877" timestamp="1579922641318" />
-    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1579893851186">
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580246204645">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1579893851186" />
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1580246204645" />
     <state x="100" y="123" width="1204" height="677" key="DiffContextDialog" timestamp="1579886570843">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -345,14 +335,14 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1358" height="217" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1578588676561" />
-    <state x="461" y="285" key="NewPhpClassDialog" timestamp="1580066254881">
+    <state x="461" y="285" key="NewPhpClassDialog" timestamp="1580176815907">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1580066254881" />
-    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1579799459954">
+    <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1580176815907" />
+    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1580149064823">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1579799459954" />
+    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1580149064823" />
     <state x="229" y="100" key="SettingsEditor" timestamp="1579556700928">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -365,17 +355,17 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="375" y="83" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1440.877@0.23.1440.877" timestamp="1578939751142" />
-    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1579971315601">
+    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1580244713544">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1579971315601" />
-    <state width="600" height="424" key="javadoc.popup" timestamp="1578453178979">
+    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1580244713544" />
+    <state width="600" height="424" key="javadoc.popup" timestamp="1580224979748">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1578453178979" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1580092310490">
+    <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1580224979748" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1580247236322">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1580092310490" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1580247236322" />
   </component>
 </project>
