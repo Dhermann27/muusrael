@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Camper;
 use App\Church;
+use App\Family;
+use App\Medicalresponse;
+use App\YearattendingWorkshop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DataController extends Controller
 {
@@ -35,5 +39,22 @@ class DataController extends Controller
         $camper = Camper::where('email', $request->term)->firstOrFail();
         $campers = Camper::select('id', 'firstname', 'lastname')->where('family_id', $camper->family_id)->orderBy('birthdate')->get();
         return $campers;
+    }
+
+    public function steps()
+    {
+        $family = Family::findOrFail(Auth::user()->camper->family->id)->first()->city != null;
+        $workshops = 0;
+        $room = 0;
+        $nametag = 0;
+        $medical = 0;
+        $live = $this->year->is_live ? false : $this->year->brochure_date;
+        if(Auth::user()->camper->yearattending) {
+            $workshops = YearattendingWorkshop::where('yearsattending_id', Auth::user()->camper->yearattending->id)->count() > 0;
+            $room = Auth::user()->camper->yearattending->room_id != null;
+            $nametag = Auth::user()->camper->yearattending->nametag != "222215521";
+            $medical = Medicalresponse::where('yearattending_id', Auth::user()->camper->yearattending->id)->count() > 0;
+        }
+        return [$family, true, true, $workshops, $room, $nametag, $medical, Auth::user()->camper->firstname, $live];
     }
 }

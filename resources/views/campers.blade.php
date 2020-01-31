@@ -19,7 +19,7 @@
 @endsection
 
 @section('content')
-    include('snippet.steps', ['steps' => $steps[0]])
+    @include('includes.steps')
     <div class="container">
         <form id="camperinfo" class="form-horizontal" role="form" method="POST" action="{{ route('campers.store') }}">
             {{--            . (isset($readonly) && $readonly === false ? '/f/' . $campers[0]->familyid : '')}}">--}}
@@ -94,7 +94,8 @@
                 $(".is-invalid").removeClass("is-invalid");
                 $(".invalid-feedback").remove();
                 $("div.alert").remove();
-                if (!confirm("You are registering " + form.find('select.days option[value!="0"]:selected').length + " campers for {{ $year->year }}. Is this correct?")) {
+                var count = form.find('select.days option[value!="0"]:selected').length;
+                if (!confirm("You have indicated that " + count + " camper" + (count > 1 ? "s are" : " is") + " attending in {{ $year->year }}. Is this correct?")) {
                     $(this).val("Resubmit").addClass("btn-danger").prop("disabled", false);
                     return false;
                 }

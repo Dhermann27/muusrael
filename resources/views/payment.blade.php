@@ -2,7 +2,6 @@
 <?php
 $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
 $fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
-//return $fmt->formatCurrency($float, "USD");
 ?>
 @section('title')
     Payment Information
@@ -13,7 +12,7 @@ $fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
 @endsection
 
 @section('content')
-    include('snippet.steps', ['steps' => $steps[0]])
+    @include('includes.steps')
     <div class="container">
         <form id="muusapayment" class="form-horizontal" role="form" method="POST" action="{{ route('payment.store') }}">
             @include('includes.flash')
@@ -128,66 +127,117 @@ $fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
                 @endif
             </div>
         </form>
-    </div>
-@endsection
 
-@section('script')
-    @if($year->is_accept_paypal)
-        <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT') }}&commit=false"></script>
-        <script>
-            $(document).on('change', '#donation', function () {
-                var total = parseFloat($(this).val());
-                $("#amount").val(Math.max(0, parseFloat($("#amountNow").text().replace('$', '')) + total).toFixed(2));
-                $("td.amount").each(function () {
-                    total += parseFloat($(this).text().replace('$', ''));
-                });
-                $("#amountArrival").text(Math.max(0, total).toFixed(2));
-            });
+        <!-- Modal -->
+        <div class="modal fade" id="modal-newreg" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">You're Registered for {{ $year->year }}!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid px-0">
+                            <div class="row">
+                                You just completed your registration, but there's plenty more to do.
+                                Please visit the below pages to make all the changes you need to ensure your camp
+                                experience is a great one.
 
-            paypal.Buttons({
-                locale: 'en_US',
-                style: {
-                    size: 'responsive',
-                    color: 'gold',
-                    shape: 'pill',
-                    label: 'pay',
-                    tagline: 'true',
-                    fundingicons: 'true',
-                    layout: 'horizontal'
-                },
+                                <a href="#" class="btn btn-link btn-outline-primary btn-block mt-3">
+                                    <i class="far fa-home fa-fw"></i> Billing Information</a>
+                                <a href="#" class="btn btn-link btn-outline-primary btn-block">
+                                    <i class="far fa-users fa-fw"></i> Camper List</a>
+                                <a href="#" class="btn disabled btn-outline-primary btn-block">
+                                    <i class="far fa-usd-square fa-fw"></i> Statement</a>
+                                @if(!$year->is_live)
+                                    <h5 class="text-muted mt-4">Opens {{ $year->brochure_date }}</h5>
+                                    <a href="#" class="btn disabled btn-outline-primary btn-block">Workshop List</a>
+                                    <a href="#" class="btn disabled btn-outline-primary btn-block">Room Selection</a>
+                                    <a href="#" class="btn disabled btn-outline-primary btn-block">Nametags</a>
+                                    <a href="#" class="btn disabled btn-outline-primary btn-block">Medical Responses</a>
+                                @else
+                                    <a href="#" type="button" class="btn btn-outline-primary btn-block">
+                                        <i class="far fa-rocket fa-fw"></i>Workshops</a>
+                                    <a href="#" type="button" class="btn btn-outline-primary btn-block">
+                                        <i class="far fa-bed fa-fw"></i> Room Selection</a>
+                                    <a href="#" type="button" class="btn btn-outline-primary btn-block">
+                                        <i class="far fa-id-card fa-fw"></i> Nametags</a>
+                                    <a href="#" type="button" class="btn btn-outline-primary btn-block">
+                                        <i class="far fa-envelope fa-fw"></i> Medical Responses</a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+        @endsection
 
-                createOrder: function (data, actions) {
-                    var amt = parseFloat($("#amount").val().toFixed(2));
-                    if($('input#addthree').is(':checked')) amt *= 1.03;
-                    if(amt < 0) amt *= -1;
-
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: amt.toFixed(2)
-                            }
-                        }]
+        @section('script')
+            @if($year->is_accept_paypal)
+                <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT') }}&commit=false"></script>
+                <script>
+                    @if(Session::has('newreg') && Session::get('newreg'))
+                    $("div#modal-newreg").modal('show');
+                    @endif
+                    $(document).on('change', '#donation', function () {
+                        var total = parseFloat($(this).val());
+                        $("#amount").val(Math.max(0, parseFloat($("#amountNow").text().replace('$', '')) + total).toFixed(2));
+                        $("td.amount").each(function () {
+                            total += parseFloat($(this).text().replace('$', ''));
+                        });
+                        $("#amountArrival").text(Math.max(0, total).toFixed(2));
                     });
-                },
 
-                commit: false,
-                onApprove: function (data, actions) {
-                    return actions.order.capture().then(function (details) {
-                        if (details.purchase_units.length > 0) {
-                            $("#orderid").val(details.id);
-                            $("#amount").val(details.purchase_units[0].amount.value);
-                            $("#address1").val(details.purchase_units[0].shipping.address.address_line_1);
-                            $("#address2").val(details.purchase_units[0].shipping.address.address_line_2);
-                            $("#city").val(details.purchase_units[0].shipping.address.admin_area_2);
-                            $("#province").val(details.purchase_units[0].shipping.address.admin_area_1);
-                            $("#zipcd").val(details.purchase_units[0].shipping.address.postal_code);
+                    paypal.Buttons({
+                        locale: 'en_US',
+                        style: {
+                            size: 'responsive',
+                            color: 'gold',
+                            shape: 'pill',
+                            label: 'pay',
+                            tagline: 'true',
+                            fundingicons: 'true',
+                            layout: 'horizontal'
+                        },
 
+                        createOrder: function (data, actions) {
+                            var amt = parseFloat($("#amount").val());
+                            if ($('input#addthree').is(':checked')) amt *= 1.03;
+                            if (amt < 0) amt *= -1;
+
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: amt.toFixed(2)
+                                    }
+                                }]
+                            });
+                        },
+
+                        commit: false,
+                        onApprove: function (data, actions) {
+                            return actions.order.capture().then(function (details) {
+                                if (details.purchase_units.length > 0) {
+                                    $("#orderid").val(details.id);
+                                    $("#amount").val(details.purchase_units[0].amount.value);
+                                    $("#address1").val(details.purchase_units[0].shipping.address.address_line_1);
+                                    $("#address2").val(details.purchase_units[0].shipping.address.address_line_2);
+                                    $("#city").val(details.purchase_units[0].shipping.address.admin_area_2);
+                                    $("#province").val(details.purchase_units[0].shipping.address.admin_area_1);
+                                    $("#zipcd").val(details.purchase_units[0].shipping.address.postal_code);
+
+                                }
+                                $("form#muusapayment").submit();
+                            });
                         }
-                        $("form#muusapayment").submit();
-                    });
-                }
-            }).render('#paypal-button');
-        </script>
+                    }).render('#paypal-button');
+                </script>
     @endif
 
 @endsection

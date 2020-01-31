@@ -186,19 +186,19 @@
                     </li>
 
                     <li class="nav-item mt-1">
-                        @auth
+                        @can('has-paid')
                             <div class="dropdown">
                                 <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
                                     Registration
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right mt-0">
-                                    {{--                                    <a href="{{ route('household') }}" class="dropdown-item">--}}
-                                    {{--                                        <i class="far fa-home fa-fw"></i> Household</a>--}}
-                                    {{--                                    <a href="{{ route('camper') }}" class="dropdown-item">--}}
-                                    {{--                                        <i class="far fa-users fa-fw"></i> Campers</a>--}}
-                                    {{--                                    <a href="{{ route('payment') }}" class="dropdown-item">--}}
-                                    {{--                                        <i class="far fa-usd-square fa-fw"></i> Payment</a>--}}
+                                    <a href="{{ route('household.index') }}" class="dropdown-item">
+                                        <i class="far fa-home fa-fw"></i> Household</a>
+                                    <a href="{{ route('campers.index') }}" class="dropdown-item">
+                                        <i class="far fa-users fa-fw"></i> Campers</a>
+                                    <a href="{{ route('payment.index') }}" class="dropdown-item">
+                                        <i class="far fa-usd-square fa-fw"></i> Statement</a>
                                     {{--                                    @if(!$year->is_live)--}}
                                     {{--                                        <div class="dropdown-divider"></div>--}}
                                     {{--                                        <h6 class="dropdown-header">--}}
@@ -309,12 +309,12 @@
                         </ul>
                     </div>
                     <div class="col-lg-2">
-                        @auth
+                        @can('has-paid')
                             <h5 class="footer-title text-white mb-3">Registration</h5>
                             <ul class="list-unstyled footer-list">
-                                {{--                                    <li><a href="{{ route('household') }}">Household</a></li>--}}
-                                {{--                                    <li><a href="{{ route('camper') }}">Campers</a></li>--}}
-                                {{--                                    <li><a href="{{ route('payment') }}">Payment</a></li>--}}
+                                <li><a href="{{ route('household.index') }}">Household</a></li>
+                                <li><a href="{{ route('campers.index') }}">Campers</a></li>
+                                <li><a href="{{ route('payment.index') }}">Statement</a></li>
                                 {{--                                    @if(!$year->is_live)--}}
                                 {{--                                        <hr/>--}}
                                 {{--                                        <h6 class="dropdown-header">--}}

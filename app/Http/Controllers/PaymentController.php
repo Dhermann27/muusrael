@@ -11,10 +11,8 @@ use App\ThisyearCharge;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use PayPalCheckoutSdk\Orders\OrdersGetRequest;
+use Illuminate\Support\Facades\Gate;
 use PayPalCheckoutSdk\Orders\OrdersPatchRequest;
-use Sample\PatchOrder;
 use function date;
 
 class PaymentController extends Controller
@@ -33,19 +31,24 @@ class PaymentController extends Controller
         $thiscamper = Auth::user()->camper;
         if ($thiscamper !== null) {
             if ($request->input('donation') > 0) {
-                Charge::updateOrCreate(
-                    ['camper_id' => $thiscamper->id, 'chargetype_id' => Chargetypename::Donation,
-                        'year_id' => $this->year->id],
-                    ['camper_id' => $thiscamper->id,
-                        'amount' => $request->input('donation'), 'memo' => 'MUUSA Scholarship Fund',
-                        'chargetype_id' => Chargetypename::Donation, 'year_id' => $this->year->id,
-                        'timestamp' => date("Y-m-d")]
-                );
+                $charge = Charge::where(['camper_id' => $thiscamper->id, 'chargetype_id' => Chargetypename::Donation,
+                    'year_id' => $this->year->id])->first();
+                if (!$charge) {
+                    $charge = new Charge();
+                    $charge->camper_id = $thiscamper->id;
+                    $charge->chargetype_id = Chargetypename::Donation;
+                    $charge->year_id = $this->year->id;
+                }
+                $charge->amount = $request->input('donation');
+                $charge->memo = 'MUUSA Scholarship Fund';
+                $charge->timestamp = date("Y-m-d");
+                $charge->save();
             }
 
             if (!empty($request->input('orderid'))) {
 
                 $txn = $request->input('orderid');
+                $before = Gate::allows('has-paid');
                 $charge = Charge::where(['camper_id' => $thiscamper->id,
                     'chargetype_id' => Chargetypename::PayPalPayment, 'order_id' => $txn])->first();
                 if (!$charge) {
@@ -54,7 +57,7 @@ class PaymentController extends Controller
                     $charge->chargetype_id = Chargetypename::PayPalPayment;
                     $charge->order_id = $txn;
                 }
-                $charge->amount = $request->input('amount');
+                $charge->amount = $request->input('amount') * -1;
                 $charge->year_id = $this->year->id;
                 $charge->timestamp = date("Y-m-d");
                 $charge->created_at = Carbon::now();
@@ -63,29 +66,41 @@ class PaymentController extends Controller
                 $charge->memo = 'PayPal Invoice ID #' . $charge->id;
                 $charge->save();
 
-                //$this->patchOrder($txn, $charge->id);
+                $paid = ThisyearCharge::where('family_id', Auth::user()->camper->family_id)
+                    ->where(function ($query) {
+                        $query->where('chargetype_id', Chargetypename::Deposit)->orWhere('amount', '<', 0);
+                    })->get()->sum('amount');
+                $request->session()->flash('newreg', !$before && $paid <= 0);
 
-                if (!empty($request->input('addthree'))) {
-                    Charge::updateOrCreate(
-                        ['camper_id' => $thiscamper->id, 'memo' => 'Optional payment to offset PayPal ' . $txn],
-                        ['camper_id' => $thiscamper->id, 'amount' => ($request->input('amount') / 1.03 * .03),
-                            'memo' => 'Optional payment to offset PayPal Invoice #' . $charge->id,
-                            'chargetype_id' => Chargetypename::PayPalServiceCharge,
-                            'year_id' => $this->year->id, 'timestamp' => date("Y-m-d"),
-                            'created_at' => DB::raw('CURRENT_TIMESTAMP')]
-                    );
+//                $this->patchOrder($txn, $charge->id);
 
-                }
-
-                $family = Family::findOrFail($thiscamper->family_id);
-                if ($family->address1 == "NEED ADDRESS") {
+                $family = Family::where('id', $thiscamper->family_id)->whereNull('city')->first();
+                if ($family) {
                     $family->address1 = $request->input('address1');
                     $family->address2 = $request->input('address2');
                     $family->city = $request->input('city');
                     $family->province_id = Province::where('code', $request->input('province'))->first()->id;
                     $family->zipcd = $request->input('zipcd');
                     $family->is_address_current = 1;
+                    $family->save();
                 }
+
+                $txn = $charge->id;
+                if (!empty($request->input('addthree'))) {
+                    $charge = Charge::where(['camper_id' => $thiscamper->id,
+                        'memo' => 'Optional payment to offset PayPal Invoice #' . $txn])->first();
+                    if (!$charge) {
+                        $charge = new Charge();
+                        $charge->camper_id = $thiscamper->id;
+                        $charge->memo = 'Optional payment to offset PayPal Invoice #' . $txn;
+                    }
+                    $charge->year_id = $this->year->id;
+                    $charge->chargetype_id = Chargetypename::PayPalServiceCharge;
+                    $charge->amount = $request->input('amount') / 1.03 * .03;
+                    $charge->timestamp = date("Y-m-d");
+                    $charge->save();
+                }
+
 
                 $success = 'Payment received! You should receive a receipt via email for your records.';
 
@@ -208,10 +223,10 @@ class PaymentController extends Controller
 
         $client = PayPalClient::client();
         $request = new OrdersPatchRequest($orderId);
-        $request->body = [ ['op' => 'replace', 'path' => '/intent', 'value' => 'CAPTURE'],
-                                ['op' => 'add',
-                                'path' => '/purchase_units/@reference_id==\'default\'/invoice_id',
-                                'value' => $invoiceId] ];
+        $request->body = [['op' => 'replace', 'path' => '/intent', 'value' => 'CAPTURE'],
+            ['op' => 'add',
+                'path' => '/purchase_units/@reference_id==\'default\'/invoice_id',
+                'value' => $invoiceId]];
         $client->execute($request);
     }
 

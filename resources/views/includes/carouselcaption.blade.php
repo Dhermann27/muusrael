@@ -9,9 +9,9 @@
         {{ $year->first_day }} through {{ $year->last_day }} {{ $year->year }}
     </div>
     <div>
-        @auth
+        @can('has-paid')
             <a href="{{ route('campers.index') }}" class="btn btn-primary">
-                Register for {{ $year->year }} <i class="fas fa-sign-in"></i>
+                See Your Information for {{ $year->year }} <i class="fas fa-sign-in"></i>
             </a>
         @else
             <button type="button" class="btn btn-primary" data-toggle="modal"

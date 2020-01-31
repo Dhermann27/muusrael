@@ -9,7 +9,7 @@ class Camper extends Model
 {
     public function family()
     {
-        return $this->hasOne('App\Family');
+        return $this->hasOne('App\Family', 'id', 'family_id');
     }
 
     public function pronoun()

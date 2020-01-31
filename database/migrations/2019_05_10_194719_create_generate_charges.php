@@ -16,7 +16,7 @@ class CreateGenerateCharges extends Migration
         DB::unprepared("CREATE DEFINER =`root`@`localhost` PROCEDURE generate_charges(myyear YEAR)
                   BEGIN
                     SET SQL_MODE = '';
-                    DELETE FROM gencharges WHERE year_id = myyear;
+                    DELETE FROM gencharges WHERE year_id=(SELECT id FROM years WHERE year=myyear);
                     INSERT INTO gencharges (year_id, camper_id, charge, chargetype_id, memo)
                       SELECT
                         bc.year_id,
@@ -34,7 +34,7 @@ class CreateGenerateCharges extends Migration
                       GROUP BY f.id;
                     INSERT INTO gencharges (year_id, camper_id, charge, chargetype_id, memo)
                       SELECT
-                        bsp.year,
+                        bsp.year_id,
                         bsp.camper_id,
                         -(LEAST(SUM(bsp.max_compensation), IFNULL(getrate(bsp.camper_id, bsp.year), 200.0))) amount,"
                         . Chargetypename::Staffcredit . ", IF(COUNT(*) = 1, bsp.staffpositionname, 'Staff Position Credits')

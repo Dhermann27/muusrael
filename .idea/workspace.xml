@@ -2,20 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/PayPalClient.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/payment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/muusrael.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/muusrael.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/errors/403.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/household.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/includes/question.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/includes/steps.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/Chargetypename.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/Chargetypename.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CamperController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CamperController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Camper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Camper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HouseholdController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HouseholdController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PaymentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PaymentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_10_166658_create_charges.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166658_create_charges.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_10_166680_create_byyear_charges.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166680_create_byyear_charges.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_10_194719_create_generate_charges.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_194719_create_generate_charges.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/campers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/campers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/carouselcaption.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/carouselcaption.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/payment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/payment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/DuskTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DuskTestCase.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,11 +220,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views" />
       <recent name="$PROJECT_DIR$/app/Http" />
       <recent name="$PROJECT_DIR$/public/images/buildings" />
       <recent name="$PROJECT_DIR$/public/js" />
       <recent name="$PROJECT_DIR$/resources/js" />
-      <recent name="$PROJECT_DIR$/public/images" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.phpunit.xml">
@@ -262,7 +268,7 @@
       <workItem from="1564369141891" duration="7879000" />
       <workItem from="1578346474671" duration="14967000" />
       <workItem from="1578588866298" duration="97067000" />
-      <workItem from="1579964409581" duration="32283000" />
+      <workItem from="1579964409581" duration="55112000" />
     </task>
     <servers />
   </component>
@@ -307,10 +313,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="464" y="61" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.877@0.23.1440.877" timestamp="1579922641318" />
-    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580246204645">
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580398595997">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1580246204645" />
+    <state x="458" y="223" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1580398595997" />
     <state x="100" y="123" width="1204" height="677" key="DiffContextDialog" timestamp="1579886570843">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -339,10 +345,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1580176815907" />
-    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1580149064823">
+    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1580400552327">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1580149064823" />
+    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1580400552327" />
     <state x="229" y="100" key="SettingsEditor" timestamp="1579556700928">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -355,17 +361,17 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="375" y="83" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1440.877@0.23.1440.877" timestamp="1578939751142" />
-    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1580244713544">
+    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1580395956413">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1580244713544" />
+    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1580395956413" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1580224979748">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1580224979748" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1580247236322">
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1580485738986">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1580247236322" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1580485738986" />
   </component>
 </project>

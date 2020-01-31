@@ -1,6 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <div class="toast" style="position: absolute; top: 18%; right: 2%; z-index: 100;" data-delay="10000" role="alert"
+         aria-live="assertive" aria-atomic="true">
+        <a id="toast-link" href="#">
+            <div class="toast-header">
+                <i id="toast-icon" class="fa fa-check mr-2"></i>
+                <strong id="welcomeback" class="mr-auto"></strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <i class="fa fa-window-close"></i>
+                </button>
+            </div>
+            <div class="toast-body">
+            </div>
+        </a>
+    </div>
+
     <div>
         <div id="carouselIndicators" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
             <ol class="carousel-indicators">
@@ -98,10 +114,16 @@
                 @endswitch
             </h3>
             <div>
-                <button type="button" class="btn btn-info font-weight-bold" data-toggle="modal"
-                        data-target="#modal-register">
-                    Register Now <i class="fas fa-sign-in"></i>
-                </button>
+                @can('has-paid')
+                    <a href="{{ route('campers.index') }}" class="btn btn-secondary">
+                        See Your Information for {{ $year->year }} <i class="fas fa-sign-in"></i>
+                    </a>
+                @else
+                    <button type="button" class="btn btn-secondary" data-toggle="modal"
+                            data-target="#modal-register">
+                        Register for {{ $year->year }} <i class="fas fa-sign-in"></i>
+                    </button>
+                @endif
             </div>
 
         </div>

@@ -36,10 +36,18 @@ Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
 //    Route::post('/payment/f/{id}', 'PaymentController@write');
 });
 
+Route::group(['prefix' => 'household', 'middleware' => 'auth'], function () {
+    Route::get('', 'HouseholdController@index')->name('household.index')->middleware('can:has-paid');
+    Route::post('', 'HouseholdController@store')->name('household.store')->middleware('can:has-paid');
+//    Route::get('/payment/{i}/{id}', 'PaymentController@read');
+//    Route::post('/payment/f/{id}', 'PaymentController@write');
+});
+
 Route::group(['prefix' => 'data'], function () {
     Route::get('loginsearch', 'DataController@loginsearch');
     //Route::get('camperlist', 'DataController@campers')->middleware('auth');
     Route::get('churchlist', 'DataController@churches')->middleware('auth');
+    Route::get('steps', 'DataController@steps')->middleware('can:has-paid');
 });
 
 Route::get('/brochure', function () {

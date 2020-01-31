@@ -147,7 +147,8 @@ $('button.spinner').click(function () {
 $('button#begin_reg').click(function () {
 
     $(this).removeClass('btn-danger').addClass('btn-primary');
-    $('form#login, form#create').find('input.is-invalid').removeClass("is-invalid");
+    var forms = $('form#login, form#create');
+    forms.find('input.is-invalid').removeClass("is-invalid");
 
     if ($('input#email_login').val() && $('input#password_login').val()) {
         $('form#login').submit();
@@ -158,7 +159,78 @@ $('button#begin_reg').click(function () {
         return;
     }
     $(this).removeClass('btn-primary').addClass('btn-danger');
-    $('form#login, form#create').find('input[required]').filter(function () {
+    forms.find('input[required]').filter(function () {
         return !this.value;
     }).addClass("is-invalid");
 });
+
+var steps = $("ul#littlesteps");
+var toast = $("div.toast");
+if (steps.length > 0 || toast.length === 1) {
+    $.getJSON("/data/steps", function (data) {
+        var message = "Your registration is complete! See you \"next week\"!";
+        var link = "#";
+        var icon = "fa-check";
+        if (data[5] === true) {
+            $("#nametag-success").toggleClass('d-none');
+        } else {
+            message = "You're registered, but you can customize your nametag(s) by clicking here."
+            link = "/nametag";
+            icon = "fa-id-card";
+        }
+        if (data[6] === true) {
+            $("#medical-success").toggleClass('d-none');
+        } else {
+            message = "You're registered, but please sign your medical release forms by clicking here."
+            link = "/medical";
+            icon = "fa-envelope"
+        }
+        if (data[3] === true) {
+            $("#workshop-success").toggleClass('d-none');
+        } else {
+            message = "You're registered, but you may want to sign up for workshops by clicking here."
+            link = "/workshopchoice";
+            icon = "fa-rocket";
+        }
+        if (data[4] === true) {
+            $("#room-success").toggleClass('d-none');
+        } else {
+            message = "You're registered; next you'll want to choose a room by clicking here."
+            link = "/roomselection";
+            icon = "fa-bed";
+        }
+        if (data[8] !== false) {
+            message = "You're registered; check back " + data[8] + " to choose workshops and select your room."
+            link = "#";
+            icon = "fa-fire";
+        }
+        if (data[0] === true) {
+            $("#household-success").toggleClass('d-none');
+        } else {
+            message = "You're registered but we need you to update your billing information here."
+            link  = "/household";
+            icon = "fa-home";
+        }
+        if (data[2] === true) {
+            $("#payment-success").toggleClass('d-none');
+        } else {
+            message = "You are not yet registered for this year, please pay your deposit here."
+            link  = "/payment";
+            icon = "fa-usd-square";
+        }
+        if (data[1] === true) {
+            $("#camper-success").toggleClass('d-none');
+        } else {
+            message = "You are not yet registered for this year, let's get started here."
+            link = "/campers";
+            icon = "fa-users";
+        }
+        if (toast.length === 1) {
+            $("a#toast-link").prop("href", link);
+            $("#toast-icon").toggleClass("fa-check").toggleClass(icon);
+            $("#welcomeback").text("Welcome back, " + data[7] + "!");
+            toast.find('div.toast-body').html(message);
+            toast.toast('show');
+        }
+    });
+}
