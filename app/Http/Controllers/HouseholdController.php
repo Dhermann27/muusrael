@@ -48,11 +48,10 @@ class HouseholdController extends Controller
 
     public function index($family = null)
     {
-        if($family == null) {
+        if ($family == null) {
             $family = Family::findOrFail(Auth::user()->camper->family_id);
         }
-        return view('household', ['formobject' => $family,// 'steps' => $this->getSteps($id),
-            'provinces' => Province::orderBy('name')->get()]);
+        return view('household', ['formobject' => $family, 'provinces' => Province::orderBy('name')->get()]);
     }
 
 //    public function write(Request $request, $id)

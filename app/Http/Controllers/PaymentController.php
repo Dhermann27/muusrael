@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Charge;
 use App\Enums\Chargetypename;
 use App\Family;
+use App\Mail\Confirm;
 use App\PayPalClient;
 use App\Province;
+use App\ThisyearCamper;
 use App\ThisyearCharge;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 use function date;
 
@@ -67,7 +70,11 @@ class PaymentController extends Controller
                     ->where(function ($query) {
                         $query->where('chargetype_id', Chargetypename::Deposit)->orWhere('amount', '<', 0);
                     })->get()->sum('amount');
-                $request->session()->flash('newreg', !$before && $paid <= 0);
+                if (!$before && $paid <= 0) {
+                    $request->session()->flash('newreg', true);
+                    Mail::to(Auth::user()->email)
+                        ->send(new Confirm($this->year, ThisyearCamper::where('family_id', Auth::user()->camper->family_id)->get()));
+                }
 
 
                 $family = Family::where('id', $thiscamper->family_id)->whereNull('city')->first();

@@ -4,7 +4,7 @@
             <i id="household-success" class="far fa-check btn-success float-right d-none"></i>
             <a href="{{ route('household.index')}}"
                {{--           . (preg_match('/\/(c|f)\/\d+$/', $_SERVER['REQUEST_URI'], $matches) ? substr($_SERVER['REQUEST_URI'], -7) : '')}}"--}}
-               class="nav-link active"
+               class="nav-link @if(preg_match('/\/household/', url()->current(), $matches)) active @endif"
                data-toggle="tooltip" data-placement="bottom" data-container="ul#littlesteps"
                title="Billing Information">
                 <i class="far fa-home"></i>

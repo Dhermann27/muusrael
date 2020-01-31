@@ -6,9 +6,11 @@ use App\Camper;
 use App\Church;
 use App\Family;
 use App\Medicalresponse;
+use App\Yearattending;
 use App\YearattendingWorkshop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class DataController extends Controller
 {
@@ -49,12 +51,16 @@ class DataController extends Controller
         $nametag = 0;
         $medical = 0;
         $live = $this->year->is_live ? false : $this->year->brochure_date;
-        if(Auth::user()->camper->yearattending) {
-            $workshops = YearattendingWorkshop::where('yearsattending_id', Auth::user()->camper->yearattending->id)->count() > 0;
-            $room = Auth::user()->camper->yearattending->room_id != null;
-            $nametag = Auth::user()->camper->yearattending->nametag != "222215521";
-            $medical = Medicalresponse::where('yearattending_id', Auth::user()->camper->yearattending->id)->count() > 0;
+        $ya = Yearattending::where('camper_id', Auth::user()->camper->id)->where('year_id', $this->year->id)->first();
+        if($ya) {
+            $workshops = YearattendingWorkshop::where('yearattending_id', $ya->id)->get()->count() > 0;
+            $room = $ya->room_id != null;
+            $nametag = $ya->nametag != "222215521";
+            $medical = Medicalresponse::where('yearattending_id', $ya->id)->count() > 0;
+            $ya = true;
+        } else {
+            $ya = false;
         }
-        return [$family, true, true, $workshops, $room, $nametag, $medical, Auth::user()->camper->firstname, $live];
+        return [$family, $ya, Gate::allows('has-paid'), $workshops, $room, $nametag, $medical, Auth::user()->camper->firstname, $live];
     }
 }

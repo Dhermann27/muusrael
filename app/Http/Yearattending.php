@@ -22,7 +22,7 @@ class Yearattending extends Model
 
     public function program()
     {
-        return $this->hasOne('App\Program');
+        return $this->hasOne('App\Program', 'id', 'program_id');
     }
 
     public function room()

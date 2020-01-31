@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\Building;
+use App\Enums\Buildingtype;
 use App\Program;
 use App\Rate;
 use Carbon\Carbon;
@@ -66,22 +67,17 @@ class WelcomeTest extends DuskTestCase
     public function testCampCost()
     {
         $program = factory(Program::class)->create();
-        $buildings = array();
         $lodgerates = array();
         $lakewoodrates = array();
         $tentrates = array();
 
-        array_push($buildings, Building::find('1000'));
-        array_push($buildings, factory(Building::class)->create(['id' => 1007]));
-        array_push($buildings, factory(Building::class)->create(['id' => 1017]));
-
         for ($i = 1; $i < 8; $i++) {
             array_push($lodgerates, factory(Rate::class)->create(
-                ['building_id' => $buildings[0]->id, 'program_id' => $program->id, 'min_occupancy' => $i, 'max_occupancy' => $i]));
+                ['building_id' => Buildingtype::Trout, 'program_id' => $program->id, 'min_occupancy' => $i, 'max_occupancy' => $i]));
             array_push($tentrates, factory(Rate::class)->create(
-                ['building_id' => $buildings[1]->id, 'program_id' => $program->id, 'min_occupancy' => $i, 'max_occupancy' => $i]));
+                ['building_id' => Buildingtype::Tent, 'program_id' => $program->id, 'min_occupancy' => $i, 'max_occupancy' => $i]));
             array_push($lakewoodrates, factory(Rate::class)->create(
-                ['building_id' => $buildings[2]->id, 'program_id' => $program->id, 'min_occupancy' => $i, 'max_occupancy' => $i]));
+                ['building_id' => Buildingtype::LakewoodCabin, 'program_id' => $program->id, 'min_occupancy' => $i, 'max_occupancy' => $i]));
         }
 
         $this->browse(function (Browser $browser) use ($lodgerates, $lakewoodrates, $tentrates) {

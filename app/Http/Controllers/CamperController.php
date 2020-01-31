@@ -18,6 +18,7 @@ use App\YearattendingWorkshop;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use function array_push;
 use function count;
 
@@ -91,8 +92,7 @@ class CamperController extends Controller
         }
 
         GenerateCharges::dispatch($this->year->year);
-
-//        Mail::to(Auth::user()->email)->send(new Confirm($this->year, $campers));
+//        DB::statement('CALL generate_charges(' . $this->year . ');');
 
         return 'You have successfully saved your changes. Click here to remit payment and complete your registration.';
     }
@@ -129,7 +129,7 @@ class CamperController extends Controller
         $empty->id = 999;
         return view('campers', ['pronouns' => Pronoun::all(), 'foodoptions' => Foodoption::all(),
             'campers' => $campers, 'programs' => Program::whereNotNull('title')->orderBy('order')->get(),
-            'empty' => $empty, 'readonly' => null]);//, 'steps' => $this->getSteps()]);
+            'empty' => $empty, 'readonly' => null]);
 
     }
 //

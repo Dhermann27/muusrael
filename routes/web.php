@@ -43,6 +43,14 @@ Route::group(['prefix' => 'household', 'middleware' => 'auth'], function () {
 //    Route::post('/payment/f/{id}', 'PaymentController@write');
 });
 
+Route::group(['prefix' => 'roomselection', 'middleware' => 'auth'], function () {
+    Route::get('/', 'RoomSelectionController@index')->name('roomselection.index')->middleware('can:has-paid');
+    Route::post('/', 'RoomSelectionController@store')->name('roomselection.store')->middleware('can:has-paid');
+//    Route::get('/map', 'RoomSelectionController@map')->middleware('auth', 'role:admin|council');
+//Route::get('/{i}/{id}', 'RoomSelectionController@read')->middleware('auth', 'role:admin|council');
+//Route::post('/f/{id}', 'RoomSelectionController@write')->middleware('auth', 'role:admin');
+});
+
 Route::group(['prefix' => 'data'], function () {
     Route::get('loginsearch', 'DataController@loginsearch');
     //Route::get('camperlist', 'DataController@campers')->middleware('auth');

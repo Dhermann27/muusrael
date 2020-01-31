@@ -214,14 +214,14 @@ if (steps.length > 0 || toast.length === 1) {
         if (data[2] === true) {
             $("#payment-success").toggleClass('d-none');
         } else {
-            message = "You are not yet registered for this year, please pay your deposit here."
+            message = "You are not yet registered for this year, please pay your deposit by clicking here."
             link  = "/payment";
             icon = "fa-usd-square";
         }
         if (data[1] === true) {
             $("#camper-success").toggleClass('d-none');
         } else {
-            message = "You are not yet registered for this year, let's get started here."
+            message = "You are not yet registered for this year: let's get started by clicking here."
             link = "/campers";
             icon = "fa-users";
         }

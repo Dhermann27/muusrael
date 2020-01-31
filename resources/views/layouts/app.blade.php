@@ -199,25 +199,25 @@
                                         <i class="far fa-users fa-fw"></i> Campers</a>
                                     <a href="{{ route('payment.index') }}" class="dropdown-item">
                                         <i class="far fa-usd-square fa-fw"></i> Statement</a>
-                                    {{--                                    @if(!$year->is_live)--}}
-                                    {{--                                        <div class="dropdown-divider"></div>--}}
-                                    {{--                                        <h6 class="dropdown-header">--}}
-                                    {{--                                            Opens {{ $year->brochure_date }}--}}
-                                    {{--                                        </h6>--}}
-                                    {{--                                        <a href="#" class="dropdown-item disabled">Workshop List</a>--}}
-                                    {{--                                        <a href="#" class="dropdown-item disabled">Room Selection</a>--}}
-                                    {{--                                        <a href="#" class="dropdown-item disabled">Nametags</a>--}}
-                                    {{--                                        <a href="#" class="dropdown-item disabled">Confirmation</a>--}}
-                                    {{--                                    @else--}}
-                                    {{--                                        <a href="{{ route('workshopchoice') }}" class="dropdown-item">--}}
-                                    {{--                                            <i class="far fa-rocket fa-fw"></i>Workshops</a>--}}
-                                    {{--                                        <a href="{{ route('roomselection') }}" class="dropdown-item">--}}
-                                    {{--                                            <i class="far fa-bed fa-fw"></i> Room Selection</a>--}}
-                                    {{--                                        <a href="{{ route('nametag') }}" class="dropdown-item">--}}
-                                    {{--                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>--}}
-                                    {{--                                        <a href="{{ route('confirm') }}" class="dropdown-item">--}}
-                                    {{--                                            <i class="far fa-envelope fa-fw"></i> Confirmation</a>--}}
-                                    {{--                                    @endif--}}
+                                    @if(!$year->is_live)
+                                        <div class="dropdown-divider"></div>
+                                        <h6 class="dropdown-header">
+                                            Opens {{ $year->brochure_date }}
+                                        </h6>
+                                        <a href="#" class="dropdown-item disabled">Workshop List</a>
+                                        <a href="#" class="dropdown-item disabled">Room Selection</a>
+                                        <a href="#" class="dropdown-item disabled">Nametags</a>
+                                        <a href="#" class="dropdown-item disabled">Confirmation</a>
+                                    @else
+                                        {{--                                        <a href="{{ route('workshopchoice') }}" class="dropdown-item">--}}
+                                        {{--                                            <i class="far fa-rocket fa-fw"></i>Workshops</a>--}}
+                                        <a href="{{ route('roomselection.index') }}" class="dropdown-item">
+                                            <i class="far fa-bed fa-fw"></i> Room Selection</a>
+                                        {{--                                        <a href="{{ route('nametag') }}" class="dropdown-item">--}}
+                                        {{--                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>--}}
+                                        {{--                                        <a href="{{ route('confirm') }}" class="dropdown-item">--}}
+                                        {{--                                            <i class="far fa-envelope fa-fw"></i> Confirmation</a>--}}
+                                    @endif
                                 </div>
                             </div>
                         @else
@@ -315,21 +315,19 @@
                                 <li><a href="{{ route('household.index') }}">Household</a></li>
                                 <li><a href="{{ route('campers.index') }}">Campers</a></li>
                                 <li><a href="{{ route('payment.index') }}">Statement</a></li>
-                                {{--                                    @if(!$year->is_live)--}}
-                                {{--                                        <hr/>--}}
-                                {{--                                        <h6 class="dropdown-header">--}}
-                                {{--                                            Opens {{ $year->brochure_date }}--}}
-                                {{--                                        </h6>--}}
-                                {{--                                        <li>Workshop List</li>--}}
-                                {{--                                        <li>Room Selection</li>--}}
-                                {{--                                        <li>Nametags</li>--}}
-                                {{--                                        <li>Confirmation</li>--}}
-                                {{--                                    @else--}}
-                                {{--                                        <li><a href="{{ route('workshopchoice') }}">Workshops</a></li>--}}
-                                {{--                                        <li><a href="{{ route('roomselection') }}">Room Selection</a></li>--}}
-                                {{--                                        <li><a href="{{ route('nametag') }}">Nametags</a></li>--}}
-                                {{--                                        <li><a href="{{ route('confirm') }}">Confirmation</a></li>--}}
-                                {{--                                    @endif--}}
+                                @if(!$year->is_live)
+                                    <hr/>
+                                    <h6 class="dropdown-header">Opens {{ $year->brochure_date }}</h6>
+                                    <li>Workshop List</li>
+                                    <li>Room Selection</li>
+                                    <li>Nametags</li>
+                                    <li>Confirmation</li>
+                                @else
+                                    {{--                                                                        <li><a href="{{ route('workshopchoice') }}">Workshops</a></li>--}}
+                                    <li><a href="{{ route('roomselection.index') }}">Room Selection</a></li>
+                                    {{--                                        <li><a href="{{ route('nametag') }}">Nametags</a></li>--}}
+                                    {{--                                        <li><a href="{{ route('confirm') }}">Confirmation</a></li>--}}
+                                @endif
                             </ul>
                         @else
                             <button type="button" class="btn btn-info font-weight-bold" data-toggle="modal"
