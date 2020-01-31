@@ -18,7 +18,6 @@ class CreateCharges extends Migration
             $table->unsignedBigInteger('camper_id');
             $table->foreign('camper_id')->references('id')->on('campers');
             $table->float('amount');
-            $table->string('order_id')->nullable();
             $table->string('memo')->nullable();
             $table->unsignedBigInteger('chargetype_id');
             $table->foreign('chargetype_id')->references('id')->on('chargetypes');

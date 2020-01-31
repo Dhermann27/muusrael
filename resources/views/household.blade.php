@@ -10,6 +10,7 @@
 
 @section('content')
     @include('includes.steps')
+    {{ print_r($errors->all()) }}
     <div class="container">
         <form id="household" class="form-horizontal" role="form" method="POST" action="{{ route('household.store') }}">
 {{--            . (isset($readonly) && $readonly === false ? '/f/' . $formobject->id : '') }}">--}}

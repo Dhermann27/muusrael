@@ -180,7 +180,7 @@ $fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
 
         @section('script')
             @if($year->is_accept_paypal)
-                <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT') }}&commit=false"></script>
+                <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT') }}"></script>
                 <script>
                     @if(Session::has('newreg') && Session::get('newreg'))
                     $("div#modal-newreg").modal('show');

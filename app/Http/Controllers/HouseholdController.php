@@ -16,11 +16,10 @@ class HouseholdController extends Controller
             'zipcd.regex' => 'Please enter your 5-7 character zip code.'];
 
         $this->validate($request, [
-            'name' => 'required|max:255',
             'address1' => 'required|max:255',
             'address2' => 'max:255',
             'city' => 'required|max:255',
-            'statecd' => 'required|exists:provinces,id',
+            'province_id' => 'required|exists:provinces,id',
             'zipcd' => 'required|regex:/^[a-zA-Z0-9]{5,7}$/',
             'is_ecomm' => 'required|in:0,1',
             'is_scholar' => 'required|in:0,1'
@@ -39,15 +38,19 @@ class HouseholdController extends Controller
         $family->country = $request->input('country');
         $family->is_ecomm = $request->input('is_ecomm');
         $family->is_scholar = $request->input('is_scholar');
+        $family->save();
 
         $request->session()->flash('success', 'Your information has been saved successfully. Proceed to the next screen by clicking <a href="' . url('/camper') . '">here</a>.');
 
-        return redirect()->action('HouseholdController@index', ['family' => $family]);
+        return redirect()->route('household.index', ['family' => $family]);
 
     }
 
-    public function index($camper = null, $family = null)
+    public function index($family = null)
     {
+        if($family == null) {
+            $family = Family::findOrFail(Auth::user()->camper->family_id);
+        }
         return view('household', ['formobject' => $family,// 'steps' => $this->getSteps($id),
             'provinces' => Province::orderBy('name')->get()]);
     }

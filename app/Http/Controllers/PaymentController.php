@@ -12,7 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use PayPalCheckoutSdk\Orders\OrdersPatchRequest;
+use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 use function date;
 
 class PaymentController extends Controller
@@ -47,23 +47,20 @@ class PaymentController extends Controller
 
             if (!empty($request->input('orderid'))) {
 
-                $txn = $request->input('orderid');
                 $before = Gate::allows('has-paid');
+                $txn = $this->getOrder($request->input('orderid'));
                 $charge = Charge::where(['camper_id' => $thiscamper->id,
-                    'chargetype_id' => Chargetypename::PayPalPayment, 'order_id' => $txn])->first();
+                    'chargetype_id' => Chargetypename::PayPalPayment, 'memo' => $txn])->first();
                 if (!$charge) {
                     $charge = new Charge();
                     $charge->camper_id = $thiscamper->id;
                     $charge->chargetype_id = Chargetypename::PayPalPayment;
-                    $charge->order_id = $txn;
+                    $charge->memo = $txn;
                 }
                 $charge->amount = $request->input('amount') * -1;
                 $charge->year_id = $this->year->id;
                 $charge->timestamp = date("Y-m-d");
                 $charge->created_at = Carbon::now();
-                $charge->save();
-
-                $charge->memo = 'PayPal Invoice ID #' . $charge->id;
                 $charge->save();
 
                 $paid = ThisyearCharge::where('family_id', Auth::user()->camper->family_id)
@@ -72,7 +69,6 @@ class PaymentController extends Controller
                     })->get()->sum('amount');
                 $request->session()->flash('newreg', !$before && $paid <= 0);
 
-//                $this->patchOrder($txn, $charge->id);
 
                 $family = Family::where('id', $thiscamper->family_id)->whereNull('city')->first();
                 if ($family) {
@@ -85,7 +81,6 @@ class PaymentController extends Controller
                     $family->save();
                 }
 
-                $txn = $charge->id;
                 if (!empty($request->input('addthree'))) {
                     $charge = Charge::where(['camper_id' => $thiscamper->id,
                         'memo' => 'Optional payment to offset PayPal Invoice #' . $txn])->first();
@@ -218,16 +213,11 @@ class PaymentController extends Controller
 //            'years' => $years, 'readonly' => $readonly, 'family' => $family, 'steps' => $this->getSteps()]);
 //    }
 
-    protected function patchOrder($orderId, $invoiceId)
+    protected function getOrder($orderId)
     {
-
         $client = PayPalClient::client();
-        $request = new OrdersPatchRequest($orderId);
-        $request->body = [['op' => 'replace', 'path' => '/intent', 'value' => 'CAPTURE'],
-            ['op' => 'add',
-                'path' => '/purchase_units/@reference_id==\'default\'/invoice_id',
-                'value' => $invoiceId]];
-        $client->execute($request);
+        $response = $client->execute(new OrdersGetRequest($orderId));
+        return $response->result->purchase_units[0]->payments->captures[0]->id;
     }
 
     private function getFamilyId($i, $id)
