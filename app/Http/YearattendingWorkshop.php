@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class YearattendingWorkshop extends Model
 {
+    protected $fillable = ['yearattending_id'];
     /**
      * Indicates if the IDs are auto-incrementing.
      *

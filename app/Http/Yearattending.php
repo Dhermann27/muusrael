@@ -47,6 +47,7 @@ class Yearattending extends Model
 
     public function workshops()
     {
-        return $this->belongsToMany('App\Workshop')->using('App\YearattendingWorkshop');
+        return $this->hasManyThrough('App\Workshop', 'App\YearattendingWorkshop',
+            'yearattending_id', 'id', 'id', 'workshop_id');
     }
 }

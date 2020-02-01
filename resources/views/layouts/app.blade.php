@@ -209,8 +209,8 @@
                                         <a href="#" class="dropdown-item disabled">Nametags</a>
                                         <a href="#" class="dropdown-item disabled">Confirmation</a>
                                     @else
-                                        {{--                                        <a href="{{ route('workshopchoice') }}" class="dropdown-item">--}}
-                                        {{--                                            <i class="far fa-rocket fa-fw"></i>Workshops</a>--}}
+                                        <a href="{{ route('workshopchoice.index') }}" class="dropdown-item">
+                                            <i class="far fa-rocket fa-fw"></i>Workshops</a>
                                         <a href="{{ route('roomselection.index') }}" class="dropdown-item">
                                             <i class="far fa-bed fa-fw"></i> Room Selection</a>
                                         {{--                                        <a href="{{ route('nametag') }}" class="dropdown-item">--}}
@@ -318,12 +318,12 @@
                                 @if(!$year->is_live)
                                     <hr/>
                                     <h6 class="dropdown-header">Opens {{ $year->brochure_date }}</h6>
-                                    <li>Workshop List</li>
+                                    <li>Workshop Preferences</li>
                                     <li>Room Selection</li>
                                     <li>Nametags</li>
                                     <li>Confirmation</li>
                                 @else
-                                    {{--                                                                        <li><a href="{{ route('workshopchoice') }}">Workshops</a></li>--}}
+                                    <li><a href="{{ route('workshopchoice.index') }}">Workshop Preferences</a></li>
                                     <li><a href="{{ route('roomselection.index') }}">Room Selection</a></li>
                                     {{--                                        <li><a href="{{ route('nametag') }}">Nametags</a></li>--}}
                                     {{--                                        <li><a href="{{ route('confirm') }}">Confirmation</a></li>--}}

@@ -51,6 +51,13 @@ Route::group(['prefix' => 'roomselection', 'middleware' => 'auth'], function () 
 //Route::post('/f/{id}', 'RoomSelectionController@write')->middleware('auth', 'role:admin');
 });
 
+Route::group(['prefix' => 'workshopchoice', 'middleware' => 'auth'], function () {
+    Route::get('/', 'WorkshopController@index')->name('workshopchoice.index')->middleware('can:has-paid');
+    Route::post('/', 'WorkshopController@store')->name('workshopchoice.store')->middleware('can:has-paid');
+//    Route::get('/workshopchoice/{i}/{id}', 'WorkshopController@read')->middleware('auth', 'role:admin|council');
+//    Route::post('/workshopchoice/f/{id}', 'WorkshopController@write')->middleware('auth', 'role:admin');
+});
+
 Route::group(['prefix' => 'data'], function () {
     Route::get('loginsearch', 'DataController@loginsearch');
     //Route::get('camperlist', 'DataController@campers')->middleware('auth');

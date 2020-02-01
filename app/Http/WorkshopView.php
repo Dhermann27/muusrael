@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Workshop extends Model
+class WorkshopView extends Model
 {
+    protected $table = "workshops_view";
+
     public function getDisplayDaysAttribute()
     {
         $days = "";
@@ -25,20 +27,5 @@ class Workshop extends Model
     public function choices()
     {
         return $this->hasMany(YearattendingWorkshop::class, 'workshop_id', 'id');
-    }
-
-    public function room()
-    {
-        return $this->hasOne('App\Room');
-    }
-
-    public function timeslot()
-    {
-        return $this->hasOne('App\Timeslot');
-    }
-
-    public function yearsattending()
-    {
-        return $this->belongsToMany('App\Yearattending')->using('App\YearattendingWorkshop');
     }
 }

@@ -27,7 +27,8 @@ class WorkshopTest extends DuskTestCase
         $timeslots = Timeslot::all()->except(Timeslotname::Excursions);
         foreach ($timeslots as $timeslot) {
             factory(Workshop::class, rand(1, 10))->create(['timeslot_id' => $timeslot->id, 'year_id' => self::$year->id]);
-            $wrongshop = factory(Workshop::class)->create(['timeslot_id' => $timeslot->id, 'year_id' => factory(Year::class)->create()]);
+            $wrongshop = factory(Workshop::class)->create(['timeslot_id' => $timeslot->id,
+                'name' => 'This is the wrong workshop', 'year_id' => factory(Year::class)->create(['is_current' => 0])]);
         }
 
         $this->browse(function (Browser $browser) use ($timeslots, $wrongshop) {
@@ -38,7 +39,7 @@ class WorkshopTest extends DuskTestCase
                 $browser->assertSeeIn("div.tab-content div.active", $timeslot->start_time->format('g:i A'));
                 foreach ($timeslot->workshops()->where('year_id', self::$year->id) as $workshop) {
                     $browser->assertSeeIn("div.tab-content div.active", $workshop->name)
-                        ->assertSeeIn("div.tab-content div.active", $workshop->displayDays);
+                        ->assertSeeIn("div.tab-content div.active", $workshop->display_days);
                     if ($workshop->fee > 0) {
                         $browser->assertSeeIn("div.tab-content div.active", "$" . $workshop->fee);
                     }

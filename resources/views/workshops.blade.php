@@ -26,13 +26,13 @@
                     - {{ $timeslot->end_time->format('g:i A') }}</h2>
 
                 <div class="container px-3 py-5 px-lg-4 py-lg-6 bg-grey mb-5">
-                    @foreach($timeslot->workshops->where('year_id', $year->id) as $workshop)
+                    @foreach($timeslot->workshopsview as $workshop)
                         @component('components.blog', ['title' => $workshop->name])
 
                             @include('includes.filling', ['workshop' => $workshop])
 
                             <div class="lead d-block">Led by {{ $workshop->led_by }}
-                                / Days: {{ $workshop->displayDays }}
+                                / Days: {{ $workshop->display_days }}
                                 @if($workshop->fee > 0)
                                     / Fee: ${{ $workshop->fee }}
                                 @endif

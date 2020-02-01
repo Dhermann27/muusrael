@@ -18,7 +18,6 @@ use App\YearattendingWorkshop;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use function array_push;
 use function count;
 
@@ -104,7 +103,7 @@ class CamperController extends Controller
 //        }
         $campers = array();
         if (isset(Auth::user()->camper)) {
-            $campers = Campers_view::where('family_id', Auth::user()->camper->family_id)->get();
+            $campers = Campers_view::where('family_id', Auth::user()->camper->family_id)->orderBy('birthdate')->get();
             if ($request->session()->has('login-campers') && count($request->session()->get('login-campers')) > 0) {
                 foreach ($campers as $camper) {
                     foreach ($request->session()->get('login-campers') as $login) {
