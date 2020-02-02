@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Roomselection extends Model
 {
-    protected $table = "Roomselection_view";
+    protected $table = "roomselection_view";
 }
