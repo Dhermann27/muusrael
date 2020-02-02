@@ -168,14 +168,14 @@
                                     <a href="#" class="dropdown-item">
                                         <i class="fal fa-newspaper fa-fw"></i> {{ $year->next_muse }}</a>
                                 @endif
-                                <a href="#" class="dropdown-item">
-                                    <i class="far fa-address-book fa-fw"></i> Online Directory</a>
+{{--                                <a href="#" class="dropdown-item">--}}
+{{--                                    <i class="far fa-address-book fa-fw"></i> Online Directory</a>--}}
                                 @if($year->is_artfair)
                                     <a href="#" class="dropdown-item">
                                         <i class="far fa-shopping-bag fa-fw"></i> Art Fair Submission</a>
                                 @endif
-                                <a href="#" class="dropdown-item">
-                                    <i class="far fa-handshake fa-fw"></i> Volunteer Opportunities</a>
+{{--                                <a href="#" class="dropdown-item">--}}
+{{--                                    <i class="far fa-handshake fa-fw"></i> Volunteer Opportunities</a>--}}
                                 @if($year->is_workshop_proposal)
                                     <a href="#" class="dropdown-item">
                                         <i class="fal fa-chalkboard-teacher fa-fw"></i> Workshop Proposal
@@ -298,11 +298,11 @@
                             @if($year->next_muse !== false)
                                 <li><a href="#">{{ $year->next_muse }}</a></li>
                             @endif
-                            <li><a href="#">Online Directory</a></li>
+{{--                            <li><a href="#">Online Directory</a></li>--}}
                             @if($year->is_artfair)
                                 <li><a href="#">Art Fair Submission</a></li>
                             @endif
-                            <li><a href="#">Volunteer Opportunities</a></li>
+{{--                            <li><a href="#">Volunteer Opportunities</a></li>--}}
                             @if($year->is_workshop_proposal)
                                 <li><a href="#">Workshop Proposal</a></li>
                             @endif
