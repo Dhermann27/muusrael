@@ -25,7 +25,7 @@
                 @foreach($charges as $charge)
                     <tr>
                         <td>{{ $charge->chargetypename }}</td>
-                        <td class="amount" align="right">{{ $fmt->formatCurrency($charge->amount, "USD") }}</td>
+                        <td class="amount" align="right">{{ number_format($charge->amount, 2) }}</td>
                         <td class="text-md-center">{{ $charge->timestamp }}</td>
                         <td>{{ $charge->memo }}</td>
                     </tr>
@@ -57,7 +57,7 @@
                     <tr class="text-md-right">
                         <td><strong>Amount Due Now:</strong></td>
                         <td class="text-right">
-                            <span id="amountNow">{{ $fmt->formatCurrency(max($deposit, 0), "USD") }}</span>
+                            <span id="amountNow">{{ number_format(max($deposit, 0), 2) }}</span>
                         </td>
                         <td colspan="2"></td>
                     </tr>
@@ -66,7 +66,7 @@
                     <tr class="text-md-right">
                         <td><strong>Amount Due Upon Arrival:</strong></td>
                         <td class="text-right">
-                            <span id="amountArrival">{{ $fmt->formatCurrency($charges->sum('amount'), "USD") }}</span>
+                            <span id="amountArrival">{{ number_format($charges->sum('amount'), 2) }}</span>
                         </td>
                         <td colspan="2">&nbsp;</td>
                     </tr>
@@ -158,7 +158,7 @@
                                         <i class="far fa-rocket fa-fw"></i>Workshop Preferences</a>
                                     <a href="{{ route('roomselection.index') }}" type="button" class="btn btn-outline-primary btn-block">
                                         <i class="far fa-bed fa-fw"></i> Room Selection</a>
-                                    <a href="{{ route('nametags.index') }}" type="button" class="btn btn-outline-primary btn-block">
+                                    <a href="{{ route('nametag.index') }}" type="button" class="btn btn-outline-primary btn-block">
                                         <i class="far fa-id-card fa-fw"></i> Nametags</a>
                                     <a href="#" type="button" class="btn btn-outline-primary btn-block">
                                         <i class="far fa-envelope fa-fw"></i> Medical Responses</a>

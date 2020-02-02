@@ -154,9 +154,8 @@ class PaymentController extends Controller
                 }
             }
         }
-        $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-        $fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
-        return view('payment', ['token' => $token, 'charges' => $charges, 'deposit' => $deposit, 'fmt' => $fmt]);
+
+        return view('payment', ['token' => $token, 'charges' => $charges, 'deposit' => $deposit]);
 //            'steps' => $this->getSteps()]);
     }
 

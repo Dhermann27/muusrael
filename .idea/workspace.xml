@@ -42,6 +42,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="NamedScopeManager">
     <scope name="muusrael" pattern="file[muusrael]:*/&amp;&amp;!file[muusrael]:.idea//*&amp;&amp;!file[muusrael]:bootstrap//*&amp;&amp;!file[muusrael]:features//*&amp;&amp;!file[muusrael]:storage//*&amp;&amp;!file[muusrael]:vendor//*" />
   </component>
@@ -252,7 +258,7 @@
       <workItem from="1578346474671" duration="14967000" />
       <workItem from="1578588866298" duration="97067000" />
       <workItem from="1579964409581" duration="61440000" />
-      <workItem from="1580503126133" duration="20599000" />
+      <workItem from="1580503126133" duration="20896000" />
     </task>
     <servers />
   </component>
@@ -349,17 +355,17 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="491" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877@0.23.1440.877" timestamp="1580485943374" />
-    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1580608736044">
+    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1580609611061">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1580608736044" />
+    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1580609611061" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1580224979748">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1580224979748" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1580609249321">
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1580609605358">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1580609249321" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1580609605358" />
   </component>
 </project>
