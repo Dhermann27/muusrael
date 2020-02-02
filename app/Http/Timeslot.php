@@ -20,8 +20,4 @@ class Timeslot extends Model
         return $this->hasMany('App\Workshop');
     }
 
-    public function workshopsview() {
-        return $this->hasMany('App\WorkshopView');
-    }
-
 }

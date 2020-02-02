@@ -2,20 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/includes/nametag.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/nametags.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Camper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Camper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NametagController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NametagController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RoomSelectionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RoomSelectionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Family.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Family.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/ThisyearCamper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/ThisyearCamper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Yearattending.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Yearattending.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/formgroup.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/formgroup.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/payment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/payment.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WorkshopController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WorkshopController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Timeslot.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Timeslot.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/WorkshopView.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_14_193514_create_workshops_view.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/5k.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/karenpam.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/karenpamsm.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/spacer0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/spacer1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/spacer2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/theme.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/volunteer.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/yoga.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/yoga@2x.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/workshops.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/workshops.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,7 +265,7 @@
       <workItem from="1578346474671" duration="14967000" />
       <workItem from="1578588866298" duration="97067000" />
       <workItem from="1579964409581" duration="61440000" />
-      <workItem from="1580503126133" duration="17844000" />
+      <workItem from="1580503126133" duration="19262000" />
     </task>
     <servers />
   </component>
@@ -360,17 +362,17 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="491" y="385" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.877@0.23.1440.877" timestamp="1580485943374" />
-    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1580505062385">
+    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1580605262893">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1580505062385" />
+    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1580605262893" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1580224979748">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1580224979748" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1580601594761">
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1580605312829">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1580601594761" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1580605312829" />
   </component>
 </project>

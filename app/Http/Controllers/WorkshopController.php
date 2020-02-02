@@ -58,7 +58,7 @@ class WorkshopController extends Controller
             $request->session()->flash('warning', 'You have no campers registered for this year.');
             return redirect()->action('CamperController@index');
         }
-        return view('workshopchoice', ['timeslots' => Timeslot::with('workshopsview')->get(),
+        return view('workshopchoice', ['timeslots' => Timeslot::with('workshops')->get(),
             'campers' => $campers, 'grownups' => [Programname::YoungAdultUnderAge, Programname::YoungAdult, Programname::Adult]]);
 
     }
