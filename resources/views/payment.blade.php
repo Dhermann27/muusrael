@@ -145,9 +145,9 @@ $fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
                                 Please visit the below pages to make all the changes you need to ensure your camp
                                 experience is a great one.
 
-                                <a href="#" class="btn btn-link btn-outline-primary btn-block mt-3">
+                                <a href="{{ route('household.index') }}" class="btn btn-link btn-outline-primary btn-block mt-3">
                                     <i class="far fa-home fa-fw"></i> Billing Information</a>
-                                <a href="#" class="btn btn-link btn-outline-primary btn-block">
+                                <a href="{{ route('campers.index') }}" class="btn btn-link btn-outline-primary btn-block">
                                     <i class="far fa-users fa-fw"></i> Camper List</a>
                                 <a href="#" class="btn disabled btn-outline-primary btn-block">
                                     <i class="far fa-usd-square fa-fw"></i> Statement</a>
@@ -158,11 +158,11 @@ $fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
                                     <a href="#" class="btn disabled btn-outline-primary btn-block">Nametags</a>
                                     <a href="#" class="btn disabled btn-outline-primary btn-block">Medical Responses</a>
                                 @else
-                                    <a href="#" type="button" class="btn btn-outline-primary btn-block">
-                                        <i class="far fa-rocket fa-fw"></i>Workshops</a>
-                                    <a href="#" type="button" class="btn btn-outline-primary btn-block">
+                                    <a href="{{ route('workshopchoice.index') }}" type="button" class="btn btn-outline-primary btn-block">
+                                        <i class="far fa-rocket fa-fw"></i>Workshop Preferences</a>
+                                    <a href="{{ route('roomselection.index') }}" type="button" class="btn btn-outline-primary btn-block">
                                         <i class="far fa-bed fa-fw"></i> Room Selection</a>
-                                    <a href="#" type="button" class="btn btn-outline-primary btn-block">
+                                    <a href="{{ route('nametags.index') }}" type="button" class="btn btn-outline-primary btn-block">
                                         <i class="far fa-id-card fa-fw"></i> Nametags</a>
                                     <a href="#" type="button" class="btn btn-outline-primary btn-block">
                                         <i class="far fa-envelope fa-fw"></i> Medical Responses</a>

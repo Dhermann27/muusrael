@@ -14,7 +14,7 @@ class Camper extends Model
 
     public function pronoun()
     {
-        return $this->hasOne('App\Pronoun');
+        return $this->hasOne('App\Pronoun', 'id', 'pronoun_id');
     }
 
     public function foodoption()

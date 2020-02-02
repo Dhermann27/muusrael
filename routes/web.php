@@ -58,6 +58,13 @@ Route::group(['prefix' => 'workshopchoice', 'middleware' => 'auth'], function ()
 //    Route::post('/workshopchoice/f/{id}', 'WorkshopController@write')->middleware('auth', 'role:admin');
 });
 
+Route::group(['prefix' => 'nametag', 'middleware' => 'auth'], function () {
+    Route::get('/', 'NametagController@index')->name('nametag.index')->middleware('can:has-paid');
+    Route::post('/', 'NametagController@store')->name('nametag.store')->middleware('can:has-paid');
+//    Route::get('/nametag/{i}/{id}', 'NametagController@read')->middleware('auth', 'role:admin|council');
+//    Route::post('/nametag/f/{id}', 'NametagController@write')->middleware('auth', 'role:admin');
+});
+
 Route::group(['prefix' => 'data'], function () {
     Route::get('loginsearch', 'DataController@loginsearch');
     //Route::get('camperlist', 'DataController@campers')->middleware('auth');

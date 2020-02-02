@@ -12,7 +12,7 @@
     <label for="{{ $attribs["name"] }}" class="col-md-4 col-form-label text-md-right">
         @if(isset($title))
             <a href="#" class="p-2 float-right" data-toggle="tooltip" data-html="true"
-               title="@lang('messages.' . $title)"><i class="far fa-info"></i></a>
+               title="@lang('registration.' . $title)"><i class="far fa-info"></i></a>
         @endif
         {{ $label }}
     </label>

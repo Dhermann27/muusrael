@@ -15,7 +15,7 @@ class ThisyearCamper extends Model
 
     public function family()
     {
-        return $this->hasOne(Thisyear_Family::class, 'id', 'family_id');
+        return $this->hasOne(Family::class, 'id', 'family_id');
     }
 
     public function foodoption()
@@ -65,7 +65,7 @@ class ThisyearCamper extends Model
 
     public function parents()
     {
-        return $this->hasMany(Thisyear_Camper::class, 'familyid', 'familyid')
+        return $this->hasMany(ThisyearCamper::class, 'family_id', 'family_id')
             ->where('age', '>', '17')->orderBy('birthdate');
     }
 

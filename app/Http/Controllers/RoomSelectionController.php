@@ -24,11 +24,10 @@ class RoomSelectionController extends Controller
             $ya->save();
         }
 
-//        GenerateCharges::dispatch($this->year->year)->delay(now()->addSeconds(3));
-        DB::statement('CALL generate_charges(' . $this->year . ');');
+        GenerateCharges::dispatch($this->year->year);
+//        DB::statement('CALL generate_charges(' . $this->year->year . ');');
 
         $success = 'Room selection complete! Your room is locked in for the ' . count($family) . ' eligible members of your household.';
-        if (Year::where('is_current', '1')->first()->is_live) $success .= ' Customize your nametag by clicking <a href="' . url('/nametag') . '">here</a>.';
 
         $request->session()->flash('success', $success);
 

@@ -15,7 +15,7 @@ class Family extends Model
 
     public function province()
     {
-        return $this->hasOne('App\Province');
+        return $this->hasOne('App\Province', 'id', 'province_id');
     }
 
     public function campers()
