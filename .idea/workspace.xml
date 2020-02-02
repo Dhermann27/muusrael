@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/ThisyearCharge.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/ThisyearCharge.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +251,7 @@
       <workItem from="1578346474671" duration="14967000" />
       <workItem from="1578588866298" duration="97067000" />
       <workItem from="1579964409581" duration="61440000" />
-      <workItem from="1580503126133" duration="20120000" />
+      <workItem from="1580503126133" duration="20242000" />
     </task>
     <servers />
   </component>
