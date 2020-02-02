@@ -11,7 +11,7 @@ class Campers_view extends Model
      *
      * @var string
      */
-    protected $table = 'Campers_view';
+    protected $table = 'campers_view';
 
     public function family()
     {
