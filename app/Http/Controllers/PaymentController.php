@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
+use NumberFormatter;
 use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 use function date;
 
@@ -153,8 +154,9 @@ class PaymentController extends Controller
                 }
             }
         }
-
-        return view('payment', ['token' => $token, 'charges' => $charges, 'deposit' => $deposit]);
+        $fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
+        $fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
+        return view('payment', ['token' => $token, 'charges' => $charges, 'deposit' => $deposit, 'fmt' => $fmt]);
 //            'steps' => $this->getSteps()]);
     }
 

@@ -1,8 +1,4 @@
 @extends('layouts.app')
-<?php
-$fmt = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
-$fmt->setAttribute(NumberFormatter::GROUPING_USED, 0);
-?>
 @section('title')
     Payment Information
 @endsection
