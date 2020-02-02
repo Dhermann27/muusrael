@@ -33,7 +33,7 @@
                                                     - {{ $timeslot->end_time->format('g:i A') }})
                                                 @endif
                                             </h5>
-                                            @include('includes.workshops', ['timeslot' => $timeslot, 'camper_id' => $camper->id])
+                                            @include('includes.workshops')
                                             <h6 class="alert alert-danger mt-2 d-none">Your workshop selections are
                                                 offered on conflicting days.</h6>
                                         </div>
@@ -47,7 +47,7 @@
                                     @foreach($timeslots->where('id', '1005') as $timeslot)
                                         <div class="list-group col-md-4 col-sm-6">
                                             <h5>{{ $timeslot->name }}</h5>
-                                            @include('includes.workshops', ['timeslot' => $timeslot, 'camperid' => $camper->id])
+                                            @include('includes.workshops')
                                         </div>
                                     @endforeach
                                 @endif
