@@ -25,9 +25,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Browser::macro('assertCount', function ($expectedCount, $haystack, $message = '') {
-            PHPUnit::assertCount($expectedCount, $haystack, $message);
-            return $this;
-        });
     }
 }
