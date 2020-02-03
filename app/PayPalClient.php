@@ -5,6 +5,7 @@ namespace App;
 
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
+use PayPalCheckoutSdk\Core\ProductionEnvironment;
 
 ini_set('error_reporting', E_ALL); // or error_reporting(E_ALL);
 ini_set('display_errors', '1');
@@ -30,6 +31,10 @@ class PayPalClient
     {
         $clientId = env('PAYPAL_CLIENT');
         $clientSecret = env('PAYPAL_SECRET');
-        return new SandboxEnvironment($clientId, $clientSecret);
+        if (env('APP_ENV') == "production") {
+            return new ProductionEnvironment($clientId, $clientSecret);
+        } else {
+            return new SandboxEnvironment($clientId, $clientSecret)
+        }
     }
 }
