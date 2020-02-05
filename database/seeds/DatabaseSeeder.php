@@ -1,7 +1,6 @@
 <?php
 
 use App\User;
-use App\Year;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +16,7 @@ class DatabaseSeeder extends Seeder
             ChargetypeSeeder::class,
             ChartdaySeeder::class,
             CompensationLevelSeeder::class,
+            ProgramSeeder::class,
             PronounSeeder::class,
             ProvinceSeeder::class,
             TimeslotSeeder::class]);

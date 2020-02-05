@@ -1,13 +1,21 @@
 <?php
 
 use App\Room;
+use App\Year;
 use Faker\Generator as Faker;
 
 $factory->define(App\Workshop::class, function (Faker $faker) {
+    $ref = new ReflectionClass('App\Enums\Timeslotname');
+    $slots = $ref->getConstants();
+
     return [
+        'year_id' => function () {
+            return factory(Year::class)->create()->id;
+        },
         'room_id' => function () {
             return factory(Room::class)->create()->id;
         },
+        'timeslot_id' => $slots[array_rand($slots)],
         'order' => $faker->randomNumber(2),
         'name' => $faker->catchPhrase,
         'led_by' => $faker->name,

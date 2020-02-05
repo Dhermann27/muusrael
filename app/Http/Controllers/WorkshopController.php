@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Programname;
 use App\Enums\Timeslotname;
 use App\ThisyearCamper;
 use App\Timeslot;
@@ -18,12 +17,12 @@ class WorkshopController extends Controller
         $campers = $this->getCampers(Auth::user()->camper->family_id);
 
         foreach ($campers as $camper) {
-            $this->validate($request, [$camper->id . '-workshops' => 'nullable|regex:/^\d{0,5}+(,\d{0,5})*$/']);
-            if ($request->input($camper->id . '-workshops') != null) {
-                $choices = YearattendingWorkshop::where('yearattending_id', $camper->yearattending_id)
-                    ->get()->keyBy('workshop_id');
+            $this->validate($request, ['workshops-' . $camper->id => 'nullable|regex:/^\d{0,5}+(,\d{0,5})*$/']);
+            $choices = YearattendingWorkshop::where('yearattending_id', $camper->yearattending_id)
+                ->get()->keyBy('workshop_id');
 
-                foreach (explode(',', $request->input($camper->id . '-workshops')) as $choice) {
+            if ($request->input('workshops-' . $camper->id) != null) {
+                foreach (explode(',', $request->input('workshops-' . $camper->id)) as $choice) {
                     $yw = YearattendingWorkshop::where(['yearattending_id' => $camper->yearattending_id, 'workshop_id' => $choice])->first();
                     if (!$yw) {
                         $yw = new YearattendingWorkshop();
@@ -34,12 +33,12 @@ class WorkshopController extends Controller
 
                     $choices->forget($choice);
                 }
+            }
 
-                if (count($choices) > 0) {
-                    foreach ($choices as $choice) {
-                        DB::statement('DELETE FROM yearsattending__workshop WHERE yearattending_id=' .
-                            $choice->yearattending_id . ' AND workshop_id=' . $choice->workshop_id);
-                    }
+            if (count($choices) > 0) {
+                foreach ($choices as $choice) {
+                    DB::statement('DELETE FROM yearsattending__workshop WHERE yearattending_id=' .
+                        $choice->yearattending_id . ' AND workshop_id=' . $choice->workshop_id);
                 }
             }
         }
@@ -59,7 +58,7 @@ class WorkshopController extends Controller
             return redirect()->action('CamperController@index');
         }
         return view('workshopchoice', ['timeslots' => Timeslot::with('workshops')->get(),
-            'campers' => $campers, 'grownups' => [Programname::YoungAdultUnderAge, Programname::YoungAdult, Programname::Adult]]);
+            'campers' => $campers]);
 
     }
 //

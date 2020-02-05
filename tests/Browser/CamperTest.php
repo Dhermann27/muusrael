@@ -178,8 +178,7 @@ class CamperTest extends DuskTestCase
                 ->assertVisible('div.alert-danger')->assertPresent('span.invalid-feedback');
             $campers[1]->email = 'deb@email.org';
             $browser->script('window.scrollTo(0,0)');
-            $browser->pause(250)->clickLink($campers[1]->firstname)
-                ->pause(250)
+            $browser->pause(250)->clickLink($campers[1]->firstname)->pause(250)
                 ->type('form#camperinfo div.tab-content div.active input[name="email[]"]', $campers[1]->email);
             $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
                 ->assertVisible('div.alert-success');

@@ -42,7 +42,7 @@ class HouseholdTest extends DuskTestCase
 
         $user = factory(User::class)->create();
         $family = factory(Family::class)->create();
-        $camper = factory(Camper::class)->create(['family_id' => $family->id, 'firstname' => 'Beta', 'email' => $user->email]);
+        $camper = factory(Camper::class)->create(['family_id' => $family->id, 'firstname' => 'Beto', 'email' => $user->email]);
         $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
         DB::statement('CALL generate_charges(' . self::$year->year . ')');
         $charge = factory(Charge::class)->create(['camper_id' => $camper->id, 'amount' => -200.0, 'year_id' => self::$year->id]);

@@ -19,12 +19,12 @@
                 @foreach($campers as $camper)
                     <div class="tab-pane fade{!! $loop->first ? ' active show' : '' !!}" id="tab-{{ $camper->id }}"
                          role="tabpanel">
-                        <input type="hidden" id="{{ $camper->id }}-workshops"
-                               name="{{ $camper->id }}-workshops" class="workshop-choices"/>
+                        <input type="hidden" id="workshops-{{ $camper->id }}"
+                               name="workshops-{{ $camper->id }}" class="workshop-choices"/>
                         <h2 class="m-3">{{ $camper->firstname }} {{ $camper->lastname }}</h2>
                         <div class="container px-3 py-5 px-lg-4 py-lg-6 bg-grey mb-5">
                             <div class="row">
-                                @if(in_array($camper->program_id, $grownups) )
+                                @if(!$camper->program->is_minor)
                                     @foreach($timeslots as $timeslot)
                                         <div class="list-group col-md-4 col-sm-6 pb-5">
                                             <h5>{{ $timeslot->name }}
@@ -68,7 +68,7 @@
         $(function () {
             @foreach($campers as $camper)
             @foreach($camper->yearattending->workshops as $choice)
-            $("#{{ $camper->id }}-{{ $choice->id }}").addClass("active");
+            $("#workshop-{{ $camper->id }}-{{ $choice->id }}").addClass("active");
             @endforeach
             @endforeach
             $("form#workshops div.tab-pane div.list-group").each(function () {
@@ -106,9 +106,9 @@
                 $(this).find("div.tab-pane").each(function () {
                     var ids = new Array();
                     $(this).find("button.active").each(function () {
-                        ids.push($(this).attr("id").split('-')[1]);
+                        ids.push($(this).attr("id").split('-')[2]);
                     });
-                    $("#" + $(this).attr("id").split('-')[1] + "-workshops").val(ids.join(","));
+                    $("#workshops-" + $(this).attr("id").split('-')[1]).val(ids.join(","));
                 });
                 return true;
             });
