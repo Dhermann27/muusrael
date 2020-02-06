@@ -6,6 +6,7 @@ use App\Camper;
 use App\Enums\Chargetypename;
 use App\Family;
 use App\User;
+use App\Year;
 use App\Yearattending;
 use Carbon\Carbon;
 use Facebook\WebDriver\Exception\TimeOutException;
@@ -505,6 +506,48 @@ class CamperTest extends DuskTestCase
 //        $year->save();
 //
 //    }
+
+    /**
+     * @group Quentin
+     * @throws Throwable
+     */
+    public function testQuentinLastProgramId()
+    {
+        $lastyear = factory(Year::class)->create(['is_current' => 0, 'year' => self::$year->year - 1]);
+        $user = factory(User::class)->create();
+        $family = factory(Family::class)->create();
+        $head = factory(Camper::class)->create(['firstname' => 'Quentin', 'family_id' => $family->id, 'email' => $user->email]);
+        $campers = factory(Camper::class, 2)->create(['family_id' => $family->id]);
+        $lyah = factory(Yearattending::class)->create(['camper_id' => $head->id, 'year_id' => $lastyear->id]);
+        $lyas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => $lastyear->id]);
+        $lyas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => $lastyear->id]);
+
+
+        $this->browse(function (Browser $browser) use ($user, $head, $campers, $lyah, $lyas) {
+            $browser->loginAs($user->id)->visit('/campers')
+                ->waitFor('form#camperinfo div.tab-content div.active')
+                ->clickLink($head->firstname)->pause(250)
+                ->select('form#camperinfo div.tab-content div.active select[name="days[]"]', $lyah->days)
+                ->assertSelected('form#camperinfo div.tab-content div.active select[name="program_id[]"]', $lyah->program_id)
+                ->clickLink($campers[0]->firstname)->pause(250)
+                ->select('form#camperinfo div.tab-content div.active select[name="days[]"]', $lyas[0]->days)
+                ->assertSelected('form#camperinfo div.tab-content div.active select[name="program_id[]"]', $lyas[0]->program_id)
+                ->clickLink($campers[1]->firstname)->pause(250)
+                ->select('form#camperinfo div.tab-content div.active select[name="days[]"]', $lyas[1]->days)
+                ->assertSelected('form#camperinfo div.tab-content div.active select[name="program_id[]"]', $lyas[1]->program_id)
+                ->select('form#camperinfo div.tab-content div.active select[name="program_id[]"]', $lyas[0]->program_id)
+                ->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
+                ->assertVisible('div.alert-success');
+        });
+
+        $this->adh($head);
+        $this->adh($campers[0]);
+        $this->adh($campers[1]);
+        $this->assertDatabaseHas('yearsattending', ['camper_id' => $head->id, 'program_id' => $lyah->program_id, 'days' => $lyah->days]);
+        $this->assertDatabaseHas('yearsattending', ['camper_id' => $campers[0]->id, 'program_id' => $lyas[0]->program_id, 'days' => $lyas[0]->days]);
+        $this->assertDatabaseHas('yearsattending', ['camper_id' => $campers[1]->id, 'program_id' => $lyas[0]->program_id, 'days' => $lyas[1]->days]);
+
+    }
 
     /**
      * @throws TimeOutException

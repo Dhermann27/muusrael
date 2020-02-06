@@ -31,7 +31,8 @@ class CamperController extends Controller
         'email.*.unique' => 'This email address has already been taken.',
         'phonenbr.*.regex' => 'Please enter your ten-digit phone number in 800-555-1212 format.',
         'birthdate.*.required' => 'Please enter your eight-digit birthdate in 2016-12-31 format.',
-        'birthdate.*.regex' => 'Please enter your eight-digit birthdate in 2016-12-31 format.'];
+        'birthdate.*.regex' => 'Please enter your eight-digit birthdate in 2016-12-31 format.',
+        'program_id.*.exists:programs,id' => 'Please choose a valid program for this camper.',];
     private $logged_in;
 
     public function store(Request $request)
@@ -72,9 +73,6 @@ class CamperController extends Controller
                 }
                 if ($camper->family_id == $this->logged_in->family_id) {
                     $thiscamper = $this->upsertCamper($request, $camper, $i);
-                    if ((int)$request->input('days')[$i] > 0) {
-                        array_push($campers, $thiscamper);
-                    }
                 }
             } else {
                 $camper = new Camper();
@@ -233,6 +231,7 @@ class CamperController extends Controller
             $ya->days = $request->input('days')[$i];
             $ya->program_id = $program_id;
             $ya->save();
+
             $camper->yearattending_id = $ya->id;
             $staffs = CamperStaff::where('camper_id', $camper->id)->get();
             if (count($staffs) > 0) {

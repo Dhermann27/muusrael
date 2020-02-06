@@ -36,7 +36,7 @@ class CamperForm extends BaseComponent
     public function elements()
     {
         return [
-            '@days' => 'select[name="days[]"',
+            '@days' => 'select[name="days[]"]',
             '@pronoun' => 'select[name="pronoun_id[]"]',
             '@first' => 'input[name="firstname[]"]',
             '@last' => 'input[name="lastname[]"]',

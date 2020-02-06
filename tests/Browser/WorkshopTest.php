@@ -406,7 +406,8 @@ class WorkshopTest extends DuskTestCase
             $this->assertDatabaseHas('workshops', ['id' => $workshop->id, 'enrolled' => 6]);
             // Should be 5 but stored procedure cannot handle excess campers signing up at the same time over capacity
 
-            $browser->click('button#workshop-' . $head->id . '-' . $workshop->id)
+            $browser->clickLink($head->firstname)->pause(250)
+                ->click('button#workshop-' . $head->id . '-' . $workshop->id)
                 ->clickLink($campers[0]->firstname)->pause(250)
                 ->click('button#workshop-' . $campers[0]->id . '-' . $workshop->id)
                 ->click('button[type="submit"]')->waitFor('div.alert')
