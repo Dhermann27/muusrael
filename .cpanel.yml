@@ -1,2 +1,4 @@
+---
 deployment:
   tasks:
+    - export DEPLOYPATH=/home/muusa/public_html/

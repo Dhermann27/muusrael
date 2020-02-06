@@ -2,62 +2,65 @@
 
 @section('content')
 
-    <div class="toast" style="position: absolute; top: 18%; right: 2%; z-index: 100;" data-delay="10000" role="alert"
-         aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <i id="toast-icon" class="fa fa-check mr-2"></i>
-            <strong id="welcomeback" class="mr-auto"></strong>
-            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                <i class="fa fa-window-close"></i>
-            </button>
-        </div>
-        <a id="toast-link" href="#">
-            <div class="toast-body">
+    @auth
+        <div class="toast" style="position: absolute; top: 18%; right: 2%; z-index: 100;" data-delay="10000"
+             role="alert"
+             aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i id="toast-icon" class="fa fa-check mr-2"></i>
+                <strong id="welcomeback" class="mr-auto"></strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <i class="fa fa-window-close"></i>
+                </button>
             </div>
-        </a>
-    </div>
+            <a id="toast-link" href="#">
+                <div class="toast-body">
+                </div>
+            </a>
+        </div>
+    @endauth
 
     <div>
-        <div id="carouselIndicators" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
+        <div id="carouselWelcome" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
             <ol class="carousel-indicators">
-                <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselIndicators" data-slide-to="2"></li>
-                <li data-target="#carouselIndicators" data-slide-to="3"></li>
+                <li data-target="#carouselWelcome" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselWelcome" data-slide-to="1"></li>
+                <li data-target="#carouselWelcome" data-slide-to="2"></li>
+                <li data-target="#carouselWelcome" data-slide-to="3"></li>
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="{{ env('IMG_PATH') }}/images/lodge3.jpg" alt="First slide">
+                    <img src="{{ env('IMG_PATH') }}/images/lodge3.jpg" alt="First slide">
                     @include('includes.carouselcaption')
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="{{ env('IMG_PATH') }}/images/lodge1.jpg" alt="Second slide">
+                    <img src="{{ env('IMG_PATH') }}/images/lodge1.jpg" alt="Second slide">
                     @include('includes.carouselcaption')
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="{{ env('IMG_PATH') }}/images/lodge2.jpg" alt="Third slide">
+                    <img src="{{ env('IMG_PATH') }}/images/lodge2.jpg" alt="Third slide">
                     @include('includes.carouselcaption')
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="{{ env('IMG_PATH') }}/images/lodge4.jpg" alt="Fourth slide">
+                    <img src="{{ env('IMG_PATH') }}/images/lodge4.jpg" alt="Fourth slide">
                     @include('includes.carouselcaption')
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+            <a class="carousel-control-prev" href="#carouselWelcome" role="button" data-slide="prev">
                 <i class="fas fa-chevron-left fa-3x"></i> <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+            <a class="carousel-control-next" href="#carouselWelcome" role="button" data-slide="next">
                 <i class="fas fa-chevron-right fa-3x"></i> <span class="sr-only">Next</span>
             </a>
         </div>
     </div>
 
     <div class="pt-4 pt-md-6 bg-white">
-        <div class="container w-100 w-lg-70">
+        <div class="container w-lg-70">
             <div class="row mt-2">
                 <div class="col-lg-6 d-sm-flex">
                     <a href="{{ route('brochure') }}">
-                        <img id="brochureimg" class="card-img-top img-fluid" src="/images/brochure.png"
+                        <img id="brochureimg" class="card-img-top" src="/images/brochure.png"
                              alt="Web Brochure cover" data-no-retina>
                     </a>
                 </div>
@@ -130,7 +133,7 @@
     </div>
     <div class="card-deck p-3">
         <div class="card px-5">
-            <img class="card-img-top img-fluid" src="/images/programs.jpg"
+            <img class="card-img-top" src="/images/programs.jpg"
                  alt="Loriana Stucker, moving in for the week"/>
             <div class="card-body">
                 <h4 class="card-title">
@@ -143,7 +146,7 @@
             <a href="{{ route('programs') }}" class="btn btn-primary">Program Descriptions</a>
         </div>
         <div class="card px-5">
-            <img class="card-img-top img-fluid" src="/images/housing.jpg" alt="The Hill to Trout Lodge"/>
+            <img class="card-img-top" src="/images/housing.jpg" alt="The Hill to Trout Lodge"/>
             <div class="card-body">
                 <h4 class="card-title">
                     Housing
@@ -155,7 +158,7 @@
             <a href="{{ route('housing') }}" class="btn btn-primary">Housing Options</a>
         </div>
         <div class="card px-5">
-            <img class="card-img-top img-fluid" src="/images/workshops.jpg"
+            <img class="card-img-top" src="/images/workshops.jpg"
                  alt="Jay Warner, during a photography workshop"/>
             <div class="card-body">
                 <h4 class="card-title">
@@ -177,7 +180,7 @@
 
     <div class="card-deck p-3">
         <div class="card px-5">
-            <img class="card-img-bottom img-fluid" src="/images/biographies.jpg"
+            <img class="card-img-bottom" src="/images/biographies.jpg"
                  alt="Chalice tattoo"/>
             <div class="card-body">
                 <h4 class="card-title">
@@ -190,7 +193,7 @@
             <a href="{{ route('themespeaker') }}" class="btn btn-primary">Theme Speaker Biography</a>
         </div>
         <div class="card px-5">
-            <img class="card-img-top img-fluid" src="/images/scholarship.jpg"
+            <img class="card-img-top" src="/images/scholarship.jpg"
                  alt="A hummingbird in dire need of a sugar scholarship"/>
             <div class="card-body">
                 <h4 class="card-title">
@@ -203,7 +206,7 @@
             <a href="{{ route('scholarship') }}" class="btn btn-primary">Application Process</a>
         </div>
         <div class="card px-5">
-            <img class="card-img-top img-fluid" src="/images/calculator.jpg"
+            <img class="card-img-top" src="/images/calculator.jpg"
                  alt="John Sandman, Treasurer"/>
             <div class="card-body">
                 <h4 class="card-title">
