@@ -18,6 +18,7 @@ use App\YearattendingWorkshop;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use function array_push;
 use function count;
 
@@ -56,7 +57,7 @@ class CamperController extends Controller
         ], $this->messages);
 
 
-        $campers = array();
+        $family_id = 0;
         for ($i = 0; $i < count($request->input('id')); $i++) {
             $id = (int)($request->input('id')[$i]);
             if ($id > 999) {
@@ -66,41 +67,36 @@ class CamperController extends Controller
                     'email.' . $i => 'nullable|unique:campers,email,' . $id,
                 ], $this->messages);
 
-                if ($id == $this->logged_in->id) {
+                if ($this->logged_in && $id == $this->logged_in->id) {
                     $this->validate($request, [
                         'email.' . $i => 'unique:users,email,' . Auth::user()->id,
                     ], $this->messages);
                 }
-                if ($camper->family_id == $this->logged_in->family_id) {
-                    $thiscamper = $this->upsertCamper($request, $camper, $i);
+                if (($this->logged_in && $camper->family_id == $this->logged_in->family_id)
+                    || Gate::allows('is-super')) {
+                    $this->upsertCamper($request, $camper, $i);
                 }
             } else {
                 $camper = new Camper();
-                if ($i == 0) {
-                    $camper->email = Auth::user()->email;
-                } else {
-                    $camper->family_id = $campers[0]->family_id;
+                if ($i != 0) {
+                    $camper->family_id = $family_id;
                 }
-                $thiscamper = $this->upsertCamper($request, $camper, $i);
-                if ((int)$request->input('days')[$i] > 0) {
-                    array_push($campers, $thiscamper);
-                }
+                $family_id = $this->upsertCamper($request, $camper, $i)->family_id;
             }
         }
 
         GenerateCharges::dispatch($this->year->year);
-//        DB::statement('CALL generate_charges(' . $this->year . ');');
 
-        return 'You have successfully saved your changes. Click here to remit payment and complete your registration.';
+        return 'You have successfully saved your changes. Click here to remit payment and complete your registration (if you have not already done so).';
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $id = null)
     {
-//            $request->session()->flash('warning', 'You have not yet created your household information.');
-//            return redirect()->action('HouseholdController@index');
-//        }
         $campers = array();
-        if (isset(Auth::user()->camper)) {
+        if ($id && Gate::allows('is-council')) {
+            $request->session()->put('camper_id', $id);
+            $campers = Campers_view::where('family_id', Camper::find($id)->family_id)->orderBy('birthdate')->get();
+        } elseif (isset(Auth::user()->camper)) {
             $campers = Campers_view::where('family_id', Auth::user()->camper->family_id)->orderBy('birthdate')->get();
             if ($request->session()->has('login-campers') && count($request->session()->get('login-campers')) > 0) {
                 foreach ($campers as $camper) {
@@ -126,63 +122,13 @@ class CamperController extends Controller
         $empty->id = 999;
         return view('campers', ['pronouns' => Pronoun::all(), 'foodoptions' => Foodoption::all(),
             'campers' => $campers, 'programs' => Program::whereNotNull('title')->orderBy('order')->get(),
-            'empty' => $empty, 'readonly' => null]);
+            'empty' => $empty]);
 
     }
-//
-//    public function write(Request $request, $id)
-//    {
-//
-//
-//        $this->validate($request, [
-//            'days.*' => 'between:0,8',
-//            'pronoun_id.*' => 'exists:pronouns,id',
-//            'firstname.*' => 'required|max:255',
-//            'lastname.*' => 'required|max:255',
-//            'email.*' => 'email|max:255|distinct',
-//            'phonenbr.*' => 'regex:/^\d{3}-\d{3}-\d{4}$/',
-//            'birthdate.*' => 'required|regex:/^\d{4}-\d{2}-\d{2}$/',
-//            'program_id.*' => 'required|exists:programs,id',
-//            'roommate.*' => 'max:255',
-//            'sponsor.*' => 'max:255',
-//            'church_id.*' => 'exists:churches,id',
-//            'is_handicap.*' => 'in:0,1',
-//            'foodoption_id.*' => 'exists:foodoptions,id',
-//        ], $this->messages);
-//
-//        for ($i = 0; $i < count($request->input('id')); $i++) {
-//
-//            $this->validate($request, [
-//                'email.' . $i => 'unique:campers,email,' . $request->input('id')[$i],
-//            ], $this->messages);
-//
-//            $this->upsertCamper($request, $i, $id);
-//        }
-//
-//        DB::statement('CALL generate_charges(' . $this->year->year . ');');
-//
-//        return 'You did it! Need to make see their <a href="' . url('/payment/f/' . $id) . '">statement</a> next?';
-//    }
-//
-//    public function read($i, $id)
-//    {
-//        $readonly = \Entrust::can('read') && !\Entrust::can('write');
-//        $family = \App\Family::find($this->getfamily_id($i, $id));
-//        $campers = $this->getCampers($family->id);
-//
-//        $empty = new \App\Camper();
-//        $empty->id = 999;
-//
-//        return view('campers', ['pronouns' => \App\Pronoun::all(), 'foodoptions' => \App\Foodoption::all(),
-//            'campers' => $campers, 'programs' => \App\Program::whereNotNull('display')->orderBy('order')->get(),
-//            'empty' => $empty, 'readonly' => $readonly, 'steps' => $this->getSteps()]);
-//    }
-//
+
     private function upsertCamper(Request $request, Camper $camper, $i)
     {
-        if (isset($this->logged_in->family_id)) {
-            $camper->family_id = $this->logged_in->family_id;
-        } elseif (!isset($camper->family_id)) {
+        if (!isset($camper->family_id)) {
             $family = new Family();
             $family->is_address_current = 0;
             $family->save();
@@ -254,9 +200,9 @@ class CamperController extends Controller
         return $camper;
     }
 
-//
-//    private function getfamily_id($i, $id)
-//    {
-//        return $i == 'c' ? \App\Camper::find($id)->family_id : $id;
-//    }
+
+    private function getFamilyId($i, $id)
+    {
+        return $i == 'c' ? \App\Camper::find($id)->family_id : $id;
+    }
 }

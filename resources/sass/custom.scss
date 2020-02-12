@@ -5,6 +5,7 @@
 
 .navbar-custom {
     background: $primary;
+    z-index: 2;
 }
 
 .navbar-custom a {
@@ -80,6 +81,18 @@ ul#littlesteps a.lighter {
     color: $muted;
 }
 
+ul#adminblock {
+    width: 600px;
+}
+
+li#campersearch {
+    width: 499px;
+}
+
+ul.dropdown-menu {
+    z-index: 1000;
+}
+
 @keyframes shadow-pulse
 {
     0% {
@@ -90,6 +103,7 @@ ul#littlesteps a.lighter {
     }
 }
 
+// ******** Nametags
 div.label {
     width: 3.6in;
     height: 2.89in;

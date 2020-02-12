@@ -4,8 +4,9 @@
     <input type="hidden" id="id-{{ $looper }}" name="id[]" value="{{ $camper->id }}"/>
     <div class="form-group shadow p-3 mb-5 bg-white rounded row @error('days.' . $looper) has-danger @enderror">
         <label for="days-{{ $looper }}" class="col-md-4 control-label">
-            @if($readonly === false)
-                <button id="quickme" class="float-right" data-toggle="tooltip" title="@lang('registration.quickcopy')">
+            @cannot('readonly')
+                <button id="quickme" type="button" class="float-right" data-toggle="tooltip"
+                        title="@lang('registration.quickcopy')">
                     <i class="far fa-copy"></i></button>
             @else
                 <a href="#" class="p-2 float-right" data-toggle="tooltip" data-html="true"
@@ -15,7 +16,7 @@
         </label>
 
         <div class="col-md-6">
-            @if(isset($readonly))
+            @can('is-super')
                 <select class="form-control days @error('days.' . $looper) has-danger @enderror"
                         id="days-{{ $looper }}" name="days[]">
                     @for($i=6; $i>0; $i--)
@@ -29,8 +30,9 @@
                     </option>
                 </select>
             @else
-                <select class="form-control days @error('days.' . $looper) has-danger @enderror"
-                        id="days-{{ $looper }}" name="days[]">
+                <select
+                    class="form-control days @error('days.' . $looper) has-danger @enderror @can('readonly') disabled @endif"
+                    id="days-{{ $looper }}" name="days[]">
                     <option value="{{ $camper->currentdays > 0 ? $camper->currentdays : '6' }}">
                         Yes
                     </option>
@@ -55,8 +57,9 @@
         </label>
 
         <div class="col-md-6">
-            <select class="form-control @error('pronoun_id.' . $looper) has-danger @enderror"
-                    id="pronoun_id-{{ $looper }}" name="pronoun_id[]">
+            <select
+                class="form-control @error('pronoun_id.' . $looper) has-danger @enderror @can('readonly') disabled @endif"
+                id="pronoun_id-{{ $looper }}" name="pronoun_id[]">
                 <option value="0">Choose pronoun(s)</option>
                 @foreach($pronouns as $pronoun)
                     <option value="{{ $pronoun->id }}"
@@ -170,8 +173,9 @@
         </label>
 
         <div class="col-md-6">
-            <select class="form-control select-program @error('program_id.' . $looper) has-danger @enderror"
-                    id="program_id-{{ $looper }}" name="program_id[]">
+            <select
+                class="form-control select-program @error('program_id.' . $looper) has-danger @enderror @can('readonly') disabled @endif"
+                id="program_id-{{ $looper }}" name="program_id[]">
                 <option value="0">Choose a program</option>
                 @foreach($programs as $program)
                     <option value="{{ $program->id }}"
@@ -236,7 +240,7 @@
         <label for="church_id-{{ $looper }}" class="col-md-4 control-label">Church Affiliation</label>
         <div class="col-md-6">
             <select id="church_id-{{ $looper }}" name="church_id[]"
-                    class="form-control churchlist @error('church_id.' . $looper) has-danger @enderror">
+                    class="form-control churchlist @error('church_id.' . $looper) has-danger @enderror @can('readonly') disabled @endif">
                 @if(isset($camper->church_id))
                     <option value="{{ old('church_id.' . $looper, $camper->church_id) }}" selected="selected">
                         {{ $camper->church->name}} ({{ $camper->church->city }}, {{ $camper->church->province->code }})
@@ -258,8 +262,9 @@
                title="@lang('registration.specialneeds')"><i class="far fa-info"></i></a>
         </label>
         <div class="col-md-2">
-            <select class="form-control @error('is_handicap.' . $looper) has-danger @enderror"
-                    id="is_handicap-{{ $looper }}" name="is_handicap[]">
+            <select
+                class="form-control @error('is_handicap.' . $looper) has-danger @enderror @can('readonly') disabled @endif"
+                id="is_handicap-{{ $looper }}" name="is_handicap[]">
                 <option value="0">No</option>
                 <option value="1"{{ $camper->is_handicap == 1 ? ' selected' : '' }}>
                     Yes
@@ -273,7 +278,8 @@
             @enderror
         </div>
     </div>
-    <div class="form-group row @error('foodoption_id.' . $looper) has-danger @enderror">
+    <div
+        class="form-group row @error('foodoption_id.' . $looper) has-danger @enderror @can('readonly') disabled @endif">
         <label for="foodoption_id-{{ $looper }}" class="col-md-8 control-label">What
             option best describes your food restrictions?</label>
         <div class="col-md-2">

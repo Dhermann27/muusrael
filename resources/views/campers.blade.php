@@ -22,7 +22,6 @@
     @include('includes.steps')
     <div class="container">
         <form id="camperinfo" class="form-horizontal" role="form" method="POST" action="{{ route('campers.store') }}">
-            {{--            . (isset($readonly) && $readonly === false ? '/f/' . $campers[0]->familyid : '')}}">--}}
             @include('includes.flash')
 
             <ul class="nav nav-tabs" role="tablist">
@@ -34,7 +33,7 @@
                         </a>
                     </li>
                 @endforeach
-                @if(!isset($readonly) || $readonly === false)
+                @cannot('readonly')
                     <li>
                         <a id="newcamper" class="nav-link btn-secondary ml-2" href="#" role="tab">Create New Camper
                             <i class="far fa-plus"></i></a>
@@ -42,13 +41,13 @@
                 @endif
             </ul>
 
-            <fieldset{{ isset($readonly) && $readonly === true ? ' disabled' : '' }}>
+            <fieldset @can('readonly') disabled @endif>
                 <div class="tab-content">
                     @foreach($campers as $camper)
                         @include('includes.camper', ['camper' => $camper, 'looper' => $loop->index])
                     @endforeach
                 </div>
-                @if(!isset($readonly) || $readonly === false)
+                @cannot('readonly')
                     @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes <i class="fal fa-save ml-2"></i>']])
                 @endif
             </fieldset>

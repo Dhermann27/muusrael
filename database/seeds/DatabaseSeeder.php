@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Usertype;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,6 @@ class DatabaseSeeder extends Seeder
             ProvinceSeeder::class,
             TimeslotSeeder::class]);
 
-        factory(User::class)->create(['email' => 'dh78@me.com']);
+        factory(User::class)->create(['email' => 'dh78@me.com', 'usertype' => Usertype::Admin]);
     }
 }

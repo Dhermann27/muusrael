@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Enums\Chargetypename;
+use App\Enums\Usertype;
 use App\ThisyearCharge;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Auth;
@@ -41,13 +42,17 @@ class AuthServiceProvider extends ServiceProvider
             return $paid <= 0 || $scholar;
         });
 
-//        Gate::define('edit-settings', function ($user) {
-//            return $user->isAdmin;
-//        });
-//
-//        Gate::define('update-post', function ($user, $post) {
-//            return $user->id === $post->user_id;
-//        });
+        Gate::define('is-council', function ($user) {
+            return $user->usertype > Usertype::Camper;
+        });
+
+        Gate::define('is-super', function ($user) {
+            return $user->usertype > Usertype::Pc;
+        });
+
+        Gate::define('readonly', function($user) {
+           return session()->has('camper_id') && $user->usertype == Usertype::Pc;
+        });
     }
 
 

@@ -76,23 +76,67 @@
                 </ul>
             </div>
             <div class="float-right">
-                <ul class="list-inline social-links mb-0">
-                    <li class="list-inline-item">
-                        <a href="https://www.facebook.com/{{ Auth::guest() ? 'Muusa2013/' : 'groups/Muusans/'}}">
-                            <i class="fab fa-facebook-square icon-1x"></i> <span class="sr-only">Facebook</span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://twitter.com/muusa1" class="nav-link">
-                            <i class="fab fa-twitter-square icon-1x"></i> <span class="sr-only">Twitter</span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="https://www.youtube.com/watch?v=QNWMdbrjxuE">
-                            <i class="fab fa-youtube-square icon-1x"></i> <span class="sr-only">YouTube</span>
-                        </a>
-                    </li>
-                </ul>
+                @can('is-council')
+                    <ul id="adminblock" class="list-inline my-2">
+                        <li class="list-inline-item">
+                            <div class="dropdown mt-0">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAdmin"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li class="dropdown-submenu">
+                                        <a class="test" tabindex="-1" href="#">Functions <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="test" tabindex="-1" href="#">Reports <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown-submenu">
+                                        <a class="test" tabindex="-1" href="#">Tools <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li id="campersearch" class="list-inline-item">
+                            <div class="input-group p-0 m-0">
+                                <div class="input-group-prepend">
+                                    @include('includes.admin.controls', ['inputgroup' => 'true'])
+                                </div>
+
+                                <label class="sr-only" for="camperlist">Camper Search</label>
+                                <select id="camperlist">
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+                @else
+                    <ul class="list-inline social-links mb-0">
+                        <li class="list-inline-item">
+                            <a href="@auth https://www.facebook.com/groups/Muusans/@else https://www.facebook.com/Muusa2013/@endif">
+                                <i class="fab fa-facebook-square icon-1x"></i> <span class="sr-only">Facebook</span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://twitter.com/muusa1" class="nav-link">
+                                <i class="fab fa-twitter-square icon-1x"></i> <span class="sr-only">Twitter</span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.youtube.com/watch?v=QNWMdbrjxuE">
+                                <i class="fab fa-youtube-square icon-1x"></i> <span class="sr-only">YouTube</span>
+                            </a>
+                        </li>
+                    </ul>
+                @endif
             </div>
             <div class="clearfix"></div>
         </div>
@@ -168,14 +212,14 @@
                                     <a href="#" class="dropdown-item">
                                         <i class="fal fa-newspaper fa-fw"></i> {{ $year->next_muse }}</a>
                                 @endif
-{{--                                <a href="#" class="dropdown-item">--}}
-{{--                                    <i class="far fa-address-book fa-fw"></i> Online Directory</a>--}}
+                                {{--                                <a href="#" class="dropdown-item">--}}
+                                {{--                                    <i class="far fa-address-book fa-fw"></i> Online Directory</a>--}}
                                 @if($year->is_artfair)
                                     <a href="#" class="dropdown-item">
                                         <i class="far fa-shopping-bag fa-fw"></i> Art Fair Submission</a>
                                 @endif
-{{--                                <a href="#" class="dropdown-item">--}}
-{{--                                    <i class="far fa-handshake fa-fw"></i> Volunteer Opportunities</a>--}}
+                                {{--                                <a href="#" class="dropdown-item">--}}
+                                {{--                                    <i class="far fa-handshake fa-fw"></i> Volunteer Opportunities</a>--}}
                                 @if($year->is_workshop_proposal)
                                     <a href="#" class="dropdown-item">
                                         <i class="fal fa-chalkboard-teacher fa-fw"></i> Workshop Proposal
@@ -298,11 +342,11 @@
                             @if($year->next_muse !== false)
                                 <li><a href="#">{{ $year->next_muse }}</a></li>
                             @endif
-{{--                            <li><a href="#">Online Directory</a></li>--}}
+                            {{--                            <li><a href="#">Online Directory</a></li>--}}
                             @if($year->is_artfair)
                                 <li><a href="#">Art Fair Submission</a></li>
                             @endif
-{{--                            <li><a href="#">Volunteer Opportunities</a></li>--}}
+                            {{--                            <li><a href="#">Volunteer Opportunities</a></li>--}}
                             @if($year->is_workshop_proposal)
                                 <li><a href="#">Workshop Proposal</a></li>
                             @endif

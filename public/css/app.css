@@ -12100,6 +12100,7 @@ p {
 
 .navbar-custom {
   background: #17301c;
+  z-index: 2;
 }
 
 .navbar-custom a {
@@ -12176,6 +12177,18 @@ div#modal-register div.modal-footer {
 
 ul#littlesteps a.lighter {
   color: darkgray;
+}
+
+ul#adminblock {
+  width: 600px;
+}
+
+li#campersearch {
+  width: 499px;
+}
+
+ul.dropdown-menu {
+  z-index: 1000;
 }
 
 @-webkit-keyframes shadow-pulse {

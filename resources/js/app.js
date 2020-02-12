@@ -208,14 +208,14 @@ if (steps.length > 0 || toast.length === 1) {
             $("#household-success").toggleClass('d-none');
         } else {
             message = "You're registered but we need you to update your billing information here."
-            link  = "/household";
+            link = "/household";
             icon = "fa-home";
         }
         if (data[2] === true) {
             $("#payment-success").toggleClass('d-none');
         } else {
             message = "You are not yet registered for this year, please pay your deposit by clicking here."
-            link  = "/payment";
+            link = "/payment";
             icon = "fa-usd-square";
         }
         if (data[1] === true) {
@@ -234,3 +234,47 @@ if (steps.length > 0 || toast.length === 1) {
         }
     });
 }
+
+function replaceCamperMarkup(data, term) {
+    return data.replace(new RegExp(term, "i"), "<strong>$&</strong>");
+}
+
+function templateRescamp(data) {
+    if (!data.id) return data.text;
+    var message = replaceCamperMarkup(data.firstname, data.term) + ' ' + replaceCamperMarkup(data.lastname, data.term);
+    if (data.email) message += ' &lt;' + replaceCamperMarkup(data.email, data.term) + '&gt;';
+    return message;
+}
+
+function templateSelcamp(data) {
+    if (!data.id) return data.text;
+    var cs = $('li#campersearch');
+    cs.find('button.disabled').toggleClass('disabled');
+    cs.find('a').each(function () {
+        if(!$(this).prop('href').includes(data.id)) {
+            $(this).prop('href', $(this).prop('href') + "/" + data.id);
+        }
+    });
+    return data.firstname + " " + data.lastname;
+}
+
+$("select#camperlist").select2({
+    ajax: {
+        url: '/data/camperlist',
+        dataType: 'json',
+        quietMillis: 250,
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        }
+    },
+    escapeMarkup: function (markup) {
+        return markup;
+    },
+    minimumInputLength: 3,
+    placeholder: 'Camper search...',
+    templateResult: templateRescamp,
+    templateSelection: templateSelcamp,
+    theme: 'bootstrap4',
+});
