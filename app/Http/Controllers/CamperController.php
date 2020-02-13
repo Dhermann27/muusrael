@@ -33,7 +33,7 @@ class CamperController extends Controller
         'phonenbr.*.regex' => 'Please enter your ten-digit phone number in 800-555-1212 format.',
         'birthdate.*.required' => 'Please enter your eight-digit birthdate in 2016-12-31 format.',
         'birthdate.*.regex' => 'Please enter your eight-digit birthdate in 2016-12-31 format.',
-        'program_id.*.exists:programs,id' => 'Please choose a valid program for this camper.',];
+        'program_id.*.required' => 'Please choose a valid program for this camper.',];
     private $logged_in;
 
     public function store(Request $request)
@@ -62,6 +62,7 @@ class CamperController extends Controller
             $id = (int)($request->input('id')[$i]);
             if ($id > 999) {
                 $camper = Camper::findOrFail($id);
+                $family_id = $camper->family_id;
 
                 $this->validate($request, [
                     'email.' . $i => 'nullable|unique:campers,email,' . $id,
@@ -77,9 +78,20 @@ class CamperController extends Controller
                     $this->upsertCamper($request, $camper, $i);
                 }
             } else {
-                $camper = new Camper();
-                if ($i != 0) {
-                    $camper->family_id = $family_id;
+                $query = Camper::where(function ($query) use ($request, $i) {
+                    $query->where('firstname', $request->input('firstname')[$i])
+                        ->where('lastname', $request->input('lastname')[$i])
+                        ->where('birthdate', $request->input('birthdate')[$i]);
+                });
+                if ($request->input('email')[$i] != '') {
+                    $query = $query->orWhere('email', $request->input('email')[$i]);
+                }
+                $camper = $query->first();
+                if (!$camper) {
+                    $camper = new Camper();
+                    if ($i != 0) {
+                        $camper->family_id = $family_id;
+                    }
                 }
                 $family_id = $this->upsertCamper($request, $camper, $i)->family_id;
             }
@@ -139,7 +151,7 @@ class CamperController extends Controller
         $camper->lastname = $request->input('lastname')[$i];
 
         if ($request->input('email')[$i] != '') {
-            if ($camper->email != $request->input('email')[$i]) {
+            if ($camper->email != $request->input('email')[$i] && $camper->email) {
                 $user = User::where('email', $camper->email)->first();
                 if ($user) {
                     $user->email = $request->input('email')[$i];
@@ -198,11 +210,5 @@ class CamperController extends Controller
         }
 
         return $camper;
-    }
-
-
-    private function getFamilyId($i, $id)
-    {
-        return $i == 'c' ? \App\Camper::find($id)->family_id : $id;
     }
 }
