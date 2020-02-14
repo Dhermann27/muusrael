@@ -14,4 +14,6 @@ class Chargetypename
     const Donation = 1008;
     const PayPalServiceCharge = 1023;
     const PayPalPayment = 1005;
+    const CheckPayment = 1006;
+    const CreditCardPayment = 1007;
 }

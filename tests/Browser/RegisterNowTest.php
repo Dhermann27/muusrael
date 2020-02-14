@@ -68,8 +68,7 @@ class RegisterNowTest extends DuskTestCase
     public function testBeto()
     {
         $user = factory(User::class)->create();
-        $family = factory(Family::class)->create();
-        $camper = factory(Camper::class)->create(['firstname' => 'Beto', 'family_id' => $family->id, 'email' => $user->email]);
+        $camper = factory(Camper::class)->create(['firstname' => 'Beto', 'email' => $user->email]);
 
         $this->browse(function (Browser $browser) use ($user, $camper) {
             $browser->logout()->visit('/')->click('@register_now')->waitFor('div#modal-register')
@@ -89,9 +88,8 @@ class RegisterNowTest extends DuskTestCase
     public function testEvra()
     {
         $user = factory(User::class)->create();
-        $family = factory(Family::class)->create();
-        $campers[0] = factory(Camper::class)->create(['firstname' => 'Evra', 'family_id' => $family->id, 'email' => $user->email]);
-        $campers[1] = factory(Camper::class)->create(['family_id' => $family->id]);
+        $campers[0] = factory(Camper::class)->create(['firstname' => 'Evra',  'email' => $user->email]);
+        $campers[1] = factory(Camper::class)->create(['family_id' => $campers[0]->family_id]);
 
         $this->browse(function (Browser $browser) use ($user, $campers) {
             $browser->logout()->visit('/')->click('@register_now')->waitFor('div#modal-register')
@@ -112,9 +110,8 @@ class RegisterNowTest extends DuskTestCase
     public function testTrentSome()
     {
         $user = factory(User::class)->create();
-        $family = factory(Family::class)->create();
-        $head = factory(Camper::class)->create(['firstname' => 'Trent', 'family_id' => $family->id, 'email' => $user->email]);
-        $campers = factory(Camper::class, 3)->create(['family_id' => $family->id]);
+        $head = factory(Camper::class)->create(['firstname' => 'Trent', 'email' => $user->email]);
+        $campers = factory(Camper::class, 3)->create(['family_id' => $head->family_id]);
 
         $this->browse(function (Browser $browser) use ($user, $head, $campers) {
             $browser->logout()->visit('/')->click('@register_now')->waitFor('div#modal-register')

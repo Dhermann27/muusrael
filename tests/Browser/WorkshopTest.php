@@ -49,8 +49,7 @@ class WorkshopTest extends DuskTestCase
     {
 
         $user = factory(User::class)->create();
-        $family = factory(Family::class)->create();
-        $camper = factory(Camper::class)->create(['family_id' => $family->id, 'firstname' => 'Beto', 'email' => $user->email]);
+        $camper = factory(Camper::class)->create(['firstname' => 'Beto', 'email' => $user->email]);
         $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
         DB::statement('CALL generate_charges(' . self::$year->year . ')');
         $charge = factory(Charge::class)->create(['camper_id' => $camper->id, 'amount' => -200.0, 'year_id' => self::$year->id]);
@@ -150,9 +149,8 @@ class WorkshopTest extends DuskTestCase
     {
 
         $user = factory(User::class)->create();
-        $family = factory(Family::class)->create();
-        $campers[0] = factory(Camper::class)->create(['family_id' => $family->id, 'firstname' => 'Evra', 'email' => $user->email]);
-        $campers[1] = factory(Camper::class)->create(['family_id' => $family->id]);
+        $campers[0] = factory(Camper::class)->create(['firstname' => 'Evra', 'email' => $user->email]);
+        $campers[1] = factory(Camper::class)->create(['family_id' => $campers[0]->family_id]);
         $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
         $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
         DB::statement('CALL generate_charges(' . self::$year->year . ')');
@@ -206,8 +204,7 @@ class WorkshopTest extends DuskTestCase
         $birth->year = self::$year->year - rand(1, 17);
 
         $user = factory(User::class)->create();
-        $family = factory(Family::class)->create();
-        $camper = factory(Camper::class)->create(['family_id' => $family->id, 'firstname' => 'Knopf',
+        $camper = factory(Camper::class)->create(['firstname' => 'Knopf',
             'birthdate' => $birth->addDays(rand(0, 364))->toDateString(), 'email' => $user->email]);
         $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id,
             'program_id' => Programname::Cratty]);
@@ -246,9 +243,8 @@ class WorkshopTest extends DuskTestCase
     {
 
         $user = factory(User::class)->create();
-        $family = factory(Family::class)->create();
-        $head = factory(Camper::class)->create(['family_id' => $family->id, 'firstname' => 'Nancy', 'email' => $user->email]);
-        $campers = factory(Camper::class, 2)->create(['family_id' => $family->id]);
+        $head = factory(Camper::class)->create(['firstname' => 'Nancy', 'email' => $user->email]);
+        $campers = factory(Camper::class, 2)->create(['family_id' => $head->family_id]);
         $yah = factory(Yearattending::class)->create(['camper_id' => $head->id, 'year_id' => self::$year->id]);
         $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
         $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
@@ -297,10 +293,9 @@ class WorkshopTest extends DuskTestCase
         $birth->year = self::$year->year - rand(1, 17);
 
         $user = factory(User::class)->create();
-        $family = factory(Family::class)->create();
-        $head = factory(Camper::class)->create(['family_id' => $family->id, 'firstname' => 'Nancy', 'email' => $user->email]);
-        $campers[0] = factory(Camper::class)->create(['family_id' => $family->id]);
-        $campers[1] = factory(Camper::class)->create(['family_id' => $family->id,
+        $head = factory(Camper::class)->create(['firstname' => 'Nancy', 'email' => $user->email]);
+        $campers[0] = factory(Camper::class)->create(['family_id' => $head->family_id]);
+        $campers[1] = factory(Camper::class)->create(['family_id' => $head->family_id,
             'birthdate' => $birth->addDays(rand(0, 364))->toDateString()]);
         $yah = factory(Yearattending::class)->create(['camper_id' => $head->id, 'year_id' => self::$year->id]);
         $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
@@ -372,9 +367,8 @@ class WorkshopTest extends DuskTestCase
     public function testZekeWaitinglist()
     {
         $user = factory(User::class)->create();
-        $family = factory(Family::class)->create();
-        $head = factory(Camper::class)->create(['family_id' => $family->id, 'firstname' => 'Zeke', 'email' => $user->email]);
-        $campers = factory(Camper::class, 5)->create(['family_id' => $family->id]);
+        $head = factory(Camper::class)->create(['firstname' => 'Zeke', 'email' => $user->email]);
+        $campers = factory(Camper::class, 5)->create(['family_id' => $head->family_id]);
         $ya = factory(Yearattending::class)->create(['camper_id' => $head->id, 'year_id' => self::$year->id]);
         foreach ($campers as $camper) {
             factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);

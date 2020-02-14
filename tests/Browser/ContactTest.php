@@ -111,8 +111,7 @@ class ContactTest extends DuskTestCase
     {
         $faker = Factory::create();
         $user = factory(User::class)->create();
-        $family = factory(Family::class)->create();
-        $camper = factory(Camper::class)->create(['family_id' => $family->id, 'email' => $user->email]);
+        $camper = factory(Camper::class)->create(['email' => $user->email]);
 
         $fakedGraph = $faker->paragraph;
         $box = factory(Contactbox::class)->create();

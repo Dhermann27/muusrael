@@ -14,7 +14,7 @@
     </div>
 @elseif(count($errors->all())>0)
     <div class="alert alert-danger">
-        {{ count($errors->all()) }} error{{ count($errors->all())>1 ? 's' : '' }} were found, so changes were not saved.
+        {{ count($errors->all()) }} error{{ count($errors->all())>1 ? 's were' : ' was' }} found, so changes were not saved.
         Please correct the errors outlined in red.
     </div>
 @endif

@@ -3,6 +3,7 @@
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
 use App\Camper;
+use App\Family;
 use App\Pronoun;
 use App\Church;
 use App\Foodoption;
@@ -14,6 +15,9 @@ $factory->define(Camper::class, function (Faker $faker) {
     return [
         'pronoun_id' => function () {
             return factory(Pronoun::class)->create()->id;
+        },
+        'family_id' => function () {
+            return factory(Family::class)->create()->id;
         },
         'firstname' => $faker->firstName,
         'lastname' => $faker->lastName,

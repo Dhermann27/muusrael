@@ -41,6 +41,14 @@ abstract class DuskTestCase extends BaseTestCase
         }
     }
 
+    protected function setUp() :void
+    {
+        parent::setUp();
+        foreach (static::$browsers as $browser) {
+            $browser->driver->manage()->deleteAllCookies();
+        }
+    }
+
     /**
      * Create the RemoteWebDriver instance.
      *
