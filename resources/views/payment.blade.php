@@ -15,7 +15,7 @@
 
             @if(count($years) > 1)
                 <ul id="nav-tab-years" class="nav nav-tabs" role="tablist">
-                    @foreach($years as $thisyear => $charges)
+                    @foreach($years->sortKeys() as $thisyear => $charges)
                         <li class="nav-item{{ $loop->first ? ' pl-5' : '  ml-2' }}">
                             <a class="nav-link{{ $loop->last ? ' active' : '' }}" data-toggle="tab"
                                href="#year-{{ $thisyear }}" role="tab">
