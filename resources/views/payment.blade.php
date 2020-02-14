@@ -17,7 +17,7 @@
                 <ul id="nav-tab-years" class="nav nav-tabs" role="tablist">
                     @foreach($years->sortKeys() as $thisyear => $charges)
                         <li class="nav-item{{ $loop->first ? ' pl-5' : '  ml-2' }}">
-                            <a class="nav-link{{ $loop->last ? ' active' : '' }}" data-toggle="tab"
+                            <a class="nav-link{{ $thisyear == $year->year ? ' active' : '' }}" data-toggle="tab"
                                href="#year-{{ $thisyear }}" role="tab">
                                 {{ $thisyear }}
                             </a>
@@ -27,8 +27,8 @@
             @endif
             <div id="nav-tab-yearContent" class="tab-content p-3">
                 @foreach($years as $thisyear => $charges)
-                    <div role="tabpanel" class="tab-pane fade{{ $loop->last ? ' active show' : '' }}"
-                         aria-expanded="{{ $loop->last ? 'true' : 'false' }}" id="year-{{ $thisyear }}">
+                    <div role="tabpanel" class="tab-pane fade{{ $thisyear == $year->year ? ' active show' : '' }}"
+                         aria-expanded="{{ $thisyear == $year->year ? 'true' : 'false' }}" id="year-{{ $thisyear }}">
 
                         <table class="table table-striped">
                             <thead>
@@ -95,7 +95,7 @@
                                 </tr>
                             @endif
 
-                            @if($loop->last && session()->has('camper_id') && Gate::allows('is-super'))
+                            @if($thisyear == $year->year && session()->has('camper_id') && Gate::allows('is-super'))
                                 <tfoot>
                                 <tr>
                                     <td class="form-group @error('chargetype_id') has-danger @enderror">
@@ -144,7 +144,7 @@
                             @endif
 
                         </table>
-                        @if($loop->last && session()->has('camper_id') && Gate::allows('is-super'))
+                        @if($thisyear == $year->year && session()->has('camper_id') && Gate::allows('is-super'))
                             @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes']])
                         @endif
                         @if(!session()->has('camper_id'))
