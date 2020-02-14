@@ -192,7 +192,7 @@ class PaymentController extends Controller
                         $deposit += $charge->amount;
                     }
                 }
-                $years = $years->groupBy('year');
+                $years = $years->groupBy('year')->sortBy('year');
             }
         }
 
