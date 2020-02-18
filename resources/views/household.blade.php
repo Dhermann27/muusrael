@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Household Information
+    Billing Information
 @endsection
 
 @section('heading')
@@ -11,12 +11,11 @@
 @section('content')
     @include('includes.steps')
     <div class="container">
-        <form id="household" class="form-horizontal" role="form" method="POST" action="{{ route('household.store') }}">
-{{--            . (isset($readonly) && $readonly === false ? '/f/' . $formobject->id : '') }}">--}}
-
+        <form id="household" class="form-horizontal" role="form" method="POST"
+              action="{{ route('household.store', ['id' => session()->get('camper_id')]) }}">
             @include('includes.flash')
 
-            <fieldset{{ isset($readonly) && $readonly === true ? ' disabled' : '' }}>
+            <fieldset @can('readonly') disabled @endif>
                 @include('includes.formgroup', ['label' => 'Address Line #1', 'attribs' => ['name' => 'address1']])
 
                 @include('includes.formgroup', ['label' => 'Address Line #2', 'attribs' => ['name' => 'address2']])
@@ -27,13 +26,13 @@
                     'attribs' => ['name' => 'province_id'], 'default' => 'Choose a state', 'list' => $provinces,
                     'option' => 'name'])
 
-                @include('includes.formgroup', ['label' => 'ZIP Code', 'attribs' => ['name' => 'zipcd',
-                    'maxlength' => '5', 'placeholder' => '5-digit ZIP Code']])
+                @include('includes.formgroup', ['label' => 'Postcal Code', 'attribs' => ['name' => 'zipcd',
+                        'placeholder' => 'Postal Code']])
 
                 @include('includes.formgroup', ['label' => 'Country', 'attribs' => ['name' => 'country',
                     'placeholder' => 'USA']])
 
-                @if(isset($readonly))
+                @can('is-council')
                     @include('includes.question', ['name' => 'is_address_current',
                         'label' => 'Please indicate if the address we have is current.',
                         'list' => [['id' => '1', 'option' => 'Yes, mail to this address'],
@@ -51,7 +50,7 @@
                             ['id' => '1', 'option' => 'Yes, I will be completing the separate process']]])
             </fieldset>
 
-            @if(!isset($readonly) || $readonly === false)
+            @cannot('readonly')
                 @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes']])
             @endif
         </form>

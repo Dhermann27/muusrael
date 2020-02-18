@@ -29,15 +29,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('has-paid', function () {
+        Gate::define('has-paid', function ($user) {
             $paid = 1;
             $scholar = 0;
-            if (isset(Auth::user()->camper) && isset(Auth::user()->camper->family_id)) {
-                $paid = ThisyearCharge::where('family_id', Auth::user()->camper->family_id)
+            if (isset($user->camper) && isset($user->camper->family_id)) {
+                $paid = ThisyearCharge::where('family_id', $user->camper->family_id)
                     ->where(function ($query) {
                         $query->where('chargetype_id', Chargetypename::Deposit)->orWhere('amount', '<', 0);
                     })->get()->sum('amount');
-                $scholar = Auth::user()->camper->family->is_scholar;
+                $scholar = $user->camper->family->is_scholar;
             }
             return $paid <= 0 || $scholar;
         });

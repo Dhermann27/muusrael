@@ -10,25 +10,23 @@
 @section('content')
     @include('includes.steps')
     <div class="container">
-        <form id="muusapayment" class="form-horizontal" role="form" method="POST" action="{{ route('payment.store') }}">
+        <form id="muusapayment" class="form-horizontal" role="form" method="POST"
+              action="{{ route('payment.store', ['id' => session()->get('camper_id')]) }}">
             @include('includes.flash')
 
-            @if(count($years) > 1)
-                <ul id="nav-tab-years" class="nav nav-tabs" role="tablist">
-                    @foreach($years->sortKeys() as $thisyear => $charges)
-                        <li class="nav-item{{ $loop->first ? ' pl-5' : '  ml-2' }}">
-                            <a class="nav-link{{ $thisyear == $year->year ? ' active' : '' }}" data-toggle="tab"
-                               href="#year-{{ $thisyear }}" role="tab">
-                                {{ $thisyear }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            @endif
+            <ul id="nav-tab-years" class="nav nav-tabs" role="tablist">
+                @foreach($years->sortKeys() as $thisyear => $charges)
+                    <li class="nav-item{{ $loop->first ? ' pl-5' : '  ml-2' }}">
+                        <a class="nav-link" data-toggle="tab" href="#year-{{ $thisyear }}" role="tab">
+                            {{ $thisyear }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+
             <div id="nav-tab-yearContent" class="tab-content p-3">
                 @foreach($years as $thisyear => $charges)
-                    <div role="tabpanel" class="tab-pane fade{{ $thisyear == $year->year ? ' active show' : '' }}"
-                         aria-expanded="{{ $thisyear == $year->year ? 'true' : 'false' }}" id="year-{{ $thisyear }}">
+                    <div role="tabpanel" class="tab-pane fade" aria-expanded="false" id="year-{{ $thisyear }}">
 
                         <table class="table table-striped">
                             <thead>
@@ -65,8 +63,8 @@
 
                                         @error('donation')
                                         <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
                                     </td>
                                     <td colspan='2'>Please consider at least a $10.00 donation to the MUUSA Scholarship
@@ -159,14 +157,14 @@
                                     </div>
                                     <div class="col-md-6">
                                         <h4>To Register via PayPal:</h4>
-                                        <div class="form-group row @error('amount') has-danger @enderror">
+                                        <div class="form-group row">
                                             <label for="amount" class="control-label">Payment:</label>
 
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span class="input-group-text">$</span>
                                                 </div>
                                                 <input type="number" id="amount" name="amount"
-                                                       class="form-control @error('amount') is-invalid @enderror"
+                                                       class="form-control"
                                                        data-toggle="tooltip" title="Or enter another amount..."
                                                        value="{{ number_format(max($charges->sum('amount'), 0), 2, '.', '') }}"/>
                                             </div>
@@ -175,31 +173,17 @@
                                                 <div class="checkbox">
                                                     <label>
                                                         <input type="checkbox" id="addthree" name="addthree"> Add 3% to
-                                                        my payment
-                                                        to
-                                                        cover the PayPal service fee
+                                                        my payment to cover the PayPal service fee
                                                     </label>
                                                 </div>
                                             </div>
-
-                                            @error('amount')
-                                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                                            @enderror
                                         </div>
                                         <input type="hidden" id="orderid" name="orderid"/>
-                                        <input type="hidden" id="address1" name="address1"/>
-                                        <input type="hidden" id="address2" name="address2"/>
-                                        <input type="hidden" id="city" name="city"/>
-                                        <input type="hidden" id="province" name="province"/>
-                                        <input type="hidden" id="zipcd" name="zipcd"/>
                                         <div id="paypal-button"></div>
                                     </div>
                                     @else
                                         Please bring payment to the first day of camp on {{ $year->checkin }}. While we
-                                        do
-                                        accept VISA, Mastercard, Discover, we prefer a check, to minimize fees.
+                                        do accept VISA, Mastercard, Discover, we prefer a check, to minimize fees.
                                     @endif
                                 </div>
                             @endif
@@ -265,6 +249,23 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="modal-waiting" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="container-fluid px-0">
+                            <div class="row mb-3">
+                                Processing Paypal Payment...
+                            </div>
+                            <div class="row pl-5">
+                                <i class="fa fa-spinner-third fa-spin fa-3x ml-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endif
 
 @endsection
@@ -273,6 +274,8 @@
     @if($year->is_accept_paypal)
         <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT') }}"></script>
         <script>
+            $('ul#nav-tab-years a:last').tab('show');
+
             @if(session()->has('newreg'))
             $("div#modal-newreg").modal('show');
             @endif
@@ -298,6 +301,7 @@
                 },
 
                 createOrder: function (data, actions) {
+                    $("div#modal-waiting").modal('show');
                     var amt = parseFloat($("#amount").val());
                     if ($('input#addthree').is(':checked')) amt *= 1.03;
                     if (amt < 0) amt *= -1;
@@ -311,19 +315,12 @@
                     });
                 },
 
-                commit: false,
                 onApprove: function (data, actions) {
                     return actions.order.capture().then(function (details) {
                         if (details.purchase_units.length > 0) {
                             $("#orderid").val(details.id);
-                            $("#amount").val(details.purchase_units[0].amount.value);
-                            $("#address1").val(details.purchase_units[0].shipping.address.address_line_1);
-                            $("#address2").val(details.purchase_units[0].shipping.address.address_line_2);
-                            $("#city").val(details.purchase_units[0].shipping.address.admin_area_2);
-                            $("#province").val(details.purchase_units[0].shipping.address.admin_area_1);
-                            $("#zipcd").val(details.purchase_units[0].shipping.address.postal_code);
-
                         }
+                        $("div#modal-waiting").modal('hide');
                         $("form#muusapayment").submit();
                     });
                 }

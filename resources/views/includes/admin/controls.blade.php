@@ -3,7 +3,7 @@
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Details
     </button>
     <div class="dropdown-menu">
-        {{--        <a class="dropdown-item" href="{{ route('household.index') }}"><i class="far fa-home"></i> Household</a>--}}
+        <a class="dropdown-item" href="{{ route('household.index') }}"><i class="far fa-home"></i> Billing</a>
         <a class="dropdown-item" href="{{ route('campers.index') }}"><i class="far fa-users"></i> Campers</a>
         <a class="dropdown-item" href="{{ route('payment.index') }}"><i class="far fa-usd-circle"></i> Statement</a>
         {{--        <a class="dropdown-item" href="{{ route('workshopchoice.index') }}"><i class="far fa-rocket"></i>--}}

@@ -14,8 +14,9 @@ $factory->define(Family::class, function (Faker $faker) {
         'province_id' => function () {
             return factory(Province::class)->create()->id;
         },
-        'zipcd' => substr($faker->postcode, 0, 5),
+        'zipcd' => $faker->postcode,
         'country' => $faker->country,
+        'is_address_current' => 1,
         'is_ecomm' => rand(0, 1),
         'is_scholar' => 0
     ];

@@ -24,21 +24,22 @@ Route::get('/excursions', 'WorkshopController@excursions')->name('workshops.excu
 
 Route::group(['prefix' => 'campers', 'middleware' => 'auth'], function () {
     Route::get('', 'CamperController@index')->name('campers.index');
-    Route::get('/{id?}', 'CamperController@index')->name('campers.index');
+    Route::get('/{id?}', 'CamperController@index')->name('campers.index')->middleware('can:is-council');
     Route::post('/', 'CamperController@store')->name('campers.store');
 });
 
 Route::group(['prefix' => 'payment', 'middleware' => 'auth'], function () {
     Route::get('', 'PaymentController@index')->name('payment.index');
-    Route::get('/{id?}', 'PaymentController@index')->name('payment.index');
+    Route::get('/{id?}', 'PaymentController@index')->name('payment.index')->middleware('can:is-council');
     Route::post('', 'PaymentController@store')->name('payment.store');
+    Route::post('/{id?}', 'PaymentController@write')->name('payment.store')->middleware('can:is-super');
 });
 
 Route::group(['prefix' => 'household', 'middleware' => 'auth'], function () {
     Route::get('', 'HouseholdController@index')->name('household.index')->middleware('can:has-paid');
+    Route::get('/{id?}', 'HouseholdController@index')->name('household.index')->middleware('can:is-council');
     Route::post('', 'HouseholdController@store')->name('household.store')->middleware('can:has-paid');
-//    Route::get('/payment/{i}/{id}', 'PaymentController@read');
-//    Route::post('/payment/f/{id}', 'PaymentController@write');
+    Route::post('/{id?}', 'HouseholdController@store')->name('household.store')->middleware('can:is-super');
 });
 
 Route::group(['prefix' => 'roomselection', 'middleware' => 'auth'], function () {

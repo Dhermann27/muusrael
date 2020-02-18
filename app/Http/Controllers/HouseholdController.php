@@ -2,33 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Camper;
+use App\Enums\Foodoptionname;
 use App\Family;
 use App\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use function session;
 
 
 class HouseholdController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, $id = null)
     {
-        $messages = ['province_id.exists' => 'Please choose a state code or "ZZ" for international.',
-            'zipcd.regex' => 'Please enter your 5-7 character zip code.'];
+        $messages = ['province_id.exists' => 'Please choose a state code or "ZZ" for international.'];
 
         $this->validate($request, [
             'address1' => 'required|max:255',
             'address2' => 'max:255',
             'city' => 'required|max:255',
             'province_id' => 'required|exists:provinces,id',
-            'zipcd' => 'required|regex:/^[a-zA-Z0-9]{5,7}$/',
+            'zipcd' => 'required|alpha_dash|max:255',
             'is_ecomm' => 'required|in:0,1',
             'is_scholar' => 'required|in:0,1'
         ], $messages);
 
-        $family = Family::findOrFail(Auth::user()->camper->family_id);
-        if (!$family) {
-            $family = new Family();
-
+        $family = new Family();
+        if ($id > 0 && Gate::allows('is-super')) {
+            $family = Family::findOrFail(Camper::findOrFail($id)->family_id);
+        } else if ($id > 0 || !Gate::allows('is-super')) {
+            $family = Family::findOrFail(Auth::user()->camper->family_id);
         }
         $family->address1 = $request->input('address1');
         $family->address2 = $request->input('address2');
@@ -40,58 +44,33 @@ class HouseholdController extends Controller
         $family->is_scholar = $request->input('is_scholar');
         $family->save();
 
-        $request->session()->flash('success', 'Your information has been saved successfully. Proceed to the next screen by clicking <a href="' . url('/camper') . '">here</a>.');
+        $request->session()->flash('success', 'Your information has been saved successfully.');
 
-        return redirect()->route('household.index', ['family' => $family]);
+        if ($id == 0 && Gate::allows('is-super')) {
+            $camper = new Camper();
+            $camper->family_id = $family->id;
+            $camper->firstname = "New Camper";
+            $camper->foodoption_id = Foodoptionname::None;
+            $camper->save();
+
+            session()->put('camper_id', $family->id);
+        }
+
+        return redirect()->route('household.index', ['id' => session()->get('camper_id')]);
 
     }
 
-    public function index($family = null)
+    public function index(Request $request, $id = null)
     {
-        if ($family == null) {
-            $family = Family::findOrFail(Auth::user()->camper->family_id);
+        if ($id != null && Gate::allows('is-council')) {
+            $request->session()->flash('camper_id', $id);
+        }
+        if ($id != null && $id == 0) {
+            $family = new Family();
+        } else {
+            $family = Family::find($id ? $id : Auth::user()->camper->family_id);
         }
         return view('household', ['formobject' => $family, 'provinces' => Province::orderBy('name')->get()]);
     }
 
-//    public function write(Request $request, $id)
-//    {
-//        $family = \App\Family::updateOrCreate(
-//            ['id' => $id],
-//            $request->only('name', 'address1', 'address2', 'city', 'statecd', 'zipcd', 'country',
-//                'is_address_current', 'is_ecomm', 'is_scholar'));
-//        $success = 'Nice work! Need to make changes to the <a href="' . url('/camper/f/' . $family->id) . '">camper</a> next?';
-//
-//        if ($id == 0) {
-//            \App\Camper::create(['familyid' => $family->id, 'firstname' => 'Mister', 'lastname' => 'MUUSA']);
-//            $success .= 'Since you just created a new family, I added a camper named &quot;Mister MUUSA&quot; to it if you need to find the family later. (Hint: not a real person.)';
-//        }
-//
-//        $request->session()->flash('success', $success);
-//
-//        return redirect()->action('HouseholdController@read', ['i' => 'f', 'id' => $id, 'family' => $family]);
-//    }
-//
-//    public function read($i, $id, $family = null)
-//    {
-//        $readonly = \Entrust::can('read') && !\Entrust::can('write');
-//        if ($family === null) {
-//            $family = \App\Family::find($this->getFamilyId($i, $id));
-//        }
-//
-//        if (empty($family)) {
-//            $family = new \App\Family();
-//            $family->id = 0;
-//            $id = 0;
-//        } else {
-//            $id = $family->id;
-//        }
-//        return view('household', ['formobject' => $family, 'steps' => $this->getSteps($id),
-//            'statecodes' => \App\Statecode::all()->sortBy('name'), 'readonly' => $readonly]);
-//    }
-
-    private function getFamilyId($i, $id)
-    {
-        return $i == 'c' ? \App\Camper::find($id)->familyid : $id;
-    }
 }

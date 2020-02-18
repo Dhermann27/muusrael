@@ -31,7 +31,7 @@
                             @foreach($building->image_array as $image)
                                 <div class="carousel-item @if($loop->first) active @endif">
                                     <img src="/images/buildings/{{ $image }}" alt="Image of {{ $building->name }} room"
-                                         class="d-block w-100"/>
+                                         class="d-block w-100" data-no-retina/>
                                 </div>
                             @endforeach
                         </div>

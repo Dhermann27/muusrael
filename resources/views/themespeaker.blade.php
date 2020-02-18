@@ -17,7 +17,7 @@
         @component('components.blog', ['title' => '2020 Theme Speaker'])
             <p>
                 <img class="float-right p-3" src="/images/drglensm.jpg"
-                     alt="Dr. Glen Thomas Rideout"/>
+                     alt="Dr. Glen Thomas Rideout" data-no-retina/>
                 <span class="dropcap-lg tint-bg">I</span>n
                 an address to the Unitarian Universalist Ministers Association, The Rev. Otis Moss III, senior
                 pastor of the 8,000-member Trinity United Church of Christ, named him &quot;without a doubt one of

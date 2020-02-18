@@ -106,7 +106,7 @@ class CamperController extends Controller
     {
         $campers = array();
         if ($id && Gate::allows('is-council')) {
-            $request->session()->put('camper_id', $id);
+            $request->session()->flash('camper_id', $id);
             $campers = Campers_view::where('family_id', Camper::find($id)->family_id)->orderBy('birthdate')->get();
         } elseif (isset(Auth::user()->camper)) {
             $campers = Campers_view::where('family_id', Auth::user()->camper->family_id)->orderBy('birthdate')->get();
