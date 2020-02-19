@@ -7,6 +7,7 @@ use App\Charge;
 use App\Chargetype;
 use App\Enums\Chargetypename;
 use App\Enums\Usertype;
+use App\Jobs\GenerateCharges;
 use App\User;
 use App\Year;
 use App\Yearattending;
@@ -15,6 +16,7 @@ use Laravel\Dusk\Browser;
 use Tests\Browser\Components\CamperForm;
 use Tests\DuskTestCase;
 use Throwable;
+use function array_push;
 use function count;
 use function factory;
 use function rand;
@@ -48,10 +50,11 @@ class PaymentTest extends DuskTestCase
         $user = factory(User::class)->create();
         $camper = factory(Camper::class)->create(['firstname' => 'Beto', 'email' => $user->email]);
         $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ');');
+        GenerateCharges::dispatchNow(self::$year->id);
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user->id)->visitRoute('payment.index')
+                ->waitFor('form#muusapayment div.tab-content div.active')
                 ->assertSee('Deposit for ' . self::$year->year)
                 ->assertSeeIn('span#amountNow', 200.0)
                 ->assertValue('input#amount', 200.0);
@@ -84,7 +87,7 @@ class PaymentTest extends DuskTestCase
         $cuser = factory(User::class)->create();
         $camper = factory(Camper::class)->create(['firstname' => 'Charlie', 'email' => $cuser->email]);
         factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ');');
+        GenerateCharges::dispatchNow(self::$year->id);
 
         $charge = factory(Charge::class)->make(['chargetype_id' => Chargetypename::CheckPayment,
             'camper_id' => $camper->id, 'amount' => rand(-20000, -100000) / 100, 'year_id' => self::$year->id]);
@@ -106,7 +109,7 @@ class PaymentTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($cuser, $camper, $charge) {
             $browser->loginAs($cuser->id)->visitRoute('payment.index')
-                ->waitFor('form#muusapayment')
+                ->waitFor('form#muusapayment div.tab-content div.active')
                 ->assertSee(Chargetype::findOrFail(Chargetypename::CheckPayment)->name)->assertSee($charge->amount)
                 ->assertSeeIn('#amountNow', '0.00')->assertSee('Registration')
                 ->assertMissing('Register Now');
@@ -126,14 +129,15 @@ class PaymentTest extends DuskTestCase
         $cuser = factory(User::class)->create();
         $camper = factory(Camper::class)->create(['firstname' => 'Charlie', 'email' => $cuser->email]);
         factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ');');
+        GenerateCharges::dispatchNow(self::$year->id);
 
         $charge = factory(Charge::class)->create(['chargetype_id' => Chargetypename::CheckPayment,
             'camper_id' => $camper->id, 'amount' => rand(-20000, -100000) / 100, 'year_id' => self::$year->id]);
 
         $this->browse(function (Browser $browser) use ($user, $camper, $charge) {
             $browser->loginAs($user->id)->visitRoute('payment.index', ['id' => $camper->id])
-                ->waitFor('form#muusapayment')->assertSee(Chargetype::findOrFail(Chargetypename::CheckPayment)->name)
+                ->waitFor('form#muusapayment div.tab-content div.active')
+                ->assertSee(Chargetype::findOrFail(Chargetypename::CheckPayment)->name)
                 ->assertSee($charge->amount)->assertSeeIn('#amountArrival', '0.00')
                 ->assertMissing('button[type="submit"]');
         });
@@ -150,7 +154,7 @@ class PaymentTest extends DuskTestCase
         $user = factory(User::class)->create();
         $campers[0] = factory(Camper::class)->create(['firstname' => 'Deb', 'email' => $user->email]);
         $campers[1] = factory(Camper::class)->create(['family_id' => $campers[0]->family_id]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ');');
+        GenerateCharges::dispatchNow(self::$year->id);
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user->id)->visitRoute('payment.index')
@@ -169,11 +173,12 @@ class PaymentTest extends DuskTestCase
         $campers[1] = factory(Camper::class)->create(['family_id' => $campers[0]->family_id]);
         $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
         $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ');');
+        GenerateCharges::dispatchNow(self::$year->id);
 
         $this->browse(function (Browser $browser) use ($user) {
             $donation = rand(0, 9999) / 100;
             $browser->loginAs($user->id)->visitRoute('payment.index')
+                ->waitFor('form#muusapayment div.tab-content div.active')
                 ->assertSee('Deposit for ' . self::$year->year)
                 ->assertSeeIn('span#amountNow', 400.0)
                 ->assertValue('input#amount', 400.0)
@@ -211,7 +216,7 @@ class PaymentTest extends DuskTestCase
         factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
         $campers[1] = factory(Camper::class)->create(['family_id' => $campers[0]->family_id]);
         factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ');');
+        GenerateCharges::dispatchNow(self::$year->id);
 
         $charge = factory(Charge::class)->create(['chargetype_id' => Chargetypename::CreditCardPayment,
             'camper_id' => $campers[0]->id, 'amount' => rand(-20000, -100000) / 100, 'year_id' => self::$year->id]);
@@ -226,7 +231,7 @@ class PaymentTest extends DuskTestCase
                     'amount' => rand(-20000, -100000) / 100, 'year_id' => $year->id]));
             }
             $year->charges = $charges;
-            DB::statement('CALL generate_charges(' . $year->year . ');');
+            GenerateCharges::dispatchNow($year->id);
         }
 
         $this->browse(function (Browser $browser) use ($user, $campers, $charge, $years) {
@@ -250,27 +255,70 @@ class PaymentTest extends DuskTestCase
      */
     public function testFranklinRO()
     {
-
         $user = factory(User::class)->create(['usertype' => Usertype::Pc]);
+        factory(Camper::class)->create(['email' => $user->email]);
 
         $cuser = factory(User::class)->create();
         $campers[0] = factory(Camper::class)->create(['firstname' => 'Franklin', 'email' => $cuser->email]);
         $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
         $campers[1] = factory(Camper::class)->create(['family_id' => $campers[0]->family_id]);
         $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
+        GenerateCharges::dispatchNow(self::$year->id);
 
-        $this->browse(function (Browser $browser) use ($user, $campers, $yas) {
-            $browser->loginAs($user->id)->visitRoute('campers.index', ['id' => $campers[0]->id])
-                ->waitFor('form#camperinfo div.tab-content div.active');
-            for ($i = 0; $i < count($campers); $i++) {
-                $browser->script('window.scrollTo(0,0)');
-                $browser->pause(250)->clickLink($campers[$i]->firstname)->pause(250);
-                $browser->within(new CamperForm, function (Browser $browser) use ($i, $campers, $yas) {
-                    $browser->viewCamper($campers[$i], $yas[$i]);
-                });
+        $charge = factory(Charge::class)->create(['chargetype_id' => Chargetypename::CreditCardPayment,
+            'camper_id' => $campers[0]->id, 'amount' => rand(-20000, -100000) / 100, 'year_id' => self::$year->id]);
+
+        $years = factory(Year::class, 2)->create(['is_current' => 0]);
+        foreach ($years as $year) {
+            $charges = array();
+            foreach ($campers as $camper) {
+                factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => $year->id]);
+                array_push($charges, factory(Charge::class)->create([
+                    'chargetype_id' => Chargetypename::CreditCardPayment, 'camper_id' => $camper->id,
+                    'amount' => rand(-20000, -100000) / 100, 'year_id' => $year->id]));
             }
-            $browser->assertMissing('button[type="submit"]');
+            $year->charges = $charges;
+            GenerateCharges::dispatchNow($year->id);
+        }
+
+        $this->browse(function (Browser $browser) use ($user, $campers, $charge, $years) {
+            $browser->loginAs($user->id)->visitRoute('payment.index', ['id' => $campers[0]->id])
+                ->waitFor('form#muusapayment div.tab-content div.active')
+                ->clickLink(self::$year->year)->pause(250)
+                ->assertSeeIn('form#muusapayment div.tab-content div.active', $charge->amount);
+            foreach ($years as $year) {
+                $browser->clickLink($year->year)->pause(250);
+                foreach($year->charges as $charge) {
+                    $browser->assertSeeIn('form#muusapayment div.tab-content div.active', $charge->amount);
+                }
+            }
+            $browser->assertMissing('Save Changes');
         });
+    }
+
+    /**
+     * @group Geoff
+     * @throws Throwable
+     */
+    public function testGeoffNoPaypal()
+    {
+        self::$year->is_accept_paypal = 0;
+        self::$year->save();
+
+        $user = factory(User::class)->create();
+        $camper = factory(Camper::class)->create(['firstname' => 'Geoff', 'email' => $user->email]);
+        factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
+        GenerateCharges::dispatchNow(self::$year->id);
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user->id)->visitRoute('payment.index')
+                ->waitFor('form#muusapayment div.tab-content div.active')
+                ->assertMissing('Amount Due Now')
+                ->assertSee('Please bring payment to the first day of camp');
+        });
+
+        self::$year->is_accept_paypal = 1;
+        self::$year->save();
     }
 
     /**
@@ -286,10 +334,11 @@ class PaymentTest extends DuskTestCase
         foreach ($campers as $camper) {
             factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
         }
-        DB::statement('CALL generate_charges(' . self::$year->year . ');');
+        GenerateCharges::dispatchNow(self::$year->id);
 
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user->id)->visitRoute('payment.index')
+                ->waitFor('form#muusapayment div.tab-content div.active')
                 ->assertSee('Deposit for ' . self::$year->year)
                 ->assertSeeIn('span#amountNow', 400.0)
                 ->assertValue('input#amount', 400.0)

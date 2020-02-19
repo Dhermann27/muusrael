@@ -6,9 +6,9 @@ use App\Camper;
 use App\Charge;
 use App\Enums\Usertype;
 use App\Family;
+use App\Jobs\GenerateCharges;
 use App\User;
 use App\Yearattending;
-use Illuminate\Support\Facades\DB;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Components\HouseholdForm;
 use Tests\DuskTestCase;
@@ -45,7 +45,7 @@ class HouseholdTest extends DuskTestCase
         $family = factory(Family::class)->create();
         $camper = factory(Camper::class)->create(['family_id' => $family->id, 'firstname' => 'Beto', 'email' => $user->email]);
         factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ')');
+        GenerateCharges::dispatchNow(self::$year->id);
         factory(Charge::class)->create(['camper_id' => $camper->id, 'amount' => -200.0, 'year_id' => self::$year->id]);
 
         $changes = factory(Family::class)->make();
@@ -73,7 +73,7 @@ class HouseholdTest extends DuskTestCase
     {
         $user = factory(User::class)->create(['usertype' => Usertype::Admin]);
 
-        $family = factory(Family::class)->make();
+        $family = factory(Family::class)->make(['is_address_current' => 0]);
 
         $this->browse(function (Browser $browser) use ($user, $family) {
             $browser->loginAs($user->id)->visitRoute('household.index', ['id' => 0])
@@ -91,10 +91,10 @@ class HouseholdTest extends DuskTestCase
             'is_scholar' => $family->is_scholar]);
 
         $family = Family::latest()->first();
-        $changes = factory(Family::class)->make();
+        $changes = factory(Family::class)->make(['is_address_current' => 1]);
 
         $this->browse(function (Browser $browser) use ($user, $family, $changes) {
-            $browser->loginAs($user->id)->visitRoute('household.index',  ['id' => $family->id])
+            $browser->loginAs($user->id)->visitRoute('household.index', ['id' => $family->id])
                 ->waitFor('form#household')
                 ->within(new HouseholdForm, function ($browser) use ($family, $changes) {
                     $browser->assertSelected('select#is_address_current', $family->is_address_current)

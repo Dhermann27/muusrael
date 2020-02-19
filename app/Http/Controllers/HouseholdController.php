@@ -40,6 +40,9 @@ class HouseholdController extends Controller
         $family->province_id = $request->input('province_id');
         $family->zipcd = $request->input('zipcd');
         $family->country = $request->input('country');
+        if($id != null && Gate::allows('is-super')) {
+            $family->is_address_current = $request->input('is_address_current');
+        }
         $family->is_ecomm = $request->input('is_ecomm');
         $family->is_scholar = $request->input('is_scholar');
         $family->save();

@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 use Carbon\Carbon;
 
 $factory->define(Year::class, function (Faker $faker) {
-    $thisyear = $faker->year;
+    $thisyear = $faker->unique()->year;
     return [
         'year' => $thisyear,
         'checkin' => Carbon::parse('first Sunday of July ' . $thisyear)->toDateString(),

@@ -60,7 +60,7 @@
 @section('content')
     @include('includes.steps')
     <div class="container">
-        <form id="roomselection" method="POST" action="{{ route('roomselection.store') }}">
+        <form id="roomselection" method="POST" action="{{ route('roomselection.store', ['id' => session()->get('camper_id')]) }}">
             @include('includes.flash')
 
             <svg id="rooms" height="731" width="1152">
@@ -76,7 +76,7 @@
                 <text x="910" y="460" font-family="Lato" font-size="36px" fill="white">Commuter</text>
                 @foreach($rooms as $room)
                     <g>
-                        <rect id="{{ $room->id }}"
+                        <rect id="room-{{ $room->id }}"
                               class="{{ $ya->room_id == $room->id ? 'active' : '' }}
                               {{ ($room->available == '0' && $room->capacity < 10 && $ya->room_id != $room->id) || $locked ? 'unavailable' : 'available' }}"
                               width="{{ $room->pixelsize }}" height="{{ $room->pixelsize }}" x="{{ $room->xcoord }}"
@@ -97,7 +97,7 @@
                             Locked by:<br />
                             @endif
                         {{ $room->names }}
-                        @if($ya->room_id == $room->id)
+                            @if($ya->room_id == $room->id)
                             <br /><strong>Your current selection</strong>
                             <br />Please note that changing from this room will make it to other campers. <i>This cannot be undone.</i>
                             @endif
@@ -109,15 +109,17 @@
                     </g>
                 @endforeach
             </svg>
-{{--            @if($locked)--}}
-{{--                <div class="text-lg-right">--}}
-{{--                    <input type="submit" class="btn btn-lg btn-primary disabled py-3 px-4"--}}
-{{--                           value="Room Locked By Registrar"/>--}}
-{{--                </div>--}}
-{{--            @elseif($year->is_room_select)--}}
-                <input type="hidden" id="room_id" name="room_id"/><p>&nbsp;</p>
-                @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Lock Room']])
-{{--            @endif--}}
+            @cannot('readonly')
+                @if($locked)
+                    <div class="text-lg-right">
+                        <input type="submit" class="btn btn-lg btn-primary disabled py-3 px-4"
+                               value="Room Locked By Registrar"/>
+                    </div>
+                @elseif($year->is_room_select)
+                    <input type="hidden" id="room_id" name="room_id"/><p>&nbsp;</p>
+                    @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Lock Room']])
+                @endif
+            @endif
         </form>
     </div>
     <p>&nbsp;</p>
@@ -146,7 +148,7 @@
             if (!confirm("You are moving {{ $count }} campers to a new room. This cannot be undone. Is this correct?")) {
                 return false;
             }
-            $("#room_id").val($("rect.active").first().attr("id"));
+            $("#room_id").val($("rect.active").first().attr("id").split("-")[1]);
             return true;
         });
         @endif

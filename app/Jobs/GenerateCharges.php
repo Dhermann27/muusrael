@@ -12,16 +12,16 @@ use Illuminate\Support\Facades\DB;
 class GenerateCharges implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected $year;
+    protected $year_id;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($year)
+    public function __construct($year_id)
     {
-        $this->year = $year;
+        $this->year_id = $year_id;
     }
 
     /**
@@ -31,6 +31,6 @@ class GenerateCharges implements ShouldQueue
      */
     public function handle()
     {
-        DB::statement('CALL generate_charges(' . $this->year . ');');
+        DB::statement('CALL generate_charges(' . $this->year_id . ');');
     }
 }

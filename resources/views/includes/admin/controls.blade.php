@@ -8,7 +8,7 @@
         <a class="dropdown-item" href="{{ route('payment.index') }}"><i class="far fa-usd-circle"></i> Statement</a>
         {{--        <a class="dropdown-item" href="{{ route('workshopchoice.index') }}"><i class="far fa-rocket"></i>--}}
         {{--            Workshops</a>--}}
-        {{--        <a class="dropdown-item" href="{{ route('roomselection.index') }}"><i class="far fa-bed"></i> Room Selection</a>--}}
+        <a class="dropdown-item" href="{{ route('roomselection.index') }}"><i class="far fa-bed"></i> Room Selection</a>
         {{--        <a class="dropdown-item" href="{{ route('/volunteer/' . $id) }}"><i class="far fa-handshake"></i>--}}
         {{--            Volunteer</a>--}}
         {{--        <a class="dropdown-item" href="{{ route('confirm.index') }}"><i class="far fa-envelope"></i>--}}

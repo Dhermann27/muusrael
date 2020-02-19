@@ -12,8 +12,8 @@ $factory->define(App\Room::class, function (Faker $faker) {
         'capacity' => $faker->randomNumber(1),
         'is_workshop' => $faker->boolean,
         'is_handicap' => $faker->boolean,
-        'xcoord' => $faker->randomNumber(3),
-        'ycoord' => $faker->randomNumber(3),
-        'pixelsize' => $faker->randomNumber(2)
+        'xcoord' => $faker->unique()->randomNumber(2) * 6 + 1,
+        'ycoord' => $faker->unique()->randomNumber(2) * 6 + 1,
+        'pixelsize' => 5
     ];
 });

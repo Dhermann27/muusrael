@@ -97,7 +97,7 @@ class CamperController extends Controller
             }
         }
 
-        GenerateCharges::dispatch($this->year->year);
+        GenerateCharges::dispatch($this->year->id);
 
         return 'You have successfully saved your changes. Click here to remit payment and complete your registration (if you have not already done so).';
     }

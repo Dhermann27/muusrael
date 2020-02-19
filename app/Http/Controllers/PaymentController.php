@@ -186,8 +186,10 @@ class PaymentController extends Controller
 
     public function index(Request $request, $id = null)
     {
+        $chargetypes = array();
         if ($id && Gate::allows('is-council')) {
             $request->session()->flash('camper_id', $id);
+            $chargetypes = Chargetype::where('is_shown', 1)->get();
         }
         $token = env('PAYPAL_CLIENT');
         $deposit = 0.0;
@@ -215,7 +217,7 @@ class PaymentController extends Controller
         }
 
         return view('payment', ['token' => $token, 'years' => $years, 'deposit' => $deposit,
-            'chargetypes' => Chargetype::where('is_shown', 1)->get()]);
+            'chargetypes' => $chargetypes]);
     }
 
     protected function getOrder($orderId)

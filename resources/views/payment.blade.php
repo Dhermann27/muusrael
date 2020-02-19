@@ -45,7 +45,7 @@
                                     <td>{{ $charge->memo }}</td>
                                 </tr>
                             @endforeach
-                            @if(!session()->has('camper_id'))
+                            @if(!session()->has('camper_id') && $year->is_accept_paypal)
                                 <tr>
                                     <td>
                                         <label for="donation" class="control-label">Donation</label>
@@ -181,12 +181,14 @@
                                         <input type="hidden" id="orderid" name="orderid"/>
                                         <div id="paypal-button"></div>
                                     </div>
-                                    @else
-                                        Please bring payment to the first day of camp on {{ $year->checkin }}. While we
-                                        do accept VISA, Mastercard, Discover, we prefer a check, to minimize fees.
-                                    @endif
+                                </div>
+                            @else
+                                <div class="row text-md-center">
+                                    Please bring payment to the first day of camp on {{ $year->checkin }}. While we
+                                    do accept VISA, Mastercard, Discover, we prefer a check, to minimize fees.
                                 </div>
                             @endif
+                        @endif
                     </div>
                 @endforeach
             </div>
@@ -271,14 +273,15 @@
 @endsection
 
 @section('script')
+    <script>
+        $('ul#nav-tab-years a:last').tab('show');
+        @if(session()->has('newreg'))
+        $("div#modal-newreg").modal('show');
+        @endif
+    </script>
     @if($year->is_accept_paypal)
         <script src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT') }}"></script>
         <script>
-            $('ul#nav-tab-years a:last').tab('show');
-
-            @if(session()->has('newreg'))
-            $("div#modal-newreg").modal('show');
-            @endif
             $(document).on('change', '#donation', function () {
                 var total = parseFloat($(this).val());
                 $("#amount").val(Math.max(0, parseFloat($("#amountNow").text().replace('$', '')) + total).toFixed(2));

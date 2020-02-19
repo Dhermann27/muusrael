@@ -6,7 +6,7 @@ use App\Camper;
 use App\Charge;
 use App\Enums\Programname;
 use App\Enums\Timeslotname;
-use App\Family;
+use App\Jobs\GenerateCharges;
 use App\Timeslot;
 use App\User;
 use App\Workshop;
@@ -51,7 +51,7 @@ class WorkshopTest extends DuskTestCase
         $user = factory(User::class)->create();
         $camper = factory(Camper::class)->create(['firstname' => 'Beto', 'email' => $user->email]);
         $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ')');
+        GenerateCharges::dispatchNow(self::$year->id);
         $charge = factory(Charge::class)->create(['camper_id' => $camper->id, 'amount' => -200.0, 'year_id' => self::$year->id]);
 
         $workshop = factory(Workshop::class)->create(['year_id' => self::$year->id]);
@@ -153,7 +153,7 @@ class WorkshopTest extends DuskTestCase
         $campers[1] = factory(Camper::class)->create(['family_id' => $campers[0]->family_id]);
         $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
         $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ')');
+        GenerateCharges::dispatchNow(self::$year->id);
         $charge = factory(Charge::class)->create(['camper_id' => $campers[0]->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
 
         $ref = new ReflectionClass('App\Enums\Timeslotname');
@@ -208,7 +208,7 @@ class WorkshopTest extends DuskTestCase
             'birthdate' => $birth->addDays(rand(0, 364))->toDateString(), 'email' => $user->email]);
         $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id,
             'program_id' => Programname::Cratty]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ')');
+        GenerateCharges::dispatchNow(self::$year->id);
         $charge = factory(Charge::class)->create(['camper_id' => $camper->id, 'amount' => -200.0, 'year_id' => self::$year->id]);
 
         $workshops[0] = factory(Workshop::class)->create(['year_id' => self::$year->id,
@@ -248,7 +248,7 @@ class WorkshopTest extends DuskTestCase
         $yah = factory(Yearattending::class)->create(['camper_id' => $head->id, 'year_id' => self::$year->id]);
         $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
         $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ')');
+        GenerateCharges::dispatchNow(self::$year->id);
         $charge = factory(Charge::class)->create(['camper_id' => $campers[0]->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
 
         $workshop = factory(Workshop::class)->create(['year_id' => self::$year->id, 'capacity' => rand(3, 99)]);
@@ -301,7 +301,7 @@ class WorkshopTest extends DuskTestCase
         $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
         $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id,
             'program_id' => Programname::Burt]);
-        DB::statement('CALL generate_charges(' . self::$year->year . ')');
+        GenerateCharges::dispatchNow(self::$year->id);
         $charge = factory(Charge::class)->create(['camper_id' => $head->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
 
         $workshopsC = factory(Workshop::class, 2)->create(['year_id' => self::$year->id, 'capacity' => rand(2, 99),
@@ -373,7 +373,7 @@ class WorkshopTest extends DuskTestCase
         foreach ($campers as $camper) {
             factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
         }
-        DB::statement('CALL generate_charges(' . self::$year->year . ')');
+        GenerateCharges::dispatchNow(self::$year->id);
         $charge = factory(Charge::class)->create(['camper_id' => $head->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
 
         $workshop = factory(Workshop::class)->create(['year_id' => self::$year->id, 'capacity' => 5]);

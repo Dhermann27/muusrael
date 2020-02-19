@@ -364,7 +364,7 @@ class CamperTest extends DuskTestCase
             $changes->email = 'geoff@email.org';
             $browser->clear('form#camperinfo div.tab-content div.active input[name="email[]"]')
                 ->type('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes->email)
-                ->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
+                ->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert-success')
                 ->assertVisible('div.alert-success');
         });
 
@@ -402,7 +402,7 @@ class CamperTest extends DuskTestCase
             $changes->email = 'henrietta@email.org';
             $browser->clear('form#camperinfo div.tab-content div.active input[name="email[]"]')
                 ->type('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes->email)
-                ->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
+                ->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert-success')
                 ->assertVisible('div.alert-success');
         });
 
@@ -442,9 +442,9 @@ class CamperTest extends DuskTestCase
                 ->assertVisible('div.alert-danger')->assertPresent('span.invalid-feedback');
             $changes->email = 'ingrid@email.org';
             $browser->clear('form#camperinfo div.tab-content div.active input[name="email[]"]');
-            $browser->keys('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes->email);
-            $browser->click('form#camperinfo button[type="submit"]')->acceptDialog()->waitFor('div.alert')
-                ->assertVisible('div.alert-success');
+            $browser->type('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes->email);
+            $browser->click('button[type="submit"]')->acceptDialog()
+                ->waitFor('div.alert-success')->assertVisible('div.alert-success');
         });
 
         $this->assertDatabaseHas('users', ['email' => $changes->email]);
