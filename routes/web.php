@@ -45,9 +45,11 @@ Route::group(['prefix' => 'household', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'roomselection', 'middleware' => 'auth'], function () {
     Route::get('/', 'RoomSelectionController@index')->name('roomselection.index')->middleware('can:has-paid');
     Route::get('/{id?}', 'RoomSelectionController@index')->name('roomselection.index')->middleware('can:is-council');
+    Route::get('/assign/{id?}', 'RoomSelectionController@read')->name('roomselection.read')->middleware('can:is-council');
     Route::post('/', 'RoomSelectionController@store')->name('roomselection.store')->middleware('can:has-paid');
     Route::post('/{id?}', 'RoomSelectionController@store')->name('roomselection.store')->middleware('can:is-super');
-    Route::get('/map', 'RoomSelectionController@map')->middleware('auth', 'role:admin|council');
+    Route::post('/assign/{id?}', 'RoomSelectionController@write')->name('roomselection.write')->middleware('can:is-super');
+    Route::get('/map', 'RoomSelectionController@map')->name('roomselection.map')->middleware('can:is-council');
 });
 
 Route::group(['prefix' => 'workshopchoice', 'middleware' => 'auth'], function () {

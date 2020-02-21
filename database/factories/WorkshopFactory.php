@@ -25,7 +25,7 @@ $factory->define(App\Workshop::class, function (Faker $faker) {
         'w' => $faker->boolean,
         'th' => $faker->boolean,
         'f' => $faker->boolean,
-        'capacity' => $faker->randomNumber(2),
+        'capacity' => $faker->randomNumber(2) + 1,
         'fee' => $faker->randomFloat(2, 0, 100.0)
     ];
 });

@@ -47,12 +47,12 @@ class ThisyearCamper extends Model
     {
         return $this->hasOne(Yearattending::class, 'id', 'yearattending_id');
     }
-//
-//    public function yearsattending()
-//    {
-//        return $this->hasMany(Yearattending::class, 'camperid', 'id')
-//            ->orderBy('year', 'desc');
-//    }
+
+    public function yearsattending()
+    {
+        return $this->hasMany(Yearattending::class, 'camper_id', 'id')
+            ->orderBy('year_id', 'desc');
+    }
 
     public function getFormattedPhoneAttribute()
     {

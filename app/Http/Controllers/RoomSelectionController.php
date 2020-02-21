@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Building;
+use App\ByyearCamper;
 use App\Camper;
+use App\Family;
 use App\Jobs\GenerateCharges;
 use App\Roomselection;
 use App\ThisyearCamper;
@@ -23,7 +26,7 @@ class RoomSelectionController extends Controller
         foreach ($family as $item) {
             $ya = Yearattending::findOrFail($item->yearattending_id);
             $ya->room_id = $request->room_id;
-            if($id && Gate::allows('is-super')) {
+            if ($id && Gate::allows('is-super')) {
                 $ya->is_setbyadmin = 1;
             }
             $ya->save();
@@ -60,11 +63,44 @@ class RoomSelectionController extends Controller
         return view('roomselection', ['ya' => $ya, 'rooms' => $rooms, 'count' => $count, 'locked' => $locked]);
     }
 
+    public function write(Request $request, $id)
+    {
+        $campers = ThisyearCamper::where('family_id', $id)->get();
+
+        foreach ($campers as $camper) {
+            $ya = Yearattending::find($camper->yearattending_id);
+            $ya->room_id = $request->input('roomid-' . $camper->id);
+            if ($ya->room_id == 0) $ya->room_id = null;
+            $ya->is_setbyadmin = '1';
+            $ya->save();
+        }
+
+        GenerateCharges::dispatch($this->year->id);
+
+        $request->session()->flash('success', 'Awwwwwwww yeahhhhhhhhh');
+
+        return redirect()->action('RoomSelectionController@read', ['id' => $campers[0]->id]);
+    }
+
+    public function read(Request $request, $id)
+    {
+        $family = Family::findOrFail(Camper::findOrFail($id)->family_id);
+        $campers = ThisyearCamper::where('family_id', $family->id)->with('yearsattending.year', 'yearsattending.room.building')
+            ->orderBy('birthdate')->get();
+
+        if(count($campers) == 0) {
+            $request->session()->flash('warning', 'No members of this family are registered for the current year.');
+        }
+
+        return view('assignroom', ['buildings' => Building::with('rooms.occupants')->get(),
+            'campers' => $campers]);
+    }
+
     public function map()
     {
-        $empty = new Camper();
-        $rooms = Room::where('xcoord', '>', '0')->where('ycoord', '>', '0')->get();
-        return view('roomselection', ['camper' => $empty, 'rooms' => $rooms]);
+        $empty = new Yearattending();
+        $rooms = Roomselection::all();
+        return view('roomselection', ['ya' => $empty, 'rooms' => $rooms, 'count' => 0, 'locked' => true]);
     }
 
 }

@@ -361,16 +361,7 @@ class CamperTest extends DuskTestCase
             $this->changeCamper($browser, $camper, $ya, $changes, $cya);
             $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
                 ->assertVisible('div.alert-danger')->assertPresent('span.invalid-feedback');
-            $changes->email = 'geoff@email.org';
-            $browser->clear('form#camperinfo div.tab-content div.active input[name="email[]"]')
-                ->type('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes->email)
-                ->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert-success')
-                ->assertVisible('div.alert-success');
         });
-
-        $this->adh($changes);
-        $this->assertDatabaseHas('yearsattending', ['camper_id' => $camper->id, 'year_id' => self::$year->id, 'program_id' => $cya->program_id, 'days' => $cya->days]);
-        $this->assertDatabaseHas('gencharges', ['camper_id' => $camper->id, 'charge' => 200, 'chargetype_id' => Chargetypename::Deposit]);
 
     }
 
@@ -399,17 +390,7 @@ class CamperTest extends DuskTestCase
             $this->changeCamper($browser, $camper, $ya, $changes, $cya);
             $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
                 ->assertVisible('div.alert-danger')->assertPresent('span.invalid-feedback');
-            $changes->email = 'henrietta@email.org';
-            $browser->clear('form#camperinfo div.tab-content div.active input[name="email[]"]')
-                ->type('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes->email)
-                ->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert-success')
-                ->assertVisible('div.alert-success');
         });
-
-        $this->assertDatabaseHas('users', ['email' => $changes->email]);
-        $this->adh($changes);
-        $this->assertDatabaseHas('yearsattending', ['camper_id' => $camper->id, 'program_id' => $cya->program_id, 'days' => $cya->days]);
-        $this->assertDatabaseHas('gencharges', ['camper_id' => $camper->id, 'charge' => 200, 'chargetype_id' => Chargetypename::Deposit]);
 
     }
 
@@ -440,16 +421,7 @@ class CamperTest extends DuskTestCase
             $this->changeCamper($browser, $camper, $ya, $changes, $cya);
             $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
                 ->assertVisible('div.alert-danger')->assertPresent('span.invalid-feedback');
-            $changes->email = 'ingrid@email.org';
-            $browser->clear('form#camperinfo div.tab-content div.active input[name="email[]"]');
-            $browser->type('form#camperinfo div.tab-content div.active input[name="email[]"]', $changes->email);
-            $browser->click('button[type="submit"]')->acceptDialog()
-                ->waitFor('div.alert-success')->assertVisible('div.alert-success');
         });
-
-        $this->assertDatabaseHas('users', ['email' => $changes->email]);
-        $this->adh($changes);
-        $this->assertDatabaseHas('yearsattending', ['year_id' => self::$year->id, 'program_id' => $cya->program_id, 'days' => $cya->days]);
     }
 
     /**
@@ -684,7 +656,7 @@ class CamperTest extends DuskTestCase
         $this->assertDatabaseHas('yearsattending', ['year_id' => self::$year->id, 'program_id' => $ya->program_id, 'days' => $ya->days]);
         $this->assertDatabaseHas('gencharges', ['camper_id' => $camper->id, 'charge' => 200, 'chargetype_id' => Chargetypename::Deposit]);
 
-        $changes = factory(Camper::class, 2)->make(['family_id', $camper->family_id]);
+        $changes = factory(Camper::class, 2)->make(['family_id' => $camper->family_id]);
         $cyas = factory(Yearattending::class, 2)->make(['year_id' => self::$year->id]);
 
         $this->browse(function (Browser $browser) use ($user, $changes, $cyas) {

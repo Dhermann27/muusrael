@@ -111,9 +111,10 @@
             </svg>
             @cannot('readonly')
                 @if($locked)
-                    <div class="text-lg-right">
-                        <input type="submit" class="btn btn-lg btn-primary disabled py-3 px-4"
-                               value="Room Locked By Registrar"/>
+                    <div class="text-lg-right mt-2">
+                        <button type="button" class="btn btn-primary disabled py-3 px-4">
+                            Room Locked By Registrar
+                        </button>
                     </div>
                 @elseif($year->is_room_select)
                     <input type="hidden" id="room_id" name="room_id"/><p>&nbsp;</p>
@@ -144,11 +145,16 @@
             $('rect.active').removeClass('active').removeClass('unavailable').addClass('available');
             $(this).addClass('active');
         });
-        $('#roomselection').on('submit', function (e) {
+        $('#roomselection').on('submit', function () {
+            active = $("rect.active");
+            if(active.length !== 1) {
+                alert("Please select an available room by clicking on one of the white squares.");
+                return false;
+            }
             if (!confirm("You are moving {{ $count }} campers to a new room. This cannot be undone. Is this correct?")) {
                 return false;
             }
-            $("#room_id").val($("rect.active").first().attr("id").split("-")[1]);
+            $("#room_id").val(active.first().attr("id").split("-")[1]);
             return true;
         });
         @endif

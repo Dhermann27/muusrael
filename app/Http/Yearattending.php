@@ -32,12 +32,12 @@ class Yearattending extends Model
 
     public function room()
     {
-        return $this->hasOne('App\Room');
+        return $this->hasOne('App\Room', 'id', 'room_id');
     }
 
     public function year()
     {
-        return $this->hasOne('App\Year');
+        return $this->hasOne('App\Year', 'id', 'year_id');
     }
 
     public function staffpositions()

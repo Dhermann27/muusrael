@@ -85,24 +85,24 @@
                                     Admin
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li class="dropdown-submenu">
-                                        <a class="test" tabindex="-1" href="#">Functions <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
+{{--                                    <li class="dropdown-submenu">--}}
+{{--                                        <a class="test" tabindex="-1" href="#">Functions <span class="caret"></span></a>--}}
+{{--                                        <ul class="dropdown-menu">--}}
+{{--                                            <li><a tabindex="-1" href="#">2nd level dropdown</a></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
+                                    <li class="dropdown-submenu dropright">
+                                        <a class="sub pl-2" tabindex="-1" href="#">Reports <i class="fa fa-caret-right float-right mt-1 mr-2"></i></a>
+                                        <ul class="dropdown-menu p-2">
+                                            <li><a class="text-nowrap" tabindex="-1" href="{{ route('roomselection.map') }}">Room Selection Map</a></li>
                                         </ul>
                                     </li>
-                                    <li class="dropdown-submenu">
-                                        <a class="test" tabindex="-1" href="#">Reports <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a class="test" tabindex="-1" href="#">Tools <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a tabindex="-1" href="#">2nd level dropdown</a></li>
-                                        </ul>
-                                    </li>
+{{--                                    <li class="dropdown-submenu">--}}
+{{--                                        <a class="test" tabindex="-1" href="#">Tools <span class="caret"></span></a>--}}
+{{--                                        <ul class="dropdown-menu">--}}
+{{--                                            <li><a tabindex="-1" href="#">2nd level dropdown</a></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
                                 </ul>
                             </div>
                         </li>

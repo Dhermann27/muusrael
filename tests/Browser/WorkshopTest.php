@@ -52,7 +52,7 @@ class WorkshopTest extends DuskTestCase
         $camper = factory(Camper::class)->create(['firstname' => 'Beto', 'email' => $user->email]);
         $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
         GenerateCharges::dispatchNow(self::$year->id);
-        $charge = factory(Charge::class)->create(['camper_id' => $camper->id, 'amount' => -200.0, 'year_id' => self::$year->id]);
+        factory(Charge::class)->create(['camper_id' => $camper->id, 'amount' => -200.0, 'year_id' => self::$year->id]);
 
         $workshop = factory(Workshop::class)->create(['year_id' => self::$year->id]);
         $yaw = factory(YearattendingWorkshop::class)->make(['yearattending_id' => $ya->id,

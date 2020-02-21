@@ -8,7 +8,12 @@ class Room extends Model
 {
     public function building()
     {
-        return $this->hasOne('App\Building');
+        return $this->hasOne('App\Building', 'id', 'building_id');
+    }
+
+    public function occupants()
+    {
+        return $this->hasMany('App\ThisyearCamper', 'room_id', 'id');
     }
 
     public function yearsattending()

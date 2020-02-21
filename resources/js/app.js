@@ -251,7 +251,7 @@ function templateSelcamp(data) {
     var cs = $('li#campersearch');
     cs.find('button.disabled').toggleClass('disabled');
     cs.find('a').each(function () {
-        if(!$(this).prop('href').includes(data.id)) {
+        if (!$(this).prop('href').includes(data.id)) {
             $(this).prop('href', $(this).prop('href') + "/" + data.id);
         }
     });
@@ -278,3 +278,11 @@ $("select#camperlist").select2({
     templateSelection: templateSelcamp,
     theme: 'bootstrap4',
 });
+
+
+$('.dropdown-submenu a.sub').on("click", function (e) {
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+});
+
