@@ -12,7 +12,7 @@
     @include('includes.steps')
     <div class="container">
         <form id="household" class="form-horizontal" role="form" method="POST"
-              action="{{ route('household.store', ['id' => session()->get('camper_id')]) }}">
+              action="{{ route('household.store', ['id' => session()->has('camper') ? session()->get('camper')->id : null]) }}">
             @include('includes.flash')
 
             <fieldset @can('readonly') disabled @endif>

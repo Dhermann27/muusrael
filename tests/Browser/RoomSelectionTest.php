@@ -124,7 +124,7 @@ class RoomSelectionTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($cuser, $camper, $room) {
             $browser->loginAs($cuser->id)->visitRoute('roomselection.index')
                 ->mouseover('rect#room-' . $room->id)
-                ->assertSeeIn('div#mytooltip', 'Your current selection')
+                ->waitFor('div#mytooltip')->assertSeeIn('div#mytooltip', 'Current selection')
                 ->assertSee('locked by the Registrar');
         });
     }

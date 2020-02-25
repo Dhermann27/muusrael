@@ -4,6 +4,7 @@ namespace Tests\Browser;
 
 use App\Camper;
 use App\Charge;
+use App\Enums\Foodoptionname;
 use App\Enums\Usertype;
 use App\Family;
 use App\Jobs\GenerateCharges;
@@ -91,10 +92,15 @@ class HouseholdTest extends DuskTestCase
             'is_scholar' => $family->is_scholar]);
 
         $family = Family::latest()->first();
+
+        $this->assertDatabaseHas('campers', ['family_id' => $family->id,
+            'firstname' => "New Camper", 'foodoption_id' => Foodoptionname::None]);
+
+        $camper = Camper::latest()->first();
         $changes = factory(Family::class)->make(['is_address_current' => 1]);
 
-        $this->browse(function (Browser $browser) use ($user, $family, $changes) {
-            $browser->loginAs($user->id)->visitRoute('household.index', ['id' => $family->id])
+        $this->browse(function (Browser $browser) use ($user, $family, $camper, $changes) {
+            $browser->loginAs($user->id)->visitRoute('household.index', ['id' => $camper->id])
                 ->waitFor('form#household')
                 ->within(new HouseholdForm, function ($browser) use ($family, $changes) {
                     $browser->assertSelected('select#is_address_current', $family->is_address_current)
@@ -119,8 +125,10 @@ class HouseholdTest extends DuskTestCase
         $user = factory(User::class)->create(['usertype' => Usertype::Pc]);
 
         $family = factory(Family::class)->create();
-        $this->browse(function (Browser $browser) use ($user, $family) {
-            $browser->loginAs($user->id)->visitRoute('household.index', ['id' => $family->id])
+        $camper = factory(Camper::class)->create(['family_id' => $family->id]);
+
+        $this->browse(function (Browser $browser) use ($user, $family, $camper) {
+            $browser->loginAs($user->id)->visitRoute('household.index', ['id' => $camper->id])
                 ->waitFor('form#household')
                 ->within(new HouseholdForm, function ($browser) use ($family) {
                     $browser->assertSelected('select#is_address_current', $family->is_address_current)

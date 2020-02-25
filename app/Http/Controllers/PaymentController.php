@@ -188,7 +188,7 @@ class PaymentController extends Controller
     {
         $chargetypes = array();
         if ($id && Gate::allows('is-council')) {
-            $request->session()->flash('camper_id', $id);
+            $request->session()->flash('camper', Camper::findOrFail($id));
             $chargetypes = Chargetype::where('is_shown', 1)->get();
         }
         $token = env('PAYPAL_CLIENT');
@@ -199,7 +199,7 @@ class PaymentController extends Controller
             return redirect()->action('CamperController@index');
         } else {
             if ($id && Gate::allows('is-council')) {
-                $family_id = Camper::findOrFail($request->session()->get('camper_id'))->family_id;
+                $family_id = $request->session()->get('camper')->family_id;
                 $years = ByyearCharge::where('family_id', $family_id)->orderBy('timestamp')->orderBy('amount', 'desc')->get()->groupBy('year');
             } else {
                 $years = ThisyearCharge::where('family_id', Auth::user()->camper->family_id)->orderBy('timestamp')->orderBy('amount', 'desc')->get();

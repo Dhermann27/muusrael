@@ -11,7 +11,7 @@
     @include('includes.steps')
     <div class="container">
         <form id="muusapayment" class="form-horizontal" role="form" method="POST"
-              action="{{ route('payment.store', ['id' => session()->get('camper_id')]) }}">
+              action="{{ route('payment.store', ['id' => session()->has('camper') ? session()->get('camper')->id : null]) }}">
             @include('includes.flash')
 
             <ul id="nav-tab-years" class="nav nav-tabs" role="tablist">
@@ -45,7 +45,7 @@
                                     <td>{{ $charge->memo }}</td>
                                 </tr>
                             @endforeach
-                            @if(!session()->has('camper_id') && $year->is_accept_paypal)
+                            @if(!session()->has('camper') && $year->is_accept_paypal)
                                 <tr>
                                     <td>
                                         <label for="donation" class="control-label">Donation</label>
@@ -72,7 +72,7 @@
                                     </td>
                                 </tr>
                             @endif
-                            @if($year->is_accept_paypal && !session()->has('camper_id'))
+                            @if($year->is_accept_paypal && !session()->has('camper'))
                                 <tr class="text-md-right">
                                     <td><strong>Amount Due Now:</strong></td>
                                     <td class="text-right">
@@ -81,7 +81,7 @@
                                     <td colspan="2"></td>
                                 </tr>
                             @endif
-                            @if(!empty($housing) || session()->has('camper_id'))
+                            @if(!empty($housing) || session()->has('camper'))
                                 <tr class="text-md-right">
                                     <td><strong>Amount Due Upon Arrival:</strong></td>
                                     <td class="text-right">
@@ -93,7 +93,7 @@
                                 </tr>
                             @endif
 
-                            @if($thisyear == $year->year && session()->has('camper_id') && Gate::allows('is-super'))
+                            @if($thisyear == $year->year && session()->has('camper') && Gate::allows('is-super'))
                                 <tfoot>
                                 <tr>
                                     <td class="form-group @error('chargetype_id') has-danger @enderror">
@@ -142,10 +142,10 @@
                             @endif
 
                         </table>
-                        @if($thisyear == $year->year && session()->has('camper_id') && Gate::allows('is-super'))
+                        @if($thisyear == $year->year && session()->has('camper') && Gate::allows('is-super'))
                             @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes']])
                         @endif
-                        @if(!session()->has('camper_id'))
+                        @if(!session()->has('camper'))
                             @if($year->is_accept_paypal)
                                 <div class="row p-7">
                                     <div class="col-md-6">
@@ -195,7 +195,7 @@
         </form>
     </div>
 
-    @if(!session()->has('camper_id'))
+    @if(!session()->has('camper'))
         <!-- Modal -->
         <div class="modal fade" id="modal-newreg" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">

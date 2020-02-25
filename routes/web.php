@@ -71,6 +71,7 @@ Route::group(['prefix' => 'data'], function () {
     Route::get('camperlist', 'DataController@campers')->middleware('can:is-council');
     Route::get('churchlist', 'DataController@churches')->middleware('auth');
     Route::get('steps', 'DataController@steps')->middleware('can:has-paid');
+    Route::get('steps/{id?}', 'DataController@steps')->middleware('can:is-council');
 });
 
 Route::get('/brochure', function () {

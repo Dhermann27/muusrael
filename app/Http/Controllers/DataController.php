@@ -46,15 +46,16 @@ class DataController extends Controller
         return $campers;
     }
 
-    public function steps()
+    public function steps($id = null)
     {
-        $family = Family::findOrFail(Auth::user()->camper->family->id)->first()->city != null;
+        $camper = $id ? Camper::findOrFail($id) :Auth::user()->camper;
+        $family = $camper->family->city != null;
         $workshops = 0;
         $room = 0;
         $nametag = 0;
         $medical = 0;
         $live = $this->year->is_live ? false : $this->year->brochure_date;
-        $ya = Yearattending::where('camper_id', Auth::user()->camper->id)->where('year_id', $this->year->id)->first();
+        $ya = Yearattending::where('camper_id', $camper->id)->where('year_id', $this->year->id)->first();
         if ($ya) {
             $workshops = YearattendingWorkshop::where('yearattending_id', $ya->id)->get()->count() > 0;
             $room = $ya->room_id != null;
@@ -64,6 +65,6 @@ class DataController extends Controller
         } else {
             $ya = false;
         }
-        return [$family, $ya, Gate::allows('has-paid'), $workshops, $room, $nametag, $medical, Auth::user()->camper->firstname, $live];
+        return [$family, $ya, Gate::allows('has-paid'), $workshops, $room, $nametag, $medical, $camper->firstname, $live];
     }
 }

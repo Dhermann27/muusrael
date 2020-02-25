@@ -40,7 +40,7 @@ class HouseholdController extends Controller
         $family->province_id = $request->input('province_id');
         $family->zipcd = $request->input('zipcd');
         $family->country = $request->input('country');
-        if($id != null && Gate::allows('is-super')) {
+        if ($id != null && Gate::allows('is-super')) {
             $family->is_address_current = $request->input('is_address_current');
         }
         $family->is_ecomm = $request->input('is_ecomm');
@@ -56,22 +56,30 @@ class HouseholdController extends Controller
             $camper->foodoption_id = Foodoptionname::None;
             $camper->save();
 
-            session()->put('camper_id', $family->id);
+            $id = $camper->id;
         }
 
-        return redirect()->route('household.index', ['id' => session()->get('camper_id')]);
+        return redirect()->route('household.index', ['id' => $id != null ? $id : null]);
 
     }
 
     public function index(Request $request, $id = null)
     {
-        if ($id != null && Gate::allows('is-council')) {
-            $request->session()->flash('camper_id', $id);
-        }
         if ($id != null && $id == 0) {
             $family = new Family();
+            if(Gate::allows('is-super')) {
+                $camper = new Camper();
+                $camper->id = 0;
+                $request->session()->flash('camper', $camper);
+            }
         } else {
-            $family = Family::find($id ? $id : Auth::user()->camper->family_id);
+            if ($id != null && Gate::allows('is-council')) {
+                $camper = Camper::findOrFail($id);
+                $request->session()->flash('camper', $camper);
+                $family = Family::findOrFail($camper->family_id);
+            } else {
+                $family = Auth::user()->camper->family;
+            }
         }
         return view('household', ['formobject' => $family, 'provinces' => Province::orderBy('name')->get()]);
     }

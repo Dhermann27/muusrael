@@ -51,7 +51,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('readonly', function($user) {
-           return session()->has('camper_id') && $user->usertype == Usertype::Pc;
+           return session()->has('camper') && $user->usertype == Usertype::Pc;
         });
     }
 

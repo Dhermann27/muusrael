@@ -167,7 +167,10 @@ $('button#begin_reg').click(function () {
 var steps = $("ul#littlesteps");
 var toast = $("div.toast");
 if (steps.length > 0 || toast.length === 1) {
-    $.getJSON("/data/steps", function (data) {
+    var url = "/data/steps";
+    var camper_id = $("input#camper-id");
+    if(camper_id.length === 1) url += "/" + camper_id.val();
+    $.getJSON(url, function (data) {
         var message = "Your registration is complete! See you \"next week\"!";
         var link = "#";
         var icon = "fa-check";
@@ -178,13 +181,13 @@ if (steps.length > 0 || toast.length === 1) {
             link = "/nametag";
             icon = "fa-id-card";
         }
-        if (data[6] === true) {
-            $("#medical-success").toggleClass('d-none');
-        } else {
-            message = "You're registered, but please sign your medical release forms by clicking here."
-            link = "/medical";
-            icon = "fa-envelope"
-        }
+        // if (data[6] === true) {
+        //     $("#medical-success").toggleClass('d-none');
+        // } else {
+        //     message = "You're registered, but please sign your medical release forms by clicking here."
+        //     link = "/medical";
+        //     icon = "fa-envelope"
+        // }
         if (data[3] === true) {
             $("#workshop-success").toggleClass('d-none');
         } else {

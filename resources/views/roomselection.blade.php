@@ -60,7 +60,7 @@
 @section('content')
     @include('includes.steps')
     <div class="container">
-        <form id="roomselection" method="POST" action="{{ route('roomselection.store', ['id' => session()->get('camper_id')]) }}">
+        <form id="roomselection" method="POST" action="{{ route('roomselection.store', ['id' => session()->has('camper') ? session()->get('camper')->id : null]) }}">
             @include('includes.flash')
 
             <svg id="rooms" height="731" width="1152">
@@ -98,8 +98,8 @@
                             @endif
                         {{ $room->names }}
                             @if($ya->room_id == $room->id)
-                            <br /><strong>Your current selection</strong>
-                            <br />Please note that changing from this room will make it to other campers. <i>This cannot be undone.</i>
+                            <br /><strong>Current selection</strong>
+                            <br />Please note that changing from this room will make it available to other campers. <i>This cannot be undone.</i>
                             @endif
                         @endif
                             "></rect>

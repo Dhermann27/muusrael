@@ -44,20 +44,20 @@ class RoomSelectionController extends Controller
     public function index(Request $request, $id = null)
     {
         $camper = 0;
-        if ($id != null && Gate::allows('is-council')) {
-            $request->session()->flash('camper_id', $id);
+        if ($id && Gate::allows('is-council')) {
             $camper = Camper::findOrFail($id);
+            $request->session()->flash('camper', $camper);
         } else {
             $camper = Auth::user()->camper;
         }
 
         $ya = Yearattending::where('camper_id', $camper->id)->where('year_id', $this->year->id)->first();
-        $locked = $ya->is_setbyadmin == '1' || $ya->program->is_program_housing == '1';
+        $locked = ($ya->is_setbyadmin == '1' || $ya->program->is_program_housing == '1') && !($id && Gate::allows('is-super'));
         $count = ThisyearCamper::where('family_id', $camper->family_id)->where('is_program_housing', '0')->count();
         $rooms = Roomselection::all();
 
         if ($locked) {
-            $request->session()->flash('warning', 'Your room has been locked by the Registrar. Please use the Contact Us form above to request any changes at this point.');
+            $request->session()->flash('warning', 'This room has been locked by the Registrar. Please use the Contact Us form above to request any changes at this point.');
         }
 
         return view('roomselection', ['ya' => $ya, 'rooms' => $rooms, 'count' => $count, 'locked' => $locked]);
