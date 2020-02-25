@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use App\Enums\Usertype;
-use Laravel\Telescope\Telescope;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Telescope\IncomingEntry;
+use Laravel\Telescope\Telescope;
 use Laravel\Telescope\TelescopeApplicationServiceProvider;
 
 class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
@@ -22,14 +22,15 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
         $this->hideSensitiveRequestDetails();
 
         Telescope::filter(function (IncomingEntry $entry) {
-//            if (app()->environment(['local', 'testing'])) {
+            if (app()->environment(['local', 'testing'])) {
                 return true;
-//            }
+            }
 
-//            return $entry->isReportableException() ||
-//                   $entry->isFailedJob() ||
-//                   $entry->isScheduledTask() ||
-//                   $entry->hasMonitoredTag();
+            return $entry->isReportableException() ||
+                $entry->isFailedJob() ||
+                $entry->isScheduledTask() ||
+                $entry->hasMonitoredTag() ||
+                $entry->isException() || $entry->isFailedRequest();
         });
     }
 
