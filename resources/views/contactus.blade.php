@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="container">
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('contact') }}">
+        <form class="form-horizontal" role="form" method="POST" action="{{ route('contact.index') }}">
             @include('includes.flash')
 
             @if(Auth::check() && !empty(Auth::user()->camper))

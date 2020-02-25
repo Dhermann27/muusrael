@@ -12,7 +12,7 @@
     @include('includes.steps')
     <div class="container">
         <form id="workshops" class="form-horizontal" role="form" method="POST"
-              action="{{ url('/workshopchoice' . (isset($readonly) && $readonly === false ? '/f/' . $campers->first()->familyid : '')) }}">
+              action="{{ route('workshopchoice.store', ['id' => session()->has('camper') ? session()->get('camper')->id : null]) }}">
             @include('includes.flash')
 
             @component('components.navtabs', ['tabs' => $campers, 'id'=> 'id', 'option' => 'firstname'])
@@ -56,7 +56,7 @@
                     </div>
                 @endforeach
             @endcomponent
-            @if(!isset($readonly) || $readonly === false)
+            @cannot('readonly')
                 @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Preferences']])
             @endif
         </form>
@@ -84,6 +84,7 @@
                     }
                 });
             });
+            @cannot('readonly')
             $("form#workshops button.list-group-item").on("click", function (e) {
                 e.preventDefault();
                 $(this).parent().find(".alert-danger").addClass("d-none");
@@ -112,6 +113,7 @@
                 });
                 return true;
             });
+            @endif
             $('[data-toggle="popover"]').popover({
                 trigger: 'hover'
             });

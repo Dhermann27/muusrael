@@ -6,6 +6,7 @@ use App\Camper;
 use App\Charge;
 use App\Enums\Programname;
 use App\Enums\Timeslotname;
+use App\Enums\Usertype;
 use App\Jobs\GenerateCharges;
 use App\Timeslot;
 use App\User;
@@ -36,7 +37,7 @@ class WorkshopTest extends DuskTestCase
         $user = factory(User::class)->create();
 
         $this->browse(function (Browser $browser) use ($user) {
-            $browser->loginAs($user->id)->visit('/workshopchoice')->assertSee('Error');
+            $browser->loginAs($user->id)->visitRoute('workshopchoice.index')->assertSee('Error');
         });
 
     }
@@ -59,7 +60,8 @@ class WorkshopTest extends DuskTestCase
             'workshop_id' => $workshop->id]);
 
         $this->browse(function (Browser $browser) use ($user, $camper, $workshop, $yaw) {
-            $browser->loginAs($user->id)->visit('/workshopchoice')
+            $browser->loginAs($user->id)->visitRoute('workshopchoice.index')
+                ->waitFor('form#workshops div.tab-content div.active')
                 ->assertSee($workshop->name)
                 ->click('button#workshop-' . $camper->id . '-' . $workshop->id)
                 ->waitFor('form#workshops button.active')
@@ -74,72 +76,72 @@ class WorkshopTest extends DuskTestCase
 
     }
 
-//    /**
-//     * @group Charlie
-//     * @throws \Throwable
-//     */
-//    public function testCharlie()
-//    {
-//
-//        $user = factory(\App\User::class)->create();
-//        factory(\App\Role_User::class)->create(['user_id' => $user->id, 'role_id' => \App\Role::where('name', 'admin')->first()->id]);
-//
-//        $family = factory(\App\Family::class)->make(['is_address_current' => rand(0, 1)]);
-//
-//        $this->browse(function (Browser $browser) use ($user, $family) {
-//            $browser->loginAs($user->id)->visit('/household/f/0')
-//                ->within(new HouseholdForm, function ($browser) use ($family) {
-//                    $browser->select('select#is_address_current', $family->is_address_current)
-//                        ->createHousehold($family);
-//                });
-//        });
-//
-//        $this->assertDatabaseHas('families', ['name' => $family->name, 'address1' => $family->address1,
-//            'address2' => $family->address2, 'city' => $family->city, 'province_id' => $family->province_id,
-//            'zipcd' => $family->zipcd, 'country' => $family->country,
-//            'is_address_current' => $family->is_address_current, 'is_ecomm' => $family->is_ecomm,
-//            'is_scholar' => $family->is_scholar]);
-//
-//        $family = \App\Family::latest()->first();
-//        $changes = factory(\App\Family::class)->make(['is_address_current' => rand(0, 1)]);
-//
-//        $this->browse(function (Browser $browser) use ($user, $family, $changes) {
-//            $browser->loginAs($user->id)->visit('/household/f/' . $family->id)
-//                ->within(new HouseholdForm, function ($browser) use ($family, $changes) {
-//                    $browser->assertSelected('select#is_address_current', $family->is_address_current)
-//                        ->select('select#is_address_current', $changes->is_address_current)
-//                        ->changeHousehold($family, $changes);
-//                });
-//        });
-//
-//        $this->assertDatabaseHas('families', ['name' => $changes->name, 'address1' => $changes->address1,
-//            'address2' => $changes->address2, 'city' => $changes->city, 'province_id' => $changes->province_id,
-//            'zipcd' => $changes->zipcd, 'country' => $changes->country,
-//            'is_address_current' => $changes->is_address_current, 'is_ecomm' => $changes->is_ecomm,
-//            'is_scholar' => $changes->is_scholar]);
-//    }
-//
-//    /**
-//     * @group Charlie
-//     * @throws \Throwable
-//     */
-//    public function testCharlieRO()
-//    {
-//        $user = factory(\App\User::class)->create();
-//        factory(\App\Role_User::class)->create(['user_id' => $user->id, 'role_id' => \App\Role::where('name', 'council')->first()->id]);
-//
-//        $family = factory(\App\Family::class)->create(['is_address_current' => rand(0, 1)]);
-//        $this->browse(function (Browser $browser) use ($user, $family) {
-//            $browser->loginAs($user->id)->visit('/household/f/' . $family->id)
-//                ->within(new HouseholdForm, function ($browser) use ($family) {
-//                    $browser->select('select#is_address_current', $family->is_address_current)
-//                        ->assertDisabled('select#is_address_current')
-//                        ->viewHousehold($family);
-//                });
-//        });
+    /**
+     * @group Charlie
+     * @throws \Throwable
+     */
+    public function testCharlie()
+    {
+        $user = factory(User::class)->create(['usertype' => Usertype::Admin]);
+
+        $cuser = factory(User::class)->create();
+        $camper = factory(Camper::class)->create(['firstname' => 'Charlie', 'email' => $cuser->email]);
+        $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
+        GenerateCharges::dispatchNow(self::$year->id);
+        factory(Charge::class)->create(['camper_id' => $camper->id, 'amount' => -200.0, 'year_id' => self::$year->id]);
+
+        $workshop = factory(Workshop::class)->create(['year_id' => self::$year->id]);
+        $yaw = factory(YearattendingWorkshop::class)->make(['yearattending_id' => $ya->id,
+            'workshop_id' => $workshop->id]);
 
 
-//    }
+        $this->browse(function (Browser $browser) use ($user, $camper, $workshop, $yaw) {
+            $browser->loginAs($user->id)->visitRoute('workshopchoice.index', ['id' => $camper->id])
+                ->waitFor('form#workshops div.tab-content div.active')
+                ->assertSee($workshop->name)
+                ->click('button#workshop-' . $camper->id . '-' . $workshop->id)
+                ->waitFor('form#workshops button.active')
+                ->assertSeeIn('form#workshops button.active', $workshop->name)
+                ->click('button[type="submit"]')->waitFor('div.alert')
+                ->assertVisible('div.alert-success');
+        });
+
+        $this->assertDatabaseHas('yearsattending__workshop', ['yearattending_id' => $yaw->yearattending_id,
+            'workshop_id' => $yaw->workshop_id, 'is_enrolled' => 1]);
+        $this->assertDatabaseHas('workshops', ['id' => $workshop->id, 'enrolled' => 1]);
+    }
+
+    /**
+     * @group Charlie
+     * @throws \Throwable
+     */
+    public function testCharlieRO()
+    {
+        $user = factory(User::class)->create(['usertype' => Usertype::Pc]);
+
+        $cuser = factory(User::class)->create();
+        $camper = factory(Camper::class)->create(['firstname' => 'Charlie', 'email' => $cuser->email]);
+        $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
+        GenerateCharges::dispatchNow(self::$year->id);
+        factory(Charge::class)->create(['camper_id' => $camper->id, 'amount' => -200.0, 'year_id' => self::$year->id]);
+
+        $workshops = factory(Workshop::class, 2)->create(['year_id' => self::$year->id]);
+        $yaw = factory(YearattendingWorkshop::class)->create(['yearattending_id' => $ya->id,
+            'workshop_id' => $workshops[0]->id]);
+
+
+        $this->browse(function (Browser $browser) use ($user, $camper, $workshops, $yaw) {
+            $browser->loginAs($user->id)->visitRoute('workshopchoice.index', ['id' => $camper->id])
+                ->waitFor('form#workshops div.tab-content div.active')
+                ->assertSeeIn('form#workshops button.active', $workshops[0]->name)
+                ->assertDontSeeIn('form#workshops button.active', $workshops[1]->name)
+                ->click('button#workshop-' . $camper->id . '-' . $workshops[1]->id)
+                ->waitFor('form#workshops button.active')
+                ->assertDontSeeIn('form#workshops button.active', $workshops[1]->name)
+                ->assertMissing('button[type="submit"]');
+        });
+
+    }
 
     /**
      * @group Evra
@@ -154,7 +156,7 @@ class WorkshopTest extends DuskTestCase
         $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
         $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
         GenerateCharges::dispatchNow(self::$year->id);
-        $charge = factory(Charge::class)->create(['camper_id' => $campers[0]->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
+        factory(Charge::class)->create(['camper_id' => $campers[0]->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
 
         $ref = new ReflectionClass('App\Enums\Timeslotname');
         $slots = $ref->getConstants();
@@ -163,12 +165,13 @@ class WorkshopTest extends DuskTestCase
             $workshop = factory(Workshop::class)->create(['year_id' => self::$year->id, 'timeslot_id' => $slot,
                 'capacity' => rand(2, 99)]);
             array_push($workshops, $workshop);
-            $yaw = factory(YearattendingWorkshop::class)->create(['yearattending_id' => $yas[0]->id,
+            factory(YearattendingWorkshop::class)->create(['yearattending_id' => $yas[0]->id,
                 'workshop_id' => $workshop->id]);
         }
 
         $this->browse(function (Browser $browser) use ($user, $campers, $workshops) {
-            $browser->loginAs($user->id)->visit('/workshopchoice')->pause(250)
+            $browser->loginAs($user->id)->visitRoute('workshopchoice.index')
+                ->waitFor('form#workshops div.tab-content div.active')
                 ->clickLink($campers[0]->firstname)->pause(250);
             foreach ($workshops as $workshop) {
                 $browser->assertSee($workshop->name)
@@ -209,7 +212,7 @@ class WorkshopTest extends DuskTestCase
         $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id,
             'program_id' => Programname::Cratty]);
         GenerateCharges::dispatchNow(self::$year->id);
-        $charge = factory(Charge::class)->create(['camper_id' => $camper->id, 'amount' => -200.0, 'year_id' => self::$year->id]);
+        factory(Charge::class)->create(['camper_id' => $camper->id, 'amount' => -200.0, 'year_id' => self::$year->id]);
 
         $workshops[0] = factory(Workshop::class)->create(['year_id' => self::$year->id,
             'timeslot_id' => Timeslotname::Morning]);
@@ -219,7 +222,8 @@ class WorkshopTest extends DuskTestCase
             'workshop_id' => $workshops[1]->id]);
 
         $this->browse(function (Browser $browser) use ($user, $camper, $workshops, $yaw) {
-            $browser->loginAs($user->id)->visit('/workshopchoice')
+            $browser->loginAs($user->id)->visitRoute('workshopchoice.index')
+                ->waitFor('form#workshops div.tab-content div.active')
                 ->assertSee("automatically enrolled in Cratty")
                 ->assertDontSee("Morning")->assertDontSee($workshops[0]->name)
                 ->click('button#workshop-' . $camper->id . '-' . $workshops[1]->id)
@@ -249,7 +253,7 @@ class WorkshopTest extends DuskTestCase
         $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
         $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
         GenerateCharges::dispatchNow(self::$year->id);
-        $charge = factory(Charge::class)->create(['camper_id' => $campers[0]->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
+        factory(Charge::class)->create(['camper_id' => $campers[0]->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
 
         $workshop = factory(Workshop::class)->create(['year_id' => self::$year->id, 'capacity' => rand(3, 99)]);
         $hw = factory(YearattendingWorkshop::class)->create(['yearattending_id' => $yah->id,
@@ -262,7 +266,8 @@ class WorkshopTest extends DuskTestCase
         $this->assertDatabaseHas('workshops', ['id' => $workshop->id, 'enrolled' => 3]);
 
         $this->browse(function (Browser $browser) use ($user, $head, $campers, $workshop) {
-            $browser->loginAs($user->id)->visit('/workshopchoice')->pause(250)
+            $browser->loginAs($user->id)->visitRoute('workshopchoice.index')
+                ->waitFor('form#workshops div.tab-content div.active')
                 ->clickLink($head->firstname)->pause(250)
                 ->assertSeeIn('form#workshops div.active button.active', $workshop->name)
                 ->click('button#workshop-' . $head->id . '-' . $workshop->id)
@@ -302,7 +307,7 @@ class WorkshopTest extends DuskTestCase
         $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id,
             'program_id' => Programname::Burt]);
         GenerateCharges::dispatchNow(self::$year->id);
-        $charge = factory(Charge::class)->create(['camper_id' => $head->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
+        factory(Charge::class)->create(['camper_id' => $head->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
 
         $workshopsC = factory(Workshop::class, 2)->create(['year_id' => self::$year->id, 'capacity' => rand(2, 99),
             'timeslot_id' => Timeslotname::Early_Afternoon, 'w' => 1]);
@@ -320,7 +325,8 @@ class WorkshopTest extends DuskTestCase
             'workshop_id' => $workshopsNC[1]->id]);
 
         $this->browse(function (Browser $browser) use ($user, $head, $campers, $workshopsC, $workshopsNC) {
-            $browser->loginAs($user->id)->visit('/workshopchoice')->pause(250)
+            $browser->loginAs($user->id)->visitRoute('workshopchoice.index')
+                ->waitFor('form#workshops div.tab-content div.active')
                 ->clickLink($head->firstname)->pause(250)
                 ->click('button#workshop-' . $head->id . '-' . $workshopsNC[0]->id)
                 ->click('button#workshop-' . $head->id . '-' . $workshopsNC[1]->id)
@@ -374,12 +380,13 @@ class WorkshopTest extends DuskTestCase
             factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
         }
         GenerateCharges::dispatchNow(self::$year->id);
-        $charge = factory(Charge::class)->create(['camper_id' => $head->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
+        factory(Charge::class)->create(['camper_id' => $head->id, 'amount' => -400.0, 'year_id' => self::$year->id]);
 
         $workshop = factory(Workshop::class)->create(['year_id' => self::$year->id, 'capacity' => 5]);
 
         $this->browse(function (Browser $browser) use ($user, $head, $campers, $workshop, $ya) {
-            $browser->loginAs($user->id)->visit('/workshopchoice')->pause(250)
+            $browser->loginAs($user->id)->visitRoute('workshopchoice.index')
+                ->waitFor('form#workshops div.tab-content div.active')
                 ->clickLink($head->firstname)->pause(250)
                 ->mouseover('button#workshop-' . $head->id . '-' . $workshop->id)
                 ->waitForText('Open for Enrollment')->assertSee($workshop->led_by);
@@ -422,7 +429,7 @@ class WorkshopTest extends DuskTestCase
         }
 
         $this->browse(function (Browser $browser) use ($timeslots, $wrongshop) {
-            $browser->visit('/workshops')->waitFor('div.tab-content div.active');
+            $browser->visitRoute('workshops.display')->waitFor('div.tab-content div.active');
             foreach ($timeslots as $timeslot) {
                 $browser->script('window.scrollTo(0,0)');
                 $browser->clickLink($timeslot->name)->pause('250');

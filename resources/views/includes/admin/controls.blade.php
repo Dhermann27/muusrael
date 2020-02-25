@@ -6,10 +6,11 @@
         <a class="dropdown-item" href="{{ route('household.index') }}"><i class="far fa-home"></i> Billing</a>
         <a class="dropdown-item" href="{{ route('campers.index') }}"><i class="far fa-users"></i> Campers</a>
         <a class="dropdown-item" href="{{ route('payment.index') }}"><i class="far fa-usd-circle"></i> Statement</a>
-        {{--        <a class="dropdown-item" href="{{ route('workshopchoice.index') }}"><i class="far fa-rocket"></i>--}}
-        {{--            Workshops</a>--}}
-        <a class="dropdown-item" href="{{ route('roomselection.index') }}"><i class="far fa-bed"></i> Room Selection (Map View)</a>
-        <a class="dropdown-item" href="{{ route('roomselection.read') }}"><i class="far fa-bed"></i> Room Selection (Tool View)</a>
+        <a class="dropdown-item" href="{{ route('workshopchoice.index') }}"><i class="far fa-rocket"></i> Workshops</a>
+        <a class="dropdown-item" href="{{ route('roomselection.index') }}"><i class="far fa-bed"></i> Room Selection
+            (Map View)</a>
+        <a class="dropdown-item" href="{{ route('roomselection.read') }}"><i class="far fa-bed"></i> Room Selection
+            (Tool View)</a>
         {{--        <a class="dropdown-item" href="{{ route('/volunteer/' . $id) }}"><i class="far fa-handshake"></i>--}}
         {{--            Volunteer</a>--}}
         {{--        <a class="dropdown-item" href="{{ route('confirm.index') }}"><i class="far fa-envelope"></i>--}}

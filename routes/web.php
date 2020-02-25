@@ -10,8 +10,8 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/contact', 'ContactController@contactIndex')->name('contact');
-Route::post('/contact', 'ContactController@contactStore')->name('contact');
+Route::get('/contact', 'ContactController@contactIndex')->name('contact.index');
+Route::post('/contact', 'ContactController@contactStore')->name('contact.store');
 
 Route::get('/cost', 'HomeController@campcost')->name('cost');
 Route::get('/themespeaker', 'HomeController@themespeaker')->name('themespeaker');
@@ -54,9 +54,9 @@ Route::group(['prefix' => 'roomselection', 'middleware' => 'auth'], function () 
 
 Route::group(['prefix' => 'workshopchoice', 'middleware' => 'auth'], function () {
     Route::get('/', 'WorkshopController@index')->name('workshopchoice.index')->middleware('can:has-paid');
+    Route::get('/{id?}', 'WorkshopController@index')->name('workshopchoice.index')->middleware('can:is-council');
     Route::post('/', 'WorkshopController@store')->name('workshopchoice.store')->middleware('can:has-paid');
-//    Route::get('/workshopchoice/{i}/{id}', 'WorkshopController@read')->middleware('auth', 'role:admin|council');
-//    Route::post('/workshopchoice/f/{id}', 'WorkshopController@write')->middleware('auth', 'role:admin');
+    Route::post('/{id?}', 'WorkshopController@store')->name('workshopchoice.store')->middleware('can:is-super');
 });
 
 Route::group(['prefix' => 'nametag', 'middleware' => 'auth'], function () {

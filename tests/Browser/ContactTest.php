@@ -25,7 +25,7 @@ class ContactTest extends DuskTestCase
         $fakedGraph = $faker->paragraph;
         $box = factory(Contactbox::class)->create();
         $this->browse(function (Browser $browser) use ($box, $fakedName, $fakedEmail, $fakedGraph) {
-            $browser->visit('/contact')
+            $browser->visitRoute('contact.index')
                 ->assertSee('Contact Us')
                 ->assertSeeIn('select#mailbox', $box->name)
                 ->type('name', $fakedName)
@@ -60,7 +60,7 @@ class ContactTest extends DuskTestCase
         $fakedGraph = $faker->paragraph;
         $box = factory(Contactbox::class)->create(['emails' => $faker->safeEmail . ',' . $faker->safeEmail]);
         $this->browse(function (Browser $browser) use ($box, $fakedName, $fakedEmail, $fakedGraph) {
-            $browser->visit('/contact')
+            $browser->visitRoute('contact.index')
                 ->assertSee('Contact Us')
                 ->assertSeeIn('select#mailbox', $box->name)
                 ->type('name', $fakedName)
@@ -90,7 +90,7 @@ class ContactTest extends DuskTestCase
         $fakedGraph = "Howdy ho there neighbor. Have you heard the Good News about the scriptures, in the words of Christ?";
         $box = factory(Contactbox::class)->create();
         $this->browse(function (Browser $browser) use ($box, $fakedName, $fakedEmail, $fakedGraph) {
-            $browser->visit('/contact')
+            $browser->visitRoute('contact.index')
                 ->assertSee('Contact Us')
                 ->assertSeeIn('select#mailbox', $box->name)
                 ->type('name', $fakedName)
@@ -116,7 +116,7 @@ class ContactTest extends DuskTestCase
         $fakedGraph = $faker->paragraph;
         $box = factory(Contactbox::class)->create();
         $this->browse(function (Browser $browser) use ($box, $user, $camper, $fakedGraph) {
-            $browser->loginAs($user->id)->visit('/contact')
+            $browser->loginAs($user->id)->visitRoute('contact.index')
                 ->assertSee('Contact Us')
                 ->assertSee($camper->firstname . ' ' . $camper->lastname)
                 ->assertSee($camper->email)

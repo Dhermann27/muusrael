@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Camper;
 use App\Enums\Timeslotname;
 use App\ThisyearCamper;
 use App\Timeslot;
@@ -9,12 +10,16 @@ use App\YearattendingWorkshop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class WorkshopController extends Controller
 {
-    public function store(Request $request)
+    public function store(Request $request, $id = null)
     {
-        $campers = $this->getCampers(Auth::user()->camper->family_id);
+        if ($id && Gate::allows('is-super')) {
+            $camper = Camper::findOrFail($id);
+        }
+        $campers = $this->getCampers($id ? $camper->family_id : Auth::user()->camper->family_id);
 
         foreach ($campers as $camper) {
             $this->validate($request, ['workshops-' . $camper->id => 'nullable|regex:/^\d{0,5}+(,\d{0,5})*$/']);
@@ -47,63 +52,24 @@ class WorkshopController extends Controller
 
         $request->session()->flash('success', 'Your workshop selections have been updated.');
 
-        return redirect()->action('WorkshopController@index');
+        return redirect()->action('WorkshopController@index', ['id' => $id]);
     }
 
-    public function index(Request $request)
+    public function index(Request $request, $id = null)
     {
-        $campers = $this->getCampers(Auth::user()->camper->family_id);
+        if ($id && Gate::allows('is-council')) {
+            $camper = Camper::findOrFail($id);
+            $request->session()->flash('camper', $camper);
+        }
+        $campers = $this->getCampers($id ? $camper->family_id : Auth::user()->camper->family_id);
         if (count($campers) == 0) {
-            $request->session()->flash('warning', 'You have no campers registered for this year.');
-            return redirect()->action('CamperController@index');
+            $request->session()->flash('warning', 'There have no campers registered for this year.');
+            return redirect()->action('CamperController@index', ['id' => $id ? $id : null]);
         }
         return view('workshopchoice', ['timeslots' => Timeslot::with('workshops')->get(),
             'campers' => $campers]);
 
     }
-//
-//    public function write(Request $request, $id)
-//    {
-//
-//        $campers = $this->getCampers($id);
-//
-//        foreach ($campers as $camper) {
-//            $choices = \App\Yearattending__Workshop::where('yearattendingid', $camper->yearattendingid)
-//                ->get()->keyBy('workshopid');
-//
-//            foreach (explode(',', $request->input($camper->id . '-workshops')) as $choice) {
-//                if ($choice != '') {
-//                    \App\Yearattending__Workshop::updateOrCreate(
-//                        ['yearattendingid' => $camper->yearattendingid, 'workshopid' => $choice],
-//                        ['yearattendingid' => $camper->yearattendingid, 'workshopid' => $choice]);
-//
-//                    $choices->forget($choice);
-//                }
-//            }
-//
-//            if (count($choices) > 0) {
-//                foreach ($choices as $choice) {
-//                    DB::statement('DELETE FROM yearattending__workshop WHERE yearattendingid=' .
-//                        $choice->yearattendingid . ' AND workshopid=' . $choice->workshopid);
-//                }
-//            }
-//        }
-//
-//        DB::statement('CALL workshops();');
-//        DB::statement('CALL generate_charges(getcurrentyear());');
-//
-//        $request->session()->flash('success', 'Green means good! Yayyyyyy');
-//
-//        return redirect()->action('WorkshopController@read', ['i' => 'f', 'id' => $id]);
-//    }
-//
-//    public function read($i, $id)
-//    {
-//        $readonly = \Entrust::can('read') && !\Entrust::can('write');
-//        return view('workshopchoice', ['timeslots' => \App\Timeslot::with('workshops.choices')->get(),
-//            'campers' => $this->getCampers($i == 'f' ? $id : \App\Camper::find($id)->familyid),
-//            'readonly' => $readonly, 'steps' => $this->getSteps()]);
-//    }
 
     public function display()
     {

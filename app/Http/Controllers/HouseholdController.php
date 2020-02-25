@@ -59,7 +59,7 @@ class HouseholdController extends Controller
             $id = $camper->id;
         }
 
-        return redirect()->route('household.index', ['id' => $id != null ? $id : null]);
+        return redirect()->route('household.index', ['id' => $id]);
 
     }
 

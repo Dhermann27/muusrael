@@ -165,7 +165,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto navbar-center" id="mySidenav">
 
-                    <li class="nav-item mt-1"><a href="{{ route('contact') }}" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item mt-1"><a href="{{ route('contact.index') }}" class="nav-link">Contact Us</a></li>
 
                     <li class="nav-item mt-1">
                         <div class="dropdown">
@@ -259,7 +259,7 @@
                                         <a href="#" class="dropdown-item disabled">Confirmation</a>
                                     @else
                                         <a href="{{ route('workshopchoice.index') }}" class="dropdown-item">
-                                            <i class="far fa-rocket fa-fw"></i>Workshops</a>
+                                            <i class="far fa-rocket fa-fw"></i> Workshops</a>
                                         <a href="{{ route('roomselection.index') }}" class="dropdown-item">
                                             <i class="far fa-bed fa-fw"></i> Room Selection</a>
                                         <a href="{{ route('nametag.index') }}" class="dropdown-item">
