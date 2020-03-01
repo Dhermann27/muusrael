@@ -73,6 +73,61 @@ Route::group(['prefix' => 'data'], function () {
     Route::get('steps', 'DataController@steps')->middleware('can:has-paid');
     Route::get('steps/{id?}', 'DataController@steps')->middleware('can:is-council');
 });
+Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'reports'], function () {
+    Route::get('campers', 'ReportController@campers')->name('reports.campers');
+//    Route::get('campers/{year}.xls', 'ReportController@campersExport')->name('reports.campers.export');
+//    Route::get('chart', 'ReportController@chart');
+//    Route::get('conflicts', 'ReportController@conflicts');
+//    Route::get('deposits', 'ReportController@deposits');
+//    Route::post('deposits/{id}', 'ReportController@depositsMark')->middleware('auth', 'role:admin');
+//    Route::get('firsttime', 'ReportController@firsttime');
+//    Route::get('guarantee', 'ReportController@guarantee');
+//    Route::get('outstanding', 'ReportController@outstanding');
+//    Route::get('outstanding/{filter?}', 'ReportController@outstanding');
+//    Route::post('outstanding/{id}', 'ReportController@outstandingMark')->middleware('auth', 'role:admin');
+//    Route::get('payments', 'ReportController@payments');
+//    Route::get('payments/{year}.xls', 'ReportController@paymentsExport');
+//    Route::get('payments/{year?}/name', 'ReportController@payments');
+//    Route::get('programs', 'ReportController@programs');
+//    Route::get('rates', 'ReportController@rates');
+//    Route::post('rates', 'ReportController@ratesMark')->middleware('auth', 'role:admin');;
+//    Route::get('roommates', 'ReportController@roommates');
+//    Route::get('rooms', 'ReportController@rooms');
+//    Route::get('rooms/{year}.xls', 'ReportController@roomsExport');
+//    Route::get('rooms/{year?}/name', 'ReportController@rooms');
+//    Route::get('states', 'ReportController@states');
+//    Route::get('unassigned', 'ReportController@unassigned');
+//    Route::get('volunteers', 'ReportController@volunteers');
+//    Route::get('workshops', 'ReportController@workshops');
+});
+//
+//Route::group(['middleware' => ['role:admin|council'], 'prefix' => 'tools'], function () {
+//    Route::get('cognoscenti', 'ToolsController@cognoscenti');
+//    Route::get('nametags', 'ToolsController@nametagsList');
+//    Route::post('nametags', 'ToolsController@nametagsPrint');
+//    Route::get('nametags/all', 'ToolsController@nametags');
+//    Route::get('nametags/{i}/{id}', 'ToolsController@nametagsFamily');
+//    Route::get('programs', 'ToolsController@programIndex');
+//    Route::post('programs', 'ToolsController@programStore');
+//    Route::get('staffpositions', 'ToolsController@positionIndex');
+//    Route::post('staffpositions', 'ToolsController@positionStore');
+//    Route::get('workshops', 'ToolsController@workshopIndex');
+//    Route::post('workshops', 'ToolsController@workshopStore');
+//});
+//
+//Route::group(['middleware' => ['role:admin'], 'prefix' => 'admin'], function () {
+//    Route::get('distlist', 'AdminController@distlistIndex');
+//    Route::post('distlist', 'AdminController@distlistStore');
+//    Route::get('master', 'AdminController@masterIndex');
+//    Route::post('master', 'AdminController@masterStore');
+//    Route::get('massassign', 'AdminController@massAssignIndex');
+//    Route::post('massassign/f/{id}', 'AdminController@massAssignStore');
+//    Route::get('roles', 'AdminController@roleIndex');
+//    Route::post('roles', 'AdminController@roleStore');
+//    Route::get('positions', 'AdminController@positionIndex');
+//    Route::post('positions', 'AdminController@positionStore');
+//});
+
 
 Route::get('/brochure', function () {
     $year = date('Y');

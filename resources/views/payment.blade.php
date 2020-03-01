@@ -25,7 +25,7 @@
             </ul>
 
             <div id="nav-tab-yearContent" class="tab-content p-3">
-                @foreach($years as $thisyear => $charges)
+                @foreach($years->sortKeys() as $thisyear => $charges)
                     <div role="tabpanel" class="tab-pane fade" aria-expanded="false" id="year-{{ $thisyear }}">
 
                         <table class="table table-striped">

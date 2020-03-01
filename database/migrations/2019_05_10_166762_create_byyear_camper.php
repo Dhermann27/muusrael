@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateByyearCamper extends Migration
 {
@@ -15,18 +13,19 @@ class CreateByyearCamper extends Migration
     public function up()
     {
         DB::unprepared("CREATE VIEW byyear_campers AS
-                      SELECT
+                    SELECT
                         y.id                                 year_id,
                         y.year,
-                        f.id                                 family_id,
-                        f.address1,
-                        f.address2,
-                        f.city,
-                        pv.code                             provincecode,
-                        f.zipcd,
-                        f.country,
-                        f.is_ecomm,
-                        f.is_address_current,
+                        bf.id                                 family_id,
+                        bf.familyname,
+                        bf.address1,
+                        bf.address2,
+                        bf.city,
+                        bf.provincecode,
+                        bf.zipcd,
+                        bf.country,
+                        bf.is_ecomm,
+                        bf.is_address_current,
                         c.id,
                         c.pronoun_id,
                         o.name                               pronounname,
@@ -54,11 +53,11 @@ class CreateByyearCamper extends Migration
                         r.room_number,
                         b.id                                 building_id,
                         b.name                               buildingname
-                      FROM (families f, campers c, yearsattending ya, programs p, pronouns o, provinces pv, years y)
+                      FROM (byyear_families bf, campers c, yearsattending ya, programs p, pronouns o, years y)
                         LEFT JOIN (buildings b, rooms r) ON ya.room_id = r.id AND r.building_id = b.id
                         LEFT JOIN (churches u, provinces pvp) ON c.church_id=u.id AND u.province_id=pvp.id
-                      WHERE f.id = c.family_id AND c.id = ya.camper_id AND p.id = ya.program_id AND ya.year_id=y.id
-                            AND c.pronoun_id = o.id AND f.province_id=pv.id;");
+                      WHERE bf.id = c.family_id AND bf.year_id=y.id AND c.id = ya.camper_id AND p.id = ya.program_id AND ya.year_id=y.id
+                            AND c.pronoun_id = o.id;");
     }
 
     /**
@@ -67,6 +66,7 @@ class CreateByyearCamper extends Migration
      * @return void
      */
     public function down()
-    {        DB::unprepared('DROP VIEW IF EXISTS byyear_campers;');
+    {
+        DB::unprepared('DROP VIEW IF EXISTS byyear_campers;');
     }
 }

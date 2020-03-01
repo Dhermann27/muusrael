@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Storage;
 
 class Year extends Model
 {
+    public function byyearcampers()
+    {
+        return $this->hasMany('App\ByyearCamper', 'year_id', 'id')->orderBy('birthdate');
+    }
 
     public function yearsattending()
     {

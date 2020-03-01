@@ -2,7 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Providers/TelescopeServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/TelescopeServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/reports/datatables.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DataController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Year.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Year.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_10_166761_create_byyear_family.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166761_create_byyear_family.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_05_10_166762_create_byyear_camper.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_05_10_166762_create_byyear_camper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/custom.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/payment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/payment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +272,7 @@
       <workItem from="1579964409581" duration="61440000" />
       <workItem from="1580503126133" duration="57000000" />
       <workItem from="1581446883175" duration="9508000" />
-      <workItem from="1581608991585" duration="64394000" />
+      <workItem from="1581608991585" duration="79713000" />
     </task>
     <servers />
   </component>
@@ -334,14 +349,14 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="461" y="285" key="NewPhpClassDialog/0.23.1440.877@0.23.1440.877" timestamp="1580176815907" />
-    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1582302581295">
+    <state x="541" y="392" key="NewPhpFileDialog" timestamp="1583005358241">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1582302581295" />
-    <state x="229" y="100" key="SettingsEditor" timestamp="1580606150408">
+    <state x="541" y="392" key="NewPhpFileDialog/0.23.1440.877@0.23.1440.877" timestamp="1583005358241" />
+    <state x="229" y="100" key="SettingsEditor" timestamp="1583004686641">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="229" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1580606150408" />
+    <state x="229" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1583004686641" />
     <state width="564" height="445" key="SwitcherDM" timestamp="1580760717162">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -362,17 +377,17 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="100" y="123" width="1225" height="677" key="dock-window-1/0.23.1440.877@0.23.1440.877" timestamp="1582304735566" />
-    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1582667741832">
+    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1583004276201">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1582667741832" />
+    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1583004276201" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1580224979748">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1580224979748" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1582668340259">
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1583100215478">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1582668340259" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1583100215478" />
   </component>
 </project>

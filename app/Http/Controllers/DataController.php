@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Camper;
 use App\Church;
-use App\Family;
 use App\Medicalresponse;
 use App\Yearattending;
 use App\YearattendingWorkshop;
@@ -48,7 +47,8 @@ class DataController extends Controller
 
     public function steps($id = null)
     {
-        $camper = $id ? Camper::findOrFail($id) :Auth::user()->camper;
+        if ($id != null && $id == 0) return array();
+        $camper = $id ? Camper::findOrFail($id) : Auth::user()->camper;
         $family = $camper->family->city != null;
         $workshops = 0;
         $room = 0;
