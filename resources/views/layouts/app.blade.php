@@ -118,7 +118,7 @@
                         <li id="campersearch" class="list-inline-item">
                             <div class="input-group p-0 m-0">
                                 <div class="input-group-prepend">
-                                    @include('includes.admin.controls', ['inputgroup' => 'true'])
+                                    @include('includes.admin.controls', ['id' => null])
                                 </div>
 
                                 <label class="sr-only" for="camperlist">Camper Search</label>

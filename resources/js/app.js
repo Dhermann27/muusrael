@@ -2,10 +2,15 @@ require('./bootstrap');
 
 import '@fortawesome/fontawesome-pro/js/all.min.js';
 import 'bootstrap-datepicker/js/bootstrap-datepicker'
-import 'select2/dist/js/select2.min.js'
-import 'datatables.net/js/jquery.dataTables.min.js'
-import 'datatables.net-bs4/js/dataTables.bootstrap4.min.js'
-import 'datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'
+import 'select2/dist/js/select2.min.js';
+import 'datatables.net-bs4/js/dataTables.bootstrap4.min';
+import 'datatables.net-buttons/js/dataTables.buttons.min';
+import 'datatables.net-buttons-bs4/js/buttons.bootstrap4.min';
+import 'datatables.net-buttons/js/buttons.colVis.js';
+import 'datatables.net-buttons/js/buttons.html5.js';
+import 'datatables.net-buttons/js/buttons.print.js';
+import 'datatables.net-responsive-bs4/js/responsive.bootstrap4.min';
+import 'datatables.net-rowgroup-bs4/js/rowGroup.bootstrap4.min';
 
 /* Template Name: Minton - Bootstrap 4 Landing Page Tamplat
    Author: CoderThemes
