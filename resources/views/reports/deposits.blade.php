@@ -24,7 +24,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($charges as $charge)
+                                @foreach($charges->sortBy('timestamp') as $charge)
                                     <tr>
                                         <td>{{ $charge->camper->firstname }} {{ $charge->camper->lastname }}</td>
                                         <td>{{ number_format($charge->amount, 2) }}</td>
