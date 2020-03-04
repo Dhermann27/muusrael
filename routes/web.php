@@ -78,8 +78,8 @@ Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'reports']
 //    Route::get('campers/{year}.xls', 'ReportController@campersExport')->name('reports.campers.export');
 //    Route::get('chart', 'ReportController@chart');
 //    Route::get('conflicts', 'ReportController@conflicts');
-//    Route::get('deposits', 'ReportController@deposits');
-//    Route::post('deposits/{id}', 'ReportController@depositsMark')->middleware('auth', 'role:admin');
+    Route::get('deposits', 'ReportController@deposits')->name('reports.deposits')->middleware('can:is-council');
+    Route::post('deposits/{id}', 'ReportController@depositsMark')->name('reports.deposits.mark')->middleware('can:is-super');
 //    Route::get('firsttime', 'ReportController@firsttime');
 //    Route::get('guarantee', 'ReportController@guarantee');
 //    Route::get('outstanding', 'ReportController@outstanding');

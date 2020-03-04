@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\ByyearCamper;
+use App\Charge;
+use App\Chargetype;
 use App\Year;
 use Carbon\Carbon;
 
@@ -19,7 +20,7 @@ class ReportController extends Controller
             "programname" => "Program",
             "buildingname" => "Building",
             "room_number" => "Room"];
-        $years = Year::where('year', '>', $this->year->year-7)->where('year', '<=', $this->year->year)->with('byyearcampers')->get();
+        $years = Year::where('year', '>', $this->year->year - 7)->where('year', '<=', $this->year->year)->with('byyearcampers')->get();
 
         return view('reports.datatables', ['title' => 'Registered Campers', 'columns' => $columns,
             'tabs' => $years, 'tabfield' => 'year', 'datafield' => "byyearcampers"]);
@@ -39,4 +40,17 @@ class ReportController extends Controller
 //            });
 //        })->export('xls');
 //    }
+
+    public function depositsMark($id)
+    {
+        Charge::where('chargetype_id', $id)->where('deposited_date', null)
+            ->update(['deposited_date' => Carbon::now()->toDateString()]);
+        return redirect()->action('ReportController@deposits');
+    }
+
+    public function deposits()
+    {
+        return view('reports.deposits',
+            ['chargetypes' => Chargetype::where('is_deposited', '1')->with('thisyearcharges.camper')->get()]);
+    }
 }

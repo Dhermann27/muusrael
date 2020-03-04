@@ -99,6 +99,8 @@
                                                 class="fa fa-caret-right float-right mt-1 mr-2"></i></a>
                                         <ul class="dropdown-menu p-2">
                                             <li><a class="text-nowrap" tabindex="-1"
+                                                   href="{{ route('reports.deposits') }}">Bank Deposits</a></li>
+                                            <li><a class="text-nowrap" tabindex="-1"
                                                    href="{{ route('reports.campers') }}">Campers</a></li>
                                             <li><a class="text-nowrap" tabindex="-1"
                                                    href="{{ route('roomselection.map') }}">Room Selection Map</a></li>
