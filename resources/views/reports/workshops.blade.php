@@ -15,7 +15,7 @@
                 @if($timeslot->id != \App\Enums\Timeslotname::Excursions)
                     <h5>{{ $timeslot->start_time->format('g:i A') }} - {{ $timeslot->end_time->format('g:i A') }}</h5>
                 @endif
-                @foreach($timeslot->workshops as $workshop)
+                @foreach($timeslot->workshops->where('year_id', $year->id) as $workshop)
                     <h4>{{ $workshop->name }} ({{ count($workshop->choices) }} / {{ $workshop->capacity }})</h4>
                     <table class="table">
                         <thead>
@@ -28,8 +28,8 @@
                         <tbody>
                         @foreach($workshop->choices()->orderBy('is_leader', 'desc')->orderBy('created_at')->get() as $choice)
                             <tr @if($choice->is_enrolled == '0') class="table-danger"@endif>
-                                <td>{{ $choice->yearattending->camper->lastname }}
-                                    , {{ $choice->yearattending->camper->firstname }}</td>
+                                <td>{{ $choice->yearattending->camper->lastname }},
+                                    {{ $choice->yearattending->camper->firstname }}</td>
                                 <td>
                                     @if($choice->is_leader == '1')
                                         <strong>Leader</strong>
