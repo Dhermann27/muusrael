@@ -6,9 +6,11 @@ use App\Charge;
 use App\Chargetype;
 use App\Enums\Chargetypename;
 use App\ThisyearCharge;
+use App\Timeslot;
 use App\Year;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use function preg_match;
 
 class ReportController extends Controller
@@ -33,8 +35,9 @@ class ReportController extends Controller
             'buildingname' => 'Building',
             'room_number' => 'Room',
             'controls' => 'Admin Controls'];
-        $visible = [0, 1, 2, 3, 4, 5, 6, 7, 8, 12, 15];
-        $years = Year::where('year', '>', $this->year->year - 7)->where('year', '<=', $this->year->year)->with('byyearcampers')->get();
+        $visible = [0, 1, 2, 3, 4, 5, 6, 7, 11, 14];
+        $years = Year::where('year', '>', $this->year->year - 7)->where('year', '<=', $this->year->year)
+            ->orderBy('year')->with('byyearcampers')->get();
 
         return view('reports.datatables', ['title' => 'Registered Campers', 'columns' => $columns,
             'visible' => $visible, 'groupColumn' => 0, 'tabs' => $years, 'tabfield' => 'year',
@@ -72,5 +75,11 @@ class ReportController extends Controller
         });
 
         return view('reports.deposits', ['chargetypes' => $chargetypes, 'moments' => $moments]);
+    }
+    public function workshops()
+    {
+        DB::raw('CALL workshops()');
+        return view('reports.workshops', ['timeslots' => Timeslot::with('workshops.choices.yearattending.camper')->get()]);
+
     }
 }

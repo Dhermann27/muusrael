@@ -7,27 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class YearattendingWorkshop extends Model
 {
     protected $fillable = ['yearattending_id'];
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
     public $incrementing = false;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
     protected $table = 'yearsattending__workshop';
 
     public function yearattending()
     {
-        return $this->hasOne('App\Yearattending');
+        return $this->hasOne('App\Yearattending', 'id', 'yearattending_id');
     }
 
     public function workshop()
     {
-        return $this->hasOne('App\Workshop');
+        return $this->hasOne('App\Workshop', 'id', 'workshop_id');
     }
 }

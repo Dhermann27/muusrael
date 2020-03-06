@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Workshop extends Model
 {
@@ -40,5 +41,14 @@ class Workshop extends Model
     public function yearsattending()
     {
         return $this->belongsToMany('App\Yearattending')->using('App\YearattendingWorkshop');
+    }
+
+    public function getEmailsAttribute()
+    {
+        return DB::table('yearsattending__workshop')
+            ->join('yearsattending', 'yearsattending.id', '=', 'yearsattending__workshop.yearattending_id')
+            ->join('campers', 'campers.id', '=', 'yearsattending.camper_id')
+            ->where('yearsattending__workshop.workshop_id', $this->id)->where('campers.email', '!=', null)
+            ->implode('email', '; ');
     }
 }

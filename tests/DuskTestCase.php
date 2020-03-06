@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Console\Kernel;
 use App\Year;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
@@ -32,7 +33,7 @@ abstract class DuskTestCase extends BaseTestCase
 
         if (!self::$hasSetupRun) {
             $app = require __DIR__ . '/../bootstrap/app.php';
-            $kernel = $app->make(\App\Console\Kernel::class);
+            $kernel = $app->make(Kernel::class);
             $kernel->bootstrap();
             echo "Database migrate:refresh --seed\n";
             $kernel->call('migrate:refresh --seed');
@@ -41,7 +42,7 @@ abstract class DuskTestCase extends BaseTestCase
         }
     }
 
-    protected function setUp() :void
+    protected function setUp(): void
     {
         parent::setUp();
         foreach (static::$browsers as $browser) {

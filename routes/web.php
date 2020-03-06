@@ -98,9 +98,9 @@ Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'reports']
 //    Route::get('states', 'ReportController@states');
 //    Route::get('unassigned', 'ReportController@unassigned');
 //    Route::get('volunteers', 'ReportController@volunteers');
-//    Route::get('workshops', 'ReportController@workshops');
+    Route::get('workshops', 'ReportController@workshops')->name('reports.workshops');
 });
-//
+
 //Route::group(['middleware' => ['role:admin|council'], 'prefix' => 'tools'], function () {
 //    Route::get('cognoscenti', 'ToolsController@cognoscenti');
 //    Route::get('nametags', 'ToolsController@nametagsList');

@@ -104,6 +104,8 @@
                                                    href="{{ route('reports.campers') }}">Campers</a></li>
                                             <li><a class="text-nowrap" tabindex="-1"
                                                    href="{{ route('roomselection.map') }}">Room Selection Map</a></li>
+                                            <li><a class="text-nowrap" tabindex="-1"
+                                                   href="{{ route('reports.workshops') }}">Workshop Attendees</a></li>
                                         </ul>
                                     </li>
                                     {{--                                    <li class="dropdown-submenu">--}}
@@ -316,7 +318,7 @@
         </section>
 
         <!-- footer start -->
-        <footer class="bg-dark footer text-white">
+        <footer class="bg-dark footer text-white d-print-none">
             <div class="container-fluid">
                 <div class="row pt-5">
                     <div class="col-lg-6">
