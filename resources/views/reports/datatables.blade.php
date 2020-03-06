@@ -136,7 +136,7 @@
                         if (last !== group) {
                             $(rows).eq(i).before(
                                 '<tr class="group">' +
-                                '<td colspan="{{ count($columns)-2 }}">' + group + '</td>' +
+                                '<td colspan="{{ count($columns)-1 }}">' + group + '</td>' +
                                 '</tr>'
                             );
 
@@ -153,7 +153,7 @@
                         @if($column == "controls")
                         `@include('includes.admin.controls', ['id' => $data->id])`,
                         @else
-                            "{{ $data->$column }}",
+                            "{{ $data->$column }}@if(isset($groupColumn) && $loop->index == $groupColumn)<span class='d-none'>{{ $data->family_id }}</span>@endif",
                         @endif
                         @endforeach
                     ],

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -25,7 +26,8 @@ class CreateThisyearCharges extends Migration
                             bh.chargetype_id,
                             g.name chargetypename,
                             bh.timestamp,
-                            bh.memo
+                            bh.memo,
+                            bh.created_at
                           FROM campers c, byyear_charges bh, chargetypes g, years y
                           WHERE c.id = bh.camper_id AND bh.chargetype_id = g.id AND bh.year = y.year AND y.is_current = 1;");
     }

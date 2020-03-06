@@ -12218,6 +12218,10 @@ ul.dropdown-menu {
   }
 }
 
+tr.group {
+  background-color: #4f86c6 !important;
+}
+
 div.label {
   width: 3.6in;
   height: 2.89in;
