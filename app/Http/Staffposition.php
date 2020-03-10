@@ -8,12 +8,12 @@ class Staffposition extends Model
 {
     public function compensationlevel()
     {
-        return $this->hasOne('App\Compensationlevel');
+        return $this->hasOne('App\Compensationlevel', 'id', 'compensationlevel_id');
     }
 
     public function program()
     {
-        return $this->hasOne('App\Program');
+        return $this->hasOne('App\Program', 'id', 'progrram_id');
     }
 
     public function yearsattending()

@@ -4,7 +4,7 @@
 namespace App\Enums;
 
 
-class Timeslotname
+class Timeslotname extends BasicEnum
 {
     const Sunrise = 1000;
     const Morning = 1001;

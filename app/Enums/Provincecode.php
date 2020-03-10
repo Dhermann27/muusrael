@@ -4,7 +4,7 @@
 namespace App\Enums;
 
 
-class Provincecode
+class Provincecode extends BasicEnum
 {
     const MO = 1027;
 }

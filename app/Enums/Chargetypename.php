@@ -4,7 +4,7 @@
 namespace App\Enums;
 
 
-class Chargetypename
+class Chargetypename extends BasicEnum
 {
     const Fees = 1000;
     const Deposit = 1003;

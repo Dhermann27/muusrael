@@ -49,7 +49,7 @@ class ReportController extends Controller
         $found = false;
         foreach ($request->all() as $key => $value) {
             $matches = array();
-            if (preg_match('/mark-(\d+)/', $key, $matches)) {
+            if (preg_match('/delete-(\d+)/', $key, $matches)) {
                 $charge = Charge::findOrFail($matches[1]);
                 $charge->deposited_date = Carbon::now()->toDateString();
                 $charge->save();

@@ -23,8 +23,8 @@ class CreateStaffpositions extends Migration
             $table->unsignedBigInteger('program_id');
             $table->foreign('program_id')->references('id')->on('programs');
             $table->tinyInteger('pctype')->default(Pctype::Member);
-            $table->integer('start_year');
-            $table->integer('end_year');
+            $table->integer('start_year')->default(1901);
+            $table->integer('end_year')->default(2100);
             $table->timestamps();
         });
         DB::update('ALTER TABLE staffpositions AUTO_INCREMENT = 1000');

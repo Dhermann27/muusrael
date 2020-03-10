@@ -115,7 +115,7 @@ Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'reports']
 //    Route::post('workshops', 'ToolsController@workshopStore');
 //});
 //
-//Route::group(['middleware' => ['role:admin'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['can:is-super'], 'prefix' => 'admin'], function () {
 //    Route::get('distlist', 'AdminController@distlistIndex');
 //    Route::post('distlist', 'AdminController@distlistStore');
 //    Route::get('master', 'AdminController@masterIndex');
@@ -124,9 +124,9 @@ Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'reports']
 //    Route::post('massassign/f/{id}', 'AdminController@massAssignStore');
 //    Route::get('roles', 'AdminController@roleIndex');
 //    Route::post('roles', 'AdminController@roleStore');
-//    Route::get('positions', 'AdminController@positionIndex');
-//    Route::post('positions', 'AdminController@positionStore');
-//});
+    Route::get('positions', 'AdminController@positionIndex')->name('admin.positions.index');
+    Route::post('positions', 'AdminController@positionStore')->name('admin.positions.store');
+});
 
 
 Route::get('/brochure', function () {

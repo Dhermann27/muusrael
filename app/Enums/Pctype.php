@@ -4,7 +4,7 @@
 namespace App\Enums;
 
 
-class Pctype
+class Pctype extends BasicEnum
 {
     const Member = 0;
     const Apc = 1;

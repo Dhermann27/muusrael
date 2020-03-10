@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateRates extends Migration
 {
@@ -22,8 +22,8 @@ class CreateRates extends Migration
             $table->integer('min_occupancy');
             $table->integer('max_occupancy');
             $table->double('rate');
-            $table->integer('start_year');
-            $table->integer('end_year');
+            $table->integer('start_year')->default(1901);
+            $table->integer('end_year')->default(2100);
             $table->timestamps();
         });
         DB::update('ALTER TABLE rates AUTO_INCREMENT = 1000');

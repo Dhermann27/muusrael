@@ -4,7 +4,7 @@
 namespace App\Enums;
 
 
-class Programname
+class Programname extends BasicEnum
 {
     const Adult = 1008;
     const YoungAdult = 1009;

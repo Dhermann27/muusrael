@@ -1,4 +1,4 @@
-<div class="carousel-caption">
+<div class="carousel-caption text-nowrap">
     <h2 class="font-weight-bold text-letter-spacing-xs text-uppercase">
         Midwest Unitarian Universalist Summer Assembly
     </h2>

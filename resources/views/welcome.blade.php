@@ -21,14 +21,14 @@
     @endauth
 
     <div>
-        <div id="carouselWelcome" class="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
+        <div id="carouselWelcome" class="carousel slide carousel-fade pt-xl-5" data-ride="carousel" data-pause="false">
             <ol class="carousel-indicators">
                 <li data-target="#carouselWelcome" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselWelcome" data-slide-to="1"></li>
                 <li data-target="#carouselWelcome" data-slide-to="2"></li>
                 <li data-target="#carouselWelcome" data-slide-to="3"></li>
             </ol>
-            <div class="carousel-inner">
+            <div class="carousel-inner pt-xl-5">
                 <div class="carousel-item active">
                     <img src="{{ env('IMG_PATH') }}/images/lodge3.jpg" alt="First slide">
                     @include('includes.carouselcaption')

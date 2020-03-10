@@ -41,13 +41,7 @@
                                                 @include('includes.admin.controls', ['id' => $charge->camper->id])
                                             </td>
                                             @if(Gate::allows('is-super'))
-                                                <td data-toggle="buttons">
-                                                    <label class="btn btn-secondary btn-sm">
-                                                        <input type="checkbox"
-                                                               name="mark-{{ $charge->id }}"
-                                                               autocomplete="off"/>
-                                                    </label>
-                                                </td>
+                                                @include('includes.admin.delete', ['id' => $charge->id])
                                             @endif
                                         </tr>
                                     @endforeach

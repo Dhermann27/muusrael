@@ -92,6 +92,9 @@
                                             <li><a class="text-nowrap" tabindex="-1"
                                                    href="{{ route('household.index', ['id' => 0]) }}">Create New
                                                     Family</a></li>
+                                            <li><a class="text-nowrap" tabindex="-1"
+                                                   href="{{ route('admin.positions.index') }}">Staff
+                                                    Positions</a></li>
                                         </ul>
                                     </li>
                                     <li class="dropdown-submenu dropright">
@@ -171,7 +174,8 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto navbar-center" id="mySidenav">
 
-                    <li class="nav-item mt-1"><a href="{{ route('contact.index') }}" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item mt-1"><a href="{{ route('contact.index') }}" class="nav-link">Contact Us</a>
+                    </li>
 
                     <li class="nav-item mt-1">
                         <div class="dropdown">

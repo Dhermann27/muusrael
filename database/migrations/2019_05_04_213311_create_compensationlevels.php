@@ -18,8 +18,8 @@ class CreateCompensationlevels extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('max_compensation');
-            $table->integer('start_year');
-            $table->integer('end_year');
+            $table->integer('start_year')->default(1901);
+            $table->integer('end_year')->default(2100);
             $table->timestamps();
         });
         DB::update('ALTER TABLE compensationlevels AUTO_INCREMENT = 1000');

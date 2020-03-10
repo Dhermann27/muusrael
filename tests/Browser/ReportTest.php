@@ -58,7 +58,8 @@ class ReportTest extends DuskTestCase
         $addthree = factory(Charge::class)->create(['chargetype_id' => Chargetypename::PayPalServiceCharge,
             'year_id' => self::$year->id, 'created_at' => $charges[0]->created_at]);
         $this->browse(function (Browser $browser) use ($user, $charges, $donation, $addthree) {
-            $browser->loginAs($user)->visitRoute('reports.deposits')->waitForText('Undeposited');
+            $browser->loginAs($user)->visitRoute('reports.deposits')
+                ->waitFor('div.tab-content div.active')->assertSee('Undeposited');
             $browser->assertSee(number_format($charges[0]->amount + $donation->amount + $addthree->amount, 2));
             foreach ($charges as $charge) {
                 $browser->assertSee(number_format($charge->amount, 2))->assertSee($charge->timestamp)

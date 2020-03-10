@@ -1,4 +1,4 @@
-{{--@component('snippet.navtabs', ['tabs' => $timeslots, 'id'=> 'id', 'option' => 'name'])--}}
+{{--@component('components.navtabs', ['tabs' => $timeslots, 'id'=> 'id', 'option' => 'name'])--}}
 {{--@foreach($timeslots as $timeslot)--}}
 {{--<div class="tab-pane fade{!! $loop->first ? ' active show' : '' !!}" id="tab-{{ $timeslot->id }}" role="tabpanel">--}}
 <ul id="nav-tab{{ $id }}" class="nav nav-tabs" role="tablist">
