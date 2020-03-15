@@ -30,21 +30,21 @@ class PaymentController extends Controller
     {
         $this->validate($request, [
             'chargetype_id' => 'exists:chargetypes,id',
-            'amount' => 'numeric',
+            'amount' => 'nullable|numeric',
             'timestamp' => 'date_format:Y-m-d',
             'memo' => 'nullable|max:255'
         ]);
 
         foreach ($request->all() as $key => $value) {
             $matches = array();
-            if (preg_match('/(\d+)-(delete|chargetype_id|amount|timestamp|memo)/', $key, $matches)) {
-                $charge = Charge::findOrFail($matches[1]);
-                if ($matches[2] == 'delete') {
+            if (preg_match('/(delete|chargetype_id|amount|timestamp|memo)-(\d+)/', $key, $matches)) {
+                $charge = Charge::findOrFail($matches[2]);
+                if ($matches[1] == 'delete') {
                     if ($value == 'on') {
                         $charge->delete();
                     }
                 } else {
-                    $charge->{$matches[2]} = $value;
+                    $charge->{$matches[1]} = $value;
                     $charge->save();
                 }
             }

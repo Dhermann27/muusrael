@@ -35,6 +35,9 @@
                                 <th class="text-right">Amount</th>
                                 <th class="text-md- center">Date</th>
                                 <th>Memo</th>
+                                @can('is-super')
+                                    <th>Delete?</th>
+                                @endif
                             </tr>
                             </thead>
                             @foreach($charges as $charge)
@@ -43,6 +46,15 @@
                                     <td class="amount" align="right">{{ number_format($charge->amount, 2) }}</td>
                                     <td class="text-md-center">{{ $charge->timestamp }}</td>
                                     <td>{{ $charge->memo }}</td>
+                                    @can('is-super')
+                                        <td>
+                                            @if($charge->id != 0)
+                                                @include('includes.admin.delete', ['id' => $charge->id])
+                                            @else
+                                                &nbsp;
+                                            @endif
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             @if(!session()->has('camper') && $year->is_accept_paypal)
@@ -78,7 +90,7 @@
                                     <td class="text-right">
                                         <span id="amountNow">{{ number_format(max($deposit, 0), 2) }}</span>
                                     </td>
-                                    <td colspan="2"></td>
+                                    <td colspan="3">&nbsp;</td>
                                 </tr>
                             @endif
                             @if(!empty($housing) || session()->has('camper'))
@@ -89,7 +101,7 @@
                                                 {{ number_format(max(0, $charges->sum('amount')), 2) }}
                                             </span>
                                     </td>
-                                    <td colspan="2">&nbsp;</td>
+                                    <td colspan="3">&nbsp;</td>
                                 </tr>
                             @endif
 

@@ -11,13 +11,11 @@ use App\Jobs\GenerateCharges;
 use App\User;
 use App\Year;
 use App\Yearattending;
-use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Laravel\Dusk\Browser;
-use Tests\Browser\Components\CamperForm;
 use Tests\DuskTestCase;
 use Throwable;
 use function array_push;
-use function count;
 use function factory;
 use function rand;
 
@@ -112,7 +110,7 @@ class PaymentTest extends DuskTestCase
                 ->waitFor('form#muusapayment div.tab-content div.active')
                 ->assertSee(Chargetype::findOrFail(Chargetypename::CheckPayment)->name)->assertSee($charge->amount)
                 ->assertSeeIn('#amountNow', '0.00')->assertSee('Registration')
-                ->assertMissing('Register Now');
+                ->assertDontSee('Register Now');
         });
 
     }
@@ -241,7 +239,7 @@ class PaymentTest extends DuskTestCase
                 ->assertSeeIn('form#muusapayment div.tab-content div.active', $charge->amount);
             foreach ($years as $year) {
                 $browser->clickLink($year->year)->pause(250);
-                foreach($year->charges as $charge) {
+                foreach ($year->charges as $charge) {
                     $browser->assertSeeIn('form#muusapayment div.tab-content div.active', $charge->amount);
                 }
             }
@@ -288,11 +286,11 @@ class PaymentTest extends DuskTestCase
                 ->assertSeeIn('form#muusapayment div.tab-content div.active', $charge->amount);
             foreach ($years as $year) {
                 $browser->clickLink($year->year)->pause(250);
-                foreach($year->charges as $charge) {
+                foreach ($year->charges as $charge) {
                     $browser->assertSeeIn('form#muusapayment div.tab-content div.active', $charge->amount);
                 }
             }
-            $browser->assertMissing('Save Changes');
+            $browser->assertDontSee('Save Changes');
         });
     }
 
@@ -313,12 +311,75 @@ class PaymentTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user->id)->visitRoute('payment.index')
                 ->waitFor('form#muusapayment div.tab-content div.active')
-                ->assertMissing('Amount Due Now')
+                ->assertDontSee('Amount Due Now')
                 ->assertSee('Please bring payment to the first day of camp');
         });
 
         self::$year->is_accept_paypal = 1;
         self::$year->save();
+    }
+
+    /**
+     * @group Ingrid
+     * @throws Throwable
+     */
+    public function testIngridDelete()
+    {
+        $birth = Carbon::now();
+        $birth->year = self::$year->year - 20;
+
+        $user = factory(User::class)->create(['usertype' => Usertype::Admin]);
+        factory(Camper::class)->create(['email' => $user->email]);
+
+        $cuser = factory(User::class)->create();
+        $camper = factory(Camper::class)->create(['firstname' => 'Ingrid', 'email' => $cuser->email,
+            'birthdate' => $birth->addDays(rand(0, 364))->toDateString()]);
+        $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
+        GenerateCharges::dispatchNow(self::$year->id);
+        $charges = factory(Charge::class, rand(2, 10))->create(['camper_id' => $camper->id,
+            'chargetype_id' => Chargetypename::PayPalPayment, 'year_id' => self::$year->id]);
+        $this->browse(function (Browser $browser) use ($user, $camper, $charges) {
+            $browser->loginAs($user->id)->visitRoute('payment.index', ['id' => $camper->id])
+                ->waitFor('form#muusapayment div.tab-content div.active');
+            foreach ($charges as $charge) {
+                $browser->check('delete-' . $charge->id);
+            }
+            $browser->click('button[type="submit"]')->waitFor('div.alert')
+                ->assertVisible('div.alert-success')->assertSee('Deposit');
+        });
+
+        foreach ($charges as $charge) {
+            $this->assertDatabaseMissing('charges', ['id' => $charge->id]);
+        }
+
+    }
+
+    /**
+     * @group Ingrid
+     * @throws Throwable
+     */
+    public function testIngridRO()
+    {
+        $birth = Carbon::now();
+        $birth->year = self::$year->year - 20;
+
+        $user = factory(User::class)->create(['usertype' => Usertype::Pc]);
+        factory(Camper::class)->create(['email' => $user->email]);
+
+        $cuser = factory(User::class)->create();
+        $camper = factory(Camper::class)->create(['firstname' => 'Ingrid', 'email' => $cuser->email,
+            'birthdate' => $birth->addDays(rand(0, 364))->toDateString()]);
+        factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
+        GenerateCharges::dispatchNow(self::$year->id);
+        factory(Charge::class, rand(2, 10))->create(['camper_id' => $camper->id,
+            'chargetype_id' => Chargetypename::PayPalPayment, 'year_id' => self::$year->id]);
+        $this->browse(function (Browser $browser) use ($user, $camper) {
+            $browser->loginAs($user->id)->visitRoute('payment.index', ['id' => $camper->id])
+                ->waitFor('form#muusapayment div.tab-content div.active')
+                ->assertMissing('button[type="submit"]')->assertDontSee('Delete')
+                ->assertMissing('form#muusapayment input[type="checkbox"]');
+        });
+
     }
 
     /**
