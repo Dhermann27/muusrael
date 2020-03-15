@@ -60,13 +60,15 @@ class ReportTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user, $charges, $donation, $addthree) {
             $browser->loginAs($user)->visitRoute('reports.deposits')
                 ->waitFor('div.tab-content div.active')->assertSee('Undeposited');
-            $browser->assertSee(number_format($charges[0]->amount + $donation->amount + $addthree->amount, 2));
+            $browser->assertSee(number_format(abs($charges[0]->amount + $donation->amount + $addthree->amount), 2))
+                ->assertSee(number_format(abs($donation->amount), 2))
+                ->assertSee(number_format(abs($addthree->amount), 2));
             foreach ($charges as $charge) {
-                $browser->assertSee(number_format($charge->amount, 2))->assertSee($charge->timestamp)
+                $browser->assertSee(number_format(abs($charge->amount), 2))->assertSee($charge->timestamp)
                     ->assertSee($charge->memo);
             }
             $browser->click('button[type="submit"]')->acceptDialog()->waitFor('div.alert')
-                ->assertVisible('div.alert-success')->assertMissing('Undeposited');
+                ->assertVisible('div.alert-success')->assertDontSee('Undeposited');
         });
 
     }
@@ -78,11 +80,11 @@ class ReportTest extends DuskTestCase
         $campers = array();
         $workshop = factory(Workshop::class)->create(['year_id' => self::$year->id, 'capacity' => rand(1, 98),
             'timeslot_id' => Timeslotname::Sunrise]);
-        for ($i = 0; $i < rand($workshop->capacity+1, 99); $i++) {
+        for ($i = 0; $i < rand($workshop->capacity + 1, 99); $i++) {
             $camper = factory(Camper::class)->create();
             $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
             $yw = ['yearattending_id' => $ya->id, 'workshop_id' => $workshop->id, 'created_at' => $faker->dateTimeThisMonth];
-            if($i == 0) $yw["is_leader"] = 1;
+            if ($i == 0) $yw["is_leader"] = 1;
             factory(YearattendingWorkshop::class)->create($yw);
         }
         DB::statement('CALL workshops()');

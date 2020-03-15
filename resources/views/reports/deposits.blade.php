@@ -21,10 +21,12 @@
                                         <th>Camper Name</th>
                                         <th>Amount</th>
                                         <th>Guarantee Amount</th>
+                                        <th>Donation Amount</th>
+                                        <th>Service Charge Amount</th>
                                         <th>Timestamp</th>
                                         <th>Memo</th>
                                         <th>Controls</th>
-                                        @if(Gate::allows('is-super'))
+                                        @can('is-super')
                                             <th>Mark</th>
                                         @endif
                                     </tr>
@@ -33,22 +35,26 @@
                                     @foreach($charges->sortBy('timestamp') as $charge)
                                         <tr>
                                             <td>{{ $charge->camper->firstname }} {{ $charge->camper->lastname }}</td>
-                                            <td>{{ number_format($charge->amount, 2) }}</td>
-                                            <td>{{ number_format($moments[$charge->created_at->toISOString()]->sum('amount'), 2) }}</td>
+                                            <td>{{ number_format(abs($charge->amount), 2) }}</td>
+                                            <td>{{ number_format(abs($moments[$charge->created_at->toISOString()]->sum('amount')), 2) }}</td>
+                                            <td>{{ number_format(abs($moments[$charge->created_at->toISOString()]->where('chargetype_id', \App\Enums\Chargetypename::Donation)->sum('amount')), 2) }}</td>
+                                            <td>{{ number_format(abs($moments[$charge->created_at->toISOString()]->where('chargetype_id', \App\Enums\Chargetypename::PayPalServiceCharge)->sum('amount')), 2) }}</td>
                                             <td>{{ $charge->timestamp }}</td>
                                             <td>{{ $charge->memo }}</td>
                                             <td>
                                                 @include('includes.admin.controls', ['id' => $charge->camper->id])
                                             </td>
-                                            @if(Gate::allows('is-super'))
-                                                @include('includes.admin.delete', ['id' => $charge->id])
+                                            @can('is-super')
+                                                <td>
+                                                    @include('includes.admin.delete', ['id' => $charge->id])
+                                                </td>
                                             @endif
                                         </tr>
                                     @endforeach
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <td colspan="6" class="text-md-right">
+                                        <td colspan="8" class="text-md-right">
                                             Total Deposit: ${{ number_format(abs($charges->sum('amount')), 2) }}
                                         </td>
                                     </tr>
@@ -59,11 +65,11 @@
                             <h3 class="ml-5">No charges found for this chargetype in {{ $year->year }}</h3>
                         @endforelse
                     </div>
-                    <div class="mt-2">
-                        @if(Gate::allows('is-super'))
+                    @can('is-super')
+                        <div class="mt-2">
                             @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Mark as Deposited']])
-                        @endif
-                    </div>
+                        </div>
+                    @endif
                 </form>
             </div>
         @endforeach
