@@ -10,17 +10,17 @@
         "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
-        "@fortawesome/fontawesome-pro": "^5.12.0",
-        "axios": "^0.19.1",
+        "@fortawesome/fontawesome-pro": "^5.12.1",
+        "axios": "^0.19.2",
         "bootstrap": "^4.4.1",
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "^2.2.2",
         "jquery": "^3.4.1",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.15",
-        "popper.js": "^1.16.0",
+        "popper.js": "^1.16.1",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.24.3",
+        "sass": "^1.26.3",
         "sass-loader": "^7.3.1",
         "vue-template-compiler": "^2.6.11"
     },
@@ -32,6 +32,6 @@
         "datatables.net-buttons-bs4": "^1.6.1",
         "datatables.net-responsive-bs4": "^2.2.3",
         "datatables.net-rowgroup-bs4": "^1.1.1",
-        "select2": "^4.0.12"
+        "select2": "^4.0.13"
     }
 }

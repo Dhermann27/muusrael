@@ -135,8 +135,8 @@
                                         <div class="input-group date" data-provide="datepicker"
                                              data-date-format="yyyy-mm-dd" data-date-autoclose="true">
                                             <input id="date" type="text"
-                                                   class="form-control @error('date') is-invalid @enderror"
-                                                   name="date" value="{{ old('date') }}">
+                                                   class="form-control @error('date') is-invalid @enderror" name="date"
+                                                   value="@error('date'){{ old('date') }} @else {{ date('Y-m-d') }}@endif">
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="far fa-calendar"></i></span>
                                             </div>

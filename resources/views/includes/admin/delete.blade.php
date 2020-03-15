@@ -1,5 +1,5 @@
-<td data-toggle="buttons">
+<div data-toggle="buttons">
     <label class="btn btn-secondary btn-sm">
         <input type="checkbox" name="delete-{{ $id }}" autocomplete="off"/>
     </label>
-</td>
+</div>
