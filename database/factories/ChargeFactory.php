@@ -19,9 +19,6 @@ $factory->define(Charge::class, function (Faker $faker) {
             return factory(Chargetype::class)->create()->id;
         },
         'deposited_date' => $faker->date(),
-        'timestamp' => $faker->date,
-        'year_id' => function () {
-            return factory(Year::class)->create()->id;
-        },
+        'timestamp' => $faker->date
     ];
 });

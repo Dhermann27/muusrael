@@ -6,27 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class YearattendingStaff extends Model
 {
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
     public $incrementing = false;
-
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
     protected $table = 'yearsattending__staff';
 
-    public function yearattending()
+    public function yearsattending()
     {
-        return $this->hasOne('App\Yearattending');
+        return $this->hasOne('App\Yearattending', 'id', 'yearattending_id');
     }
 
     public function staffposition()
     {
-        return $this->hasOne('App\Staffposition');
+        return $this->hasOne('App\Staffposition', 'id', 'staffposition_id');
     }
 }

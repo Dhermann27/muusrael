@@ -16,8 +16,8 @@ class Staffposition extends Model
         return $this->hasOne('App\Program', 'id', 'progrram_id');
     }
 
-    public function yearsattending()
+    public function assigned()
     {
-        return $this->belongsToMany('App\Yearattending')->using('App\YearattendingStaff');
+        return $this->hasMany('App\YearattendingStaff');
     }
 }

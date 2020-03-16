@@ -163,7 +163,7 @@ class WorkshopTest extends DuskTestCase
         $workshops = array();
         foreach ($slots as $slot) {
             $workshop = factory(Workshop::class)->create(['year_id' => self::$year->id, 'timeslot_id' => $slot,
-                'capacity' => rand(2, 99)]);
+                'capacity' => rand(3, 99)]);
             array_push($workshops, $workshop);
             factory(YearattendingWorkshop::class)->create(['yearattending_id' => $yas[0]->id,
                 'workshop_id' => $workshop->id]);
@@ -425,7 +425,7 @@ class WorkshopTest extends DuskTestCase
         foreach ($timeslots as $timeslot) {
             factory(Workshop::class, rand(1, 10))->create(['timeslot_id' => $timeslot->id, 'year_id' => self::$year->id]);
             $wrongshop = factory(Workshop::class)->create(['timeslot_id' => $timeslot->id,
-                'name' => 'This is the wrong workshop', 'year_id' => factory(Year::class)->create(['is_current' => 0])]);
+                'name' => 'This is the wrong workshop', 'year_id' => self::$lastyear]);
         }
 
         $this->browse(function (Browser $browser) use ($timeslots, $wrongshop) {
@@ -451,7 +451,7 @@ class WorkshopTest extends DuskTestCase
     {
         factory(Workshop::class, rand(1, 10))->create(['timeslot_id' => Timeslotname::Excursions, 'year_id' => self::$year->id]);
         $wrongshop = factory(Workshop::class)->create(['timeslot_id' => Timeslotname::Excursions,
-            'year_id' => factory(Year::class)->create(['is_current' => 0])]);
+            'year_id' => self::$lastyear->id]);
         $this->browse(function (Browser $browser) use ($wrongshop) {
             $timeslot = Timeslot::findOrFail(Timeslotname::Excursions);
             $browser->visit('/excursions');

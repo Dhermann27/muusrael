@@ -219,8 +219,7 @@ class PaymentTest extends DuskTestCase
         $charge = factory(Charge::class)->create(['chargetype_id' => Chargetypename::CreditCardPayment,
             'camper_id' => $campers[0]->id, 'amount' => rand(-20000, -100000) / 100, 'year_id' => self::$year->id]);
 
-        $years = factory(Year::class, 2)->create(['is_current' => 0]);
-        foreach ($years as $year) {
+        foreach (self::$years as $year) {
             $charges = array();
             foreach ($campers as $camper) {
                 factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => $year->id]);
@@ -232,12 +231,12 @@ class PaymentTest extends DuskTestCase
             GenerateCharges::dispatchNow($year->id);
         }
 
-        $this->browse(function (Browser $browser) use ($user, $campers, $charge, $years) {
+        $this->browse(function (Browser $browser) use ($user, $campers, $charge) {
             $browser->loginAs($user->id)->visitRoute('payment.index', ['id' => $campers[0]->id])
                 ->waitFor('form#muusapayment div.tab-content div.active')
                 ->clickLink(self::$year->year)->pause(250)
                 ->assertSeeIn('form#muusapayment div.tab-content div.active', $charge->amount);
-            foreach ($years as $year) {
+            foreach (self::$years as $year) {
                 $browser->clickLink($year->year)->pause(250);
                 foreach ($year->charges as $charge) {
                     $browser->assertSeeIn('form#muusapayment div.tab-content div.active', $charge->amount);
@@ -266,8 +265,7 @@ class PaymentTest extends DuskTestCase
         $charge = factory(Charge::class)->create(['chargetype_id' => Chargetypename::CreditCardPayment,
             'camper_id' => $campers[0]->id, 'amount' => rand(-20000, -100000) / 100, 'year_id' => self::$year->id]);
 
-        $years = factory(Year::class, 2)->create(['is_current' => 0]);
-        foreach ($years as $year) {
+        foreach (self::$years as $year) {
             $charges = array();
             foreach ($campers as $camper) {
                 factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => $year->id]);
@@ -279,12 +277,12 @@ class PaymentTest extends DuskTestCase
             GenerateCharges::dispatchNow($year->id);
         }
 
-        $this->browse(function (Browser $browser) use ($user, $campers, $charge, $years) {
+        $this->browse(function (Browser $browser) use ($user, $campers, $charge) {
             $browser->loginAs($user->id)->visitRoute('payment.index', ['id' => $campers[0]->id])
                 ->waitFor('form#muusapayment div.tab-content div.active')
                 ->clickLink(self::$year->year)->pause(250)
                 ->assertSeeIn('form#muusapayment div.tab-content div.active', $charge->amount);
-            foreach ($years as $year) {
+            foreach (self::$years as $year) {
                 $browser->clickLink($year->year)->pause(250);
                 foreach ($year->charges as $charge) {
                     $browser->assertSeeIn('form#muusapayment div.tab-content div.active', $charge->amount);
@@ -300,8 +298,9 @@ class PaymentTest extends DuskTestCase
      */
     public function testGeoffNoPaypal()
     {
-        self::$year->is_accept_paypal = 0;
-        self::$year->save();
+        $year = Year::where('is_current', '1')->first();
+        $year->is_accept_paypal = 0;
+        $year->save();
 
         $user = factory(User::class)->create();
         $camper = factory(Camper::class)->create(['firstname' => 'Geoff', 'email' => $user->email]);
@@ -315,8 +314,8 @@ class PaymentTest extends DuskTestCase
                 ->assertSee('Please bring payment to the first day of camp');
         });
 
-        self::$year->is_accept_paypal = 1;
-        self::$year->save();
+        $year->is_accept_paypal = 1;
+        $year->save();
     }
 
     /**

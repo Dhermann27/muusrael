@@ -9,12 +9,14 @@ use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Laravel\Dusk\TestCase as BaseTestCase;
 use NumberFormatter;
+use function factory;
 
 abstract class DuskTestCase extends BaseTestCase
 {
     use CreatesApplication;
     protected static $hasSetupRun = false;
-    protected static $year;
+    protected static $year, $lastyear, $years;
+
 
     /**
      * Prepare for Dusk test execution.
@@ -39,6 +41,9 @@ abstract class DuskTestCase extends BaseTestCase
             $kernel->call('migrate:refresh --seed');
             self::$hasSetupRun = true;
             self::$year = factory(Year::class)->create(['is_current' => 1]);
+            self::$lastyear = factory(Year::class)->create(['is_current' => 0, 'year' => self::$year->year - 1]);
+            self::$years = array(self::$year, self::$lastyear,
+                factory(Year::class)->create(['is_current' => 0, 'year' => self::$lastyear->year - rand(1, 50)]));
         }
     }
 

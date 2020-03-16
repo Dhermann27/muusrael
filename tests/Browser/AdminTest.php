@@ -2,7 +2,7 @@
 
 namespace Tests\Browser;
 
-use App\Enums\Pctype;
+use App\Camper;
 use App\Enums\Usertype;
 use App\Program;
 use App\Staffposition;
@@ -18,6 +18,36 @@ use function rand;
  */
 class AdminTest extends DuskTestCase
 {
+    public function testRoles()
+    {
+        $adminuser = factory(User::class)->create(['usertype' => Usertype::Admin]);
+        $admincamper = factory(Camper::class)->create(['email' => $adminuser->email]);
+        $pcuser = factory(User::class)->create(['usertype' => Usertype::Pc]);
+        $pccamper = factory(Camper::class)->create(['email' => $pcuser->email]);
+        $newuser = factory(User::class)->create();
+        $newcamper = factory(Camper::class)->create(['email' => $newuser->email]);
+
+
+        $this->browse(function (Browser $browser) use ($adminuser, $admincamper, $pcuser, $pccamper, $newuser, $newcamper) {
+            $browser->loginAs($adminuser)->visitRoute('admin.roles.index')
+                ->waitFor('form#roles div.tab-content div.active')->clickLink('Super Admin')
+                ->pause(250)->assertSee($admincamper->firstname)->assertSee($admincamper->lastname)
+                ->clickLink('Planning Council')->pause(250)
+                ->assertSee($pccamper->firstname)->assertSee($pccamper->lastname)->check('delete-' . $pcuser->id)
+                ->select('usertype', Usertype::Pc)->click('select#camper_id + span.select2')
+                ->waitFor('.select2-container--open')
+                ->type('span.select2-container input.select2-search__field', $newcamper->email)
+                ->waitFor('li.select2-results__option--highlighted')->click('li.select2-results__option--highlighted')
+                ->click('button[type="submit"]')->waitFor('div.alert')
+                ->assertVisible('div.alert-success')
+                ->assertSee($newcamper->firstname)->assertSee($newcamper->lastname)
+                ->assertDontSee($pccamper->firstname)->assertDontSee($pccamper->lastname);
+        });
+
+        $this->assertDatabaseHas('users', ['email' => $pcuser->email, 'usertype' => Usertype::Camper]);
+        $this->assertDatabaseHas('users', ['email' => $newuser->email, 'usertype' => Usertype::Pc]);
+    }
+
     public function testPositions()
     {
         $user = factory(User::class)->create(['usertype' => Usertype::Admin]);
@@ -29,7 +59,7 @@ class AdminTest extends DuskTestCase
 
         $this->browse(function (Browser $browser) use ($user, $program, $staffposition, $newprogram, $newposition) {
             $browser->loginAs($user)->visitRoute('admin.positions.index')
-                ->waitFor('div.tab-content div.active')->clickLink($program->name)
+                ->waitFor('form#positions div.tab-content div.active')->clickLink($program->name)
                 ->pause(250)->assertSee($staffposition->name)
                 ->assertSee($staffposition->compensationlevel->name)
                 ->assertSee(number_format($staffposition->compensationlevel->max_compensation, 2))

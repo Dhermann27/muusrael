@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.positions.store') }}">
+        <form id="positions" class="form-horizontal" role="form" method="POST" action="{{ route('admin.positions.store') }}">
             @include('includes.flash')
             {{--<div class="tab-pane fade{!! $loop->first ? ' active show' : '' !!}" id="tab-{{ $timeslot->id }}" role="tabpanel">--}}
             @component('components.navtabs', ['tabs' => $programs, 'id'=> 'id', 'option' => 'name'])
@@ -32,7 +32,7 @@
                             @forelse($program->staffpositions()->where('start_year', '<=', $year->year)->where('end_year', '>', $year->year)->orderBy('name')->get() as $position)
                                 <tr id="{{ $position->id }}">
                                     <td class="teditable">{{ $program->name }}</td>
-                                    <td class="teditable">{{ $position->name }}</td>
+                                    <td class="teditable">{!! $position->name !!}</td>
                                     <td class="teditable">{{ $position->compensationlevel->name }}</td>
                                     <td class="teditable">
                                         @if($position->pctype == 1)

@@ -36,4 +36,8 @@ class Camper extends Model
     {
         return $this->hasMany('App\Charge');
     }
+
+    public function user() {
+        return $this->hasOne('App\User', 'email', 'email');
+    }
 }

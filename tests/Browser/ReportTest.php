@@ -29,7 +29,7 @@ class ReportTest extends DuskTestCase
     public function testCampers()
     {
         $user = factory(User::class)->create(['usertype' => Usertype::Pc]);
-        $campers = factory(Camper::class, rand(1, 50))->create();
+        $campers = factory(Camper::class, 4)->create(['lastname' => 'Aaron']);
         foreach ($campers as $camper) {
             factory(Yearattending::class)->create(['year_id' => self::$year->id, 'camper_id' => $camper->id]);
         }

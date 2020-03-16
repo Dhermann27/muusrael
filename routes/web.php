@@ -101,20 +101,20 @@ Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'reports']
     Route::get('workshops', 'ReportController@workshops')->name('reports.workshops');
 });
 
-//Route::group(['middleware' => ['role:admin|council'], 'prefix' => 'tools'], function () {
-//    Route::get('cognoscenti', 'ToolsController@cognoscenti');
+Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'tools'], function () {
+    Route::get('cognoscenti', 'ToolsController@cognoscenti')->name('tools.cognoscenti');
 //    Route::get('nametags', 'ToolsController@nametagsList');
 //    Route::post('nametags', 'ToolsController@nametagsPrint');
 //    Route::get('nametags/all', 'ToolsController@nametags');
 //    Route::get('nametags/{i}/{id}', 'ToolsController@nametagsFamily');
 //    Route::get('programs', 'ToolsController@programIndex');
 //    Route::post('programs', 'ToolsController@programStore');
-//    Route::get('staffpositions', 'ToolsController@positionIndex');
-//    Route::post('staffpositions', 'ToolsController@positionStore');
+    Route::get('staffpositions', 'ToolsController@positionIndex')->name('tools.staff.index');
+    Route::post('staffpositions', 'ToolsController@positionStore')->name('tools.staff.store');
 //    Route::get('workshops', 'ToolsController@workshopIndex');
 //    Route::post('workshops', 'ToolsController@workshopStore');
-//});
-//
+});
+
 Route::group(['middleware' => ['can:is-super'], 'prefix' => 'admin'], function () {
 //    Route::get('distlist', 'AdminController@distlistIndex');
 //    Route::post('distlist', 'AdminController@distlistStore');
@@ -122,8 +122,8 @@ Route::group(['middleware' => ['can:is-super'], 'prefix' => 'admin'], function (
 //    Route::post('master', 'AdminController@masterStore');
 //    Route::get('massassign', 'AdminController@massAssignIndex');
 //    Route::post('massassign/f/{id}', 'AdminController@massAssignStore');
-//    Route::get('roles', 'AdminController@roleIndex');
-//    Route::post('roles', 'AdminController@roleStore');
+    Route::get('roles', 'AdminController@roleIndex')->name('admin.roles.index');
+    Route::post('roles', 'AdminController@roleStore')->name('admin.roles.store');
     Route::get('positions', 'AdminController@positionIndex')->name('admin.positions.index');
     Route::post('positions', 'AdminController@positionStore')->name('admin.positions.store');
 });

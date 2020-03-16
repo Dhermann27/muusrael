@@ -175,7 +175,7 @@ var toast = $("div.toast");
 if (steps.length > 0 || toast.length === 1) {
     var url = "/data/steps";
     var camper_id = $("input#camper-id");
-    if(camper_id.length === 1) url += "/" + camper_id.val();
+    if (camper_id.length === 1) url += "/" + camper_id.val();
     $.getJSON(url, function (data) {
         var message = "Your registration is complete! See you \"next week\"!";
         var link = "#";
@@ -248,30 +248,23 @@ function replaceCamperMarkup(data, term) {
     return data.replace(new RegExp(term, "i"), "<strong>$&</strong>");
 }
 
-function templateRescamp(data) {
+function templateResultCamper(data) {
     if (!data.id) return data.text;
     var message = replaceCamperMarkup(data.firstname, data.term) + ' ' + replaceCamperMarkup(data.lastname, data.term);
     if (data.email) message += ' &lt;' + replaceCamperMarkup(data.email, data.term) + '&gt;';
     return message;
 }
 
-function templateSelcamp(data) {
+function templateSelectCamper(data) {
     if (!data.id) return data.text;
-    var cs = $('li#campersearch');
-    cs.find('button.disabled').toggleClass('disabled');
-    cs.find('a').each(function () {
-        if (!$(this).prop('href').includes(data.id)) {
-            $(this).prop('href', $(this).prop('href') + "/" + data.id);
-        }
-    });
     return data.firstname + " " + data.lastname;
 }
 
-$("select#camperlist").select2({
+$("select.camperlist").select2({
     ajax: {
         url: '/data/camperlist',
         dataType: 'json',
-        quietMillis: 250,
+        delay: 250,
         processResults: function (data) {
             return {
                 results: data
@@ -283,9 +276,20 @@ $("select#camperlist").select2({
     },
     minimumInputLength: 3,
     placeholder: 'Camper search...',
-    templateResult: templateRescamp,
-    templateSelection: templateSelcamp,
+    templateResult: templateResultCamper,
+    templateSelection: templateSelectCamper,
     theme: 'bootstrap4',
+});
+
+$("select#admin-camperlist").on('change', function () {
+    var acl = $(this);
+    var cs = $('li#campersearch');
+    cs.find('button.disabled').toggleClass('disabled');
+    cs.find('a').each(function () {
+        if (!$(this).prop('href').includes(acl.val())) {
+            $(this).prop('href', $(this).prop('href') + "/" + acl.val());
+        }
+    });
 });
 
 

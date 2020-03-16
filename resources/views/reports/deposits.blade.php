@@ -27,7 +27,7 @@
                                         <th>Memo</th>
                                         <th>Controls</th>
                                         @can('is-super')
-                                            <th>Mark</th>
+                                            <th>Deposited Today?</th>
                                         @endif
                                     </tr>
                                     </thead>
@@ -54,7 +54,7 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <td colspan="8" class="text-md-right">
+                                        <td colspan="9" class="text-md-right">
                                             Total Deposit: ${{ number_format(abs($charges->sum('amount')), 2) }}
                                         </td>
                                     </tr>

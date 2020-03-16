@@ -269,17 +269,14 @@ class RoomSelectionTest extends DuskTestCase
 
         $rooms = factory(Room::class, 6)->create(['is_workshop' => 0]);
 
-        $oyears = factory(Year::class, 3)->create(['is_current' => 0]);
-        $oyas[0] = factory(Yearattending::class)->create(['camper_id' => $head->id, 'year_id' => $oyears[0]->id, 'room_id' => $rooms[0]->id]);
-        $oyas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => $oyears[1]->id, 'room_id' => $rooms[1]->id]);
-        $oyas[2] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => $oyears[2]->id, 'room_id' => $rooms[2]->id]);
+        $oyas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$years[1]->id, 'room_id' => $rooms[1]->id]);
+        $oyas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$years[2]->id, 'room_id' => $rooms[2]->id]);
 
 
-        $this->browse(function (Browser $browser) use ($user, $head, $campers, $rooms, $oyears, $oyas) {
+        $this->browse(function (Browser $browser) use ($user, $head, $campers, $rooms, $oyas) {
             $browser->loginAs($user->id)->visitRoute('roomselection.read', ['id' => $head->id])
-                ->assertSee($oyears[0]->year)->assertSee($rooms[0]->room_number)
-                ->assertSee($oyears[1]->year)->assertSee($rooms[1]->room_number)
-                ->assertSee($oyears[2]->year)->assertSee($rooms[2]->room_number)
+                ->assertSee(self::$years[0]->year)->assertSee($rooms[0]->room_number)
+                ->assertSee(self::$years[1]->year)->assertSee($rooms[1]->room_number)
                 ->select('roomid-' . $head->id, $rooms[3]->id)
                 ->select('roomid-' . $campers[0]->id, $rooms[4]->id)
                 ->select('roomid-' . $campers[1]->id, $rooms[5]->id)->click('button[type="submit"]')

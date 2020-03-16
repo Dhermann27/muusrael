@@ -9,9 +9,6 @@ $factory->define(App\Workshop::class, function (Faker $faker) {
     $slots = $ref->getConstants();
 
     return [
-        'year_id' => function () {
-            return factory(Year::class)->create()->id;
-        },
         'room_id' => function () {
             return factory(Room::class)->create()->id;
         },

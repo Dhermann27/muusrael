@@ -85,6 +85,7 @@
                                     Admin
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a href="{{ route('tools.cognoscenti') }}" class="dropdown-item">Cognoscenti</a>
                                     <li class="dropdown-submenu dropright">
                                         <a class="sub pl-2" tabindex="-1" href="#">Functions <i
                                                 class="fa fa-caret-right float-right mt-1 mr-2"></i></a>
@@ -92,6 +93,8 @@
                                             <li><a class="text-nowrap" tabindex="-1"
                                                    href="{{ route('household.index', ['id' => 0]) }}">Create New
                                                     Family</a></li>
+                                            <li><a class="text-nowrap" tabindex="-1"
+                                                   href="{{ route('admin.roles.index') }}">Roles</a></li>
                                             <li><a class="text-nowrap" tabindex="-1"
                                                    href="{{ route('admin.positions.index') }}">Staff
                                                     Positions</a></li>
@@ -111,12 +114,14 @@
                                                    href="{{ route('reports.workshops') }}">Workshop Attendees</a></li>
                                         </ul>
                                     </li>
-                                    {{--                                    <li class="dropdown-submenu">--}}
-                                    {{--                                        <a class="test" tabindex="-1" href="#">Tools <span class="caret"></span></a>--}}
-                                    {{--                                        <ul class="dropdown-menu">--}}
-                                    {{--                                            <li><a tabindex="-1" href="#">2nd level dropdown</a></li>--}}
-                                    {{--                                        </ul>--}}
-                                    {{--                                    </li>--}}
+                                    <li class="dropdown-submenu dropright">
+                                        <a class="sub pl-2" tabindex="-1" href="#">Tools <i
+                                                class="fa fa-caret-right float-right mt-1 mr-2"></i></a>
+                                        <ul class="dropdown-menu p-2">
+                                            <li><a class="text-nowrap" tabindex="-1"
+                                                   href="{{ route('tools.staff.index') }}">Position Assignments</a></li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -127,7 +132,7 @@
                                 </div>
 
                                 <label class="sr-only" for="camperlist">Camper Search</label>
-                                <select id="camperlist">
+                                <select id="admin-camperlist" class="camperlist">
                                 </select>
                             </div>
                         </li>
@@ -185,8 +190,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right mt-0">
                                 <a href="{{ route('housing') }}" class="dropdown-item"><i class="far fa-bath fa-fw"></i>
-                                    Housing
-                                    Options</a>
+                                    Housing Options</a>
                                 <a href="{{ route('programs') }}" class="dropdown-item">
                                     <i class="far fa-sitemap fa-fw"></i> Programs
                                 </a>

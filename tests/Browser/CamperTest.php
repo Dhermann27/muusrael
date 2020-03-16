@@ -738,13 +738,12 @@ class CamperTest extends DuskTestCase
      */
     public function testQuentinLastProgramId()
     {
-        $lastyear = factory(Year::class)->create(['is_current' => 0, 'year' => self::$year->year - 1]);
         $user = factory(User::class)->create();
         $head = factory(Camper::class)->create(['firstname' => 'Quentin', 'email' => $user->email]);
         $campers = factory(Camper::class, 2)->create(['family_id' => $head->family_id]);
-        $lyah = factory(Yearattending::class)->create(['camper_id' => $head->id, 'year_id' => $lastyear->id]);
-        $lyas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => $lastyear->id]);
-        $lyas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => $lastyear->id]);
+        $lyah = factory(Yearattending::class)->create(['camper_id' => $head->id, 'year_id' => self::$lastyear->id]);
+        $lyas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$lastyear->id]);
+        $lyas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$lastyear->id]);
 
 
         $this->browse(function (Browser $browser) use ($user, $head, $campers, $lyah, $lyas) {
