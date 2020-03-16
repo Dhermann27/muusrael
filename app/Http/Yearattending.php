@@ -111,7 +111,7 @@ class Yearattending extends Model
                 return $this->camper->family->city . ", " . $this->camper->family->province->code;
                 break;
             case "3":
-                return $this->positions->first()->staffposition->name;
+                return $this->staffpositions->first()->name;
                 break;
             case "4":
                 return "First-time Camper";

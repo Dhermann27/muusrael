@@ -32,7 +32,7 @@
                     @endif
                     @foreach($list as $item)
                         <option
-                            value="{{ $item["id"] }}"{{ $old == $item["id"] ? " selected" : "" }}>{{ $item[$option] }}</option>
+                            value="{{ $item["id"] }}"{{ $old == $item["id"] ? " selected" : "" }}>{!! $item[$option] !!}</option>
                     @endforeach
                 </select>
             @elseif($type == 'text')

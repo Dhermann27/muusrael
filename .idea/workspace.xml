@@ -3,28 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Camper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Camper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ToolsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ToolsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Staffposition.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Staffposition.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Workshop.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Workshop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/YearattendingStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/YearattendingStaff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ChargeFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ChargeFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/ProgramFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ProgramFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/WorkshopFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/WorkshopFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/positions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/positions.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/reports/deposits.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reports/deposits.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/AdminTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/AdminTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/CamperTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/CamperTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/PaymentTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/PaymentTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/ReportTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/ReportTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/RoomSelectionTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/RoomSelectionTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Browser/WorkshopTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/WorkshopTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/DuskTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DuskTestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Yearattending.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Yearattending.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/formgroup.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/formgroup.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/payment.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/payment.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tools/positions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/positions.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +264,7 @@
       <workItem from="1581446883175" duration="9508000" />
       <workItem from="1581608991585" duration="105794000" />
       <workItem from="1583527028474" duration="53000" />
-      <workItem from="1583527112490" duration="40780000" />
+      <workItem from="1583527112490" duration="41487000" />
     </task>
     <servers />
   </component>
@@ -390,17 +373,17 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="100" y="123" width="1225" height="677" key="dock-window-1/0.23.1440.877@0.23.1440.877" timestamp="1582304735566" />
-    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1584384551277">
+    <state x="386" y="97" width="816" height="729" key="find.popup" timestamp="1584387834580">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1584384551277" />
+    <state x="386" y="97" width="816" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1584387834580" />
     <state width="600" height="424" key="javadoc.popup" timestamp="1583517655475">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="600" height="424" key="javadoc.popup/0.23.1440.877@0.23.1440.877" timestamp="1583517655475" />
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1584386023310">
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup" timestamp="1584387846116">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1584386023310" />
+    <state x="385" y="223" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1584387846116" />
   </component>
 </project>

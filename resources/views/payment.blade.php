@@ -35,7 +35,7 @@
                                 <th class="text-right">Amount</th>
                                 <th class="text-md- center">Date</th>
                                 <th>Memo</th>
-                                @can('is-super')
+                                @if(session()->has('camper') && Gate::allows('is-super'))
                                     <th>Delete?</th>
                                 @endif
                             </tr>
@@ -46,7 +46,7 @@
                                     <td class="amount" align="right">{{ number_format($charge->amount, 2) }}</td>
                                     <td class="text-md-center">{{ $charge->timestamp }}</td>
                                     <td>{{ $charge->memo }}</td>
-                                    @can('is-super')
+                                    @if(session()->has('camper') && Gate::allows('is-super'))
                                         <td>
                                             @if($charge->id != 0)
                                                 @include('includes.admin.delete', ['id' => $charge->id])

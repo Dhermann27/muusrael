@@ -29,7 +29,7 @@
                             <tbody>
                             @foreach($staff[$program->id] as $assignment)
                                 <tr>
-                                    <td>{{ $assignment->staffpositionname }}</td>
+                                    <td>{!! $assignment->staffpositionname !!}</td>
                                     <td>{{ $assignment->lastname }}, {{ $assignment->firstname }}
                                         @if($assignment->yearattending_id == 0)
                                             <a href="#" class="pl-2" data-toggle="tooltip" data-html="true"

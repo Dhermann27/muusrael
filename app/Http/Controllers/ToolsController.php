@@ -24,7 +24,8 @@ class ToolsController extends Controller
             ['id' => Pctype::Program, 'name' => 'Program Coordinators'],
             ['id' => Pctype::Staff, 'name' => 'Staff']]);
         return view('tools.cognoscenti', ['pctypes' => $pctypes,
-            'positions' => ThisyearStaff::all()->groupBy('pctype')]);
+            'positions' => ThisyearStaff::orderBy('staffpositionname')->orderBy('lastname')->orderBy('firstname')->get()
+                ->groupBy('pctype')]);
     }
 
     public function positionStore(Request $request)
