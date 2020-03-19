@@ -20,8 +20,10 @@ class CreateChartdataProc extends Migration
                     SELECT y.year, RIGHT(sd.dayofyear, 5), ADDDATE(sd.dayofyear, INTERVAL y.year-1 YEAR),
                         COUNT(IF(DATE(ya.created_at)<ADDDATE(sd.dayofyear, INTERVAL y.year-1 YEAR), 1, NULL))
                     FROM chartdays sd, years y, yearsattending ya
-                    WHERE y.year>getcurrentyear()-7 AND y.year<=getcurrentyear() AND y.id=ya.year_id
+                    WHERE y.year>getcurrentyear()-7 AND y.year<=getcurrentyear() AND y.id=ya.year_id AND
+                        ADDDATE(sd.dayofyear, INTERVAL y.year-1 YEAR)<NOW()
                     GROUP BY y.id, sd.id ORDER BY sd.id;
+                DELETE FROM chartdata_days WHERE count=0;
 
                 TRUNCATE chartdata_newcampers;
                 INSERT INTO chartdata_newcampers (year, yearattending_id)

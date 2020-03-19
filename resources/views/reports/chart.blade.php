@@ -42,8 +42,8 @@
                     @if(count($year->chartdataLostcampers)>0)
                         <a href="#" class="p-2" data-toggle="tooltip" data-html="true" data-placement="right"
                            title="@foreach($year->chartdataLostcampers as $item)
-                           {{ $item->camper->firstname }} {{ $item->camper->lastname}}
-                           @if($loop->index % 5 == 0) <br /> @endif
+                           {{ $item->camper->firstname }} {{ $item->camper->lastname}}@if(!$loop->last),@endif
+                           @if(($loop->index+1) % 4 == 0) <br /> @endif
                            @endforeach
                                "><i class="far fa-info"></i></a>
                     @endif
@@ -65,8 +65,9 @@
                     @if(count($year->chartdataOldcampers)>0)
                         <a href="#" class="p-2" data-toggle="tooltip" data-html="true" data-placement="right"
                            title="@foreach($year->chartdataOldcampers as $item)
-                           {{ $item->yearattending->camper->firstname }} {{ $item->yearattending->camper->lastname}}
-                           @if($loop->index % 5 == 0) <br /> @endif
+                           {{ $item->yearattending->camper->firstname }}
+                           {{ $item->yearattending->camper->lastname}}@if(!$loop->last),@endif
+                           @if(($loop->index+1) % 4 == 0) <br /> @endif
                            @endforeach
                                "><i class="far fa-info"></i></a>
                     @endif
@@ -76,8 +77,9 @@
                     @if(count($year->chartdataVeryoldcampers)>0)
                         <a href="#" class="p-2" data-toggle="tooltip" data-html="true" data-placement="right"
                            title="@foreach($year->chartdataVeryoldcampers as $item)
-                           {{ $item->yearattending->camper->firstname }} {{ $item->yearattending->camper->lastname}}
-                           @if($loop->index % 5 == 0) <br /> @endif
+                           {{ $item->yearattending->camper->firstname }}
+                           {{ $item->yearattending->camper->lastname}}@if(!$loop->last),@endif
+                           @if(($loop->index+1) % 4 == 0) <br /> @endif
                            @endforeach
                                "><i class="far fa-info"></i></a>
                     @endif
