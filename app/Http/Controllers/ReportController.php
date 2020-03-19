@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Charge;
 use App\Chargetype;
+use App\ChartdataDays;
+use App\ChartdaysView;
 use App\Enums\Chargetypename;
 use App\ThisyearCharge;
 use App\Timeslot;
@@ -44,6 +46,16 @@ class ReportController extends Controller
             'datafield' => "byyearcampers"]);
     }
 
+    public function chart()
+    {
+        return view('reports.chart', ['years' => Year::where('year', '>', $this->year->year - 7)
+            ->where('year', '<=', $this->year->year)->with(['chartdataNewcampers.yearattending.camper',
+                'chartdataOldcampers.yearattending.camper', 'chartdataVeryoldcampers.yearattending.camper',
+                'chartdataLostcampers.camper', 'yearsattending'])->orderBy('year')->get(),
+            'chartdataDays' => ChartdataDays::all()->groupBy('onlyday')]);
+    }
+
+
     public function depositsMark(Request $request, $id)
     {
         $found = false;
@@ -76,6 +88,7 @@ class ReportController extends Controller
 
         return view('reports.deposits', ['chargetypes' => $chargetypes, 'moments' => $moments]);
     }
+
     public function workshops()
     {
         DB::raw('CALL workshops()');

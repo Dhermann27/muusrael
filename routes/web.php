@@ -76,7 +76,7 @@ Route::group(['prefix' => 'data'], function () {
 Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'reports'], function () {
     Route::get('campers', 'ReportController@campers')->name('reports.campers');
 //    Route::get('campers/{year}.xls', 'ReportController@campersExport')->name('reports.campers.export');
-//    Route::get('chart', 'ReportController@chart');
+    Route::get('chart', 'ReportController@chart')->name('reports.chart');
 //    Route::get('conflicts', 'ReportController@conflicts');
     Route::get('deposits', 'ReportController@deposits')->name('reports.deposits')->middleware('can:is-council');
     Route::post('deposits/{id}', 'ReportController@depositsMark')->name('reports.deposits.mark')->middleware('can:is-super');

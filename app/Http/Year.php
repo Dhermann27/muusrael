@@ -18,6 +18,26 @@ class Year extends Model
         return $this->hasMany('App\Yearattending');
     }
 
+    public function chartdataNewcampers()
+    {
+        return $this->hasMany('App\ChartdataNewcampers', 'year', 'year');
+    }
+
+    public function chartdataOldcampers()
+    {
+        return $this->hasMany('App\ChartdataOldcampers', 'year', 'year');
+    }
+
+    public function chartdataVeryoldcampers()
+    {
+        return $this->hasMany('App\ChartdataVeryoldcampers', 'year', 'year');
+    }
+
+    public function chartdataLostcampers()
+    {
+        return $this->hasMany('App\ChartdataLostcampers', 'year', 'year');
+    }
+
     public function getBrochureDateAttribute() {
         $date = Carbon::createFromFormat('Y-m-d', $this->brochure, 'America/Chicago');
         return $date->format('l F jS');
