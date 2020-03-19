@@ -52,7 +52,7 @@ class ReportController extends Controller
             ->where('year', '<=', $this->year->year)->with(['chartdataNewcampers.yearattending.camper',
                 'chartdataOldcampers.yearattending.camper', 'chartdataVeryoldcampers.yearattending.camper',
                 'chartdataLostcampers.camper', 'yearsattending'])->orderBy('year')->get(),
-            'chartdataDays' => ChartdataDays::groupBy('count')->get()->groupBy('onlyday')]);
+            'chartdataDays' => ChartdataDays::all()->groupBy('onlyday')]);
     }
 
 
