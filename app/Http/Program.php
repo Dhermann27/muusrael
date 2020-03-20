@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Program extends Model
 {
+    public function thisyearcampers()
+    {
+        return $this->hasMany('App\ThisyearCamper', 'program_id', 'id')
+            ->orderBy('lastname')->orderBy('firstname');
+    }
+
     public function staffpositions()
     {
         return $this->hasMany('App\Staffposition', 'program_id', 'id');

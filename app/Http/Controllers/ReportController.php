@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Building;
 use App\Charge;
 use App\Chargetype;
 use App\ChartdataDays;
 use App\ChartdaysView;
 use App\Enums\Chargetypename;
+use App\Enums\Programname;
+use App\Program;
 use App\ThisyearCharge;
 use App\Timeslot;
 use App\Year;
@@ -14,6 +17,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function preg_match;
+use function view;
 
 class ReportController extends Controller
 {
@@ -87,6 +91,40 @@ class ReportController extends Controller
         });
 
         return view('reports.deposits', ['chargetypes' => $chargetypes, 'moments' => $moments]);
+    }
+
+    public function programs()
+    {
+        $columns = ['familyname' => 'Family Name',
+            'address1' => 'Address Line #1',
+            'address2' => 'Address Line #2',
+            'city' => 'City',
+            'provincecode' => 'Province',
+            'zipcd' => 'Postal Code',
+            'country' => 'Country',
+            'pronounname' => 'Pronouns',
+            'firstname' => 'First Name',
+            'lastname' => 'Last Name',
+            'email' => 'Email',
+            'birthday' => 'Birthday',
+            'age' => 'Age',
+            'days' => 'Days Attending',
+            'buildingname' => 'Building',
+            'room_number' => 'Room',
+            'controls' => 'Admin Controls'];
+        $visible = [0, 1, 2, 3, 4, 5, 6, 10, 11, 13];
+        $programs = Program::where('id', '!=', Programname::Adult)->orderBy('order')->get();
+
+        return view('reports.datatables', ['title' => 'Programs', 'columns' => $columns,
+            'visible' => $visible, 'tabs' => $programs, 'tabfield' => 'name',
+            'datafield' => "thisyearcampers"]);
+    }
+
+    public function rooms()
+    {
+        $years = Year::where('year', '>', $this->year->year - 7)->where('year', '<=', $this->year->year)
+            ->orderBy('year')->with('byyearcampers')->get();
+        return view('reports.rooms', ['years' => $years]);
     }
 
     public function workshops()

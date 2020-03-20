@@ -17,6 +17,7 @@ class CreateThisyearCamper extends Migration
                         year_id,
                         y.year,
                         family_id,
+                        familyname,
                         address1,
                         address2,
                         city,

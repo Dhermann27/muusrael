@@ -109,9 +109,13 @@
                                             <li><a class="text-nowrap" tabindex="-1"
                                                    href="{{ route('reports.campers') }}">Campers</a></li>
                                             <li><a class="text-nowrap" tabindex="-1"
+                                                   href="{{ route('reports.programs') }}">Programs</a></li>
+                                            <li><a class="text-nowrap" tabindex="-1"
                                                    href="{{ route('reports.chart') }}">Registration Chart</a></li>
                                             <li><a class="text-nowrap" tabindex="-1"
                                                    href="{{ route('roomselection.map') }}">Room Selection Map</a></li>
+                                            <li><a class="text-nowrap" tabindex="-1"
+                                                   href="{{ route('reports.rooms') }}">Rooms</a></li>
                                             <li><a class="text-nowrap" tabindex="-1"
                                                    href="{{ route('reports.workshops') }}">Workshop Attendees</a></li>
                                         </ul>

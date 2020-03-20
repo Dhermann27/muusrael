@@ -88,11 +88,11 @@ Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'reports']
 //    Route::get('payments', 'ReportController@payments');
 //    Route::get('payments/{year}.xls', 'ReportController@paymentsExport');
 //    Route::get('payments/{year?}/name', 'ReportController@payments');
-//    Route::get('programs', 'ReportController@programs');
+    Route::get('programs', 'ReportController@programs')->name('reports.programs');
 //    Route::get('rates', 'ReportController@rates');
 //    Route::post('rates', 'ReportController@ratesMark')->middleware('auth', 'role:admin');;
 //    Route::get('roommates', 'ReportController@roommates');
-//    Route::get('rooms', 'ReportController@rooms');
+    Route::get('rooms', 'ReportController@rooms')->name('reports.rooms');
 //    Route::get('rooms/{year}.xls', 'ReportController@roomsExport');
 //    Route::get('rooms/{year?}/name', 'ReportController@rooms');
 //    Route::get('states', 'ReportController@states');
