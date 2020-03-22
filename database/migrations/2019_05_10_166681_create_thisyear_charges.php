@@ -27,6 +27,7 @@ class CreateThisyearCharges extends Migration
                             g.name chargetypename,
                             bh.timestamp,
                             bh.memo,
+                            bh.parent_id,
                             bh.created_at
                           FROM campers c, byyear_charges bh, chargetypes g, years y
                           WHERE c.id = bh.camper_id AND bh.chargetype_id = g.id AND bh.year = y.year AND y.is_current = 1;");

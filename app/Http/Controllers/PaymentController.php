@@ -81,21 +81,6 @@ class PaymentController extends Controller
 
         $thiscamper = Auth::user()->camper;
         if ($thiscamper !== null) {
-            if ($request->input('donation') > 0) {
-                $charge = Charge::where(['camper_id' => $thiscamper->id, 'chargetype_id' => Chargetypename::Donation,
-                    'year_id' => $this->year->id])->first();
-                if (!$charge) {
-                    $charge = new Charge();
-                    $charge->camper_id = $thiscamper->id;
-                    $charge->chargetype_id = Chargetypename::Donation;
-                    $charge->year_id = $this->year->id;
-                }
-                $charge->amount = $request->input('donation');
-                $charge->memo = 'MUUSA Scholarship Fund';
-                $charge->timestamp = date("Y-m-d");
-                $charge->save();
-            }
-
             if (!empty($request->input('orderid'))) {
 
                 $before = Gate::allows('has-paid');
@@ -141,18 +126,19 @@ class PaymentController extends Controller
                 }
 
                 if (!empty($request->input('addthree'))) {
-                    $charge = Charge::where(['camper_id' => $thiscamper->id,
+                    $addthree = Charge::where(['camper_id' => $thiscamper->id,
                         'memo' => 'Optional payment to offset PayPal Invoice #' . $txn])->first();
-                    if (!$charge) {
-                        $charge = new Charge();
-                        $charge->camper_id = $thiscamper->id;
-                        $charge->memo = 'Optional payment to offset PayPal Invoice #' . $txn;
+                    if (!$addthree) {
+                        $addthree = new Charge();
+                        $addthree->camper_id = $thiscamper->id;
+                        $addthree->memo = 'Optional payment to offset PayPal Invoice #' . $txn;
                     }
-                    $charge->year_id = $this->year->id;
-                    $charge->chargetype_id = Chargetypename::PayPalServiceCharge;
-                    $charge->amount = $order->purchase_units[0]->amount->value / 1.03 * .03;
-                    $charge->timestamp = date("Y-m-d");
-                    $charge->save();
+                    $addthree->year_id = $this->year->id;
+                    $addthree->chargetype_id = Chargetypename::PayPalServiceCharge;
+                    $addthree->amount = $order->purchase_units[0]->amount->value / 1.03 * .03;
+                    $addthree->timestamp = date("Y-m-d");
+                    $addthree->parent_id = $charge->id;
+                    $addthree->save();
                 }
 
 
@@ -176,6 +162,23 @@ class PaymentController extends Controller
                 $request->session()->flash('success', $success);
             }
 
+            if ($request->input('donation') > 0) {
+                $donation = Charge::where(['camper_id' => $thiscamper->id, 'chargetype_id' => Chargetypename::Donation,
+                    'year_id' => $this->year->id])->first();
+                if (!$donation) {
+                    $donation = new Charge();
+                    $donation->camper_id = $thiscamper->id;
+                    $donation->chargetype_id = Chargetypename::Donation;
+                    $donation->year_id = $this->year->id;
+                }
+                $donation->amount = $request->input('donation');
+                $donation->memo = 'MUUSA Scholarship Fund';
+                $donation->timestamp = date("Y-m-d");
+                if($charge) {
+                    $donation->parent_id = $charge->id;
+                }
+                $donation->save();
+            }
         } else {
             $request->session()->flash('error', 'Payment was not processed by MUUSA. If you believe that PayPal has transmitted funds, please contact the Treasurer so we can confirm and update your account.');
         }

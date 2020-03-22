@@ -82,15 +82,9 @@ class ReportController extends Controller
 
     public function deposits()
     {
-        $chargetypes = Chargetype::where('is_deposited', '1')->with('thisyearcharges.camper')->get();
-        $moments = ThisyearCharge::whereNotNull('created_at')->where(function ($query) use ($chargetypes) {
-            $query->whereIn('chargetype_id', $chargetypes->pluck('id'))
-                ->orWhereIn('chargetype_id', [Chargetypename::Donation, Chargetypename::PayPalServiceCharge]);
-        })->get()->groupBy(function ($item) {
-            return $item->created_at->toISOString();
-        });
-
-        return view('reports.deposits', ['chargetypes' => $chargetypes, 'moments' => $moments]);
+        $chargetypes = Chargetype::where('is_deposited', '1')
+            ->with(['thisyearcharges.camper', 'thisyearcharges.children'])->get();
+        return view('reports.deposits', ['chargetypes' => $chargetypes]);
     }
 
     public function programs()

@@ -36,9 +36,9 @@
                                         <tr>
                                             <td>{{ $charge->camper->firstname }} {{ $charge->camper->lastname }}</td>
                                             <td>{{ number_format(abs($charge->amount), 2) }}</td>
-                                            <td>{{ number_format(abs($moments[$charge->created_at->toISOString()]->sum('amount')), 2) }}</td>
-                                            <td>{{ number_format(abs($moments[$charge->created_at->toISOString()]->where('chargetype_id', \App\Enums\Chargetypename::Donation)->sum('amount')), 2) }}</td>
-                                            <td>{{ number_format(abs($moments[$charge->created_at->toISOString()]->where('chargetype_id', \App\Enums\Chargetypename::PayPalServiceCharge)->sum('amount')), 2) }}</td>
+                                            <td>{{ number_format(abs($charge->amount + $charge->children->sum('amount')), 2) }}</td>
+                                            <td>{{ number_format(abs($charge->children->where('chargetype_id', \App\Enums\Chargetypename::Donation)->sum('amount')), 2) }}</td>
+                                            <td>{{ number_format(abs($charge->children->where('chargetype_id', \App\Enums\Chargetypename::PayPalServiceCharge)->sum('amount')), 2) }}</td>
                                             <td>{{ $charge->timestamp }}</td>
                                             <td>{{ $charge->memo }}</td>
                                             <td>

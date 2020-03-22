@@ -78,9 +78,9 @@ class ReportTest extends DuskTestCase
                 'amount' => $faker->randomNumber(4) * -1]));
         }
         $donation = factory(Charge::class)->create(['chargetype_id' => Chargetypename::Donation,
-            'year_id' => self::$year->id, 'created_at' => $charges[0]->created_at]);
+            'year_id' => self::$year->id, 'parent_id' => $charges[0]->id]);
         $addthree = factory(Charge::class)->create(['chargetype_id' => Chargetypename::PayPalServiceCharge,
-            'year_id' => self::$year->id, 'created_at' => $charges[0]->created_at]);
+            'year_id' => self::$year->id, 'parent_id' => $charges[0]->id]);
         $this->browse(function (Browser $browser) use ($user, $charges, $donation, $addthree) {
             $browser->loginAs($user)->visitRoute('reports.deposits')
                 ->waitFor('div.tab-content div.active')->assertSee('Undeposited');

@@ -25,6 +25,7 @@ class CreateByyearCharges extends Migration
                             g.name                              chargetypename,
                             h.timestamp,
                             h.memo,
+                            h.parent_id,
                             h.created_at
                           FROM charges h, chargetypes g, campers c, years y
                           WHERE h.chargetype_id=g.id AND h.camper_id=c.id AND h.year_id=y.id
@@ -41,6 +42,7 @@ class CreateByyearCharges extends Migration
                             g.name,
                             NULL,
                             hg.memo,
+                            NULL,
                             NULL
                           FROM campers c, gencharges hg, chargetypes g, years yg
                           WHERE c.id=hg.camper_id AND g.id=hg.chargetype_id AND hg.year_id=yg.id
@@ -57,6 +59,7 @@ class CreateByyearCharges extends Migration
                             g.name,
                             NULL,
                             og.memo,
+                            NULL,
                             NULL
                           FROM campers c, oldgencharges og, chargetypes g, years oy
                           WHERE c.id=og.camper_id AND g.id=og.chargetype_id AND og.year_id=oy.id;");

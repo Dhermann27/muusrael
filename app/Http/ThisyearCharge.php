@@ -12,4 +12,9 @@ class ThisyearCharge extends Model
     {
         return $this->hasOne(Camper::class, 'id', 'camper_id');
     }
+
+    public function children()
+    {
+        return $this->hasMany(Charge::class, 'parent_id', 'id');
+    }
 }

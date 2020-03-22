@@ -3,8 +3,8 @@
 namespace Tests\Browser;
 
 use App\Camper;
+use App\Enums\Programname;
 use App\Enums\Usertype;
-use App\Program;
 use App\Staffposition;
 use App\User;
 use App\Yearattending;
@@ -51,35 +51,33 @@ class ToolsTest extends DuskTestCase
     public function testPositions()
     {
         $user = factory(User::class)->create(['usertype' => Usertype::Admin]);
-        $program = factory(Program::class)->create();
-        $staffposition = factory(Staffposition::class)->create(['program_id' => $program->id]);
+        $staffposition = factory(Staffposition::class)->create(['program_id' => Programname::Adult]);
         $camper = factory(Camper::class)->create();
         $ya = factory(Yearattending::class)->create(['camper_id' => $camper->id, 'year_id' => self::$year->id]);
         factory(YearattendingStaff::class)->create(['yearattending_id' => $ya->id, 'staffposition_id' => $staffposition->id]);
-        $newprogram = factory(Program::class)->create();
-        $newposition = factory(Staffposition::class)->create(['program_id' => $newprogram->id]);
+        $newposition = factory(Staffposition::class)->create(['program_id' => Programname::Burt]);
         $newcamper = factory(Camper::class)->create();
         $newya = factory(Yearattending::class)->create(['camper_id' => $newcamper->id, 'year_id' => self::$year->id]);
         $missingcamper = factory(Camper::class)->create();
 
 
-        $this->browse(function (Browser $browser) use ($user, $program, $staffposition, $camper, $ya, $newprogram, $newposition, $newcamper, $missingcamper) {
+        $this->browse(function (Browser $browser) use ($user, $staffposition, $camper, $ya, $newposition, $newcamper, $missingcamper) {
             $browser->loginAs($user)->visitRoute('tools.staff.index')
-                ->waitFor('form#positions div.tab-content div.active')->clickLink($program->name)
+                ->waitFor('form#positions div.tab-content div.active')->clickLink('Adult')
                 ->pause(250)->assertSee($staffposition->name)
                 ->assertSee($camper->firstname)->assertSee($camper->lastname)
                 ->assertSee(number_format($staffposition->compensationlevel->max_compensation, 2))
-                ->check('delete-' . $ya->id . '-' . $staffposition->id)->clickLink($newprogram->name)
+                ->check('delete-' . $ya->id . '-' . $staffposition->id)->clickLink('Burt')
                 ->pause(250)->assertSee('No staff assigned')->click('button[type="submit"]')
-                ->waitFor('div.alert')->assertVisible('div.alert-success')->clickLink($program->name)
-                ->pause(250)->assertSee('No staff assigned')->clickLink($newprogram->name)
+                ->waitFor('div.alert')->assertVisible('div.alert-success')->clickLink('Adult')
+                ->pause(250)->assertSee('No staff assigned')->clickLink('Burt')
                 ->pause(250)->click('select#camper_id + span.select2')
                 ->waitFor('.select2-container--open')
                 ->type('span.select2-container input.select2-search__field', $newcamper->email)
                 ->waitFor('li.select2-results__option--highlighted')
                 ->click('li.select2-results__option--highlighted')
                 ->select('staffposition_id', $newposition->id)->click('button[type="submit"]')
-                ->waitFor('div.alert')->assertVisible('div.alert-success')->clickLink($newprogram->name)
+                ->waitFor('div.alert')->assertVisible('div.alert-success')->clickLink('Burt')
                 ->pause(250)->assertSee($newposition->name)->assertSee($newcamper->firstname)
                 ->assertSee($newcamper->lastname)
                 ->assertSee(number_format($newposition->compensationlevel->max_compensation, 2))
@@ -88,7 +86,7 @@ class ToolsTest extends DuskTestCase
                 ->waitFor('li.select2-results__option--highlighted')
                 ->click('li.select2-results__option--highlighted')
                 ->select('staffposition_id', $newposition->id)->click('button[type="submit"]')
-                ->waitFor('div.alert')->assertVisible('div.alert-success')->clickLink($newprogram->name)
+                ->waitFor('div.alert')->assertVisible('div.alert-success')->clickLink('Burt')
                 ->pause(250)->assertSee($newposition->name)->assertSee($missingcamper->firstname)
                 ->assertSee($missingcamper->lastname)
                 ->assertSee(number_format($newposition->compensationlevel->max_compensation, 2));;
