@@ -26,7 +26,7 @@ class CaptchaValid implements Rule
      */
     public function passes($attribute, $value)
     {
-        return !App::environment('production') || captcha_validate($value);
+        return captcha_validate($value);
 
     }
 
