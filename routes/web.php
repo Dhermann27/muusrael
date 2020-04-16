@@ -12,6 +12,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/contact', 'ContactController@contactIndex')->name('contact.index');
 Route::post('/contact', 'ContactController@contactStore')->name('contact.store');
+Route::get('/refreshcaptcha', 'ContactController@refreshCaptcha')->name('contact.refresh');
 
 Route::get('/cost', 'HomeController@campcost')->name('cost');
 Route::get('/themespeaker', 'HomeController@themespeaker')->name('themespeaker');
@@ -127,7 +128,6 @@ Route::group(['middleware' => ['can:is-super'], 'prefix' => 'admin'], function (
     Route::get('positions', 'AdminController@positionIndex')->name('admin.positions.index');
     Route::post('positions', 'AdminController@positionStore')->name('admin.positions.store');
 });
-
 
 Route::get('/brochure', function () {
     $year = date('Y');

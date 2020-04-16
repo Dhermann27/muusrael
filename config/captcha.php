@@ -1,16 +1,10 @@
-<?php if (!class_exists('CaptchaConfiguration')) {
-    return;
-}
-
-// BotDetect PHP Captcha configuration options
-
+<?php
 return [
-    'muustcha' => [
-        'UserInputID' => 'CaptchaCode',
-        'ImageWidth' => 400,
-        'ImageHeight' => 100,
-        'SoundEnabled' => false,
-        'CodeLength' => 4
-    ],
-
+    'default' => [
+        'length' => 4,
+        'width' => 400,
+        'height' => 50,
+        'quality' => 70,
+        'math' => false, //Enable Math Captcha
+    ]
 ];
