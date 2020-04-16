@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
-        "anhskohbo/no-captcha": "^3.0",
+        "captcha-com/laravel-captcha": "4.*",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/telescope": "^2.0",

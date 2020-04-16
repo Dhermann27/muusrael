@@ -1,9 +1,16 @@
-<?php
+<?php if (!class_exists('CaptchaConfiguration')) {
+    return;
+}
+
+// BotDetect PHP Captcha configuration options
 
 return [
-    'secret' => env('NOCAPTCHA_SECRET'),
-    'sitekey' => env('NOCAPTCHA_SITEKEY'),
-    'options' => [
-        'timeout' => 30,
+    'muustcha' => [
+        'UserInputID' => 'CaptchaCode',
+        'ImageWidth' => 400,
+        'ImageHeight' => 100,
+        'SoundEnabled' => false,
+        'CodeLength' => 4
     ],
+
 ];

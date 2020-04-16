@@ -42,7 +42,9 @@
             @elseif($type == 'captcha')
                 {{--@include('includes.formgroup', ['type' => 'captcha', 'label' => 'CAPTCHA Test',--}}
                 {{--'attribs' => ['name' => 'g-recaptcha-response']])--}}
-                {!! NoCaptcha::display() !!}
+                {!! captcha_image_html('muustcha') !!}
+                <input id="CaptchaCode" name="{{ $attribs["name"] }}"
+                       class="form-control @error('CaptchaCode') is-invalid @enderror" />
             @elseif($type == 'submit')
                 {{--@include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes']])--}}
                 <div class="text-lg-right">

@@ -12,6 +12,9 @@ use Tests\DuskTestCase;
 use Tests\MuusaTrap;
 use function rand;
 
+/**
+ * @group Contact
+ */
 class ContactTest extends DuskTestCase
 {
     use MuusaTrap;
@@ -32,6 +35,7 @@ class ContactTest extends DuskTestCase
                 ->type('email', $fakedEmail)
                 ->select('mailbox', $box->id)
                 ->type('message', $fakedGraph)
+                ->type('CaptchaCode', 'TEST')
                 ->click('button[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-success');
 
         });
@@ -67,6 +71,7 @@ class ContactTest extends DuskTestCase
                 ->type('email', $fakedEmail)
                 ->select('mailbox', $box->id)
                 ->type('message', $fakedGraph)
+                ->type('CaptchaCode', 'TEST')
                 ->click('button[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-success');
 
         });
@@ -97,6 +102,7 @@ class ContactTest extends DuskTestCase
                 ->type('email', $fakedEmail)
                 ->select('mailbox', $box->id)
                 ->type('message', $fakedGraph)
+                ->type('CaptchaCode', 'TEST')
                 ->click('button[type="submit"]')->waitFor('div.alert')->assertVisible('div.alert-danger');
 
         });
@@ -123,6 +129,7 @@ class ContactTest extends DuskTestCase
                 ->assertSeeIn('select#mailbox', $box->name)
                 ->select('mailbox', $box->id)
                 ->type('message', $fakedGraph)
+                ->type('CaptchaCode', 'TEST')
                 ->click('button[type="submit"]')->waitFor('div.alert')
                 ->assertVisible('div.alert-success')->logout();
 

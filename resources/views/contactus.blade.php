@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
+@endsection
+
 @section('title')
     Contact Us
 @endsection
@@ -32,13 +36,9 @@
             @include('includes.formgroup', ['type' => 'text', 'label' => 'Message', 'attribs' => ['name' => 'message']])
 
             @include('includes.formgroup', ['type' => 'captcha', 'label' => 'CAPTCHA Test',
-                'attribs' => ['name' => 'g-recaptcha-response']])
+                'attribs' => ['name' => 'CaptchaCode']])
 
             @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Send Message']])
         </form>
     </div>
-@endsection
-
-@section('script')
-    {!! NoCaptcha::renderJs() !!}
 @endsection
