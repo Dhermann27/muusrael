@@ -42,10 +42,11 @@
             @elseif($type == 'captcha')
                 {{--@include('includes.formgroup', ['type' => 'captcha', 'label' => 'CAPTCHA Test',--}}
                 {{--'attribs' => ['name' => 'g-recaptcha-response']])--}}
-                <span id="captchaimg">{!! captcha_img() !!}</span>
-                <button type="button" id="refreshcaptcha" class="btn btn-success"><i class="fas fa-sync-alt"></i></button>
+                <span id="captchaimg"></span>
+                <button type="button" id="refreshcaptcha" class="btn btn-success"><i class="fas fa-sync-alt"></i>
+                </button>
                 <input id="captcha" name="{{ $attribs["name"] }}"
-                       class="form-control mt-2 @error('captcha') is-invalid @enderror" />
+                       class="form-control mt-2 @error('captcha') is-invalid @enderror"/>
             @elseif($type == 'submit')
                 {{--@include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes']])--}}
                 <div class="text-lg-right">
@@ -88,17 +89,3 @@
         @enderror
     </div>
 </div>
-
-@section('script')
-    <script type="text/javascript">
-        $('button#refreshcaptcha').click(function(){
-            $.ajax({
-                type:'GET',
-                url:'/refreshcaptcha',
-                success:function(data){
-                    $("span#captchaimg").html(data.captcha);
-                }
-            });
-        });
-    </script>
-    @endsection

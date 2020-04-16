@@ -38,3 +38,17 @@
         </form>
     </div>
 @endsection
+
+@section('script')
+    <script type="text/javascript">
+        $('button#refreshcaptcha').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/refreshcaptcha',
+                success: function (data) {
+                    $("span#captchaimg").html(data.captcha);
+                }
+            });
+        }).click();
+    </script>
+@endsection
