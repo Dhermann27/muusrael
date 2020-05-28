@@ -17,7 +17,9 @@
             <ul id="nav-tab-years" class="nav nav-tabs" role="tablist">
                 @foreach($years->sortKeys() as $thisyear => $charges)
                     <li class="nav-item{{ $loop->first ? ' pl-5' : '  ml-2' }}">
-                        <a class="nav-link" data-toggle="tab" href="#year-{{ $thisyear }}" role="tab">
+                        <a id="{{ $charges->first()->year_id }}" class="nav-link" data-toggle="tab"
+                           href="#year-{{ $thisyear }}"
+                           role="tab">
                             {{ $thisyear }}
                         </a>
                     </li>
@@ -104,60 +106,70 @@
                                     <td colspan="3">&nbsp;</td>
                                 </tr>
                             @endif
+                        </table>
+                        @if(session()->has('camper') && Gate::allows('is-super'))
 
-                            @if($thisyear == $year->year && session()->has('camper') && Gate::allows('is-super'))
-                                <tfoot>
-                                <tr>
-                                    <td class="form-group @error('chargetype_id') has-danger @enderror">
-                                        <label for="newchargetypeid" class="sr-only">Chargetype</label>
-                                        <select class="form-control @error('chargetype_id') is-invalid @enderror"
-                                                id="newchargetypeid" name="chargetype_id">
-                                            @foreach($chargetypes as $chargetype)
-                                                <option value="{{ $chargetype->id }}"
-                                                    {{ $chargetype->id == old('chargetype_id') ? ' selected' : '' }}>
-                                                    {{ $chargetype->name }}
+                            <div class="well">
+                                <h4>Add New Charge</h4>
+                                <div class="form-group row @error('year_id') has-danger @enderror">
+                                    <label for="year_id" class="col-md-4 col-form-label text-md-right">
+                                        Fiscal Year
+                                    </label>
+
+                                    <div class="col-md-6">
+                                        <select id="year_id" name="year_id"
+                                                class="form-control @error('year_id') is-invalid @enderror">
+                                            @foreach($fiscalyears as $year)
+                                                <option
+                                                    value="{{ $year->id }}"{{ old('year_id') == $year->id ? " selected" : "" }}>
+                                                    {{ $year->year }}
                                                 </option>
                                             @endforeach
                                         </select>
-                                    </td>
-                                    <td class="form-group @error('amount') has-danger @enderror">
-                                        <label for="amount" class="sr-only">Amount</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text">$</span>
-                                            </div>
-                                            <input type="text" id="amount"
-                                                   class="form-control @error('amount') is-invalid @enderror"
-                                                   name="amount" value="{{ old('amount') }}"/>
-                                        </div>
-                                    </td>
-                                    <td class="form-group @error('date') has-danger @enderror">
-                                        <label for="date" class="sr-only">Timestamp</label>
-                                        <div class="input-group date" data-provide="datepicker"
-                                             data-date-format="yyyy-mm-dd" data-date-autoclose="true">
-                                            <input id="date" type="text"
-                                                   class="form-control @error('date') is-invalid @enderror" name="date"
-                                                   value="@error('date'){{ old('date') }} @else {{ date('Y-m-d') }}@endif">
+
+                                        @error('year_id')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                @include('includes.formgroup', ['type' => 'select',
+                                    'label' => 'Chargetype', 'attribs' => ['name' => 'chargetype_id'],
+                                    'default' => 'Choose a chargetype', 'list' => $chargetypes, 'option' => 'name'])
+
+                                @include('includes.formgroup', ['label' => 'Amount', 'attribs' => ['name' => 'amount']])
+
+                                <div class="form-group row @error('timestamp') has-danger @enderror">
+
+                                    <label for="timestamp" class="col-md-4 col-form-label text-md-right">
+                                        Timestamp (yyyy-mm-dd)
+                                    </label>
+                                    <div class="col-md-6">
+                                        <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd"
+                                             data-date-autoclose="true">
+                                            <input id="timestamp" type="text" class="form-control" name="timestamp"
+                                                   value="{{ old('timestamp', date('Y-m-d')) }}">
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><i class="far fa-calendar"></i></span>
                                             </div>
                                             <div class="input-group-addon">
                                             </div>
                                         </div>
-                                    </td>
-                                    <td class="form-group @error('memo') has-danger @enderror" colspan="2">
-                                        <label for="memo" class="sr-only">Memo</label>
-                                        <input id="memo" class="form-control" name="memo"
-                                               value="{{ old('memo') }}">
-                                    </td>
-                                </tr>
-                                </tfoot>
-                            @endif
+                                        @error('timestamp')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
-                        </table>
-                        @if($thisyear == $year->year && session()->has('camper') && Gate::allows('is-super'))
-                            @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes']])
-                        @endif
-                        @if(!session()->has('camper'))
+                                @include('includes.formgroup', ['label' => 'Memo', 'attribs' => ['name' => 'memo']])
+
+                                @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes']])
+                            </div>
+                        @else
                             @if($year->is_accept_paypal)
                                 <div class="row p-7">
                                     <div class="col-md-6">
@@ -286,7 +298,9 @@
 
 @section('script')
     <script>
-        $('ul#nav-tab-years a:last').tab('show');
+        $('ul#nav-tab-years').on('shown.bs.tab', function (e) {
+            $('select#year_id').val(e.target.id);
+        }).find('a:last').tab('show');
         @if(session()->has('newreg'))
         $("div#modal-newreg").modal('show');
         @endif

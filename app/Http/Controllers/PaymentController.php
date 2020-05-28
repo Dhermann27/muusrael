@@ -13,6 +13,7 @@ use App\PayPalClient;
 use App\Province;
 use App\ThisyearCamper;
 use App\ThisyearCharge;
+use App\Year;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,12 +29,6 @@ class PaymentController extends Controller
 
     public function write(Request $request, $id)
     {
-        $this->validate($request, [
-            'chargetype_id' => 'exists:chargetypes,id',
-            'amount' => 'nullable|numeric',
-            'timestamp' => 'date_format:Y-m-d',
-            'memo' => 'nullable|max:255'
-        ]);
 
         foreach ($request->all() as $key => $value) {
             $matches = array();
@@ -51,13 +46,21 @@ class PaymentController extends Controller
         }
 
         if ($request->input('amount') != '') {
+
+            $this->validate($request, [
+                'chargetype_id' => 'exists:chargetypes,id',
+                'amount' => 'nullable|numeric',
+                'timestamp' => 'date_format:Y-m-d',
+                'memo' => 'nullable|max:255'
+            ]);
+
             $charge = new Charge();
             $charge->camper_id = $id;
             $charge->chargetype_id = $request->input('chargetype_id');
             $charge->amount = (float)$request->input('amount');
-            $charge->timestamp = $request->input('date');
+            $charge->timestamp = $request->input('timestamp');
             $charge->memo = $request->input('memo');
-            $charge->year_id = $this->year->id;
+            $charge->year_id = $request->input('year_id');
             $charge->save();
         }
 
@@ -174,7 +177,7 @@ class PaymentController extends Controller
                 $donation->amount = $request->input('donation');
                 $donation->memo = 'MUUSA Scholarship Fund';
                 $donation->timestamp = date("Y-m-d");
-                if($charge) {
+                if ($charge) {
                     $donation->parent_id = $charge->id;
                 }
                 $donation->save();
@@ -219,8 +222,8 @@ class PaymentController extends Controller
             }
         }
 
-        return view('payment', ['token' => $token, 'years' => $years, 'deposit' => $deposit,
-            'chargetypes' => $chargetypes]);
+        return view('payment', ['token' => $token, 'years' => $years,
+            'fiscalyears' => Year::orderBy('year', 'desc')->get(), 'deposit' => $deposit, 'chargetypes' => $chargetypes]);
     }
 
     protected function getOrder($orderId)
