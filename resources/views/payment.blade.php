@@ -107,114 +107,114 @@
                                 </tr>
                             @endif
                         </table>
-                        @if(session()->has('camper') && Gate::allows('is-super'))
-
-                            <div class="well">
-                                <h4>Add New Charge</h4>
-                                <div class="form-group row @error('year_id') has-danger @enderror">
-                                    <label for="year_id" class="col-md-4 col-form-label text-md-right">
-                                        Fiscal Year
-                                    </label>
-
-                                    <div class="col-md-6">
-                                        <select id="year_id" name="year_id"
-                                                class="form-control @error('year_id') is-invalid @enderror">
-                                            @foreach($fiscalyears as $year)
-                                                <option
-                                                    value="{{ $year->id }}"{{ old('year_id') == $year->id ? " selected" : "" }}>
-                                                    {{ $year->year }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-
-                                        @error('year_id')
-                                        <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                @include('includes.formgroup', ['type' => 'select',
-                                    'label' => 'Chargetype', 'attribs' => ['name' => 'chargetype_id'],
-                                    'default' => 'Choose a chargetype', 'list' => $chargetypes, 'option' => 'name'])
-
-                                @include('includes.formgroup', ['label' => 'Amount', 'attribs' => ['name' => 'amount']])
-
-                                <div class="form-group row @error('timestamp') has-danger @enderror">
-
-                                    <label for="timestamp" class="col-md-4 col-form-label text-md-right">
-                                        Timestamp (yyyy-mm-dd)
-                                    </label>
-                                    <div class="col-md-6">
-                                        <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd"
-                                             data-date-autoclose="true">
-                                            <input id="timestamp" type="text" class="form-control" name="timestamp"
-                                                   value="{{ old('timestamp', date('Y-m-d')) }}">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><i class="far fa-calendar"></i></span>
-                                            </div>
-                                            <div class="input-group-addon">
-                                            </div>
-                                        </div>
-                                        @error('timestamp')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                @include('includes.formgroup', ['label' => 'Memo', 'attribs' => ['name' => 'memo']])
-
-                                @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes']])
-                            </div>
-                        @else
-                            @if($year->is_accept_paypal)
-                                <div class="row p-7">
-                                    <div class="col-md-6">
-                                        <h4>To Register via Mail:</h4>
-                                        Make checks payable to <strong>MUUSA, Inc.</strong><br/>
-                                        Mail check by May 31, {{ $year->year }} to<br/>
-                                        MUUSA, Inc.<br/>6348 Meis Avenue<br/>
-                                        Cincinnati, OH 45224<br/> <br/>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h4>To Register via PayPal:</h4>
-                                        <div class="form-group row">
-                                            <label for="amount" class="control-label">Payment:</label>
-
-                                            <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text">$</span>
-                                                </div>
-                                                <input type="number" id="amount" name="amount"
-                                                       class="form-control"
-                                                       data-toggle="tooltip" title="Or enter another amount..."
-                                                       value="{{ number_format(max($charges->sum('amount'), 0), 2, '.', '') }}"/>
-                                            </div>
-
-                                            <div class="input-group pt-3">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" id="addthree" name="addthree"> Add 3% to
-                                                        my payment to cover the PayPal service fee
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" id="orderid" name="orderid"/>
-                                        <div id="paypal-button"></div>
-                                    </div>
-                                </div>
-                            @else
-                                <div class="row text-md-center">
-                                    Please bring payment to the first day of camp on {{ $year->checkin }}. While we
-                                    do accept VISA, Mastercard, Discover, we prefer a check, to minimize fees.
-                                </div>
-                            @endif
-                        @endif
                     </div>
                 @endforeach
+                @if(session()->has('camper') && Gate::allows('is-super'))
+
+                    <div class="well">
+                        <h4>Add New Charge</h4>
+                        <div class="form-group row @error('year_id') has-danger @enderror">
+                            <label for="year_id" class="col-md-4 col-form-label text-md-right">
+                                Fiscal Year
+                            </label>
+
+                            <div class="col-md-6">
+                                <select id="year_id" name="year_id"
+                                        class="form-control @error('year_id') is-invalid @enderror">
+                                    @foreach($fiscalyears as $year)
+                                        <option
+                                            value="{{ $year->id }}"{{ old('year_id') == $year->id ? " selected" : "" }}>
+                                            {{ $year->year }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                @error('year_id')
+                                <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        @include('includes.formgroup', ['type' => 'select',
+                            'label' => 'Chargetype', 'attribs' => ['name' => 'chargetype_id'],
+                            'default' => 'Choose a chargetype', 'list' => $chargetypes, 'option' => 'name'])
+
+                        @include('includes.formgroup', ['label' => 'Amount', 'attribs' => ['name' => 'amount']])
+
+                        <div class="form-group row @error('timestamp') has-danger @enderror">
+
+                            <label for="timestamp" class="col-md-4 col-form-label text-md-right">
+                                Timestamp (yyyy-mm-dd)
+                            </label>
+                            <div class="col-md-6">
+                                <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd"
+                                     data-date-autoclose="true">
+                                    <input id="timestamp" type="text" class="form-control" name="timestamp"
+                                           value="{{ old('timestamp', date('Y-m-d')) }}">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="far fa-calendar"></i></span>
+                                    </div>
+                                    <div class="input-group-addon">
+                                    </div>
+                                </div>
+                                @error('timestamp')
+                                <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        @include('includes.formgroup', ['label' => 'Memo', 'attribs' => ['name' => 'memo']])
+
+                        @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes']])
+                    </div>
+                @else
+                    @if($year->is_accept_paypal)
+                        <div class="row p-7">
+                            <div class="col-md-6">
+                                <h4>To Register via Mail:</h4>
+                                Make checks payable to <strong>MUUSA, Inc.</strong><br/>
+                                Mail check by May 31, {{ $year->year }} to<br/>
+                                MUUSA, Inc.<br/>6348 Meis Avenue<br/>
+                                Cincinnati, OH 45224<br/> <br/>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>To Register via PayPal:</h4>
+                                <div class="form-group row">
+                                    <label for="amount" class="control-label">Payment:</label>
+
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text">$</span>
+                                        </div>
+                                        <input type="number" id="amount" name="amount"
+                                               class="form-control"
+                                               data-toggle="tooltip" title="Or enter another amount..."
+                                               value="{{ number_format(max($charges->sum('amount'), 0), 2, '.', '') }}"/>
+                                    </div>
+
+                                    <div class="input-group pt-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="addthree" name="addthree"> Add 3% to
+                                                my payment to cover the PayPal service fee
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="orderid" name="orderid"/>
+                                <div id="paypal-button"></div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="row text-md-center">
+                            Please bring payment to the first day of camp on {{ $year->checkin }}. While we
+                            do accept VISA, Mastercard, Discover, we prefer a check, to minimize fees.
+                        </div>
+                    @endif
+                @endif
             </div>
         </form>
     </div>

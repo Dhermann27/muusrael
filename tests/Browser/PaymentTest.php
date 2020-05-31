@@ -218,6 +218,8 @@ class PaymentTest extends DuskTestCase
 
         $charge = factory(Charge::class)->create(['chargetype_id' => Chargetypename::CreditCardPayment,
             'camper_id' => $campers[0]->id, 'amount' => rand(-20000, -100000) / 100, 'year_id' => self::$year->id]);
+        $newcharge = factory(Charge::class)->create(['chargetype_id' => Chargetypename::CheckPayment,
+            'camper_id' => $campers[0]->id, 'amount' => rand(-20000, -100000) / 100, 'year_id' => self::$lastyear->id]);
 
         foreach (self::$years as $year) {
             $charges = array();
@@ -231,7 +233,7 @@ class PaymentTest extends DuskTestCase
             GenerateCharges::dispatchNow($year->id);
         }
 
-        $this->browse(function (Browser $browser) use ($user, $campers, $charge) {
+        $this->browse(function (Browser $browser) use ($user, $campers, $charge, $newcharge) {
             $browser->loginAs($user->id)->visitRoute('payment.index', ['id' => $campers[0]->id])
                 ->waitFor('form#muusapayment div.tab-content div.active')
                 ->clickLink(self::$year->year)->pause(250)
@@ -242,7 +244,16 @@ class PaymentTest extends DuskTestCase
                     $browser->assertSeeIn('form#muusapayment div.tab-content div.active', $charge->amount);
                 }
             }
+            $browser->clickLink(self::$lastyear->year)->pause(250)
+                ->select('chargetype_id', $newcharge->chargetype_id)
+                ->type('amount', $newcharge->amount)->type('timestamp', $newcharge->timestamp)
+                ->type('memo', $newcharge->memo)->click('button[type="submit"]')
+                ->waitFor('div.alert')->assertVisible('div.alert-success');
         });
+
+        $this->assertDatabaseHas('charges', ['year_id' => $newcharge->year_id,
+            'chargetype_id' => $newcharge->chargetype_id, 'amount' => $newcharge->amount,
+            'timestamp' => $newcharge->timestamp, 'memo' => $newcharge->memo]);
 
     }
 
