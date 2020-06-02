@@ -83,7 +83,7 @@ class ReportController extends Controller
     public function deposits()
     {
         $chargetypes = Chargetype::where('is_deposited', '1')
-            ->with(['thisyearcharges.camper', 'thisyearcharges.children'])->get();
+            ->with(['byyearcharges.camper', 'byyearcharges.children'])->get();
         return view('reports.deposits', ['chargetypes' => $chargetypes]);
     }
 
