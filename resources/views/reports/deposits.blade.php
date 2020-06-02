@@ -13,7 +13,7 @@
                       action="{{ route('reports.deposits.mark', ['id' => $chargetype->id]) }}">
                     @include('includes.flash')
                     <div class="accordion" id="accordion-{{ $chargetype->id }}">
-                        @forelse($chargetype->byyearcharges->groupBy('deposited_date')->sortKeys() as $deposited_date => $charges)
+                        @forelse($chargetype->byyearcharges->where('year', '>', $year->year-3)->groupBy('deposited_date')->sortKeys() as $deposited_date => $charges)
                             @component('components.accordioncard', ['id' => $deposited_date, 'show' => $loop->first, 'heading' => $deposited_date ? 'Deposited on ' . $deposited_date : 'Undeposited' , 'parent' => $chargetype->id])
                                 <table class="table">
                                     <thead>
