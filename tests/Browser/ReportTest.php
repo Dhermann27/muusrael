@@ -2,16 +2,16 @@
 
 namespace Tests\Browser;
 
-use App\Camper;
-use App\Charge;
+use App\Http\Camper;
+use App\Http\Charge;
 use App\Enums\Chargetypename;
 use App\Enums\Timeslotname;
 use App\Enums\Usertype;
 use App\Jobs\Chartdata;
-use App\User;
-use App\Workshop;
-use App\Yearattending;
-use App\YearattendingWorkshop;
+use App\Http\User;
+use App\Http\Workshop;
+use App\Http\Yearattending;
+use App\Http\YearattendingWorkshop;
 use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Support\Facades\DB;

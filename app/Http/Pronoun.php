@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +15,7 @@ class Pronoun extends Model
 
     public function camper()
     {
-        return $this->belongsTo('App\Camper');
+        return $this->belongsTo('App\Http\Camper');
     }
 
 }

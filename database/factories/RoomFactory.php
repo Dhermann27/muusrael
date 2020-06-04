@@ -1,9 +1,10 @@
 <?php
 
-use App\Building;
+use App\Http\Building;
+use App\Http\Room;
 use Faker\Generator as Faker;
 
-$factory->define(App\Room::class, function (Faker $faker) {
+$factory->define(Room::class, function (Faker $faker) {
     return [
         'building_id' => function () {
             return factory(Building::class)->create()->id;

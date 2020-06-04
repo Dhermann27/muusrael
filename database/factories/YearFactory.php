@@ -2,7 +2,7 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Year;
+use App\Http\Year;
 use Faker\Generator as Faker;
 use Carbon\Carbon;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,11 +22,11 @@ class CamperStaff extends Model
 
     public function camper()
     {
-        return $this->hasOne('App\Camper');
+        return $this->hasOne('App\Http\Camper');
     }
 
     public function staffposition()
     {
-        return $this->hasOne('App\Staffposition');
+        return $this->hasOne('App\Http\Staffposition');
     }
 }

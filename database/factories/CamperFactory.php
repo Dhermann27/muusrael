@@ -2,12 +2,12 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Camper;
-use App\Family;
-use App\Pronoun;
-use App\Church;
-use App\Foodoption;
-use App\Year;
+use App\Http\Camper;
+use App\Http\Family;
+use App\Http\Pronoun;
+use App\Http\Church;
+use App\Http\Foodoption;
+use App\Http\Year;
 use Faker\Generator as Faker;
 
 $factory->define(Camper::class, function (Faker $faker) {

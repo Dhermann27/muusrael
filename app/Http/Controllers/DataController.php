@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Camper;
-use App\Church;
-use App\Medicalresponse;
-use App\Yearattending;
-use App\YearattendingWorkshop;
+use App\Http\Camper;
+use App\Http\Church;
+use App\Http\Medicalresponse;
+use App\Http\Yearattending;
+use App\Http\YearattendingWorkshop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -10,32 +10,32 @@ class Year extends Model
 {
     public function byyearcampers()
     {
-        return $this->hasMany('App\ByyearCamper', 'year_id', 'id')->orderBy('birthdate');
+        return $this->hasMany('App\Http\ByyearCamper', 'year_id', 'id')->orderBy('birthdate');
     }
 
     public function yearsattending()
     {
-        return $this->hasMany('App\Yearattending');
+        return $this->hasMany('App\Http\Yearattending');
     }
 
     public function chartdataNewcampers()
     {
-        return $this->hasMany('App\ChartdataNewcampers', 'year', 'year');
+        return $this->hasMany('App\Http\ChartdataNewcampers', 'year', 'year');
     }
 
     public function chartdataOldcampers()
     {
-        return $this->hasMany('App\ChartdataOldcampers', 'year', 'year');
+        return $this->hasMany('App\Http\ChartdataOldcampers', 'year', 'year');
     }
 
     public function chartdataVeryoldcampers()
     {
-        return $this->hasMany('App\ChartdataVeryoldcampers', 'year', 'year');
+        return $this->hasMany('App\Http\ChartdataVeryoldcampers', 'year', 'year');
     }
 
     public function chartdataLostcampers()
     {
-        return $this->hasMany('App\ChartdataLostcampers', 'year', 'year');
+        return $this->hasMany('App\Http\ChartdataLostcampers', 'year', 'year');
     }
 
     public function getBrochureDateAttribute() {

@@ -2,15 +2,15 @@
 
 namespace Tests\Browser;
 
-use App\Camper;
-use App\Charge;
-use App\Chargetype;
+use App\Http\Camper;
+use App\Http\Charge;
+use App\Http\Chargetype;
 use App\Enums\Chargetypename;
 use App\Enums\Usertype;
 use App\Jobs\GenerateCharges;
-use App\User;
-use App\Year;
-use App\Yearattending;
+use App\Http\User;
+use App\Http\Year;
+use App\Http\Yearattending;
 use Carbon\Carbon;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;

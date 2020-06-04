@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use App\Notifications\ResetPasswordEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -39,11 +39,11 @@ class User extends Authenticatable
 
     public function actions()
     {
-        return $this->hasMany('App\Action');
+        return $this->hasMany('App\Http\Action');
     }
 
     public function camper() {
-        return $this->hasOne('App\Camper', 'email', 'email');
+        return $this->hasOne('App\Http\Camper', 'email', 'email');
     }
 
     public function sendPasswordResetNotification($token)

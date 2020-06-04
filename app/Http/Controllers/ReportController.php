@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Building;
-use App\Charge;
-use App\Chargetype;
-use App\ChartdataDays;
-use App\ChartdaysView;
-use App\Enums\Chargetypename;
 use App\Enums\Programname;
-use App\Program;
-use App\ThisyearCharge;
-use App\Timeslot;
-use App\Year;
+use App\Http\Charge;
+use App\Http\Chargetype;
+use App\Http\ChartdataDays;
+use App\Http\Program;
+use App\Http\Timeslot;
+use App\Http\Year;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

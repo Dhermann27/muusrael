@@ -2,9 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Workshop;
-use App\Yearattending;
-use App\YearattendingWorkshop;
+use App\Http\Workshop;
+use App\Http\Yearattending;
+use App\Http\YearattendingWorkshop;
 use Faker\Generator as Faker;
 
 $factory->define(YearattendingWorkshop::class, function (Faker $faker) {

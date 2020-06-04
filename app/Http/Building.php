@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +15,7 @@ class Building extends Model
 
     public function rooms()
     {
-        return $this->hasMany('App\Room');
+        return $this->hasMany('App\Http\Room');
     }
     public function getImageArrayAttribute()
     {

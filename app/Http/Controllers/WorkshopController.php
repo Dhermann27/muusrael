@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Camper;
+use App\Http\Camper;
 use App\Enums\Timeslotname;
-use App\ThisyearCamper;
-use App\Timeslot;
-use App\YearattendingWorkshop;
+use App\Http\ThisyearCamper;
+use App\Http\Timeslot;
+use App\Http\YearattendingWorkshop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

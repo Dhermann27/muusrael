@@ -2,10 +2,10 @@
 
 namespace Tests\Browser;
 
-use App\Camper;
-use App\Contactbox;
-use App\Family;
-use App\User;
+use App\Http\Camper;
+use App\Http\Contactbox;
+use App\Http\Family;
+use App\Http\User;
 use Faker\Factory;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;

@@ -2,10 +2,10 @@
 
 namespace Tests\Browser;
 
-use App\Building;
+use App\Http\Building;
 use App\Enums\Buildingtype;
-use App\Program;
-use App\Rate;
+use App\Http\Program;
+use App\Http\Rate;
 use Carbon\Carbon;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;

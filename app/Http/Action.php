@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,6 +8,6 @@ class Action extends Model
 {
     public function user()
     {
-        return $this->hasOne('App\User');
+        return $this->hasOne('App\Http\User');
     }
 }

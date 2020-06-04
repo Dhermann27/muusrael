@@ -4,9 +4,8 @@ namespace App\Providers;
 
 use App\Enums\Chargetypename;
 use App\Enums\Usertype;
-use App\ThisyearCharge;
+use App\Http\ThisyearCharge;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -50,8 +49,8 @@ class AuthServiceProvider extends ServiceProvider
             return $user->usertype > Usertype::Pc;
         });
 
-        Gate::define('readonly', function($user) {
-           return session()->has('camper') && $user->usertype == Usertype::Pc;
+        Gate::define('readonly', function ($user) {
+            return session()->has('camper') && $user->usertype == Usertype::Pc;
         });
     }
 

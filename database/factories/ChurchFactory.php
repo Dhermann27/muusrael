@@ -2,8 +2,8 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Church;
-use App\Province;
+use App\Http\Church;
+use App\Http\Province;
 use Faker\Generator as Faker;
 
 $factory->define(Church::class, function (Faker $faker) {

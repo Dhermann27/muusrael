@@ -23,6 +23,8 @@ Route::get('/housing', 'HomeController@housing')->name('housing');
 Route::get('/workshops', 'WorkshopController@display')->name('workshops.display');
 Route::get('/excursions', 'WorkshopController@excursions')->name('workshops.excursions');
 
+Route::get('/directory', 'DirectoryController@index')->name('directory')->middleware('auth');
+
 Route::group(['prefix' => 'campers', 'middleware' => 'auth'], function () {
     Route::get('', 'CamperController@index')->name('campers.index');
     Route::get('/{id?}', 'CamperController@index')->name('campers.index')->middleware('can:is-council');

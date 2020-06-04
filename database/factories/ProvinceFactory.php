@@ -2,7 +2,7 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Province;
+use App\Http\Province;
 use Faker\Generator as Faker;
 
 $factory->define(Province::class, function (Faker $faker) {

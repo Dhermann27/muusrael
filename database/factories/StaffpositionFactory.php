@@ -2,9 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Compensationlevel;
-use App\Program;
-use App\Staffposition;
+use App\Http\Compensationlevel;
+use App\Http\Program;
+use App\Http\Staffposition;
 use Faker\Generator as Faker;
 
 $factory->define(Staffposition::class, function (Faker $faker) {

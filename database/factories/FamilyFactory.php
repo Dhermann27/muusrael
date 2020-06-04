@@ -2,8 +2,8 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Family;
-use App\Province;
+use App\Http\Family;
+use App\Http\Province;
 use Faker\Generator as Faker;
 
 $factory->define(Family::class, function (Faker $faker) {

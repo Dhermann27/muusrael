@@ -2,13 +2,13 @@
 
 namespace Tests\Browser;
 
-use App\Camper;
+use App\Http\Camper;
 use App\Enums\Chargetypename;
 use App\Enums\Usertype;
-use App\Family;
-use App\User;
-use App\Year;
-use App\Yearattending;
+use App\Http\Family;
+use App\Http\User;
+use App\Http\Year;
+use App\Http\Yearattending;
 use Carbon\Carbon;
 use Facebook\WebDriver\Exception\TimeOutException;
 use Laravel\Dusk\Browser;

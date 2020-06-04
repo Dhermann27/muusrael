@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ThisyearCamper;
+use App\Http\ThisyearCamper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function redirect;

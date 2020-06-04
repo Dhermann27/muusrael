@@ -2,9 +2,9 @@
 
 namespace Tests\Browser;
 
-use App\Camper;
-use App\Family;
-use App\User;
+use App\Http\Camper;
+use App\Http\Family;
+use App\Http\User;
 use Facebook\WebDriver\WebDriverBy;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;

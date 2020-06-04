@@ -1,7 +1,7 @@
 <?php
 
-use App\Program;
-use App\Yearattending;
+use App\Http\Program;
+use App\Http\Yearattending;
 
 $factory->define(Yearattending::class, function () {
     return [

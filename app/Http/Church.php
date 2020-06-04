@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +16,6 @@ class Church extends Model
 
     public function province()
     {
-        return $this->hasOne('App\Province', 'id', 'province_id');
+        return $this->hasOne('App\Http\Province', 'id', 'province_id');
     }
 }

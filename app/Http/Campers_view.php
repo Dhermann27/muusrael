@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,26 +15,26 @@ class Campers_view extends Model
 
     public function family()
     {
-        return $this->hasOne('App\Family');
+        return $this->hasOne('App\Http\Family');
     }
 
     public function pronoun()
     {
-        return $this->hasOne('App\Pronoun');
+        return $this->hasOne('App\Http\Pronoun');
     }
 
     public function foodoption()
     {
-        return $this->hasOne('App\Foodoption');
+        return $this->hasOne('App\Http\Foodoption');
     }
 
     public function church()
     {
-        return $this->hasOne('App\Church', 'id', 'church_id');
+        return $this->hasOne('App\Http\Church', 'id', 'church_id');
     }
 
     public function yearsattending()
     {
-        return $this->hasMany('App\Yearattending');
+        return $this->hasMany('App\Http\Yearattending');
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Building;
-use App\CampCost;
+use App\Http\Building;
+use App\Http\CampCost;
 use App\Enums\Buildingtype;
-use App\Program;
+use App\Http\Program;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

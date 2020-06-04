@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,11 +22,11 @@ class YearattendingVolunteer extends Model
 
     public function yearattending()
     {
-        return $this->hasOne('App\Yearattending');
+        return $this->hasOne('App\Http\Yearattending');
     }
 
     public function volunteerposition()
     {
-        return $this->hasOne('App\Volunteerposition');
+        return $this->hasOne('App\Http\Volunteerposition');
     }
 }

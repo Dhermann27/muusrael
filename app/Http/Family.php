@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,11 +15,11 @@ class Family extends Model
 
     public function province()
     {
-        return $this->hasOne('App\Province', 'id', 'province_id');
+        return $this->hasOne('App\Http\Province', 'id', 'province_id');
     }
 
     public function campers()
     {
-        return $this->hasMany('App\Camper');
+        return $this->hasMany('App\Http\Camper');
     }
 }

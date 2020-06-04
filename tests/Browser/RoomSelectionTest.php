@@ -2,17 +2,17 @@
 
 namespace Tests\Browser;
 
-use App\Camper;
-use App\Charge;
+use App\Http\Camper;
+use App\Http\Charge;
 use App\Enums\Chargetypename;
 use App\Enums\Usertype;
 use App\Jobs\GenerateCharges;
-use App\Program;
-use App\Rate;
-use App\Room;
-use App\User;
-use App\Year;
-use App\Yearattending;
+use App\Http\Program;
+use App\Http\Rate;
+use App\Http\Room;
+use App\Http\User;
+use App\Http\Year;
+use App\Http\Yearattending;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Throwable;

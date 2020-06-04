@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,11 +10,11 @@ class Charge extends Model
 
     public function camper()
     {
-        return $this->hasOne('App\Camper');
+        return $this->hasOne('App\Http\Camper');
     }
 
     public function chargetype()
     {
-        return $this->hasOne('App\Chargetype');
+        return $this->hasOne('App\Http\Chargetype');
     }
 }

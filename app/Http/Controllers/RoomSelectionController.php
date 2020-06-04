@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Building;
-use App\ByyearCamper;
-use App\Camper;
-use App\Family;
+use App\Http\Building;
+use App\Http\Camper;
+use App\Http\Family;
+use App\Http\Roomselection;
+use App\Http\ThisyearCamper;
+use App\Http\Yearattending;
 use App\Jobs\GenerateCharges;
-use App\Roomselection;
-use App\ThisyearCamper;
-use App\Yearattending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -88,7 +87,7 @@ class RoomSelectionController extends Controller
         $campers = ThisyearCamper::where('family_id', $family->id)->with('yearsattending.year', 'yearsattending.room.building')
             ->orderBy('birthdate')->get();
 
-        if(count($campers) == 0) {
+        if (count($campers) == 0) {
             $request->session()->flash('warning', 'No members of this family are registered for the current year.');
         }
 

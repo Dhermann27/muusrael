@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -30,12 +30,12 @@ class Workshop extends Model
 
     public function room()
     {
-        return $this->hasOne('App\Room');
+        return $this->hasOne('App\Http\Room');
     }
 
     public function timeslot()
     {
-        return $this->hasOne('App\Timeslot');
+        return $this->hasOne('App\Http\Timeslot');
     }
 
     public function getEmailsAttribute()

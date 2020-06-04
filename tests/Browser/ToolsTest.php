@@ -2,13 +2,13 @@
 
 namespace Tests\Browser;
 
-use App\Camper;
+use App\Http\Camper;
 use App\Enums\Programname;
 use App\Enums\Usertype;
-use App\Staffposition;
-use App\User;
-use App\Yearattending;
-use App\YearattendingStaff;
+use App\Http\Staffposition;
+use App\Http\User;
+use App\Http\Yearattending;
+use App\Http\YearattendingStaff;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use function array_push;

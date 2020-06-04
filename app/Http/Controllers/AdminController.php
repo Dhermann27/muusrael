@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Camper;
-use App\Compensationlevel;
+use App\Http\Camper;
+use App\Http\Compensationlevel;
 use App\Enums\Usertype;
-use App\Program;
-use App\Staffposition;
-use App\User;
+use App\Http\Program;
+use App\Http\Staffposition;
+use App\Http\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

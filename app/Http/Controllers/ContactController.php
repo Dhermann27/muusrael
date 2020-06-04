@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Contactbox;
+use App\Http\Contactbox;
 use App\Mail\ContactUs;
-use App\Rules\CaptchaValid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;

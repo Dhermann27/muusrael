@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,7 +17,7 @@ class Timeslot extends Model
 
     public function workshops()
     {
-        return $this->hasMany('App\Workshop');
+        return $this->hasMany('App\Http\Workshop');
     }
 
 }

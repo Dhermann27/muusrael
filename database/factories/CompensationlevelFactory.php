@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Compensationlevel;
+use App\Http\Compensationlevel;
 use Faker\Generator as Faker;
 
 $factory->define(Compensationlevel::class, function (Faker $faker) {

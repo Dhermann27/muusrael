@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Camper;
-use App\Charge;
-use App\Chargetype;
-use App\Year;
+use App\Http\Camper;
+use App\Http\Charge;
+use App\Http\Chargetype;
+use App\Http\Year;
 use Faker\Generator as Faker;
 
 $factory->define(Charge::class, function (Faker $faker) {

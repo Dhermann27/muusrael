@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Dusk\Browser;
-use PHPUnit\Framework\Assert as PHPUnit;
 
 class AppServiceProvider extends ServiceProvider
 {

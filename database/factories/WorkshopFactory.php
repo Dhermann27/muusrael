@@ -1,10 +1,10 @@
 <?php
 
-use App\Room;
-use App\Year;
+use App\Http\Room;
+use App\Http\Workshop;
 use Faker\Generator as Faker;
 
-$factory->define(App\Workshop::class, function (Faker $faker) {
+$factory->define(Workshop::class, function (Faker $faker) {
     $ref = new ReflectionClass('App\Enums\Timeslotname');
     $slots = $ref->getConstants();
 

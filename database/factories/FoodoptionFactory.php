@@ -2,7 +2,7 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Foodoption;
+use App\Http\Foodoption;
 use Faker\Generator as Faker;
 
 $factory->define(Foodoption::class, function (Faker $faker) {

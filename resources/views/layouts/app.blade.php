@@ -237,8 +237,8 @@
                                     <a href="#" class="dropdown-item">
                                         <i class="fal fa-newspaper fa-fw"></i> {{ $year->next_muse }}</a>
                                 @endif
-                                {{--                                <a href="#" class="dropdown-item">--}}
-                                {{--                                    <i class="far fa-address-book fa-fw"></i> Online Directory</a>--}}
+                                <a href="{{ route('directory') }}" class="dropdown-item">
+                                    <i class="far fa-address-book fa-fw"></i> Online Directory</a>
                                 @if($year->is_artfair)
                                     <a href="#" class="dropdown-item">
                                         <i class="far fa-shopping-bag fa-fw"></i> Art Fair Submission</a>

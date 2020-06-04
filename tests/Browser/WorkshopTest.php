@@ -2,18 +2,17 @@
 
 namespace Tests\Browser;
 
-use App\Camper;
-use App\Charge;
 use App\Enums\Programname;
 use App\Enums\Timeslotname;
 use App\Enums\Usertype;
+use App\Http\Camper;
+use App\Http\Charge;
+use App\Http\Timeslot;
+use App\Http\User;
+use App\Http\Workshop;
+use App\Http\Yearattending;
+use App\Http\YearattendingWorkshop;
 use App\Jobs\GenerateCharges;
-use App\Timeslot;
-use App\User;
-use App\Workshop;
-use App\Year;
-use App\Yearattending;
-use App\YearattendingWorkshop;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Laravel\Dusk\Browser;

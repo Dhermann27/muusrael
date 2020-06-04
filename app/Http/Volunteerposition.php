@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +15,6 @@ class Volunteerposition extends Model
 
     public function yearsattending()
     {
-        return $this->belongsToMany('App\Yearattending')->using('App\YearattendingVolunteer');
+        return $this->belongsToMany('App\Http\Yearattending')->using('App\Http\YearattendingVolunteer');
     }
 }

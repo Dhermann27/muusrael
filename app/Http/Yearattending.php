@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Http;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,43 +17,43 @@ class Yearattending extends Model
 
     public function camper()
     {
-        return $this->hasOne('App\Camper', 'id', 'camper_id');
+        return $this->hasOne('App\Http\Camper', 'id', 'camper_id');
     }
 
     public function thisyearcamper()
     {
-        return $this->hasOne('App\ThisyearCamper');
+        return $this->hasOne('App\Http\ThisyearCamper');
     }
 
     public function program()
     {
-        return $this->hasOne('App\Program', 'id', 'program_id');
+        return $this->hasOne('App\Http\Program', 'id', 'program_id');
     }
 
     public function room()
     {
-        return $this->hasOne('App\Room', 'id', 'room_id');
+        return $this->hasOne('App\Http\Room', 'id', 'room_id');
     }
 
     public function year()
     {
-        return $this->hasOne('App\Year', 'id', 'year_id');
+        return $this->hasOne('App\Http\Year', 'id', 'year_id');
     }
 
     public function staffpositions()
     {
-        return $this->hasManyThrough('App\Staffposition', 'App\YearattendingStaff',
+        return $this->hasManyThrough('App\Http\Staffposition', 'App\YearattendingStaff',
             'yearattending_id', 'id', 'id', 'staffposition_id');
     }
 
     public function volunteerpositions()
     {
-        return $this->belongsToMany('App\Volunteerposition')->using('App\YearattendingVolunteer');
+        return $this->belongsToMany('App\Http\Volunteerposition')->using('App\Http\YearattendingVolunteer');
     }
 
     public function workshops()
     {
-        return $this->hasManyThrough('App\Workshop', 'App\YearattendingWorkshop',
+        return $this->hasManyThrough('App\Http\Workshop', 'App\Http\YearattendingWorkshop',
             'yearattending_id', 'id', 'id', 'workshop_id');
     }
 

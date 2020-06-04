@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Camper;
-use App\Campers_view;
-use App\CamperStaff;
+use App\Http\Camper;
+use App\Http\Campers_view;
+use App\Http\CamperStaff;
 use App\Enums\Programname;
-use App\Family;
-use App\Foodoption;
+use App\Http\Family;
+use App\Http\Foodoption;
 use App\Jobs\GenerateCharges;
-use App\Program;
-use App\Pronoun;
-use App\User;
-use App\Yearattending;
-use App\YearattendingStaff;
-use App\YearattendingWorkshop;
+use App\Http\Program;
+use App\Http\Pronoun;
+use App\Http\User;
+use App\Http\Yearattending;
+use App\Http\YearattendingStaff;
+use App\Http\YearattendingWorkshop;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

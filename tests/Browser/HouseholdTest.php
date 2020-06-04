@@ -2,14 +2,14 @@
 
 namespace Tests\Browser;
 
-use App\Camper;
-use App\Charge;
+use App\Http\Camper;
+use App\Http\Charge;
 use App\Enums\Foodoptionname;
 use App\Enums\Usertype;
-use App\Family;
+use App\Http\Family;
 use App\Jobs\GenerateCharges;
-use App\User;
-use App\Yearattending;
+use App\Http\User;
+use App\Http\Yearattending;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Components\HouseholdForm;
 use Tests\DuskTestCase;
