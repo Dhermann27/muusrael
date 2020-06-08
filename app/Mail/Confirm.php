@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Http\Contactbox;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -29,7 +30,7 @@ class Confirm extends Mailable
      */
     public function build()
     {
-        $registrar = \App\Contactbox::where('name', 'Registrar')->first();
+        $registrar = Contactbox::where('name', 'Registrar')->first();
         return $this->from('muusa@muusa.org')->bcc($registrar->emails)->view('mail.confirm');
     }
 }
