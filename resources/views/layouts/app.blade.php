@@ -78,59 +78,6 @@
             <div class="float-right">
                 @can('is-council')
                     <ul id="adminblock" class="list-inline my-2">
-                        <li class="list-inline-item">
-                            <div class="dropdown mt-0">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAdmin"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Admin
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a href="{{ route('tools.cognoscenti') }}" class="dropdown-item">Cognoscenti</a>
-                                    <li class="dropdown-submenu dropright">
-                                        <a class="sub pl-2" tabindex="-1" href="#">Functions <i
-                                                class="fa fa-caret-right float-right mt-1 mr-2"></i></a>
-                                        <ul class="dropdown-menu p-2">
-                                            <li><a class="text-nowrap" tabindex="-1"
-                                                   href="{{ route('household.index', ['id' => 0]) }}">Create New
-                                                    Family</a></li>
-                                            <li><a class="text-nowrap" tabindex="-1"
-                                                   href="{{ route('admin.roles.index') }}">Roles</a></li>
-                                            <li><a class="text-nowrap" tabindex="-1"
-                                                   href="{{ route('admin.positions.index') }}">Staff
-                                                    Positions</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu dropright">
-                                        <a class="sub pl-2" tabindex="-1" href="#">Reports <i
-                                                class="fa fa-caret-right float-right mt-1 mr-2"></i></a>
-                                        <ul class="dropdown-menu p-2">
-                                            <li><a class="text-nowrap" tabindex="-1"
-                                                   href="{{ route('reports.deposits') }}">Bank Deposits</a></li>
-                                            <li><a class="text-nowrap" tabindex="-1"
-                                                   href="{{ route('reports.campers') }}">Campers</a></li>
-                                            <li><a class="text-nowrap" tabindex="-1"
-                                                   href="{{ route('reports.programs') }}">Programs</a></li>
-                                            <li><a class="text-nowrap" tabindex="-1"
-                                                   href="{{ route('reports.chart') }}">Registration Chart</a></li>
-                                            <li><a class="text-nowrap" tabindex="-1"
-                                                   href="{{ route('roomselection.map') }}">Room Selection Map</a></li>
-                                            <li><a class="text-nowrap" tabindex="-1"
-                                                   href="{{ route('reports.rooms') }}">Rooms</a></li>
-                                            <li><a class="text-nowrap" tabindex="-1"
-                                                   href="{{ route('reports.workshops') }}">Workshop Attendees</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu dropright">
-                                        <a class="sub pl-2" tabindex="-1" href="#">Tools <i
-                                                class="fa fa-caret-right float-right mt-1 mr-2"></i></a>
-                                        <ul class="dropdown-menu p-2">
-                                            <li><a class="text-nowrap" tabindex="-1"
-                                                   href="{{ route('tools.staff.index') }}">Position Assignments</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
                         <li id="campersearch" class="list-inline-item">
                             <div class="input-group p-0 m-0">
                                 <div class="input-group-prepend">
@@ -184,6 +131,47 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto navbar-center" id="mySidenav">
+
+                    @can('is-council')
+                        <li class="nav-item mt-1">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right mt-0">
+                                    <a href="{{ route('tools.cognoscenti') }}" class="dropdown-item">Cognoscenti</a>
+                                    @can('is-super')
+                                        <a class="disabled pl-2" tabindex="-1" href="#">Superuser Functions</a>
+                                        <a class="dropdown-item" href="{{ route('household.index', ['id' => 0]) }}">
+                                            Create New Family</a>
+                                        <a class="dropdown-item" href="{{ route('admin.roles.index') }}">Roles</a>
+                                        <a class="dropdown-item" href="{{ route('admin.positions.index') }}">
+                                            Staff Positions</a>
+                                        <div class="dropdown-divider"></div>
+                                    @endif
+                                    <a class="disabled pl-2" tabindex="-1" href="#">Reports</a>
+                                    <a class="dropdown-item" href="{{ route('reports.deposits') }}">
+                                        Bank Deposits</a>
+                                    <a class="dropdown-item" href="{{ route('reports.campers') }}">Campers</a>
+                                    <a class="dropdown-item" href="{{ route('reports.outstanding') }}">
+                                        Outstanding Balances</a>
+                                    <a class="dropdown-item" href="{{ route('reports.programs') }}">Programs</a>
+                                    <a class="dropdown-item" href="{{ route('reports.chart') }}">
+                                        Registration Chart</a>
+                                    <a class="dropdown-item" href="{{ route('roomselection.map') }}">
+                                        Room Selection Map</a>
+                                    <a class="dropdown-item" href="{{ route('reports.rooms') }}">Rooms</a>
+                                    <a class="dropdown-item" href="{{ route('reports.workshops') }}">
+                                        Workshop Attendees</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="disabled pl-2" tabindex="-1" href="#">Tools</a>
+                                    <a class="dropdown-item" tabindex="-1" href="{{ route('tools.staff.index') }}">
+                                        Position Assignments</a>
+                                </div>
+                            </div>
+                        </li>
+                    @endif
 
                     <li class="nav-item mt-1"><a href="{{ route('contact.index') }}" class="nav-link">Contact Us</a>
                     </li>

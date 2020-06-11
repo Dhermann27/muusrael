@@ -85,9 +85,9 @@ Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'reports']
     Route::post('deposits/{id}', 'ReportController@depositsMark')->name('reports.deposits.mark')->middleware('can:is-super');
 //    Route::get('firsttime', 'ReportController@firsttime');
 //    Route::get('guarantee', 'ReportController@guarantee');
-//    Route::get('outstanding', 'ReportController@outstanding');
+    Route::get('outstanding', 'ReportController@outstanding')->name('reports.outstanding');
 //    Route::get('outstanding/{filter?}', 'ReportController@outstanding');
-//    Route::post('outstanding/{id}', 'ReportController@outstandingMark')->middleware('auth', 'role:admin');
+    Route::post('outstanding/{id}', 'ReportController@outstandingMark')->name('reports.outstanding.mark')->middleware('can:is-super');
 //    Route::get('payments', 'ReportController@payments');
 //    Route::get('payments/{year}.xls', 'ReportController@paymentsExport');
 //    Route::get('payments/{year?}/name', 'ReportController@payments');

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Programname;
+use App\Http\ByyearCharge;
 use App\Http\Charge;
 use App\Http\Chargetype;
 use App\Http\ChartdataDays;
+use App\Http\Outstanding;
 use App\Http\Program;
+use App\Http\ThisyearCharge;
 use App\Http\Timeslot;
 use App\Http\Year;
 use Carbon\Carbon;
@@ -81,6 +84,29 @@ class ReportController extends Controller
         $chargetypes = Chargetype::where('is_deposited', '1')
             ->with(['byyearcharges.camper', 'byyearcharges.children'])->get();
         return view('reports.deposits', ['chargetypes' => $chargetypes]);
+    }
+
+    public function outstandingMark(Request $request, $id)
+    {
+        $charge = new Charge();
+        $charge->camper_id = $id;
+        $charge->amount = $request->input('amount');
+        $charge->memo = $request->input('memo');
+        $charge->chargetype_id = $request->input('chargetype_id');
+        $charge->timestamp = Carbon::now()->toDateString();
+        $charge->year_id = $request->input('year_id');
+        $charge->save();
+
+        $request->session()->flash('success', 'This payment was actually ignored, but the green message still seems congratulatory.');
+        return redirect()->action('ReportController@outstanding');
+    }
+
+    public function outstanding()
+    {
+        $chargetypes = Chargetype::where('is_shown', '1')->orderBy('name')->get();
+        $lastyear = Year::where('year', $this->year->year-1)->first();
+        return view('reports.outstanding', ['chargetypes' => $chargetypes, 'charges' => Outstanding::all(),
+            'lastyear' => $lastyear]);
     }
 
     public function programs()
