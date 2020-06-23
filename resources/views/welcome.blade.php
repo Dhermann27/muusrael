@@ -59,46 +59,92 @@
         <div class="container w-lg-70">
 
             <div class="row my-5 justify-content-center">
-                <div class="col-md-6" style="font-family: 'Barlow', sans-serif;">
-                    <p><strong>Dear MUUSA friends,</strong></p>
-                <p>We understand that a majority of campers have already come to the sad conclusion that they'll need to skip camp this year and we are extremely grateful that so many of you have held tight while we worked out an equitable plan with Trout.</p>
-                <p>After some patience and negotiation, your planning council leadership has secured a path to canceling camp for 2020 while maintaining the ability to move forward with planning MUUSA at Trout Lodge in 2021!</p>
-                    <p>If you have any additional questions or concerns, please let me know directly at <u><a href="mailto:info@muusa.org">info@muusa.org</a></u>. I will make sure you get answers from the appropriate PC members. Stay safe and be well.</p>
+                <h2>Mini MUUSA 2020</h2>
+            </div>
+            <div class="row my-5">
+                <div class="col-md-4">
+                    <div class="display-4">Hello Campers!</div>
+                    <p>Mini MUUSA will deliver a docket of virtual events during the week that would have been camp:
+                        June 28 - July 4, 2020.</p>
 
-
-                        <p>Sincerely,<br /><br />
-
-                        Margaret Plett<br />
-                        MUUSA Marketing & Communications</p>
+                    <p>Our virtual week will include sermons from Dr. Glen Rideout on Sunday, June 28th and Saturday,
+                        July 4th. Plus, a bunch of camper-led workshops are planned to fill up your evenings in
+                        between!</p>
                 </div>
-{{--                <div class="col-lg-6 d-sm-flex">--}}
-{{--                    <a href="{{ route('brochure') }}">--}}
-{{--                        <img id="brochureimg" class="card-img-top" src="/images/brochure.png"--}}
-{{--                             alt="Web Brochure cover" data-no-retina>--}}
-{{--                    </a>--}}
-{{--                </div>--}}
-{{--                <div class="col-lg-6 d-sm-flex align-content-center d-flex align-items-center">--}}
-{{--                    <div class="mr-auto py-0 pl-lg-5 my-3 my-md-0">--}}
-{{--                        <h2 class="display-4 mt-3 mt-lg-0">--}}
-{{--                            Web Brochure--}}
-{{--                        </h2>--}}
-{{--                        <p class="line-height-30 py-md-2 op-7">--}}
-{{--                            @if($year->is_live)--}}
-{{--                                The easiest way to learn all about MUUSA is to read the brochure, put out by our--}}
-{{--                                Planning Council. It has it all: workshop descriptions, housing options, frequently--}}
-{{--                                asked questions, and more.--}}
-{{--                            @else--}}
-{{--                                While you can register right now to reserve your spot, our Planning Council is working--}}
-{{--                                diligently to prepare this year's brochure, which should be ready on February 1. You can--}}
-{{--                                currently see last year's to get an idea of what it might contain.--}}
-{{--                            @endif--}}
-{{--                        </p>--}}
-{{--                        <a href="{{ route('brochure') }}"--}}
-{{--                           class="mb-1 py-2 px-4 btn btn-primary btn-shadow btn-flat btn-sm btn-bold text-uppercase text-letter-spacing rounded-0">--}}
-{{--                            <i class="far fa-file-pdf mr-2"></i> Take a look--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                <div class="col-md-4">
+                    <p class="text-sm-center lead"><a href="https://muusa-2020.eventbrite.com"><u>Full List of Available
+                                Sessions <i class="fas fa-external-link-square"></i></u></a></p>
+
+                    <p>To help us understand how many campers to expect, we're asking you to register (<strong>for
+                            free</strong>) through Eventbrite. For each workshop registration, you'll get an email
+                        confirmation that has the workshop's unique Zoom link in it.</p>
+                    <p>All sessions will be 50 minutes long so you have breathing space to join each one on time. If
+                        you're not familiar with Zoom, check your email and click the How to Zoom link at 5pm CDT on
+                        Saturday, June 27th to attend an informational session on how to use it.</p>
+                </div>
+                <div class="col-md-4 text-sm-center">
+
+                    <h5>Donate to Trout Lodge</h5>
+                    <div class="text-sm-left">Trout Lodge was closed due to state order, and many usual visitors are
+                        unable to travel, which means a lot of lost revenue. Please consider a donation to help keep
+                        their organization strong.
+                    </div>
+                    <label for="trout-donation" class="control-label sr-only">Trout Donation Amount</label>
+                    <div id="trout-donation-group" class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                            <input type="number" id="trout-donation" class="form-control" step="any"
+                                   data-number-to-fixed="2" min="0" placeholder="Enter Donation Here"/>
+                        </div>
+                    </div>
+                    <div id="trout-donate-button"></div>
+                    <div id="trout-donate-message" class="d-none text-muted">Thank you for your donation. <i
+                            class="fas fa-hands-heart"></i></div>
+                    <h5 class="pt-3">Help Mini MUUSA</h5>
+                    <div class="text-sm-left">Even though MUUSA 2020 was cancelled, we still incurred a range of
+                        expenses for the year, but no revenue to offset them. If you're enjoying Mini MUUSA, please
+                        consider a donation.
+                    </div>
+                    <label for="muusa-donation" class="control-label sr-only">Mini MUUSA Donation Amount</label>
+                    <div id="muusa-donation-group" class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                            <input type="number" id="muusa-donation" class="form-control" step="any"
+                                   data-number-to-fixed="2" min="0" placeholder="Enter Donation Here"/>
+                        </div>
+                    </div>
+                    <div id="minimuusa-donate-button"></div>
+                    <div id="muusa-donate-message" class="d-none text-muted">Thank you for your donation. <i
+                            class="fas fa-hands-heart"></i></div>
+                </div>
+                {{--                <div class="col-lg-6 d-sm-flex">--}}
+                {{--                    <a href="{{ route('brochure') }}">--}}
+                {{--                        <img id="brochureimg" class="card-img-top" src="/images/brochure.png"--}}
+                {{--                             alt="Web Brochure cover" data-no-retina>--}}
+                {{--                    </a>--}}
+                {{--                </div>--}}
+                {{--                <div class="col-lg-6 d-sm-flex align-content-center d-flex align-items-center">--}}
+                {{--                    <div class="mr-auto py-0 pl-lg-5 my-3 my-md-0">--}}
+                {{--                        <h2 class="display-4 mt-3 mt-lg-0">--}}
+                {{--                            Web Brochure--}}
+                {{--                        </h2>--}}
+                {{--                        <p class="line-height-30 py-md-2 op-7">--}}
+                {{--                            @if($year->is_live)--}}
+                {{--                                The easiest way to learn all about MUUSA is to read the brochure, put out by our--}}
+                {{--                                Planning Council. It has it all: workshop descriptions, housing options, frequently--}}
+                {{--                                asked questions, and more.--}}
+                {{--                            @else--}}
+                {{--                                While you can register right now to reserve your spot, our Planning Council is working--}}
+                {{--                                diligently to prepare this year's brochure, which should be ready on February 1. You can--}}
+                {{--                                currently see last year's to get an idea of what it might contain.--}}
+                {{--                            @endif--}}
+                {{--                        </p>--}}
+                {{--                        <a href="{{ route('brochure') }}"--}}
+                {{--                           class="mb-1 py-2 px-4 btn btn-primary btn-shadow btn-flat btn-sm btn-bold text-uppercase text-letter-spacing rounded-0">--}}
+                {{--                            <i class="far fa-file-pdf mr-2"></i> Take a look--}}
+                {{--                        </a>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
             </div>
         </div>
     </div>
@@ -303,4 +349,95 @@
         </div>
     </div>
 
+@endsection
+
+@section('script')
+
+    <script
+        src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT') }}&disable-funding=credit,card"></script>
+    <script type="text/javascript">
+        paypal.Buttons({
+            locale: 'en_US',
+            style: {
+                size: 'responsive',
+                color: 'gold',
+                shape: 'pill',
+                label: 'paypal',
+                vault: 'false',
+                layout: 'vertical'
+            },
+            createOrder: function (data, actions) {
+                $(".has-danger").removeClass("has-danger");
+                $(".is-invalid").removeClass("is-invalid");
+                $(".invalid-feedback").remove();
+                var amt = parseFloat($("input#trout-donation").val());
+                if (isNaN(amt) || amt <= 0.0) {
+                    var group = $("div#trout-donation-group").addClass("has-danger");
+                    group.find("input").addClass('is-invalid');
+                    group.find("div:first").append("<span class=\"invalid-feedback\"><strong>Please set a donation amount</strong></span>");
+                    $("span.invalid-feedback").show();
+                    return false;
+                }
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: amt.toFixed(2)
+                        },
+                        description: 'Thank you for your donation to Trout Lodge, YMCA of the Ozarks',
+                        custom_id: 'trout2020'
+                    }]
+                });
+            },
+
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    $("div#trout-donation-group").hide();
+                    $("div#trout-donate-button").hide();
+                    $("div#trout-donate-message").removeClass("d-none");
+                });
+            }
+        }).render('#trout-donate-button');
+
+        paypal.Buttons({
+            locale: 'en_US',
+            style: {
+                size: 'responsive',
+                color: 'gold',
+                shape: 'pill',
+                label: 'paypal',
+                vault: 'false',
+                layout: 'vertical'
+            },
+            createOrder: function (data, actions) {
+                $(".has-danger").removeClass("has-danger");
+                $(".is-invalid").removeClass("is-invalid");
+                $(".invalid-feedback").remove();
+                var amt = parseFloat($("input#muusa-donation").val());
+                if (isNaN(amt) || amt <= 0.0) {
+                    var group = $("div#muusa-donation-group").addClass("has-danger");
+                    group.find("input").addClass('is-invalid');
+                    group.find("div:first").append("<span class=\"invalid-feedback\"><strong>Please set a donation amount</strong></span>");
+                    $("span.invalid-feedback").show();
+                    return false;
+                }
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: parseFloat($("input#muusa-donation").val()).toFixed(2)
+                        },
+                        description: 'Thank you for your donation to Mini MUUSA 2020',
+                        custom_id: 'minimuusa2020'
+                    }]
+                });
+            },
+
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    $("div#muusa-donation-group").hide();
+                    $("div#minimuusa-donate-button").hide();
+                    $("div#muusa-donate-message").removeClass("d-none");
+                });
+            }
+        }).render('#minimuusa-donate-button');
+    </script>
 @endsection
