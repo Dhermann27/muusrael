@@ -81,6 +81,10 @@
                     <p>All sessions will be 50 minutes long so you have breathing space to join each one on time. If
                         you're not familiar with Zoom, check your email and click the How to Zoom link at 5pm CDT on
                         Saturday, June 27th to attend an informational session on how to use it.</p>
+
+                    <p>The Opening and Closing Ceremonies with sermons by Dr. Rideout will be open to everyone. You do
+                        not have to register for them. We will post a link to each event in our Facebook groups and on
+                        here on muusa.org.</p>
                 </div>
                 <div class="col-md-4 text-sm-center">
 
