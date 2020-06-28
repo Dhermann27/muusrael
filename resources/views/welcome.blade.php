@@ -1,5 +1,23 @@
 @extends('layouts.app')
 
+@section('css')
+    <style>
+        .video-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+        }
+
+        .video-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }</style>
+@endsection
+
 @section('content')
 
     @auth
@@ -73,10 +91,12 @@
                 </div>
                 <div class="col-md-4">
                     <h4>Tonight: Opening Celebration<br/>Premier at 7 PM CT</h4>
-                    <iframe width="360" height="200" src="https://www.youtube.com/embed/kzqJHv6Hszk?controls=0"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
+                    <div class="video-responsive">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/kzqJHv6Hszk?controls=0"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
                     @auth
                         <p class="text-sm-center lead pt-2">
                             <a href="https://zoom.us/j/99825468800?pwd=eFhPZU1kZ2tsQndXU3I2WXV0SWMxQT09">
