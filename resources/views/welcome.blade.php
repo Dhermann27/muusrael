@@ -72,6 +72,20 @@
                         between!</p>
                 </div>
                 <div class="col-md-4">
+                    <h4>Tonight: Opening Celebration<br/>Premier at 7 PM CT</h4>
+                    <iframe width="360" height="200" src="https://www.youtube.com/embed/kzqJHv6Hszk?controls=0"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    @auth
+                        <p class="text-sm-center lead pt-2">
+                            <a href="https://zoom.us/j/99825468800?pwd=eFhPZU1kZ2tsQndXU3I2WXV0SWMxQT09">
+                                <u>Post-Celebration Zoom Breakouts <i class="fas fa-video"></i></u></a></p>
+                    @else
+                        <p class="text-sm-center pt-2"><strong><a href="https://muusa.org/login"><u>Login to
+                                        muusa.org</u></a> to see a link to the Breakout Sessions occurring after the
+                                Celebration ends.</strong></p>
+                    @endif
                     <p class="text-sm-center lead"><a href="https://muusa-2020.eventbrite.com"><u>Full List of Available
                                 Sessions <i class="fas fa-external-link-square"></i></u></a></p>
 
@@ -81,10 +95,6 @@
                     <p>All sessions will be 50 minutes long so you have breathing space to join each one on time. If
                         you're not familiar with Zoom, check your email and click the How to Zoom link at 5pm CDT on
                         Saturday, June 27th to attend an informational session on how to use it.</p>
-
-                    <p>The Opening and Closing Ceremonies with sermons by Dr. Rideout will be open to everyone. You do
-                        not have to register for them. We will post a link to each event in our Facebook groups and on
-                        here on muusa.org.</p>
                 </div>
                 <div class="col-md-4 text-sm-center">
 
