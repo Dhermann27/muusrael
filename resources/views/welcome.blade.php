@@ -88,32 +88,62 @@
                     <p>Our virtual week will include sermons from Dr. Glen Rideout on Sunday, June 28th and Saturday,
                         July 4th. Plus, a bunch of camper-led workshops are planned to fill up your evenings in
                         between!</p>
-                </div>
-                <div class="col-md-4">
-                    <h4>Tonight: Opening Celebration<br/>Premier at 7 PM CT</h4>
+
                     <div class="video-responsive">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/kzqJHv6Hszk?controls=0"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                     </div>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Tonight's Workshops</h4>
                     @auth
-                        <p class="text-sm-center lead pt-2">
-                            <a href="https://zoom.us/j/99825468800?pwd=eFhPZU1kZ2tsQndXU3I2WXV0SWMxQT09">
-                                <u>Post-Celebration Zoom Breakouts <i class="fas fa-video"></i></u></a></p>
+                        <div class="list-group p-2">
+                            <a href="https://us02web.zoom.us/j/88924786449"
+                               class="list-group-item list-group-item-action">
+                                <span class="float-right badge badge-info badge-pill"><i
+                                        class="fas fa-video fa-2x p-1"></i></span>
+                                7 PM CT: <u>Newcomer's Dinner Discussion</u><br/>
+                                <small>Led by Carolyn Hildebrandt</small>
+                            </a>
+                            <a href="https://us02web.zoom.us/j/87009382656"
+                               class="list-group-item list-group-item-action">
+                                <span class="float-right badge badge-info badge-pill"><i
+                                        class="fas fa-video fa-2x p-1"></i></span>
+                                7 PM CT: <u>Coronavirus 101</u><br/>
+                                <small>Led by Dr. Kari Debbink</small></a>
+                            <a href="https://us02web.zoom.us/j/81406175906"
+                               class="list-group-item list-group-item-action">
+                                <span class="float-right badge badge-info badge-pill"><i
+                                        class="fas fa-video fa-2x p-1"></i></span>
+                                8 PM CT: <u>Bullet Journaling</u><br/>
+                                <small>Led by Eve Cusack</small></a>
+                            <a href="https://us02web.zoom.us/j/87541827230"
+                               class="list-group-item list-group-item-action">
+                                <span class="float-right badge badge-info badge-pill"><i
+                                        class="fas fa-video fa-2x p-1"></i></span>
+                                8 PM CT: <u>Vespers - &quot;You're
+                                    Welcome&quot;</u><br/>
+                                <small>Led by Erik Gunn</small></a>
+                        </div>
                     @else
                         <p class="text-sm-center pt-2"><strong><a href="https://muusa.org/login"><u>Login to
-                                        muusa.org</u></a> to see a link to the Breakout Sessions occurring after the
-                                Celebration ends.</strong></p>
+                                        muusa.org</u></a> to see links to the workshops.</strong></p>
                     @endif
-                    <p class="text-sm-center lead"><a href="https://muusa-2020.eventbrite.com"><u>Full List of Available
+                    <p class="text-sm-center lead pt-2"><a href="https://muusa-2020.eventbrite.com"><u>Full List of
+                                Available
                                 Sessions <i class="fas fa-external-link-square"></i></u></a></p>
 
                     <p>To help us understand how many campers to expect, we're asking you to register (<strong>for
-                            free</strong>) through Eventbrite. For each workshop registration, you'll get an email
+                            free</strong>) through Eventbrite. For each workshop registration, you'll get an
+                        email
                         confirmation that has the workshop's unique Zoom link in it.</p>
-                    <p>All sessions will be 50 minutes long so you have breathing space to join each one on time. If
-                        you're not familiar with Zoom, check your email and click the How to Zoom link at 5pm CDT on
+                    <p>All sessions will be 50 minutes long so you have breathing space to join each one on
+                        time. If
+                        you're not familiar with Zoom, check your email and click the How to Zoom link at 5pm
+                        CDT on
                         Saturday, June 27th to attend an informational session on how to use it.</p>
                 </div>
                 <div class="col-md-4 text-sm-center">
