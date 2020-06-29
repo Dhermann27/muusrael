@@ -2,12 +2,15 @@
 
 namespace Tests\Browser;
 
-use App\Http\Camper;
 use App\Enums\Usertype;
+use App\Http\Camper;
 use App\Http\Program;
 use App\Http\Staffposition;
 use App\Http\User;
+use App\Http\Yearattending;
+use Carbon\Carbon;
 use Laravel\Dusk\Browser;
+use Maatwebsite\Excel\Facades\Excel;
 use Tests\DuskTestCase;
 use function factory;
 use function number_format;
@@ -18,6 +21,32 @@ use function rand;
  */
 class AdminTest extends DuskTestCase
 {
+    /**
+     * @group Deb
+     */
+    public function testDebGroupByCampers()
+    {
+        $user = factory(User::class)->create(['usertype' => Usertype::Admin]);
+
+        $cuser = factory(User::class)->create();
+        $campers[0] = factory(Camper::class)->create(['firstname' => 'Deb', 'email' => $cuser->email]);
+        $yas[0] = factory(Yearattending::class)->create(['camper_id' => $campers[0]->id, 'year_id' => self::$year->id]);
+        $campers[1] = factory(Camper::class)->create(['family_id' => $campers[0]->family_id]);
+        $yas[1] = factory(Yearattending::class)->create(['camper_id' => $campers[1]->id, 'year_id' => self::$year->id]);
+
+//        Excel::fake();
+        $this->browse(function (Browser $browser) use ($user, $campers) {
+            $browser->loginAs($user->id)->visitRoute('admin.distlist.index')
+                ->assertSee('Download Data')->click('button[type="submit"]');
+        });
+        // TODO: Does this work with Dusk?
+//        Excel::assertDownloaded($this->getFilename(), function (ByyearCampersExport $export) use ($campers) {
+//            return $export->collection()->contains($campers[0]->email)->contains($campers[1]->firstname);
+//        });
+
+
+    }
+
     public function testRoles()
     {
         $adminuser = factory(User::class)->create(['usertype' => Usertype::Admin]);
@@ -80,5 +109,10 @@ class AdminTest extends DuskTestCase
         $this->assertDatabaseHas('staffpositions', ['program_id' => $newposition->program_id,
             'name' => $newposition->name, 'compensationlevel_id' => $newposition->compensationlevel_id,
             'pctype' => $newposition->pctype, 'start_year' => self::$year->year]);
+    }
+
+    private function getFilename()
+    {
+        return 'MUUSA_Distlist_' . Carbon::now()->toDateString() . '.xlsx';
     }
 }

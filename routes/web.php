@@ -119,8 +119,8 @@ Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'tools'], 
 });
 
 Route::group(['middleware' => ['can:is-super'], 'prefix' => 'admin'], function () {
-//    Route::get('distlist', 'AdminController@distlistIndex');
-//    Route::post('distlist', 'AdminController@distlistStore');
+    Route::get('distlist', 'AdminController@distlistIndex')->name('admin.distlist.index');
+    Route::post('distlist', 'AdminController@distlistExport')->name('admin.distlist.export');
 //    Route::get('master', 'AdminController@masterIndex');
 //    Route::post('master', 'AdminController@masterStore');
 //    Route::get('massassign', 'AdminController@massAssignIndex');

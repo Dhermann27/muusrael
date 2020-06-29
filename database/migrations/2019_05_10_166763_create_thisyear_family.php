@@ -23,6 +23,7 @@ class CreateThisyearFamily extends Migration
                         provincecode,
                         zipcd,
                         country,
+                        familyname,
                         is_address_current,
                         is_ecomm,
                         is_scholar,

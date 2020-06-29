@@ -141,10 +141,13 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right mt-0">
                                     <a href="{{ route('tools.cognoscenti') }}" class="dropdown-item">Cognoscenti</a>
+                                    <div class="dropdown-divider"></div>
                                     @can('is-super')
                                         <a class="disabled pl-2" tabindex="-1" href="#">Superuser Functions</a>
                                         <a class="dropdown-item" href="{{ route('household.index', ['id' => 0]) }}">
                                             Create New Family</a>
+                                        <a class="dropdown-item" href="{{ route('admin.distlist.index') }}">
+                                            Distribution List</a>
                                         <a class="dropdown-item" href="{{ route('admin.roles.index') }}">Roles</a>
                                         <a class="dropdown-item" href="{{ route('admin.positions.index') }}">
                                             Staff Positions</a>
@@ -355,7 +358,7 @@
                             @if($year->next_muse !== false)
                                 <li><a href="#">{{ $year->next_muse }}</a></li>
                             @endif
-                            {{--                            <li><a href="#">Online Directory</a></li>--}}
+                            <li><a href="{{ route('directory') }}">Online Directory</a></li>
                             @if($year->is_artfair)
                                 <li><a href="#">Art Fair Submission</a></li>
                             @endif

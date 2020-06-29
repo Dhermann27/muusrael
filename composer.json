@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/telescope": "^2.0",
+        "maatwebsite/excel": "^3.1",
         "mews/captcha": "^3.1",
         "nesbot/carbon": "^2.28",
         "paypal/paypal-checkout-sdk": "1.0.1"
