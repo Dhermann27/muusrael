@@ -101,25 +101,25 @@
                     <h4>Tonight's Workshops</h4>
                     @auth
                         <div class="list-group p-2">
-                            <a href="https://us02web.zoom.us/j/87082669713"
+                            <a href="https://us02web.zoom.us/j/89628401103"
                                class="list-group-item list-group-item-action">
                                 <span class="float-right badge badge-info badge-pill"><i
                                         class="fas fa-video fa-2x p-1"></i></span>
-                                7 PM CT: <u>Marvelous MUUSA Mask Making</u><br/>
-                                <small>Led by Diane Loupe</small>
+                                7 PM CT: <u>jUUggling</u><br/>
+                                <small>Led by Kathy Salzano</small>
                             </a>
-                            <a href="https://us02web.zoom.us/j/83874519351"
+                            <a href="https://us02web.zoom.us/j/85150232180"
                                class="list-group-item list-group-item-action">
                                 <span class="float-right badge badge-info badge-pill"><i
                                         class="fas fa-video fa-2x p-1"></i></span>
-                                7 PM CT: <u>Improv Games</u><br /><i>Limited Enrollment</i><br/>
-                                <small>Led by Tom Robertson</small></a>
-                            <a href="https://us02web.zoom.us/j/87199292480"
+                                7 PM CT: <u>Memorial Service<br/>
+                                <small>Led by Ruellen Fessenbecker</small></a>
+                            <a href="https://us02web.zoom.us/j/85888551863"
                                class="list-group-item list-group-item-action">
                                 <span class="float-right badge badge-info badge-pill"><i
                                         class="fas fa-video fa-2x p-1"></i></span>
-                                8 PM CT: <u>Running Remote D&amp;D Games</u><br/>
-                                <small>Led by Rob Miroballi</small></a>
+                                8 PM CT: <u>White and Black Identity Stages and Activism</u><br/>
+                                <small>Led by Suzanne Zilber</small></a>
                         </div>
                     @else
                         <p class="text-sm-center pt-2"><strong><a href="https://muusa.org/login"><u>Login to
