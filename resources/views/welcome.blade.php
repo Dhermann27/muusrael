@@ -89,50 +89,40 @@
                         July 4th. Plus, a bunch of camper-led workshops are planned to fill up your evenings in
                         between!</p>
 
-                    <div class="video-responsive">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/kzqJHv6Hszk?controls=0"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                    </div>
+{{--                    <div class="video-responsive">--}}
+{{--                        <iframe width="560" height="315" src="https://www.youtube.com/embed/kzqJHv6Hszk?controls=0"--}}
+{{--                                frameborder="0"--}}
+{{--                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"--}}
+{{--                                allowfullscreen></iframe>--}}
+{{--                    </div>--}}
 
                 </div>
                 <div class="col-md-4">
                     <h4>Tonight's Workshops</h4>
                     @auth
                         <div class="list-group p-2">
-                            <a href="https://us02web.zoom.us/j/83119069958"
+                            <a href="https://zoom.us/j/95013638404?pwd=MnNnK1AreU9OVEpROTdzNkhObFFmdz09"
                                class="list-group-item list-group-item-action">
                                 <span class="float-right badge badge-info badge-pill"><i
                                         class="fas fa-video fa-2x p-1"></i></span>
-                                6 PM CT: <u>Annual Meeting</u><br/>
-                                <small>Led by Jesse Hardin</small>
+                                6 PM CT: <u>Coffee House</u><br/>
+                                <small>Led by Laurel Hermann</small>
                             </a>
-                            <a href="https://us02web.zoom.us/j/83379059363"
+                            <a href="https://us02web.zoom.us/j/88474283853"
                                class="list-group-item list-group-item-action">
                                 <span class="float-right badge badge-info badge-pill"><i
                                         class="fas fa-video fa-2x p-1"></i></span>
-                                7 PM CT: <u>Sing-Along</u><br/>
-                                <small>Led by Pam Hinkle</small>
+                                7 PM CT: <u>Remote Beer Tasting</u><br/>
+                                Sign up on Eventbrite for shopping list
+                                <small>Led by Nate Warner</small>
                             </a>
-                            <a href="https://us02web.zoom.us/j/87239744129"
+                            <a href="https://us02web.zoom.us/j/85797357215"
                                class="list-group-item list-group-item-action">
                                 <span class="float-right badge badge-info badge-pill"><i
                                         class="fas fa-video fa-2x p-1"></i></span>
-                                7 PM CT: <u>Pundemic Pun-Off</u><br/>
-                                <small>Led by Ajay Rao and Cassady Ells</small></a>
-                            <a href="https://us02web.zoom.us/j/89789570232"
-                               class="list-group-item list-group-item-action">
-                                <span class="float-right badge badge-info badge-pill"><i
-                                        class="fas fa-video fa-2x p-1"></i></span>
-                                8 PM CT: <u>MUUSA Time Machine: Looking Back through Photos</u><br/>
-                                <small>Led by Roger Easley</small></a>
-                            <a href="https://us02web.zoom.us/j/3287884541"
-                               class="list-group-item list-group-item-action">
-                                <span class="float-right badge badge-info badge-pill"><i
-                                        class="fas fa-video fa-2x p-1"></i></span>
-                                8 PM CT: <u>YA Intergenerational Worship: Interpersonal/New Connections</u><br/>
-                                <small>Led by Ruth Hinkle and Frances Sheets</small></a>
+                                8 PM CT: <u>&quot;What's in Your Room?&quot; Scavenger Hunt
+                                    </u><br/>
+                                <small>Led by Guy Loftman</small></a>
                         </div>
                     @else
                         <p class="text-sm-center pt-2"><strong><a href="https://muusa.org/login"><u>Login to
