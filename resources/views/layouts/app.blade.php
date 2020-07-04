@@ -103,7 +103,7 @@
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="https://www.youtube.com/watch?v=QNWMdbrjxuE">
+                            <a href="https://www.youtube.com/channel/UC-lNXF9IYAC-PSpvWWJkkMw">
                                 <i class="fab fa-youtube-square icon-1x"></i> <span class="sr-only">YouTube</span>
                             </a>
                         </li>

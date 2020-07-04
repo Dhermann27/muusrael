@@ -81,46 +81,17 @@
             </div>
             <div class="row my-5">
                 <div class="col-md-4">
-                    <div class="display-4">Hello Campers!</div>
-                    <p>Mini MUUSA will deliver a docket of virtual events during the week that would have been camp:
-                        June 28 - July 4, 2020.</p>
-
-                    <p>Our virtual week will include sermons from Dr. Glen Rideout on Sunday, June 28th and Saturday,
-                        July 4th. Plus, a bunch of camper-led workshops are planned to fill up your evenings in
-                        between!</p>
-
+                    <div class="display-4">Thank you, Campers!</div>
 
                 </div>
                 <div class="col-md-4">
-                    <h4>Today's Events</h4>
+                    <h4>Closing Celebration</h4>
 
                     <div class="video-responsive">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/o9DP2ouEqWE" frameborder="0"
                                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                     </div>
-                    @auth
-                        <div class="list-group p-2">
-                            <a href="https://zoom.us/j/91691570057?pwd=MFA3TWlZd1dMMXBUQlA1TTUxbTRUdz09"
-                               class="list-group-item list-group-item-action">
-                                <span class="float-right badge badge-info badge-pill"><i
-                                        class="fas fa-video fa-2x p-1"></i></span>
-                                11 AM CT: <u>Post-Celebration Breakout Sessions</u><br/>
-                                <small>Led by Carolyn Hildebrandt</small>
-                            </a>
-                        </div>
-                    @else
-                        <p class="text-sm-center pt-2"><strong><a href="https://muusa.org/login"><u>Login to
-                                        muusa.org</u></a> to see links to the workshops.</strong></p>
-                    @endif
-                    <p class="text-sm-center lead pt-2"><a href="https://muusa-2020.eventbrite.com"><u>Full List of
-                                Available
-                                Sessions <i class="fas fa-external-link-square"></i></u></a></p>
-
-                    <p>To help us understand how many campers to expect, we're asking you to register (<strong>for
-                            free</strong>) through Eventbrite. For each workshop registration, you'll get an
-                        email
-                        confirmation that has the workshop's unique Zoom link in it.</p>
                 </div>
                 <div class="col-md-4 text-sm-center">
 
