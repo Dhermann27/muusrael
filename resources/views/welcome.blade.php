@@ -89,40 +89,25 @@
                         July 4th. Plus, a bunch of camper-led workshops are planned to fill up your evenings in
                         between!</p>
 
-{{--                    <div class="video-responsive">--}}
-{{--                        <iframe width="560" height="315" src="https://www.youtube.com/embed/kzqJHv6Hszk?controls=0"--}}
-{{--                                frameborder="0"--}}
-{{--                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"--}}
-{{--                                allowfullscreen></iframe>--}}
-{{--                    </div>--}}
 
                 </div>
                 <div class="col-md-4">
-                    <h4>Tonight's Workshops</h4>
+                    <h4>Today's Events</h4>
+
+                    <div class="video-responsive">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/o9DP2ouEqWE" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                    </div>
                     @auth
                         <div class="list-group p-2">
-                            <a href="https://zoom.us/j/95013638404?pwd=MnNnK1AreU9OVEpROTdzNkhObFFmdz09"
+                            <a href="https://zoom.us/j/91691570057?pwd=MFA3TWlZd1dMMXBUQlA1TTUxbTRUdz09"
                                class="list-group-item list-group-item-action">
                                 <span class="float-right badge badge-info badge-pill"><i
                                         class="fas fa-video fa-2x p-1"></i></span>
-                                6 PM CT: <u>Coffee House</u><br/>
-                                <small>Led by Laurel Hermann</small>
+                                11 AM CT: <u>Post-Celebration Breakout Sessions</u><br/>
+                                <small>Led by Carolyn Hildebrandt</small>
                             </a>
-                            <a href="https://us02web.zoom.us/j/88474283853"
-                               class="list-group-item list-group-item-action">
-                                <span class="float-right badge badge-info badge-pill"><i
-                                        class="fas fa-video fa-2x p-1"></i></span>
-                                7 PM CT: <u>Remote Beer Tasting</u><br/>
-                                Sign up on Eventbrite for shopping list
-                                <small>Led by Nate Warner</small>
-                            </a>
-                            <a href="https://us02web.zoom.us/j/85797357215"
-                               class="list-group-item list-group-item-action">
-                                <span class="float-right badge badge-info badge-pill"><i
-                                        class="fas fa-video fa-2x p-1"></i></span>
-                                8 PM CT: <u>&quot;What's in Your Room?&quot; Scavenger Hunt
-                                    </u><br/>
-                                <small>Led by Guy Loftman</small></a>
                         </div>
                     @else
                         <p class="text-sm-center pt-2"><strong><a href="https://muusa.org/login"><u>Login to
@@ -136,11 +121,6 @@
                             free</strong>) through Eventbrite. For each workshop registration, you'll get an
                         email
                         confirmation that has the workshop's unique Zoom link in it.</p>
-                    <p>All sessions will be 50 minutes long so you have breathing space to join each one on
-                        time. If
-                        you're not familiar with Zoom, check your email and click the How to Zoom link at 5pm
-                        CDT on
-                        Saturday, June 27th to attend an informational session on how to use it.</p>
                 </div>
                 <div class="col-md-4 text-sm-center">
 
