@@ -237,7 +237,7 @@
                                 {{--                                <a href="#" class="dropdown-item">--}}
                                 {{--                                    <i class="far fa-handshake fa-fw"></i> Volunteer Opportunities</a>--}}
                                 @if($year->is_workshop_proposal)
-                                    <a href="#" class="dropdown-item">
+                                    <a href="https://docs.google.com/forms/d/1uD1UCGI1F4nPlAmKIAkRuEci1NudqqPa140fDHXUMEs/edit" class="dropdown-item">
                                         <i class="fal fa-chalkboard-teacher fa-fw"></i> Workshop Proposal
                                     </a>
                                 @endif
@@ -364,7 +364,7 @@
                             @endif
                             {{--                            <li><a href="#">Volunteer Opportunities</a></li>--}}
                             @if($year->is_workshop_proposal)
-                                <li><a href="#">Workshop Proposal</a></li>
+                                <li><a href="https://docs.google.com/forms/d/1uD1UCGI1F4nPlAmKIAkRuEci1NudqqPa140fDHXUMEs/edit">Workshop Proposal</a></li>
                             @endif
                         </ul>
                     </div>
