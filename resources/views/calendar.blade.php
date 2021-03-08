@@ -37,9 +37,17 @@
                 slotMinTime: '07:00:00',
                 slotMaxTime: '23:00:00',
                 themeSystem: 'bootstrap',
-                events: {
-                    googleCalendarId: 'dpdspm7d55pr51mag0tp0d2cf0@group.calendar.google.com',
-                }
+                eventSources: [
+                    {
+                        googleCalendarId: 'muusaworkshops@gmail.com'
+                    },
+                    {
+                        googleCalendarId: 'sordeheb5g4maoinve706b147o@group.calendar.google.com'
+                    },
+                    {
+                        googleCalendarId: 'lpuoked7q3msijpdeqqnkvanb8@group.calendar.google.com'
+                    }
+                ]
             });
             calendar.render();
         });

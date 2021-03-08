@@ -221,7 +221,7 @@
                                         <i class="far fa-desktop fa-fw"></i> Web Brochure</a>
                                 @endif
                                 @if($year->is_calendar)
-                                    <a href="#" class="dropdown-item">
+                                    <a href="{{ route('calendar') }}" class="dropdown-item">
                                         <i class="far fa-calendar-alt fa-fw"></i> Schedule</a>
                                 @endif
                                 @if($year->next_muse !== false)
@@ -353,7 +353,7 @@
                                 <li><a href="{{ route('brochure') }}">Web Brochure</a></li>
                             @endif
                             @if($year->is_calendar)
-                                <li><a href="#">Daily Schedule</a></li>
+                                <li><a href="{{ route('calendar') }}">Daily Schedule</a></li>
                             @endif
                             @if($year->next_muse !== false)
                                 <li><a href="#">{{ $year->next_muse }}</a></li>
