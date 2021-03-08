@@ -39,13 +39,22 @@
                 themeSystem: 'bootstrap',
                 eventSources: [
                     {
-                        googleCalendarId: 'muusaworkshops@gmail.com'
+                        googleCalendarId: 'muusaworkshops@gmail.com',
+                        backgroundColor: '#b3dc6c',
+                        borderColor: '#93c00b',
+                        textColor: '#1d1d1d'
                     },
                     {
-                        googleCalendarId: 'sordeheb5g4maoinve706b147o@group.calendar.google.com'
+                        googleCalendarId: 'sordeheb5g4maoinve706b147o@group.calendar.google.com',
+                        backgroundColor: '#337ab7',
+                        borderColor: '#373ad7',
+                        textColor: '#1d1d1d'
                     },
                     {
-                        googleCalendarId: 'lpuoked7q3msijpdeqqnkvanb8@group.calendar.google.com'
+                        googleCalendarId: 'lpuoked7q3msijpdeqqnkvanb8@group.calendar.google.com',
+                        backgroundColor: '#d62b61',
+                        borderColor: '#7a1538',
+                        textColor: '#1d1d1d'
                     }
                 ]
             });
