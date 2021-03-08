@@ -11,13 +11,13 @@
     },
     "devDependencies": {
         "@fortawesome/fontawesome-pro": "^5.12.1",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "bootstrap": "^4.4.1",
-        "browser-sync": "^2.26.7",
+        "browser-sync": "^2.26.14",
         "browser-sync-webpack-plugin": "^2.2.2",
-        "jquery": "^3.4.1",
+        "jquery": "^3.6.0",
         "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.21",
         "popper.js": "^1.16.1",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.26.3",
@@ -32,6 +32,7 @@
         "datatables.net-buttons-bs4": "^1.6.1",
         "datatables.net-responsive-bs4": "^2.2.3",
         "datatables.net-rowgroup-bs4": "^1.1.1",
+        "fullcalendar": "^5.5.1",
         "select2": "^4.0.13"
     }
 }

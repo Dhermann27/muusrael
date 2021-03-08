@@ -1,4 +1,4 @@
-@foreach($timeslot->workshops->where('year_id', $year->id) as $workshop)
+@foreach($timeslots->first()->workshops->where('year_id', $year->id) as $workshop)
     <button type="button" data-content="{{ $workshop->blurb }} Led by {{ $workshop->led_by }}." data-toggle="popover"
             data-trigger="hover" id="workshop-{{ $camper->id }}-{{ $workshop->id }}"
             data-bits="{{ $workshop->bit_days }}"
@@ -11,7 +11,10 @@
         @else
             class="list-group-item list-group-item-action" title="Open for Enrollment">
         @endif
-        {{ $workshop->name }}
-        ({{ $workshop->display_days }})
+        <div class="d-flex w-100 justify-content-between">
+            <span>{{ $workshop->name }}
+        ({{ $workshop->display_days }})</span>
+            <span class="badge badge-primary badge-pill m-2">{{ $workshop->extra }}</span>
+        </div>
     </button>
 @endforeach

@@ -15,12 +15,13 @@ class Workshop extends Model
         if ($this->w == '1') $days .= 'W';
         if ($this->th == '1') $days .= 'Th';
         if ($this->f == '1') $days .= 'F';
+        if ($this->s == '1') $days .= 'Sa';
         return $days;
     }
 
     public function getBitDaysAttribute()
     {
-        return $this->m . $this->t . $this->w . $this->th . $this->f;
+        return $this->m . $this->t . $this->w . $this->th . $this->f . $this->s;
     }
 
     public function choices()

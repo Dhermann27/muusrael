@@ -38,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
                     })->get()->sum('amount');
                 $scholar = $user->camper->family->is_scholar;
             }
-            return $paid <= 0 || $scholar;
+            return true;
         });
 
         Gate::define('is-council', function ($user) {

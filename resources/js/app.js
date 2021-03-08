@@ -11,6 +11,7 @@ import 'datatables.net-buttons/js/buttons.html5.js';
 import 'datatables.net-buttons/js/buttons.print.js';
 import 'datatables.net-responsive-bs4/js/responsive.bootstrap4.min';
 import 'datatables.net-rowgroup-bs4/js/rowGroup.bootstrap4.min';
+import 'fullcalendar/main.min'
 
 /* Template Name: Minton - Bootstrap 4 Landing Page Tamplat
    Author: CoderThemes
@@ -180,13 +181,13 @@ if (steps.length > 0 || toast.length === 1) {
         var message = "Your registration is complete! See you \"next week\"!";
         var link = "#";
         var icon = "fa-check";
-        if (data[5] === true) {
-            $("#nametag-success").toggleClass('d-none');
-        } else {
-            message = "You're registered, but you can customize your nametag(s) by clicking here."
-            link = "/nametag";
-            icon = "fa-id-card";
-        }
+        // if (data[5] === true) {
+        //     $("#nametag-success").toggleClass('d-none');
+        // } else {
+        //     message = "You're registered, but you can customize your nametag(s) by clicking here."
+        //     link = "/nametag";
+        //     icon = "fa-id-card";
+        // }
         // if (data[6] === true) {
         //     $("#medical-success").toggleClass('d-none');
         // } else {
@@ -201,18 +202,18 @@ if (steps.length > 0 || toast.length === 1) {
             link = "/workshopchoice";
             icon = "fa-rocket";
         }
-        if (data[4] === true) {
-            $("#room-success").toggleClass('d-none');
-        } else {
-            message = "You're registered; next you'll want to choose a room by clicking here."
-            link = "/roomselection";
-            icon = "fa-bed";
-        }
-        if (data[8] !== false) {
-            message = "You're registered; check back " + data[8] + " to choose workshops and select your room."
-            link = "#";
-            icon = "fa-fire";
-        }
+        // if (data[4] === true) {
+        //     $("#room-success").toggleClass('d-none');
+        // } else {
+        //     message = "You're registered; next you'll want to choose a room by clicking here."
+        //     link = "/roomselection";
+        //     icon = "fa-bed";
+        // }
+        // if (data[8] !== false) {
+        //     message = "You're registered; check back " + data[8] + " to choose workshops and select your room."
+        //     link = "#";
+        //     icon = "fa-fire";
+        // }
         if (data[0] === true) {
             $("#household-success").toggleClass('d-none');
         } else {
@@ -220,13 +221,13 @@ if (steps.length > 0 || toast.length === 1) {
             link = "/household";
             icon = "fa-home";
         }
-        if (data[2] === true) {
-            $("#payment-success").toggleClass('d-none');
-        } else {
-            message = "You are not yet registered for this year, please pay your deposit by clicking here."
-            link = "/payment";
-            icon = "fa-usd-square";
-        }
+        // if (data[2] === true) {
+        //     $("#payment-success").toggleClass('d-none');
+        // } else {
+        //     message = "You are not yet registered for this year, please pay your deposit by clicking here."
+        //     link = "/payment";
+        //     icon = "fa-usd-square";
+        // }
         if (data[1] === true) {
             $("#camper-success").toggleClass('d-none');
         } else {

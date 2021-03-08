@@ -38,16 +38,19 @@ class Year extends Model
         return $this->hasMany('App\Http\ChartdataLostcampers', 'year', 'year');
     }
 
-    public function getBrochureDateAttribute() {
+    public function getBrochureDateAttribute()
+    {
         $date = Carbon::createFromFormat('Y-m-d', $this->brochure, 'America/Chicago');
         return $date->format('l F jS');
     }
 
-    public function getDidBrochureAttribute() {
+    public function getDidBrochureAttribute()
+    {
         return $this->getDiffInDays($this->brochure);
     }
 
-    public function getDidCheckinAttribute() {
+    public function getDidCheckinAttribute()
+    {
         return $this->getDiffInDays($this->checkin);
     }
 
@@ -61,6 +64,16 @@ class Year extends Model
     {
         $date = Carbon::createFromFormat('Y-m-d', $this->checkin, 'America/Chicago');
         return $date->addDays(6)->format('l F jS');
+    }
+
+    public function getNextDayAttribute()
+    {
+        $lastfirst = Carbon::createFromFormat('Y-m-d', Year::where('year', $this->year - 1)->first()->checkin, 'America/Chicago');
+        $now = Carbon::now('America/Chicago');
+        if ($now->between($lastfirst, $lastfirst->addDays(7))) {
+            return $now;
+        }
+        return $now->max(Carbon::createFromFormat('Y-m-d', $this->checkin, 'America/Chicago'));
     }
 
     public function getNextMuseAttribute()
@@ -77,7 +90,8 @@ class Year extends Model
         }
     }
 
-    private function getDiffInDays($cardate) {
+    private function getDiffInDays($cardate)
+    {
         return Carbon::createFromFormat('Y-m-d', $cardate, 'America/Chicago')->diffInDays();
     }
 }

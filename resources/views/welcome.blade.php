@@ -57,34 +57,34 @@
 
     <div class="pt-4 pt-md-6 bg-white">
         <div class="container w-lg-70">
-            <div class="row mt-2">
-                <div class="col-lg-6 d-sm-flex">
-                    <a href="{{ route('brochure') }}">
-                        <img id="brochureimg" class="card-img-top" src="/images/brochure.png"
-                             alt="Web Brochure cover" data-no-retina>
-                    </a>
-                </div>
-                <div class="col-lg-6 d-sm-flex align-content-center d-flex align-items-center">
-                    <div class="mr-auto py-0 pl-lg-5 my-3 my-md-0">
-                        <h2 class="display-4 mt-3 mt-lg-0">
-                            Web Brochure
-                        </h2>
-                        <p class="line-height-30 py-md-2 op-7">
-                            @if($year->is_live)
-                                The easiest way to learn all about MUUSA is to read the brochure, put out by our
-                                Planning Council. It has it all: workshop descriptions, housing options, frequently
-                                asked questions, and more.
-                            @else
-                                While you can register right now to reserve your spot, our Planning Council is working
-                                diligently to prepare this year's brochure, which should be ready on February 1. You can
-                                currently see last year's to get an idea of what it might contain.
-                            @endif
-                        </p>
-                        <a href="{{ route('brochure') }}"
-                           class="mb-1 py-2 px-4 btn btn-primary btn-shadow btn-flat btn-sm btn-bold text-uppercase text-letter-spacing rounded-0">
-                            <i class="far fa-file-pdf mr-2"></i> Take a look
-                        </a>
-                    </div>
+
+            <div class="row my-5 justify-content-center">
+                <div class="col-md-6" style="font-family: 'Barlow', sans-serif;">
+                    <p><strong>Dear MUUSA friends,</strong></p>
+                    <p>Hello Fellow Campers,</p>
+                    <p>After much deliberation and without a guarantee that vaccinations will be widely available before
+                        July, the MUUSA Planning Council has elected to again hold camp virtually in 2021. We really
+                        wanted to make it happen this year, but we can't risk even one camper getting sick if we can
+                        avoid it.</p>
+                    <p>This is difficult, knowing how much we all miss our camp community, but we believe it is the
+                        safest decision. On a positive note, we just confirmed that Trout Lodge will allow us to roll
+                        our 2021 deposit (rolled from 2020) to 2022. So we can look forward to all being together again,
+                        in person, in 2022.</p>
+                    <p>Our APC is hard at work designing virtual programming for 2021. With more time to plan, and the
+                        success of Mini MUUSA 2020, you're in store for an even bigger week of programming! Of note, the
+                        first day of our traditional week will be July 4 this year, so we may be altering dates. We will
+                        be sending out a virtual brochure and more information early next year.</p>
+                    <p>With 2022 on the horizon and our deposit held by Trout Lodge for that year, we hope to hold all
+                        your paid-in deposits another year. If that puts you in a difficult position, please reply to
+                        this email and we'll work out a refund.</p>
+
+
+                    </p>
+
+
+                    <p>With gratitude,<br/><br/>
+
+                        MUUSA Planning Council</p>
                 </div>
             </div>
         </div>
@@ -149,19 +149,6 @@
             <a href="{{ route('programs') }}" class="btn btn-primary">Program Descriptions</a>
         </div>
         <div class="card px-5">
-            <img class="card-img-top" src="/images/housing.jpg" alt="The Hill to Trout Lodge"/>
-            <div class="card-body">
-                <h4 class="card-title">
-                    Housing
-                </h4>
-                <p class="card-text">YMCA of the Ozarks, Trout Lodge, is located on 5,200 acres of pine and oak
-                    forest
-                    on a private 360-acre lake 75 miles southwest of St. Louis, Missouri, outside of Potosi.
-                    Accommodations are available for all budgets.</p>
-            </div>
-            <a href="{{ route('housing') }}" class="btn btn-primary">Housing Options</a>
-        </div>
-        <div class="card px-5">
             <img class="card-img-top" src="/images/workshops.jpg"
                  alt="Jay Warner, during a photography workshop"/>
             <div class="card-body">
@@ -181,9 +168,6 @@
                 @endif
             </a>
         </div>
-    </div>
-
-    <div class="card-deck p-3">
         <div class="card px-5">
             <img class="card-img-bottom" src="/images/biographies.jpg"
                  alt="Chalice tattoo"/>
@@ -198,36 +182,6 @@
                     Blevins Hinkle and accompanied by Bonnie Ettinger.</p>
             </div>
             <a href="{{ route('themespeaker') }}" class="btn btn-primary">Theme Speaker Biography</a>
-        </div>
-        <div class="card px-5">
-            <img class="card-img-top" src="/images/scholarship.jpg"
-                 alt="A hummingbird in dire need of a sugar scholarship"/>
-            <div class="card-body">
-                <h4 class="card-title">
-                    Scholarship Opportunities
-                </h4>
-                <p class="card-text">If finances are tight and MUUSA doesn't quite fit into your budget this
-                    year, we
-                    hope you will apply for a scholarship. These funds strengthen our community and we want to
-                    be sure
-                    you know they are available.</p>
-            </div>
-            <a href="{{ route('scholarship') }}" class="btn btn-primary">Application Process</a>
-        </div>
-        <div class="card px-5">
-            <img class="card-img-top" src="/images/calculator.jpg"
-                 alt="John Sandman, Treasurer"/>
-            <div class="card-body">
-                <h4 class="card-title">
-                    Camp Cost Calculator
-                </h4>
-                <p class="card-text">Use this helpful tool to help estimate how much MUUSA will cost this year.
-                    Please
-                    consider sharing a room with as many others as possible to reduce your cost and make optimum
-                    use of
-                    housing. Full details can be found in the brochure.</p>
-            </div>
-            <a href="{{ route('cost') }}" class="btn btn-primary">Full-Week Rates</a>
         </div>
     </div>
 
