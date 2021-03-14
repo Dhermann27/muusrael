@@ -195,7 +195,7 @@
                                     <i class="far fa-map fa-fw"></i> Workshop List
                                 </a>
                                 <a href="{{ route('themespeaker') }}" class="dropdown-item">
-                                    <i class="far fa-microphone fa-fw"></i> Theme Speaker
+                                    <i class="far fa-microphone fa-fw"></i> Guest Speakers
                                 </a>
 {{--                                <a href="{{ route('cost') }}" class="dropdown-item">--}}
 {{--                                    <i class="far fa-calculator fa-fw"></i> Cost Calculator--}}
@@ -303,7 +303,7 @@
                 <div class="jumbotron jumbotron-fluid text-white bg-primary">
                     @endif
                     <div class="container mt-5 pt-5">
-                        <h1 class="display-4">
+                        <h1 class="display-4" style="margin-right: 25%;">
                             @yield('title')
                         </h1>
                         @hassection('heading')
@@ -340,7 +340,7 @@
 {{--                            <li><a href="{{ route('housing') }}">Housing Options</a></li>--}}
                             <li><a href="{{ route('programs') }}">Programs</a></li>
                             <li><a href="{{ route('workshops.display') }}">Workshop List</a></li>
-                            <li><a href="{{ route('themespeaker') }}">Theme Speaker</a></li>
+                            <li><a href="{{ route('themespeaker') }}">Guest Speakers</a></li>
 {{--                            <li><a href="{{ route('cost') }}">Cost Calculator</a></li>--}}
 {{--                            <li><a href="{{ route('scholarship') }}">Scholarships</a></li>--}}
 {{--                            <li><a href="{{ route('workshops.excursions') }}">Excursions</a></li>--}}

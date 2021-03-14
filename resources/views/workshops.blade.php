@@ -18,31 +18,21 @@
 @endsection
 
 @section('content')
-    @component('components.navtabs', ['tabs' => $timeslots, 'id'=> 'id', 'option' => 'name'])
-        @foreach($timeslots as $timeslot)
-            <div class="tab-pane fade{!! $loop->first ? ' active show' : '' !!}" id="tab-{{ $timeslot->id }}"
-                 role="tabpanel">
-                <h2 class="m-3">{{ $timeslot->start_time->format('g:i A') }}
-                    - {{ $timeslot->end_time->format('g:i A') }}</h2>
+    <div class="container px-3 py-5 px-lg-4 py-lg-6 bg-grey mb-5">
+        @foreach($timeslots->first()->workshops->where('year_id', $year->id) as $workshop)
+            @component('components.blog', ['title' => $workshop->name])
 
-                <div class="container px-3 py-5 px-lg-4 py-lg-6 bg-grey mb-5">
-                    @foreach($timeslot->workshops->where('year_id', $year->id) as $workshop)
-                        @component('components.blog', ['title' => $workshop->name])
+                @include('includes.filling', ['workshop' => $workshop])
 
-                            @include('includes.filling', ['workshop' => $workshop])
-
-                            <div class="lead d-block">Led by {{ $workshop->led_by }}
-                                / Days: {{ $workshop->display_days }}
-                                @if($workshop->fee > 0)
-                                    / Fee: ${{ $workshop->fee }}
-                                @endif
-                            </div>
-
-                            <p>{{ $workshop->blurb }}</p>
-                        @endcomponent
-                    @endforeach
+                <div class="lead d-block">Led by {{ $workshop->led_by }}
+                    / {{ $workshop->extra }}
+                    @if($workshop->fee > 0)
+                        / Fee: ${{ $workshop->fee }}
+                    @endif
                 </div>
-            </div>
+
+                <p>{{ $workshop->blurb }}</p>
+            @endcomponent
         @endforeach
-    @endcomponent
+    </div>
 @endsection

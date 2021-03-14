@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-    Theme Speaker:<br />Dr. Glen Thomas Rideout
+    Guest Speakers: Dr. Glen Thomas Rideout, Rev. Misha Sanders, and Rev. Keith Kron
 @endsection
 
 @section('heading')
-    Learn more about the {{ $year->year }} theme speaker.
+    Learn more about the {{ $year->year }} guest speakers.
 @endsection
 
 @section('image')
@@ -14,21 +14,36 @@
 
 @section('content')
     <div class="container px-3 py-5 px-lg-10 py-lg-6 bg-grey mb-5">
-        @component('components.blog', ['title' => '2020 Theme Speaker'])
+        @component('components.blog', ['title' => 'Guest Speakers for Opening and Closing Celebrations'])
             <p>
                 <img class="float-right p-3" src="/images/drglensm.jpg"
                      alt="Dr. Glen Thomas Rideout" data-no-retina/>
-                <span class="dropcap-lg tint-bg">I</span>n
-                an address to the Unitarian Universalist Ministers Association, The Rev. Otis Moss III, senior
-                pastor of the 8,000-member Trinity United Church of Christ, named him &quot;without a doubt one of
-                the greatest ministers and gifts to this nation.&quot; Artist, theologian, teacher Dr. Glen Thomas
-                Rideout's is among Unitarian Universalism's most prolific worship leaders, an influential voice in
-                worship and music craft in a season of fundamental culture shift faith-wide.</p>
-            <p style="margin-bottom: 50%">
-                As Director of Worship and Music for First Unitarian Universalist Congregation of Ann Arbor, Dr.
-                Glen Thomas Rideout leads the uncommonly-collaborative, team worship planning process he
-                created with the Rev. Gail Ruth Geisenhainer (GUISE-in-hayner) in 2014. During his tenure,
-                Ann Arbor’s worship and music ministries risen to a denominational leader in congregational
-                singing innovation, ensemble spiritual practice, and liturgical imagination.</p>
+                Artist, theologian, teacher <strong>Dr. Glen Thomas Rideout</strong> is among Unitarian Universalism’s most prolific
+                worship leaders, an influential voice in worship and music craft in a season of fundamental culture
+                shift faith-wide. As Director of Worship and Music for First Unitarian Universalist Congregation of Ann
+                Arbor, Rideout leads the uncommonly-collaborative team worship planning process. During his tenure, Ann
+                Arbor’s worship and music ministries have risen to be denominational leaders in congregational singing
+                innovation, ensemble spiritual practice, and liturgical imagination.
+            </p>
+
+            <p>
+                <img class="float-left p-3" src="/images/mishasm.jpg"
+                     alt="Rev. Misha Sanders" data-no-retina/>
+                <strong>Rev. Misha Sanders</strong> is feeling very blessed to be the Senior Minister at Northwest Unitarian Universalist
+                Congregation in beautiful Sandy Springs, Georgia. She is a fiery preacher of the good news of Unitarian
+                Universalism, and believes that the whole world is built and rebuilt by the stories we tell ourselves
+                and each other.
+            </p>
+        @endcomponent
+        @component('components.blog', ['title' => 'Guest Speaker for Midweek Celebration'])
+            <p style="margin-bottom: 25%">
+                <img class="float-right p-3" src="/images/keithsm.jpg"
+                     alt="Rev. Keith Kron" data-no-retina/>
+                <strong>Rev. Keith Kron</strong> is the Director of the Transitions Office for the Unitarian Universalist Association,
+                helping congregations and ministers as they navigate the ministerial search process. He is the former
+                Director of the Office of Bisexual, Gay, Lesbian, and Transgender Concerns for the UUA. He has taught an
+                online course for school on children’s literature. He has created a special Harry Potter Jeopardy game
+                and is considered by many an expert on Harry Potter.
+            </p>
     @endcomponent
 @endsection

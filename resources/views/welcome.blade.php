@@ -181,7 +181,7 @@
                     led by Pam
                     Blevins Hinkle and accompanied by Bonnie Ettinger.</p>
             </div>
-            <a href="{{ route('themespeaker') }}" class="btn btn-primary">Theme Speaker Biography</a>
+            <a href="{{ route('themespeaker') }}" class="btn btn-primary">Guest Speaker Biographies</a>
         </div>
     </div>
 
