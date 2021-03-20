@@ -51,9 +51,7 @@ class CamperController extends Controller
             'program_id.*' => 'required|exists:programs,id',
             'roommate.*' => 'max:255',
             'sponsor.*' => 'max:255',
-            'church_id.*' => 'exists:churches,id',
-            'is_handicap.*' => 'in:0,1',
-            'foodoption_id.*' => 'exists:foodoptions,id',
+            'church_id.*' => 'exists:churches,id'
         ], $this->messages);
 
 
@@ -132,7 +130,7 @@ class CamperController extends Controller
 
         $empty = new Camper();
         $empty->id = 999;
-        return view('campers', ['pronouns' => Pronoun::all(), 'foodoptions' => Foodoption::all(),
+        return view('campers', ['pronouns' => Pronoun::all(),
             'campers' => $campers, 'programs' => Program::whereNotNull('title')->orderBy('order')->get(),
             'empty' => $empty]);
 
@@ -174,8 +172,6 @@ class CamperController extends Controller
         if ($request->input('church_id') && array_key_exists($i, $request->input('church_id'))) {
             $camper->church_id = $request->input('church_id')[$i];
         }
-        $camper->is_handicap = $request->input('is_handicap')[$i];
-        $camper->foodoption_id = $request->input('foodoption_id')[$i];
 
         $camper->save();
 

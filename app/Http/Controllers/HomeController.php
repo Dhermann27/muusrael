@@ -7,12 +7,18 @@ use App\Http\CampCost;
 use App\Enums\Buildingtype;
 use App\Http\Program;
 use Illuminate\Http\Request;
+use function view;
 
 class HomeController extends Controller
 {
     public function index(Request $request)
     {
         return view('welcome');
+    }
+
+    public function zoomsa(Request $request)
+    {
+        return view('zoomsa');
     }
 
     public function campcost()

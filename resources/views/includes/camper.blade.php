@@ -255,49 +255,4 @@
             @enderror
         </div>
     </div>
-    <div class="form-group row @error('is_handicap.' . $looper) has-danger @enderror">
-        <label for="is_handicap-{{ $looper }}" class="col-md-8 control-label">Do you require assistance or any
-            needs of which the Registrar should be aware?
-            <a href="#" class="p-2 float-right" data-toggle="tooltip" data-html="true"
-               title="@lang('registration.specialneeds')"><i class="far fa-info"></i></a>
-        </label>
-        <div class="col-md-2">
-            <select
-                class="form-control @error('is_handicap.' . $looper) has-danger @enderror @can('readonly') disabled @endif"
-                id="is_handicap-{{ $looper }}" name="is_handicap[]">
-                <option value="0">No</option>
-                <option value="1"{{ $camper->is_handicap == 1 ? ' selected' : '' }}>
-                    Yes
-                </option>
-            </select>
-
-            @error('is_handicap.' . $looper)
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-        </div>
-    </div>
-    <div
-        class="form-group row @error('foodoption_id.' . $looper) has-danger @enderror @can('readonly') disabled @endif">
-        <label for="foodoption_id-{{ $looper }}" class="col-md-8 control-label">What
-            option best describes your food restrictions?</label>
-        <div class="col-md-2">
-            <select class="form-control @error('foodoption_id.' . $looper) has-danger @enderror"
-                    id="foodoption_id-{{ $looper }}" name="foodoption_id[]">
-                @foreach($foodoptions as $foodoption)
-                    <option value="{{ $foodoption->id }}"
-                        {{ $foodoption->id == old('foodoption_id.' . $looper, $camper->foodoption_id) ? ' selected' : '' }}>
-                        {{ $foodoption->name }}
-                    </option>
-                @endforeach
-            </select>
-
-            @error('foodoption_id.' . $looper)
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-        </div>
-    </div>
 </div>

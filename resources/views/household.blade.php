@@ -44,10 +44,10 @@
                     'list' => [['id' => '0', 'option' => 'Yes, please mail me a brochure'],
                         ['id' => '1', 'option' => 'No, do not mail me anything']]])
 
-                @include('includes.question', ['name' => 'is_scholar',
-                    'label' => 'Please indicate if you will be applying for a scholarship this year.',
+                @include('includes.question', ['name' => 'is_artfair',
+                    'label' => 'ZOOMSA is exploring the idea of an online Art Fair if enough campers are interested in offering their art for sale. Do you have art you would be interested in selling in an online Art Fair?',
                     'list' => [['id' => '0', 'option' => 'No'],
-                            ['id' => '1', 'option' => 'Yes, I will be completing the separate process']]])
+                            ['id' => '1', 'option' => 'Yes, please contact me']]])
             </fieldset>
 
             @cannot('readonly')

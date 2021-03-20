@@ -24,13 +24,13 @@ class HouseholdController extends Controller
             'province_id' => 'required|exists:provinces,id',
             'zipcd' => 'required|alpha_dash|max:255',
             'is_ecomm' => 'required|in:0,1',
-            'is_scholar' => 'required|in:0,1'
+            'is_artfair' => 'required|in:0,1'
         ], $messages);
 
         $family = new Family();
         if ($id > 0 && Gate::allows('is-super')) {
             $family = Family::findOrFail(Camper::findOrFail($id)->family_id);
-        } else if ($id > 0 || !Gate::allows('is-super')) {
+        } else if (Auth::user()->camper->family_id) {
             $family = Family::findOrFail(Auth::user()->camper->family_id);
         }
         $family->address1 = $request->input('address1');
@@ -43,7 +43,7 @@ class HouseholdController extends Controller
             $family->is_address_current = $request->input('is_address_current');
         }
         $family->is_ecomm = $request->input('is_ecomm');
-        $family->is_scholar = $request->input('is_scholar');
+        $family->is_artfair = $request->input('is_artfair');
         $family->save();
 
         $request->session()->flash('success', 'Your information has been saved successfully.');

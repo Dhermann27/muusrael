@@ -179,6 +179,10 @@
                     <li class="nav-item mt-1"><a href="{{ route('contact.index') }}" class="nav-link">Contact Us</a>
                     </li>
 
+                    @can('has-paid')
+                        <li class="nav-item mt-1"><a href="{{ route('zoomsa') }}" class="nav-link">Zoomsa 2021</a>
+                        </li>
+                    @endif
                     <li class="nav-item mt-1">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
@@ -186,8 +190,8 @@
                                 Camp Information
                             </a>
                             <div class="dropdown-menu dropdown-menu-right mt-0">
-{{--                                <a href="{{ route('housing') }}" class="dropdown-item"><i class="far fa-bath fa-fw"></i>--}}
-{{--                                    Housing Options</a>--}}
+                                {{--                                <a href="{{ route('housing') }}" class="dropdown-item"><i class="far fa-bath fa-fw"></i>--}}
+                                {{--                                    Housing Options</a>--}}
                                 <a href="{{ route('programs') }}" class="dropdown-item">
                                     <i class="far fa-sitemap fa-fw"></i> Programs
                                 </a>
@@ -197,15 +201,15 @@
                                 <a href="{{ route('themespeaker') }}" class="dropdown-item">
                                     <i class="far fa-microphone fa-fw"></i> Guest Speakers
                                 </a>
-{{--                                <a href="{{ route('cost') }}" class="dropdown-item">--}}
-{{--                                    <i class="far fa-calculator fa-fw"></i> Cost Calculator--}}
-{{--                                </a>--}}
-{{--                                <a href="{{ route('scholarship') }}" class="dropdown-item">--}}
-{{--                                    <i class="far fa-universal-access fa-fw"></i> Scholarships--}}
-{{--                                </a>--}}
-{{--                                <a href="{{ route('workshops.excursions') }}" class="dropdown-item">--}}
-{{--                                    <i class="far fa-binoculars fa-fw"></i> Excursions--}}
-{{--                                </a>--}}
+                                {{--                                <a href="{{ route('cost') }}" class="dropdown-item">--}}
+                                {{--                                    <i class="far fa-calculator fa-fw"></i> Cost Calculator--}}
+                                {{--                                </a>--}}
+                                {{--                                <a href="{{ route('scholarship') }}" class="dropdown-item">--}}
+                                {{--                                    <i class="far fa-universal-access fa-fw"></i> Scholarships--}}
+                                {{--                                </a>--}}
+                                {{--                                <a href="{{ route('workshops.excursions') }}" class="dropdown-item">--}}
+                                {{--                                    <i class="far fa-binoculars fa-fw"></i> Excursions--}}
+                                {{--                                </a>--}}
                             </div>
                         </div>
                     </li>
@@ -237,7 +241,8 @@
                                 {{--                                <a href="#" class="dropdown-item">--}}
                                 {{--                                    <i class="far fa-handshake fa-fw"></i> Volunteer Opportunities</a>--}}
                                 @if($year->is_workshop_proposal)
-                                    <a href="https://sable.madmimi.com/c/32710?id=29090.564.1.378df240f2a6ef81b06f4b9221e81eb4" class="dropdown-item">
+                                    <a href="https://sable.madmimi.com/c/32710?id=29090.564.1.378df240f2a6ef81b06f4b9221e81eb4"
+                                       class="dropdown-item">
                                         <i class="fal fa-chalkboard-teacher fa-fw"></i> Workshop Proposal
                                     </a>
                                 @endif
@@ -257,8 +262,8 @@
                                         <i class="far fa-home fa-fw"></i> Household</a>
                                     <a href="{{ route('campers.index') }}" class="dropdown-item">
                                         <i class="far fa-users fa-fw"></i> Campers</a>
-{{--                                    <a href="{{ route('payment.index') }}" class="dropdown-item">--}}
-{{--                                        <i class="far fa-usd-square fa-fw"></i> Statement</a>--}}
+                                    {{--                                    <a href="{{ route('payment.index') }}" class="dropdown-item">--}}
+                                    {{--                                        <i class="far fa-usd-square fa-fw"></i> Statement</a>--}}
                                     @if(!$year->is_live)
                                         <div class="dropdown-divider"></div>
                                         <h6 class="dropdown-header">
@@ -271,10 +276,10 @@
                                     @else
                                         <a href="{{ route('workshopchoice.index') }}" class="dropdown-item">
                                             <i class="far fa-rocket fa-fw"></i> Workshops</a>
-{{--                                        <a href="{{ route('roomselection.index') }}" class="dropdown-item">--}}
-{{--                                            <i class="far fa-bed fa-fw"></i> Room Selection</a>--}}
-{{--                                        <a href="{{ route('nametag.index') }}" class="dropdown-item">--}}
-{{--                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>--}}
+                                        {{--                                        <a href="{{ route('roomselection.index') }}" class="dropdown-item">--}}
+                                        {{--                                            <i class="far fa-bed fa-fw"></i> Room Selection</a>--}}
+                                        {{--                                        <a href="{{ route('nametag.index') }}" class="dropdown-item">--}}
+                                        {{--                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>--}}
                                         {{--                                        <a href="{{ route('confirm') }}" class="dropdown-item">--}}
                                         {{--                                            <i class="far fa-envelope fa-fw"></i> Confirmation</a>--}}
                                     @endif
@@ -337,13 +342,13 @@
                     <div class="col-lg-2">
                         <h5 class="footer-title text-white mb-3">Camp Information</h5>
                         <ul class="list-unstyled footer-list">
-{{--                            <li><a href="{{ route('housing') }}">Housing Options</a></li>--}}
+                            {{--                            <li><a href="{{ route('housing') }}">Housing Options</a></li>--}}
                             <li><a href="{{ route('programs') }}">Programs</a></li>
                             <li><a href="{{ route('workshops.display') }}">Workshop List</a></li>
                             <li><a href="{{ route('themespeaker') }}">Guest Speakers</a></li>
-{{--                            <li><a href="{{ route('cost') }}">Cost Calculator</a></li>--}}
-{{--                            <li><a href="{{ route('scholarship') }}">Scholarships</a></li>--}}
-{{--                            <li><a href="{{ route('workshops.excursions') }}">Excursions</a></li>--}}
+                            {{--                            <li><a href="{{ route('cost') }}">Cost Calculator</a></li>--}}
+                            {{--                            <li><a href="{{ route('scholarship') }}">Scholarships</a></li>--}}
+                            {{--                            <li><a href="{{ route('workshops.excursions') }}">Excursions</a></li>--}}
                         </ul>
                     </div>
                     <div class="col-lg-2">
@@ -364,9 +369,21 @@
                             @endif
                             {{--                            <li><a href="#">Volunteer Opportunities</a></li>--}}
                             @if($year->is_workshop_proposal)
-                                <li><a href="https://docs.google.com/forms/d/1uD1UCGI1F4nPlAmKIAkRuEci1NudqqPa140fDHXUMEs/edit">Workshop Proposal</a></li>
+                                <li>
+                                    <a href="https://docs.google.com/forms/d/1uD1UCGI1F4nPlAmKIAkRuEci1NudqqPa140fDHXUMEs/edit">Workshop
+                                        Proposal</a></li>
                             @endif
                         </ul>
+
+
+
+                        <h5 class="footer-title mb-3"><a class="text-white" href="{{ route('contact.index') }}">Contact Us</a>
+                        </h5>
+
+                        @can('has-paid')
+                            <h5 class="footer-title mb-3"><a class="text-white" href="{{ route('zoomsa') }}">Zoomsa 2021</a>
+                            </h5>
+                        @endif
                     </div>
                     <div class="col-lg-2">
                         @can('has-paid')
@@ -374,7 +391,7 @@
                             <ul class="list-unstyled footer-list">
                                 <li><a href="{{ route('household.index') }}">Household</a></li>
                                 <li><a href="{{ route('campers.index') }}">Campers</a></li>
-{{--                                <li><a href="{{ route('payment.index') }}">Statement</a></li>--}}
+                                {{--                                <li><a href="{{ route('payment.index') }}">Statement</a></li>--}}
                                 @if(!$year->is_live)
                                     <hr/>
                                     <h6 class="dropdown-header">Opens {{ $year->brochure_date }}</h6>
@@ -384,8 +401,8 @@
                                     <li>Confirmation</li>
                                 @else
                                     <li><a href="{{ route('workshopchoice.index') }}">Workshop Preferences</a></li>
-{{--                                    <li><a href="{{ route('roomselection.index') }}">Room Selection</a></li>--}}
-{{--                                    <li><a href="{{ route('nametag.index') }}">Nametags</a></li>--}}
+                                    {{--                                    <li><a href="{{ route('roomselection.index') }}">Room Selection</a></li>--}}
+                                    {{--                                    <li><a href="{{ route('nametag.index') }}">Nametags</a></li>--}}
                                     {{--                                        <li><a href="{{ route('confirm') }}">Confirmation</a></li>--}}
                                 @endif
                             </ul>

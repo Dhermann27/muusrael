@@ -9,6 +9,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/zoomsa', 'HomeController@zoomsa')->name('zoomsa')->middleware('can:has-paid');
 
 Route::get('/contact', 'ContactController@contactIndex')->name('contact.index');
 Route::post('/contact', 'ContactController@contactStore')->name('contact.store');

@@ -59,7 +59,7 @@
         <div class="container w-lg-70">
 
             <div class="row my-5 justify-content-center">
-                <div class="col-md-6" style="font-family: 'Barlow', sans-serif;">
+                <div class="col-md-8" style="font-family: 'Barlow', sans-serif;">
                     <p><strong>Dear MUUSA friends,</strong></p>
                     <p>Hello Fellow Campers,</p>
                     <p>After much deliberation and without a guarantee that vaccinations will be widely available before
@@ -85,6 +85,25 @@
                     <p>With gratitude,<br/><br/>
 
                         MUUSA Planning Council</p>
+                </div>
+
+                <div class="col-md-4 text-sm-center">
+                    <h5 class="pt-3">Help Zoomsa</h5>
+                    <div class="text-sm-left">Even though MUUSA 2021 was cancelled, we still incurred a range of
+                        expenses for the year, but no revenue to offset them. If you're enjoying Zoomsa, please
+                        consider a donation.
+                    </div>
+                    <label for="muusa-donation" class="control-label sr-only">Zoomsa Donation Amount</label>
+                    <div id="muusa-donation-group" class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                            <input type="number" id="muusa-donation" class="form-control" step="any"
+                                   data-number-to-fixed="2" min="0" placeholder="Enter Donation Here"/>
+                        </div>
+                    </div>
+                    <div id="minimuusa-donate-button"></div>
+                    <div id="muusa-donate-message" class="d-none text-muted">Thank you for your donation. <i
+                            class="fas fa-hands-heart"></i></div>
                 </div>
             </div>
         </div>
@@ -261,3 +280,49 @@
 
 @endsection
 
+@section('script')
+    <script
+        src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT') }}&disable-funding=credit,card"></script>
+    <script type="text/javascript">
+        paypal.Buttons({
+            locale: 'en_US',
+            style: {
+                size: 'responsive',
+                color: 'gold',
+                shape: 'pill',
+                label: 'paypal',
+                vault: 'false',
+                layout: 'vertical'
+            },
+            createOrder: function (data, actions) {
+                $(".has-danger").removeClass("has-danger");
+                $(".is-invalid").removeClass("is-invalid");
+                $(".invalid-feedback").remove();
+                var amt = parseFloat($("input#muusa-donation").val());
+                if (isNaN(amt) || amt <= 0.0) {
+                    var group = $("div#muusa-donation-group").addClass("has-danger");
+                    group.find("input").addClass('is-invalid');
+                    group.find("div:first").append("<span class=\"invalid-feedback\"><strong>Please set a donation amount</strong></span>");
+                    $("span.invalid-feedback").show();
+                    return false;
+                }
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: parseFloat($("input#muusa-donation").val()).toFixed(2)
+                        },
+                        description: 'Thank you for your donation to Zoomsa 2021',
+                        custom_id: 'minimuusa2021'
+                    }]
+                });
+            },
+            onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                    $("div#muusa-donation-group").hide();
+                    $("div#minimuusa-donate-button").hide();
+                    $("div#muusa-donate-message").removeClass("d-none");
+                });
+            }
+        }).render('#minimuusa-donate-button');
+    </script>
+@endsection
