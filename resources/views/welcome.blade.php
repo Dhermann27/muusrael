@@ -126,7 +126,7 @@
                         <p class="line-height-30 py-md-2 op-7">
                             @if($year->is_live)
                                 The easiest way to learn all about MUUSA is to read the brochure, put out by our
-                                Planning Council. It has it all: workshop descriptions, housing options, frequently
+                                Planning Council. It has it all: workshop descriptions, daily schdules, frequently
                                 asked questions, and more.
                             @else
                                 While you can register right now to reserve your spot, our Planning Council is working
