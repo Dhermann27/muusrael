@@ -109,6 +109,41 @@
         </div>
     </div>
 
+    <div class="pt-4 pt-md-6 bg-white">
+        <div class="container w-lg-70">
+            <div class="row mt-2">
+                <div class="col-lg-6 d-sm-flex">
+                    <a href="{{ route('brochure') }}">
+                        <img id="brochureimg" class="card-img-top" src="/images/brochure.png"
+                             alt="Web Brochure cover" data-no-retina>
+                    </a>
+                </div>
+                <div class="col-lg-6 d-sm-flex align-content-center d-flex align-items-center">
+                    <div class="mr-auto py-0 pl-lg-5 my-3 my-md-0">
+                        <h2 class="display-4 mt-3 mt-lg-0">
+                            Web Brochure
+                        </h2>
+                        <p class="line-height-30 py-md-2 op-7">
+                            @if($year->is_live)
+                                The easiest way to learn all about MUUSA is to read the brochure, put out by our
+                                Planning Council. It has it all: workshop descriptions, housing options, frequently
+                                asked questions, and more.
+                            @else
+                                While you can register right now to reserve your spot, our Planning Council is working
+                                diligently to prepare this year's brochure, which should be ready on February 1. You can
+                                currently see last year's to get an idea of what it might contain.
+                            @endif
+                        </p>
+                        <a href="{{ route('brochure') }}"
+                           class="mb-1 py-2 px-4 btn btn-primary btn-shadow btn-flat btn-sm btn-bold text-uppercase text-letter-spacing rounded-0">
+                            <i class="far fa-file-pdf mr-2"></i> Take a look
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="bg-primary py-4">
         <div class="container text-white d-lg-flex justify-content-center">
             <h3 class="my-lg-1 mr-lg-3 font-weight-normal">
