@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Provincecode;
 use App\Http\Camper;
 use App\Http\Campers_view;
 use App\Http\CamperStaff;
@@ -140,6 +141,7 @@ class CamperController extends Controller
     {
         if (!isset($camper->family_id)) {
             $family = new Family();
+            $family->province_id = Provincecode::MO;
             $family->is_address_current = 0;
             $family->save();
             $camper->family_id = $family->id;
