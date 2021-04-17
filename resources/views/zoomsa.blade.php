@@ -17,15 +17,15 @@
                         information through the end of camp on July 10.</p>
 
                     <h5>Virtual Awesome Choir</h5>
-                    <p>Attend the Virtual Awesome Choir rehearsal with Pam Blevins Hinkle on <strong>April 10 @ 10am
-                            CDT</strong><br/>
+                    <p>Pam Blevins Hinkle led a virtual choir rehearsal on April 10. View the recording of the rehearsal
+                        here: <a
+                            style="color: #007bff; text-decoration: underline;"
+                            href="https://tinyurl.com/AwesomeRehearsal">https://tinyurl.com/AwesomeRehearsal</a>
 
-                        <a style="color: #007bff; text-decoration: underline;"
-                           href="https://us02web.zoom.us/j/81271766995?pwd=b0VLSWQxOElYU3dTY3ZPRHBURkRiQT09">https://us02web.zoom.us/j/81271766995?pwd=b0VLSWQxOElYU3dTY3ZPRHBURkRiQT09</a><br/>
-
-                        Meeting ID: 812 7176 6995<br/>
-
-                        Passcode: awesome</p>
+                        Ready to make your video for our Virtual Awesome Choir? Instructions can be found here: <a
+                            style="color: #007bff; text-decoration: underline;"
+                            href="https://tinyurl.com/AwesomeChoirInstructions">https://tinyurl.com/AwesomeChoirInstructions</a>
+                    </p>
                     <p>Submit a Virtual Awesome Choir video by June 1: <a
                             style="color: #007bff; text-decoration: underline;"
                             href="https://forms.gle/YqupFGgdQpM3BEmN9">https://forms.gle/YqupFGgdQpM3BEmN9</a>
