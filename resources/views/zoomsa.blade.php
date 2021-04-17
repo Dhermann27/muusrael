@@ -20,9 +20,9 @@
                     <p>Pam Blevins Hinkle led a virtual choir rehearsal on April 10. View the recording of the rehearsal
                         here: <a
                             style="color: #007bff; text-decoration: underline;"
-                            href="https://tinyurl.com/AwesomeRehearsal">https://tinyurl.com/AwesomeRehearsal</a>
+                            href="https://tinyurl.com/AwesomeRehearsal">https://tinyurl.com/AwesomeRehearsal</a></p>
 
-                        Ready to make your video for our Virtual Awesome Choir? Instructions can be found here: <a
+                        <p>Ready to make your video for our Virtual Awesome Choir? Instructions can be found here: <a
                             style="color: #007bff; text-decoration: underline;"
                             href="https://tinyurl.com/AwesomeChoirInstructions">https://tinyurl.com/AwesomeChoirInstructions</a>
                     </p>

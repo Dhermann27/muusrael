@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33f8c115-4db0-4a28-8cc1-fe8bfd1ee105" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/zoomsa.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/zoomsa.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Browser/AdminTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Browser/AdminTest.php" afterDir="false" />
     </list>
@@ -292,7 +290,7 @@
       <workItem from="1616249807480" duration="6227000" />
       <workItem from="1617031710261" duration="5235000" />
       <workItem from="1618690540327" duration="93000" />
-      <workItem from="1618690659692" duration="463000" />
+      <workItem from="1618690659692" duration="981000" />
     </task>
     <servers />
   </component>
