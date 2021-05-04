@@ -138,3 +138,6 @@ Route::get('/brochure', function () {
     if (!is_file(public_path('MUUSA_' . $year . '_Brochure.pdf'))) $year--;
     return redirect('MUUSA_' . $year . '_Brochure.pdf');
 })->name('brochure');
+Route::get('/bookstore', function () {
+   return redirect('https://docs.google.com/spreadsheets/d/1Eo5ViasqburjQdKct2o24JivZEmPRtr9V65uwMDSkBs/edit?usp=sharing');
+});
