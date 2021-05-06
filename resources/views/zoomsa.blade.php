@@ -16,13 +16,27 @@
                         information about our virtual camp. We will continue to update this page with links and
                         information through the end of camp on July 10.</p>
 
+                    <h5>Book Discussion</h5>
+                    <h6>Led by Amy Miller / July 5 @ 2pm</h6>
+                    <p>Read <a href="https://www.uuabookstore.org/Under-a-White-Sky-P18822.aspx">Under a White Sky: The
+                            Nature of the Future</a> by Elizabeth Kolbert and meet to discuss. The Pulitzer
+                        Prize-winning author returns to humanity’s transformative impact on the environment, now asking:
+                        After doing so much damage, can we change nature, this time to save it?</p>
+
+                    <h5>Book Discussion</h5>
+                    <h6>Led by Amy Miller / July 9 @ 2pm</h6>
+                    <p>Read <a href="https://www.amazon.com/Humankind-Hopeful-History-Rutger-Bregman/dp/0316418536">Humankind:
+                            A Hopeful History</a> by Rutger Bregman and meet to discuss. The REAL story of "Lord of the
+                        Flies"--the author brings together science and history to illustrate people are actually
+                        hardwired for kindness.</p>
+
                     <h5>Virtual Awesome Choir</h5>
                     <p>Pam Blevins Hinkle led a virtual choir rehearsal on April 10. View the recording of the rehearsal
                         here: <a
                             style="color: #007bff; text-decoration: underline;"
                             href="https://tinyurl.com/AwesomeRehearsal">https://tinyurl.com/AwesomeRehearsal</a></p>
 
-                        <p>Ready to make your video for our Virtual Awesome Choir? Instructions can be found here: <a
+                    <p>Ready to make your video for our Virtual Awesome Choir? Instructions can be found here: <a
                             style="color: #007bff; text-decoration: underline;"
                             href="https://tinyurl.com/AwesomeChoirInstructions">https://tinyurl.com/AwesomeChoirInstructions</a>
                     </p>
