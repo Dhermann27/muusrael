@@ -27,8 +27,8 @@
             </div>
             <div class="col-md-4">
                 <p class="text-md-center"><a style="color: #b23c66; text-decoration: underline;" href="https://calendar.google.com/calendar/ical/lpuoked7q3msijpdeqqnkvanb8%40group.calendar.google.com/public/basic.ics">Worship &amp; Celebration</a></p>
-                <p class="text-md-center"><a style="color: #148143; text-decoration: underline;" href="https://calendar.google.com/calendar/ical/muusaworkshops%40gmail.com/public/basic.ics">Adult Sequential Programming</a></p>
-                <p class="text-md-center"><a style="color: #40b77d; text-decoration: underline;" href="https://calendar.google.com/calendar/ical/muusaworkshops@gmail.com/public/basic.ics">Adult Standalone Programming</a></p>
+                <p class="text-md-center"><a style="color: #148143; text-decoration: underline;" href="https://calendar.google.com/calendar/ical/muusaworkshops%40gmail.com/public/basic.ics">Adult Programming</a></p>
+                <p class="text-md-center">&nbsp;</p>
             </div>
         </div>
         <h4 class="text-md-center" style="color: darkred">All times are listed in Central Time Zone</h4>

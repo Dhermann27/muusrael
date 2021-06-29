@@ -16,52 +16,69 @@
                         information about our virtual camp. We will continue to update this page with links and
                         information through the end of camp on July 10.</p>
 
+                    <h5>ZOOMSA Links</h5>
+                    <ul>
+                        <li><a style="color: #007bff; text-decoration: underline;" href="www.muusa.org/brochure">Brochure</a>
+                        </li>
+                        <li><a style="color: #007bff; text-decoration: underline;" href="www.muusa.org/themuse">Current
+                                Muse</a></li>
+                        <li><a style="color: #007bff; text-decoration: underline;" href="www.muusa.org/schedule">Full
+                                Schedule and Descriptions</a><br/>This page contains a day-by-day schedule and includes
+                            the links you’ll need to access all ZOOMSA sessions.
+                        </li>
+                    </ul>
+
                     <h5>Zoomsa Bookstore</h5>
-                    <p>A collection of books has been specially curated for our MUUSA campers by the Inspirit (UU)
-                        Bookstore. Get inspiration for your summer reading list at <a
-                            style="color: #007bff; text-decoration: underline;" href="www.muusa.org/bookstore">www.muusa.org/bookstore</a>.
+                    <p>Our online bookstore features selections chosen by InSpirit (UUA) Bookstore and books by our
+                        MUUSA authors. Go to <a
+                            style="color: #007bff; text-decoration: underline;" href="www.muusa.org/bookstore">www.muusa.org/bookstore</a>
+                        to purchase Book Discussion selections and to support our campers!
                     </p>
 
-                    <h5>Book Discussion</h5>
-                    <h6>The books for the Book Discussion workshops are:</h6>
-                    <p>1. <a style="color: #007bff; text-decoration: underline;"
-                             href="https://www.uuabookstore.org/Under-a-White-Sky-P18822.aspx">Under a White Sky: The
-                            Nature of the Future</a> by Elizabeth Kolbert to be discussed via Zoom on July 5 @ 2pm. Find
-                        link here in mid-June.</p>
-                    <p>The Pulitzer Prize-winning author returns to humanity’s transformative impact on the environment,
-                        now asking: After doing so much damage, can we change nature, this time to save it?</p>
-
-                    <p>2. <a style="color: #007bff; text-decoration: underline;"
-                             href="https://www.amazon.com/Humankind-Hopeful-History-Rutger-Bregman/dp/0316418536">Humankind:
-                            A Hopeful History</a> by Rutger Bregman oo be discussed via Zoom on July 9 @ 2pm. Find link
-                        here in mid-June.</p>
-                    <p>The REAL story of "Lord of the Flies"--the author brings together science and history to
-                        illustrate people are actually hardwired for kindness.</p>
-
-                    <h5>Virtual Awesome Choir</h5>
-                    <p>Pam Blevins Hinkle led a virtual choir rehearsal on April 10. View the recording of the rehearsal
-                        here: <a
+                    <h5>MUUSA Artists</h5>
+                    <p>Although we aren't having an Art Fair this year, we are featuring some of our camp artists. Visit
+                        <a
                             style="color: #007bff; text-decoration: underline;"
-                            href="https://tinyurl.com/AwesomeRehearsal">https://tinyurl.com/AwesomeRehearsal</a></p>
+                            href="www.muusa.org/art">muusa.org/art</a> to find information and link to our artists' work
+                        and websites.</p>
 
-                    <p>Ready to make your video for our Virtual Awesome Choir? Instructions can be found here: <a
-                            style="color: #007bff; text-decoration: underline;"
-                            href="https://tinyurl.com/AwesomeChoirInstructions">https://tinyurl.com/AwesomeChoirInstructions</a>
-                    </p>
-                    <p>Submit a Virtual Awesome Choir video by June 1: <a
-                            style="color: #007bff; text-decoration: underline;"
-                            href="https://forms.gle/YqupFGgdQpM3BEmN9">https://forms.gle/YqupFGgdQpM3BEmN9</a>
+                    <h5>Materials Folder</h5>
+                    <p>Looking for handouts, supply lists and/or ingredients needed for a certain session? Check out the
+                        ZOOMSA Materials Folder at <a
+                            style="color: #007bff; text-decoration: underline;" href="www.muusa.org/materials">muusa.org/materials</a>.
                     </p>
 
-                    <h5>Opening/Closing Videos</h5>
-                    <p>Submit a video greeting or farewell which will be used in our Opening/Closing Celebrations by
-                        June 1: <a style="color: #007bff; text-decoration: underline;"
-                                   href="https://forms.gle/wWrgiBL4Xr6ZL7hi6">https://forms.gle/wWrgiBL4Xr6ZL7hi6</a>
-                    </p>
+                    <h5>MOVE for MUUSA</h5>
+                    <p>SLet's get moving during ZOOMSA and track how many miles we all cover! We have a group of donors
+                        who will contribute $1 for every mile we collectively roll, walk, run or bike during camp. So
+                        get out there and move from July 4 - 10 and then enter your miles at <a
+                            style="color: #007bff; text-decoration: underline;"
+                            href="muusa.org/miles">muusa.org/miles</a> to earn money for MUUSA!</p>
 
                     <h5>Coffee House</h5>
                     <p>Sign up for Coffee House by June 30: <a style="color: #007bff; text-decoration: underline;"
                                                                href="https://forms.gle/XBxde4FEKpq9HnBe8">https://forms.gle/XBxde4FEKpq9HnBe8</a>
+                    </p>
+
+                    <h5><a style="color: #007bff; text-decoration: underline;" href="bit.ly/ZOOMSATube">YouTube
+                            Playlist</a></h5>
+                    <p>Have you seen the promo videos featuring our workshop leaders? Take a look! Once you hear what
+                        our presenters will be offering, you may want to add a few more sessions to your ZOOMSA week!
+                    </p>
+
+                    <h5>BINGO</h5>
+                    <p>Download an audio or visual bingo card and then listen and look for different things during
+                        virtual sessions. All ages are encouraged to participate.</p>
+                    <ul>
+                        <li><a style="color: #007bff; text-decoration: underline;"
+                               href="https://drive.google.com/file/d/1Cn29hUB5TkqNer4T_o80XIz_FP21kkyU/view?usp=sharing">Bingo
+                                Visual Card</a>
+                        </li>
+                        <li><a style="color: #007bff; text-decoration: underline;"
+                               href="https://drive.google.com/file/d/1VCwsg-_HSAKivU6r9rv2dHiLQ_Dn_oEN/view?usp=sharing">Bingo
+                                Audible Card</a>
+                        </li>
+                    </ul>
                     </p>
                 </div>
             </div>
