@@ -135,7 +135,7 @@ Route::group(['middleware' => ['can:is-super'], 'prefix' => 'admin'], function (
 });
 
 Route::get('/themuse', function () {
-    $muses = Storage::files('public/muses');
+    $muses = Storage::disk('public_site')->files('/muses');
     $muse = array_pop($muses);
     return redirect('/muses/' . substr($muse, strpos($muse, '/20') + 1));
 });
