@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Auth::routes();
 
@@ -133,6 +134,12 @@ Route::group(['middleware' => ['can:is-super'], 'prefix' => 'admin'], function (
     Route::post('positions', 'AdminController@positionStore')->name('admin.positions.store');
 });
 
+Route::get('/themuse', function () {
+    $muses = Storage::files('public/muses');
+    $muse = array_pop($muses);
+    return redirect('/muses/' . substr($muse, strpos($muse, '/20') + 1));
+});
+
 Route::get('/brochure', function () {
     $year = date('Y');
     if (!is_file(public_path('MUUSA_' . $year . '_Brochure.pdf'))) $year--;
@@ -141,3 +148,15 @@ Route::get('/brochure', function () {
 Route::get('/bookstore', function () {
    return redirect('https://docs.google.com/spreadsheets/d/1Eo5ViasqburjQdKct2o24JivZEmPRtr9V65uwMDSkBs/edit?usp=sharing');
 });
+Route::get('/miles', function () {
+    return redirect('https://forms.gle/V1BUAxjgvye1FLU38');
+})->name('miles');
+Route::get('/schedule', function () {
+    return redirect('https://docs.google.com/spreadsheets/d/1AAnHIPcuweHXofAXv-kVUXY8VDfleMAbiHrRqlhOfRM/edit#gid=646888698');
+})->middleware('auth')->name('schedule');
+Route::get('/materials', function () {
+    return redirect('https://drive.google.com/drive/folders/1eTM01rv5a2TmEfRJ-1o0egjuzTa5zd85?usp=sharing');
+})->middleware('auth');
+Route::get('/art', function () {
+    return redirect('https://docs.google.com/spreadsheets/d/1SFVDypp8uO63Mq41ZknzP7XRLK0xT-de_kIQ4naGvw4/edit?usp=sharing');
+})->middleware('auth');

@@ -104,6 +104,13 @@
                     <div id="minimuusa-donate-button"></div>
                     <div id="muusa-donate-message" class="d-none text-muted">Thank you for your donation. <i
                             class="fas fa-hands-heart"></i></div>
+
+                    <h5 class="pt-5">Log your MUUSA Miles</h5>
+                    <a href="{{ route('miles') }}"
+                       class="mb-1 py-2 px-4 btn btn-primary btn-shadow btn-flat btn-sm btn-bold text-uppercase text-letter-spacing rounded-0">
+                        Get MUUving!
+                    </a>
+
                 </div>
             </div>
         </div>

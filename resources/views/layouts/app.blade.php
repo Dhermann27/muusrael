@@ -226,7 +226,7 @@
                                 @endif
                                 @if($year->is_calendar)
                                     <a href="{{ route('calendar') }}" class="dropdown-item">
-                                        <i class="far fa-calendar-alt fa-fw"></i> Schedule</a>
+                                        <i class="far fa-calendar-alt fa-fw"></i> Calendar</a>
                                 @endif
                                 @if($year->next_muse !== false)
                                     <a href="#" class="dropdown-item">
