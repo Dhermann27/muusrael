@@ -49,7 +49,7 @@
                     </p>
 
                     <h5>MOVE for MUUSA</h5>
-                    <p>SLet's get moving during ZOOMSA and track how many miles we all cover! We have a group of donors
+                    <p>Let's get moving during ZOOMSA and track how many miles we all cover! We have a group of donors
                         who will contribute $1 for every mile we collectively roll, walk, run or bike during camp. So
                         get out there and move from July 4 - 10 and then enter your miles at <a
                             style="color: #007bff; text-decoration: underline;"
