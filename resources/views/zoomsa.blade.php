@@ -18,20 +18,20 @@
 
                     <h5>ZOOMSA Links</h5>
                     <ul>
-                        <li><a style="color: #007bff; text-decoration: underline;" href="www.muusa.org/brochure">Brochure</a>
+                        <li><a style="color: #007bff; text-decoration: underline;" href="/brochure">Brochure</a>
                         </li>
-                        <li><a style="color: #007bff; text-decoration: underline;" href="www.muusa.org/themuse">Current
+                        <li><a style="color: #007bff; text-decoration: underline;" href="/themuse">Current
                                 Muse</a></li>
-                        <li><a style="color: #007bff; text-decoration: underline;" href="www.muusa.org/schedule">Full
+                        <li><a style="color: #007bff; text-decoration: underline;" href="/schedule">Full
                                 Schedule and Descriptions</a><br/>This page contains a day-by-day schedule and includes
                             the links you’ll need to access all ZOOMSA sessions.
                         </li>
                     </ul>
 
-                    <h5>Zoomsa Bookstore</h5>
+                    <h5>ZOOMSA Bookstore</h5>
                     <p>Our online bookstore features selections chosen by InSpirit (UUA) Bookstore and books by our
                         MUUSA authors. Go to <a
-                            style="color: #007bff; text-decoration: underline;" href="www.muusa.org/bookstore">www.muusa.org/bookstore</a>
+                            style="color: #007bff; text-decoration: underline;" href="/bookstore">www.muusa.org/bookstore</a>
                         to purchase Book Discussion selections and to support our campers!
                     </p>
 
@@ -39,13 +39,13 @@
                     <p>Although we aren't having an Art Fair this year, we are featuring some of our camp artists. Visit
                         <a
                             style="color: #007bff; text-decoration: underline;"
-                            href="www.muusa.org/art">muusa.org/art</a> to find information and link to our artists' work
+                            href="/art">muusa.org/art</a> to find information and link to our artists' work
                         and websites.</p>
 
                     <h5>Materials Folder</h5>
                     <p>Looking for handouts, supply lists and/or ingredients needed for a certain session? Check out the
                         ZOOMSA Materials Folder at <a
-                            style="color: #007bff; text-decoration: underline;" href="www.muusa.org/materials">muusa.org/materials</a>.
+                            style="color: #007bff; text-decoration: underline;" href="/materials">muusa.org/materials</a>.
                     </p>
 
                     <h5>MOVE for MUUSA</h5>
