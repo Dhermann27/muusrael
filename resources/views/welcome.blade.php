@@ -1,5 +1,23 @@
 @extends('layouts.app')
 
+@section('css')
+    <style>
+        .video-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+        }
+        .video-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+    </style>
+@endsection
+
 @section('content')
 
     @auth
@@ -59,35 +77,24 @@
         <div class="container w-lg-70">
 
             <div class="row my-5 justify-content-center">
-                <div class="col-md-8" style="font-family: 'Barlow', sans-serif;">
-                    <p><strong>Dear MUUSA friends,</strong></p>
-                    <p>Hello Fellow Campers,</p>
-                    <p>After much deliberation and without a guarantee that vaccinations will be widely available before
-                        July, the MUUSA Planning Council has elected to again hold camp virtually in 2021. We really
-                        wanted to make it happen this year, but we can't risk even one camper getting sick if we can
-                        avoid it.</p>
-                    <p>This is difficult, knowing how much we all miss our camp community, but we believe it is the
-                        safest decision. On a positive note, we just confirmed that Trout Lodge will allow us to roll
-                        our 2021 deposit (rolled from 2020) to 2022. So we can look forward to all being together again,
-                        in person, in 2022.</p>
-                    <p>Our APC is hard at work designing virtual programming for 2021. With more time to plan, and the
-                        success of Mini MUUSA 2020, you're in store for an even bigger week of programming! Of note, the
-                        first day of our traditional week will be July 4 this year, so we may be altering dates. We will
-                        be sending out a virtual brochure and more information early next year.</p>
-                    <p>With 2022 on the horizon and our deposit held by Trout Lodge for that year, we hope to hold all
-                        your paid-in deposits another year. If that puts you in a difficult position, please reply to
-                        this email and we'll work out a refund.</p>
+                <h2>ZOOMSA 2021</h2>
+            </div>
+            <div class="row my-5">
+                <div class="col-md-6">
+                    <h4>Hello Campers!</h4>
 
 
-                    </p>
+                                        <div class="video-responsive">
+                                            <iframe width="560" height="315"
+                                                    src="https://www.youtube.com/embed/QYAIFoV_JVE?controls=0"
+                                                    frameborder="0"
+                                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen></iframe>
+                                        </div>
 
-
-                    <p>With gratitude,<br/><br/>
-
-                        MUUSA Planning Council</p>
                 </div>
 
-                <div class="col-md-4 text-sm-center">
+                <div class="col-md-6 text-sm-center">
                     <h5 class="pt-3">Help Zoomsa</h5>
                     <div class="text-sm-left">Even though MUUSA 2021 was cancelled, we still incurred a range of
                         expenses for the year, but no revenue to offset them. If you're enjoying Zoomsa, please
