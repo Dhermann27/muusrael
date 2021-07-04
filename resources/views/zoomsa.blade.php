@@ -60,7 +60,7 @@
                                                                href="https://forms.gle/XBxde4FEKpq9HnBe8">https://forms.gle/XBxde4FEKpq9HnBe8</a>
                     </p>
 
-                    <h5><a style="color: #007bff; text-decoration: underline;" href="bit.ly/ZOOMSATube">YouTube
+                    <h5><a style="color: #007bff; text-decoration: underline;" href="http://bit.ly/ZOOMSATube">YouTube
                             Playlist</a></h5>
                     <p>Have you seen the promo videos featuring our workshop leaders? Take a look! Once you hear what
                         our presenters will be offering, you may want to add a few more sessions to your ZOOMSA week!
