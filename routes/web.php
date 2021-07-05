@@ -156,7 +156,7 @@ Route::get('/schedule', function () {
 })->name('schedule');
 Route::get('/materials', function () {
     return redirect('https://drive.google.com/drive/folders/1eTM01rv5a2TmEfRJ-1o0egjuzTa5zd85?usp=sharing');
-})->middleware('auth');
+});
 Route::get('/art', function () {
     return redirect('https://docs.google.com/spreadsheets/d/1SFVDypp8uO63Mq41ZknzP7XRLK0xT-de_kIQ4naGvw4/edit?usp=sharing');
 })->middleware('auth');
