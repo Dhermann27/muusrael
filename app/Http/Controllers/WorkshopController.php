@@ -63,7 +63,7 @@ class WorkshopController extends Controller
         }
         $campers = $this->getCampers($id ? $camper->family_id : Auth::user()->camper->family_id);
         if (count($campers) == 0) {
-            $request->session()->flash('warning', 'There have no campers registered for this year.');
+            $request->session()->flash('warning', 'There are no campers registered for this year.');
             return redirect()->action('CamperController@index', ['id' => $id ? $id : null]);
         }
         return view('workshopchoice', ['timeslots' => Timeslot::with('workshops')->get(),
