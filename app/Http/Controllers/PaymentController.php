@@ -2,21 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Chargetypename;
+use App\Http\ByyearCamper;
 use App\Http\ByyearCharge;
 use App\Http\Camper;
 use App\Http\Charge;
 use App\Http\Chargetype;
-use App\Enums\Chargetypename;
 use App\Http\Family;
-use App\Mail\Confirm;
-use App\PayPalClient;
 use App\Http\Province;
 use App\Http\ThisyearCamper;
 use App\Http\ThisyearCharge;
 use App\Http\Year;
+use App\Http\Yearattending;
+use App\Jobs\GenerateCharges;
+use App\Mail\Confirm;
+use App\PayPalClient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use PayPalCheckoutSdk\Orders\OrdersGetRequest;
@@ -146,21 +150,21 @@ class PaymentController extends Controller
 
 
                 $success = 'Payment received! You should receive a receipt via email for your records.';
-//                $campers = Byyear_Camper::where('familyid', $thiscamper->familyid)
-//                    ->where('year', ((int)$year->year) - 1)->where('is_program_housing', '0')->get();
-//                if (!$year->is_live && count($campers) > 0 && \App\Thisyear_Charge::where('familyid', $thiscamper->familyid)
-//                        ->where(function ($query) {
-//                            $query->where('chargetype_id', 1003)->orWhere('amount', '<', '0');
-//                        })->get()->sum('amount') <= 0) {
-//                    foreach ($campers as $camper) {
-//                        \App\Yearattending::where('camper_id', $camper->id)->where('year', $year->year)
-//                            ->whereNull('roomid')->update(['roomid' => $camper->roomid]);
-//                    }
-//                    DB::statement('CALL generate_charges(' . $year->year . ');');
-//
-//                    $success = 'Payment received! By paying your deposit, your room from ' . ((int)($year->year) - 1)
-//                        . ' has been assigned. You should receive a receipt via email for your records.';
-//                }
+                $campers = ByyearCamper::where('family_id', $thiscamper->family_id)
+                    ->where('year', ((int)$this->year->year) - 1)->where('is_program_housing', '0')->get();
+                if (!$this->year->is_live && count($campers) > 0 && ThisyearCharge::where('family_id', $thiscamper->family_id)
+                        ->where(function ($query) {
+                            $query->where('chargetype_id', 1003)->orWhere('amount', '<', '0');
+                        })->get()->sum('amount') <= 0) {
+                    foreach ($campers as $camper) {
+                        Yearattending::where('camper_id', $camper->id)->where('year_id', $this->year->id)
+                            ->whereNull('room_id')->update(['room_id' => $camper->room_id]);
+                    }
+                    GenerateCharges::dispatch($this->year->id);
+
+                    $success = 'Payment received! By paying your deposit, your room from ' . ((int)($this->year->year) - 1)
+                        . ' has been assigned. You should receive a receipt via email for your records.';
+                }
 
                 $request->session()->flash('success', $success);
             }

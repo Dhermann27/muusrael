@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Programname;
+use App\Http\ByyearCamper;
 use App\Http\Camper;
 use App\Http\Campers_view;
 use App\Http\CamperStaff;
-use App\Enums\Programname;
 use App\Http\Family;
 use App\Http\Foodoption;
-use App\Jobs\GenerateCharges;
 use App\Http\Program;
 use App\Http\Pronoun;
+use App\Http\ThisyearCharge;
 use App\Http\User;
 use App\Http\Yearattending;
 use App\Http\YearattendingStaff;
 use App\Http\YearattendingWorkshop;
+use App\Jobs\GenerateCharges;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -96,6 +98,21 @@ class CamperController extends Controller
                 $family_id = $this->upsertCamper($request, $camper, $i)->family_id;
             }
         }
+
+        //Rollovers
+
+        $campers = ByyearCamper::where('family_id', $family_id)
+            ->where('year', ((int)$this->year->year) - 1)->where('is_program_housing', '0')->get();
+        if (!$this->year->is_live && count($campers) > 0 && ThisyearCharge::where('family_id', $family_id)
+                ->where(function ($query) {
+                    $query->where('chargetype_id', 1003)->orWhere('amount', '<', '0');
+                })->get()->sum('amount') <= 0) {
+            foreach ($campers as $camper) {
+                Yearattending::where('camper_id', $camper->id)->where('year_id', $this->year->id)
+                    ->whereNull('room_id')->update(['room_id' => $camper->room_id]);
+            }
+        }
+
 
         GenerateCharges::dispatch($this->year->id);
 
