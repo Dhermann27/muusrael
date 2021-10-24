@@ -132,49 +132,49 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto navbar-center" id="mySidenav">
 
-{{--                    @can('is-council')--}}
-{{--                        <li class="nav-item mt-1">--}}
-{{--                            <div class="dropdown">--}}
-{{--                                <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"--}}
-{{--                                   aria-haspopup="true" aria-expanded="false">--}}
-{{--                                    Admin--}}
-{{--                                </a>--}}
-{{--                                <div class="dropdown-menu dropdown-menu-right mt-0">--}}
-{{--                                    <a href="{{ route('tools.cognoscenti') }}" class="dropdown-item">Cognoscenti</a>--}}
-{{--                                    <div class="dropdown-divider"></div>--}}
-{{--                                    @can('is-super')--}}
-{{--                                        <a class="disabled pl-2" tabindex="-1" href="#">Superuser Functions</a>--}}
-{{--                                        <a class="dropdown-item" href="{{ route('household.index', ['id' => 0]) }}">--}}
-{{--                                            Create New Family</a>--}}
-{{--                                        <a class="dropdown-item" href="{{ route('admin.distlist.index') }}">--}}
-{{--                                            Distribution List</a>--}}
+                    @can('is-council')
+                        <li class="nav-item mt-1">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right mt-0">
+                                    <a href="{{ route('tools.cognoscenti') }}" class="dropdown-item">Cognoscenti</a>
+                                    <div class="dropdown-divider"></div>
+                                    @can('is-super')
+                                        <a class="disabled pl-2" tabindex="-1" href="#">Superuser Functions</a>
+                                        <a class="dropdown-item" href="{{ route('household.index', ['id' => 0]) }}">
+                                            Create New Family</a>
+                                        <a class="dropdown-item" href="{{ route('admin.distlist.index') }}">
+                                            Distribution List</a>
 {{--                                        <a class="dropdown-item" href="{{ route('admin.roles.index') }}">Roles</a>--}}
 {{--                                        <a class="dropdown-item" href="{{ route('admin.positions.index') }}">--}}
 {{--                                            Staff Positions</a>--}}
-{{--                                        <div class="dropdown-divider"></div>--}}
-{{--                                    @endif--}}
-{{--                                    <a class="disabled pl-2" tabindex="-1" href="#">Reports</a>--}}
-{{--                                    <a class="dropdown-item" href="{{ route('reports.deposits') }}">--}}
-{{--                                        Bank Deposits</a>--}}
-{{--                                    <a class="dropdown-item" href="{{ route('reports.campers') }}">Campers</a>--}}
+                                        <div class="dropdown-divider"></div>
+                                    @endif
+                                    <a class="disabled pl-2" tabindex="-1" href="#">Reports</a>
+                                    <a class="dropdown-item" href="{{ route('reports.deposits') }}">
+                                        Bank Deposits</a>
+                                    <a class="dropdown-item" href="{{ route('reports.campers') }}">Campers</a>
 {{--                                    <a class="dropdown-item" href="{{ route('reports.outstanding') }}">--}}
 {{--                                        Outstanding Balances</a>--}}
 {{--                                    <a class="dropdown-item" href="{{ route('reports.programs') }}">Programs</a>--}}
-{{--                                    <a class="dropdown-item" href="{{ route('reports.chart') }}">--}}
-{{--                                        Registration Chart</a>--}}
-{{--                                    <a class="dropdown-item" href="{{ route('roomselection.map') }}">--}}
-{{--                                        Room Selection Map</a>--}}
-{{--                                    <a class="dropdown-item" href="{{ route('reports.rooms') }}">Rooms</a>--}}
+                                    <a class="dropdown-item" href="{{ route('reports.chart') }}">
+                                        Registration Chart</a>
+                                    <a class="dropdown-item" href="{{ route('roomselection.map') }}">
+                                        Room Selection Map</a>
+                                    <a class="dropdown-item" href="{{ route('reports.rooms') }}">Rooms</a>
 {{--                                    <a class="dropdown-item" href="{{ route('reports.workshops') }}">--}}
 {{--                                        Workshop Attendees</a>--}}
 {{--                                    <div class="dropdown-divider"></div>--}}
 {{--                                    <a class="disabled pl-2" tabindex="-1" href="#">Tools</a>--}}
 {{--                                    <a class="dropdown-item" tabindex="-1" href="{{ route('tools.staff.index') }}">--}}
 {{--                                        Position Assignments</a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </li>--}}
-{{--                    @endif--}}
+                                </div>
+                            </div>
+                        </li>
+                    @endif
 
                     <li class="nav-item mt-1"><a href="{{ route('contact.index') }}" class="nav-link">Contact Us</a>
                     </li>
