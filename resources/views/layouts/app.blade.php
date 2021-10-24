@@ -140,8 +140,8 @@
                                     Admin
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right mt-0">
-                                    <a href="{{ route('tools.cognoscenti') }}" class="dropdown-item">Cognoscenti</a>
-                                    <div class="dropdown-divider"></div>
+{{--                                    <a href="{{ route('tools.cognoscenti') }}" class="dropdown-item">Cognoscenti</a>--}}
+{{--                                    <div class="dropdown-divider"></div>--}}
                                     @can('is-super')
                                         <a class="disabled pl-2" tabindex="-1" href="#">Superuser Functions</a>
                                         <a class="dropdown-item" href="{{ route('household.index', ['id' => 0]) }}">
@@ -162,8 +162,8 @@
 {{--                                    <a class="dropdown-item" href="{{ route('reports.programs') }}">Programs</a>--}}
                                     <a class="dropdown-item" href="{{ route('reports.chart') }}">
                                         Registration Chart</a>
-                                    <a class="dropdown-item" href="{{ route('roomselection.map') }}">
-                                        Room Selection Map</a>
+{{--                                    <a class="dropdown-item" href="{{ route('roomselection.map') }}">--}}
+{{--                                        Room Selection Map</a>--}}
                                     <a class="dropdown-item" href="{{ route('reports.rooms') }}">Rooms</a>
 {{--                                    <a class="dropdown-item" href="{{ route('reports.workshops') }}">--}}
 {{--                                        Workshop Attendees</a>--}}
