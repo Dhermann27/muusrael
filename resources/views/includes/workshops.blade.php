@@ -1,5 +1,5 @@
 @foreach($timeslot->workshops->where('year_id', $year->id) as $workshop)
-    <button type="button" data-content="{{ $workshop->blurb }} Led by {{ $workshop->led_by }}." data-toggle="popover"
+    <button type="button" data-content="{!! $workshop->blurb !!} Led by {{ $workshop->led_by }}." data-toggle="popover"
             data-trigger="hover" id="workshop-{{ $camper->id }}-{{ $workshop->id }}"
             data-bits="{{ $workshop->bit_days }}"
             @if($workshop->enrolled >= $workshop->capacity)
@@ -11,7 +11,7 @@
         @else
             class="list-group-item list-group-item-action" title="Open for Enrollment">
         @endif
-        {{ $workshop->name }}
+        {!! $workshop->name !!}
         ({{ $workshop->display_days }})
     </button>
 @endforeach
