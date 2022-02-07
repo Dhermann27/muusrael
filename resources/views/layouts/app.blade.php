@@ -274,8 +274,8 @@
                                             <i class="far fa-rocket fa-fw"></i> Workshops</a>
                                         <a href="{{ route('roomselection.index') }}" class="dropdown-item">
                                             <i class="far fa-bed fa-fw"></i> Room Selection</a>
-                                        <a href="{{ route('nametag.index') }}" class="dropdown-item">
-                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>
+{{--                                        <a href="{{ route('nametag.index') }}" class="dropdown-item">--}}
+{{--                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>--}}
                                         {{--                                        <a href="{{ route('confirm') }}" class="dropdown-item">--}}
                                         {{--                                            <i class="far fa-envelope fa-fw"></i> Confirmation</a>--}}
                                     @endif
@@ -388,7 +388,7 @@
                                 @else
                                     <li><a href="{{ route('workshopchoice.index') }}">Workshop Preferences</a></li>
                                     <li><a href="{{ route('roomselection.index') }}">Room Selection</a></li>
-                                    <li><a href="{{ route('nametag.index') }}">Nametags</a></li>
+{{--                                    <li><a href="{{ route('nametag.index') }}">Nametags</a></li>--}}
                                     {{--                                        <li><a href="{{ route('confirm') }}">Confirmation</a></li>--}}
                                 @endif
                             </ul>
