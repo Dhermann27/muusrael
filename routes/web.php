@@ -136,3 +136,6 @@ Route::get('/brochure', function () {
     if (!is_file(public_path('MUUSA_' . $year . '_Brochure.pdf'))) $year--;
     return redirect('MUUSA_' . $year . '_Brochure.pdf');
 })->name('brochure');
+Route::get('/troutlodge', function () {
+    return redirect('Trout_Lodge.pdf');
+})->name('troutlodgebrochure');

@@ -61,7 +61,7 @@
                 <div class="col-lg-6 d-sm-flex">
                     <a href="{{ route('brochure') }}">
                         <img id="brochureimg" class="card-img-top" src="/images/brochure.png"
-                             alt="Web Brochure cover" data-no-retina>
+                             alt="Web Brochure cover">
                     </a>
                 </div>
                 <div class="col-lg-6 d-sm-flex align-content-center d-flex align-items-center">
@@ -76,8 +76,9 @@
                                 asked questions, and more.
                             @else
                                 While you can register right now to reserve your spot, our Planning Council is working
-                                diligently to prepare this year's brochure, which should be ready on February 1. You can
-                                currently see last year's to get an idea of what it might contain.
+                                diligently to prepare this year's brochure, which should be ready on
+                                {{ $year->brochure_date }}. You can currently see last year's to get an idea of what
+                                it might contain.
                             @endif
                         </p>
                         <a href="{{ route('brochure') }}"
@@ -85,6 +86,33 @@
                             <i class="far fa-file-pdf mr-2"></i> Take a look
                         </a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-secondary py-4">
+        <div class="container-fluid d-lg-flex">
+
+            <div class="col-lg-8 col-offset-2 d-sm-flex align-content-center d-flex align-items-center">
+                <div class="mr-auto py-0 pl-lg-5 my-3 my-md-0">
+                    <h2 class="display-4 mt-3 mt-lg-0">
+                        <i class="fas fa-shield-virus 3x"></i> COVID-19 Procedures
+                    </h2>
+                    <p class="line-height-30 py-md-2 op-7">
+                        Our goal is to provide a memorable camp experience that is as close to previous years with a new
+                        emphasis on safety. All campers who are eligible for vaccination must be fully vaccinated in
+                        accordance with CDC guidelines prior to the start of camp in 2022. Vaccines allow us to care for
+                        each other and our community. One camper getting sick is one too many, and we are grateful for
+                        this opportunity to protect each other.
+                    </p>
+                    <p>
+                        We do not yet know what best practices will be in July and our guidelines on masking, physical
+                        distancing, testing, etc. will be made in accordance with evidence-based public health
+                        recommendations closer to camp. We will provide these to you by June 1st. Questions should be
+                        directed to Jesse Hardin, the Omsbuddy and lead for the PC Covid Task Force using the <a
+                            href="{{ route('contact.index') }}">Contact Us</a> form (choose "Omsbuddy").
+                    </p>
                 </div>
             </div>
         </div>
@@ -107,7 +135,7 @@
                     @break
 
                     @case(\App\Enums\Yearmessage::Filling)
-                    Rooms are filling up quickly. <u><a href="mailto:muusa@muusa.org" class="text-white">Contact
+                    Rooms are filling up quickly. <u><a href="{{ route('contact.index') }}" class="text-white">Contact
                             us</a></u>
                     to see what is still open.
                     @break;
