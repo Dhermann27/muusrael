@@ -179,7 +179,7 @@
                 <option value="0">Choose a program</option>
                 @foreach($programs as $program)
                     <option value="{{ $program->id }}"
-                        {{ $program->id == old('program_id.' . $looper,  $camper->program_id) || ($program->id == \App\Enums\Programname::YoungAdult && \App\Enums\Programname::YoungAdultUnderAge == old('program_id.' . $looper,  $camper->program_id) ? ' selected' : '' }}>
+                        {{ $program->id == old('program_id.' . $looper,  $camper->program_id) || ($program->id == \App\Enums\Programname::YoungAdult && \App\Enums\Programname::YoungAdultUnderAge == old('program_id.' . $looper,  $camper->program_id)) ? ' selected' : '' }}>
                         {{ str_replace("YEAR", $year->year, $program->title) }}
                     </option>
                 @endforeach
