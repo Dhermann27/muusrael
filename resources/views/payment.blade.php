@@ -179,8 +179,8 @@
                                 <h4>To Register via Mail:</h4>
                                 Make checks payable to <strong>MUUSA, Inc.</strong><br/>
                                 Mail check by May 31, {{ $year->year }} to<br/>
-                                MUUSA, Inc.<br/>6348 Meis Avenue<br/>
-                                Cincinnati, OH 45224<br/> <br/>
+                                MUUSA, Inc.<br/>1371 Amesbury Dr<br/>
+                                Cincinnati, OH 45231<br/> <br/>
                             </div>
                             <div class="col-md-6">
                                 <h4>To Register via PayPal:</h4>

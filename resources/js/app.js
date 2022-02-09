@@ -180,13 +180,13 @@ if (steps.length > 0 || toast.length === 1) {
         var message = "Your registration is complete! See you \"next week\"!";
         var link = "#";
         var icon = "fa-check";
-        if (data[5] === true) {
-            $("#nametag-success").toggleClass('d-none');
-        } else {
-            message = "You're registered, but you can customize your nametag(s) by clicking here."
-            link = "/nametag";
-            icon = "fa-id-card";
-        }
+        // if (data[5] === true) {
+        //     $("#nametag-success").toggleClass('d-none');
+        // } else {
+        //     message = "You're registered, but you can customize your nametag(s) by clicking here."
+        //     link = "/nametag";
+        //     icon = "fa-id-card";
+        // }
         // if (data[6] === true) {
         //     $("#medical-success").toggleClass('d-none');
         // } else {
