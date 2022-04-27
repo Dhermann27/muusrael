@@ -9,6 +9,7 @@ use App\Http\Chargetype;
 use App\Http\ChartdataDays;
 use App\Http\Outstanding;
 use App\Http\Program;
+use App\Http\ThisyearCamper;
 use App\Http\ThisyearCharge;
 use App\Http\Timeslot;
 use App\Http\Year;
@@ -138,7 +139,7 @@ class ReportController extends Controller
 
     public function roommates()
     {
-        return view('reports.roommates', ['campers' => \App\Thisyear_Camper::where('roommate', '!=', '')
+        return view('reports.roommates', ['campers' => ThisyearCamper::where('roommate', '!=', '')
             ->orderBy('lastname')->orderBy('firstname')->get()]);
     }
 
