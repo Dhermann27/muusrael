@@ -38,7 +38,7 @@
                                 @endif
                             </div>
 
-                            <p>{{ $workshop->blurb }}</p>
+                            <p>{!! $workshop->blurb !!}</p>
                         @endcomponent
                     @endforeach
                 </div>
