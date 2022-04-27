@@ -164,7 +164,7 @@
                                         Registration Chart</a>
 {{--                                    <a class="dropdown-item" href="{{ route('roomselection.map') }}">--}}
 {{--                                        Room Selection Map</a>--}}
-                                    <a class="dropdown-item" href="{{ route('reports.roommates') }}">Roommates</a>
+                                    <a class="dropdown-item" href="{{ route('reports.roommates') }}">Roommaters</a>
                                     <a class="dropdown-item" href="{{ route('reports.rooms') }}">Rooms</a>
 {{--                                    <a class="dropdown-item" href="{{ route('reports.workshops') }}">--}}
 {{--                                        Workshop Attendees</a>--}}

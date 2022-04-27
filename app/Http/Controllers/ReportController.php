@@ -104,7 +104,7 @@ class ReportController extends Controller
     public function outstanding()
     {
         $chargetypes = Chargetype::where('is_shown', '1')->orderBy('name')->get();
-        $lastyear = Year::where('year', $this->year->year-1)->first();
+        $lastyear = Year::where('year', $this->year->year - 1)->first();
         return view('reports.outstanding', ['chargetypes' => $chargetypes, 'charges' => Outstanding::all(),
             'lastyear' => $lastyear]);
     }
@@ -134,6 +134,12 @@ class ReportController extends Controller
         return view('reports.datatables', ['title' => 'Programs', 'columns' => $columns,
             'visible' => $visible, 'tabs' => $programs, 'tabfield' => 'name',
             'datafield' => "thisyearcampers"]);
+    }
+
+    public function roommates()
+    {
+        return view('reports.roommates', ['campers' => \App\Thisyear_Camper::where('roommate', '!=', '')
+            ->orderBy('lastname')->orderBy('firstname')->get()]);
     }
 
     public function rooms()
