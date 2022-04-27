@@ -19,9 +19,9 @@
             <tr>
                 <td>{{ $camper->lastname }}, {{ $camper->firstname }}</td>
                 <td>{{ $camper->roommate }}</td>
-                <td>{{ !empty($camper->roomid) ? $camper->yearattending->room->room_number : 'Unassigned' }}</td>
+                <td>{{ !empty($camper->room_id) ? $camper->buildingname . ' ' . $camper->room_number : 'Unassigned' }}</td>
                 <td>
-                    @include('includes.admin.controls', ['id' => 'c/' . $camper->id])
+                    @include('includes.admin.controls', ['id' => $camper->id])
                 </td>
             </tr>
         @endforeach
