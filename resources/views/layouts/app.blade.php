@@ -180,6 +180,9 @@
                     <li class="nav-item mt-1"><a href="{{ route('contact.index') }}" class="nav-link">Contact Us</a>
                     </li>
 
+                    <li class="nav-item mt-1"><a href="https://www.bonfire.com/store/muusa/" class="nav-link">Store</a>
+                    </li>
+
                     <li class="nav-item mt-1">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
