@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Auth::routes();
 
@@ -131,6 +132,11 @@ Route::group(['middleware' => ['can:is-super'], 'prefix' => 'admin'], function (
     Route::post('positions', 'AdminController@positionStore')->name('admin.positions.store');
 });
 
+Route::get('/muse', function () {
+    $muses = Storage::files('public/muses');
+    $muse = array_pop($muses);
+    return redirect('/muses/' . substr($muse, strpos($muse, '/20') + 1));
+});
 Route::get('/brochure', function () {
     $year = date('Y');
     if (!is_file(public_path('MUUSA_' . $year . '_Brochure.pdf'))) $year--;
