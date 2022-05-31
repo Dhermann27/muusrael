@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -133,9 +134,9 @@ Route::group(['middleware' => ['can:is-super'], 'prefix' => 'admin'], function (
 });
 
 Route::get('/muse', function () {
-    $muses = Storage::files('public/muses');
+    $muses = File::allFiles(public_path('muses'));
     $muse = array_pop($muses);
-    return redirect('/muses/' . substr($muse, strpos($muse, '/20') + 1));
+    return redirect('/muses/' . $muse->getBasename());//substr($muse, strpos($muse, '/20') + 1));
 });
 Route::get('/brochure', function () {
     $year = date('Y');
