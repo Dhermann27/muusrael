@@ -148,6 +148,8 @@
                                             Create New Family</a>
                                         <a class="dropdown-item" href="{{ route('admin.distlist.index') }}">
                                             Distribution List</a>
+                                        <a class="dropdown-item" href="{{ route('tools.invoices') }}">
+                                            Invoices</a>
 {{--                                        <a class="dropdown-item" href="{{ route('admin.roles.index') }}">Roles</a>--}}
 {{--                                        <a class="dropdown-item" href="{{ route('admin.positions.index') }}">--}}
 {{--                                            Staff Positions</a>--}}

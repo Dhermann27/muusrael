@@ -108,6 +108,7 @@ Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'reports']
 
 Route::group(['middleware' => ['auth', 'can:is-council'], 'prefix' => 'tools'], function () {
     Route::get('cognoscenti', 'ToolsController@cognoscenti')->name('tools.cognoscenti');
+    Route::get('invoices', 'ConfirmController@all')->name('tools.invoices');
 //    Route::get('nametags', 'ToolsController@nametagsList');
 //    Route::post('nametags', 'ToolsController@nametagsPrint');
 //    Route::get('nametags/all', 'ToolsController@nametags');
