@@ -21,7 +21,7 @@
             <img src="/images/print_logo.png" alt="Welcome to MUUSA {{ $year->year }}!"/>
         </div>
         <p>&nbsp;</p>
-        <h3>{{ $family->family_name }}<br/>
+        <h3>{{ $family->familyname }}<br/>
             {{ $family->address1 }}<br/>
             @if(!empty($family->address2))
                 {{ $family->address2 }}<br/>
@@ -84,47 +84,45 @@
             </tbody>
             <tfoot>
             <tr>
-                <td colspan="3" align="right"><strong>Amount Due on {{ $year->start_date }}:</strong></td>
+                <td colspan="3" align="right"><strong>Amount Due on {{ $year->checkin }}:</strong></td>
                 <td>${{ number_format( $family->charges->sum('amount'), 2) }}</td>
             </tr>
             </tfoot>
         </table>
         <p>&nbsp;</p>
-        @if(count($families) == 1)
-            <table class="table">
-                <thead>
-                <tr>
-                    <th colspan="5"><strong>Workshop Signups</strong></th>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <th>Workshop</th>
-                    <th>Timeslot</th>
-                    <th>Days</th>
-                    <th>Location</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($family->campers as $camper)
-                    @foreach($camper->yearattending->workshops()->get() as $signup)
-                        <tr>
-                            <td>{{ $camper->firstname }} {{ $camper->lastname }}</td>
-                            <td>{{ $signup->workshop->name }}</td>
-                            @if($signup->is_enrolled=='1')
-                                <td>{{ $signup->workshop->timeslot->name }}</td>
-                                <td>{{ $signup->workshop->display_days }}</td>
-                                <td>{{ $signup->workshop->room->room_number }}</td>
-                            @else
-                                <td colspan="3" align="center">
-                                    <i>Waiting List</i>
-                                </td>
-                            @endif
-                        </tr>
-                    @endforeach
+        <table class="table">
+            <thead>
+            <tr>
+                <th colspan="5"><strong>Workshop Signups</strong></th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>Workshop</th>
+                <th>Timeslot</th>
+                <th>Days</th>
+                <th>Location</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($family->campers as $camper)
+                @foreach($camper->yearattending->workshops()->get() as $signup)
+                    <tr>
+                        <td>{{ $camper->firstname }} {{ $camper->lastname }}</td>
+                        <td>{{ $signup->workshop->name }}</td>
+                        @if($signup->is_enrolled=='1')
+                            <td>{{ $signup->workshop->timeslot->name }}</td>
+                            <td>{{ $signup->workshop->display_days }}</td>
+                            <td>{{ $signup->workshop->room->room_number }}</td>
+                        @else
+                            <td colspan="3" align="center">
+                                <i>Waiting List</i>
+                            </td>
+                        @endif
+                    </tr>
                 @endforeach
-                </tbody>
-            </table>
-        @endif
+            @endforeach
+            </tbody>
+        </table>
 
         <footer style="text-align: center;"><h4>See you next week!</h4></footer>
 
