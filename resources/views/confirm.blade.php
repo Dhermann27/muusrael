@@ -76,7 +76,7 @@
             @foreach($family->charges()->orderBy('timestamp')->orderBy('amount', 'desc')->get() as $charge)
                 <tr>
                     <td>{{ $charge->chargetypename }}</td>
-                    <td class="amount" align="right">${{ money_format('%.2n', $charge->amount) }}</td>
+                    <td class="amount" align="right">${{ number_format($charge->amount, 2) }}</td>
                     <td align="center">{{ $charge->timestamp }}</td>
                     <td>{{ $charge->memo }}</td>
                 </tr>
@@ -85,7 +85,7 @@
             <tfoot>
             <tr>
                 <td colspan="3" align="right"><strong>Amount Due on {{ $year->start_date }}:</strong></td>
-                <td>${{ money_format('%.2n', $family->charges->sum('amount')) }}</td>
+                <td>${{ number_format( $family->charges->sum('amount'), 2) }}</td>
             </tr>
             </tfoot>
         </table>
