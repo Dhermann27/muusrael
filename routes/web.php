@@ -74,7 +74,7 @@ Route::group(['prefix' => 'nametag', 'middleware' => 'auth'], function () {
 Route::group(['prefix' => 'data'], function () {
     Route::get('loginsearch', 'DataController@loginsearch');
     Route::get('camperlist', 'DataController@campers')->middleware('can:is-council');
-    Route::get('churchlist', 'DataController@churches')->middleware('auth');
+    Route::get('churchlist', 'DataController@churches');//->middleware('auth');
     Route::get('steps', 'DataController@steps')->middleware('can:has-paid');
     Route::get('steps/{id?}', 'DataController@steps')->middleware('can:is-council');
 });
