@@ -75,8 +75,7 @@ class ConfirmController extends Controller
 //            $request->session()->flash('warning', 'You have no campers registered for this year.');
 //            return redirect()->action('CamperController@index');
 //        }
-        return view('confirm', ['families' => ThisyearFamily::where('id', Auth::user()->camper->family_id)->get(),
-            'steps' => $this->getSteps()]);
+        return view('confirm', ['families' => ThisyearFamily::where('id', Auth::user()->camper->family_id)->get()]);
 
     }
 
