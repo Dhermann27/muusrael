@@ -395,7 +395,7 @@
                                     <li><a href="{{ route('workshopchoice.index') }}">Workshop Preferences</a></li>
                                     <li><a href="{{ route('roomselection.index') }}">Room Selection</a></li>
                                     {{--                                    <li><a href="{{ route('nametag.index') }}">Nametags</a></li>--}}
-                                                                            <li><a href="{{ route('confirm') }}">Medical Responses</a></li>
+                                                                            <li><a href="{{ route('confirm.index') }}">Medical Responses</a></li>
                                 @endif
                             </ul>
                         @else
