@@ -133,7 +133,8 @@
                 @foreach($family->campers()->where('age', '<', '18')->get() as $camper)
                     @component('components.accordioncard', ['id' => $family->id, 'show' => $loop->first,
                         'heading' => $camper->firstname . ' ' . $camper->lastname, 'parent' => 'medicalResponses'])
-                        @if($camper->medicalresponse)
+                        CMR: {{ print_r($camper->medicalresponse) }}
+                        @if(isset($camper->medicalresponse))
                             <div class="alert alert-success float-right">
                                 <i class="far fa-check" title="Medical Response Submitted"></i> Submitted!
                             </div>
