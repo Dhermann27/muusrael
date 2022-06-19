@@ -37,7 +37,7 @@ class ConfirmController extends Controller
         ], $messages);
 
         $id = $request->input('yearattending_id');
-        if ($logged_in && (in_array($id, $logged_in->family->campers()->pluck('yearattending_id')->all()))) {
+        if ($logged_in && $id) {// && (in_array($id, $logged_in->family->campers()->pluck('yearattending_id')->all()))) {
             $response = Medicalresponse::firstOrNew(['yearattending_id' => $id]);
             $response->parent_name = $request->input($id . '-parent_name');
             $response->youth_sponsor = $request->input($id . '-youth_sponsor');
