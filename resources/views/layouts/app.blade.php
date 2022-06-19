@@ -140,8 +140,8 @@
                                     Admin
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right mt-0">
-{{--                                    <a href="{{ route('tools.cognoscenti') }}" class="dropdown-item">Cognoscenti</a>--}}
-{{--                                    <div class="dropdown-divider"></div>--}}
+                                    {{--                                    <a href="{{ route('tools.cognoscenti') }}" class="dropdown-item">Cognoscenti</a>--}}
+                                    {{--                                    <div class="dropdown-divider"></div>--}}
                                     @can('is-super')
                                         <a class="disabled pl-2" tabindex="-1" href="#">Superuser Functions</a>
                                         <a class="dropdown-item" href="{{ route('household.index', ['id' => 0]) }}">
@@ -150,30 +150,30 @@
                                             Distribution List</a>
                                         <a class="dropdown-item" href="{{ route('tools.invoices') }}">
                                             Invoices</a>
-{{--                                        <a class="dropdown-item" href="{{ route('admin.roles.index') }}">Roles</a>--}}
-{{--                                        <a class="dropdown-item" href="{{ route('admin.positions.index') }}">--}}
-{{--                                            Staff Positions</a>--}}
+                                        {{--                                        <a class="dropdown-item" href="{{ route('admin.roles.index') }}">Roles</a>--}}
+                                        {{--                                        <a class="dropdown-item" href="{{ route('admin.positions.index') }}">--}}
+                                        {{--                                            Staff Positions</a>--}}
                                         <div class="dropdown-divider"></div>
                                     @endif
                                     <a class="disabled pl-2" tabindex="-1" href="#">Reports</a>
                                     <a class="dropdown-item" href="{{ route('reports.deposits') }}">
                                         Bank Deposits</a>
                                     <a class="dropdown-item" href="{{ route('reports.campers') }}">Campers</a>
-{{--                                    <a class="dropdown-item" href="{{ route('reports.outstanding') }}">--}}
-{{--                                        Outstanding Balances</a>--}}
-{{--                                    <a class="dropdown-item" href="{{ route('reports.programs') }}">Programs</a>--}}
+                                    {{--                                    <a class="dropdown-item" href="{{ route('reports.outstanding') }}">--}}
+                                    {{--                                        Outstanding Balances</a>--}}
+                                    {{--                                    <a class="dropdown-item" href="{{ route('reports.programs') }}">Programs</a>--}}
                                     <a class="dropdown-item" href="{{ route('reports.chart') }}">
                                         Registration Chart</a>
-{{--                                    <a class="dropdown-item" href="{{ route('roomselection.map') }}">--}}
-{{--                                        Room Selection Map</a>--}}
+                                    {{--                                    <a class="dropdown-item" href="{{ route('roomselection.map') }}">--}}
+                                    {{--                                        Room Selection Map</a>--}}
                                     <a class="dropdown-item" href="{{ route('reports.roommates') }}">Roommaters</a>
                                     <a class="dropdown-item" href="{{ route('reports.rooms') }}">Rooms</a>
-{{--                                    <a class="dropdown-item" href="{{ route('reports.workshops') }}">--}}
-{{--                                        Workshop Attendees</a>--}}
-{{--                                    <div class="dropdown-divider"></div>--}}
-{{--                                    <a class="disabled pl-2" tabindex="-1" href="#">Tools</a>--}}
-{{--                                    <a class="dropdown-item" tabindex="-1" href="{{ route('tools.staff.index') }}">--}}
-{{--                                        Position Assignments</a>--}}
+                                    {{--                                    <a class="dropdown-item" href="{{ route('reports.workshops') }}">--}}
+                                    {{--                                        Workshop Attendees</a>--}}
+                                    {{--                                    <div class="dropdown-divider"></div>--}}
+                                    {{--                                    <a class="disabled pl-2" tabindex="-1" href="#">Tools</a>--}}
+                                    {{--                                    <a class="dropdown-item" tabindex="-1" href="{{ route('tools.staff.index') }}">--}}
+                                    {{--                                        Position Assignments</a>--}}
                                 </div>
                             </div>
                         </li>
@@ -280,10 +280,10 @@
                                             <i class="far fa-rocket fa-fw"></i> Workshops</a>
                                         <a href="{{ route('roomselection.index') }}" class="dropdown-item">
                                             <i class="far fa-bed fa-fw"></i> Room Selection</a>
-{{--                                        <a href="{{ route('nametag.index') }}" class="dropdown-item">--}}
-{{--                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>--}}
-                                        {{--                                        <a href="{{ route('confirm') }}" class="dropdown-item">--}}
-                                        {{--                                            <i class="far fa-envelope fa-fw"></i> Confirmation</a>--}}
+                                        {{--                                        <a href="{{ route('nametag.index') }}" class="dropdown-item">--}}
+                                        {{--                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>--}}
+                                        <a href="{{ route('confirm') }}" class="dropdown-item">
+                                            <i class="far fa-clipboard-medical fa-fw"></i> Medical Responses</a>
                                     @endif
                                 </div>
                             </div>
@@ -394,8 +394,8 @@
                                 @else
                                     <li><a href="{{ route('workshopchoice.index') }}">Workshop Preferences</a></li>
                                     <li><a href="{{ route('roomselection.index') }}">Room Selection</a></li>
-{{--                                    <li><a href="{{ route('nametag.index') }}">Nametags</a></li>--}}
-                                    {{--                                        <li><a href="{{ route('confirm') }}">Confirmation</a></li>--}}
+                                    {{--                                    <li><a href="{{ route('nametag.index') }}">Nametags</a></li>--}}
+                                                                            <li><a href="{{ route('confirm') }}">Medical Responses</a></li>
                                 @endif
                             </ul>
                         @else

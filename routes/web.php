@@ -71,6 +71,14 @@ Route::group(['prefix' => 'nametag', 'middleware' => 'auth'], function () {
 //    Route::post('/nametag/f/{id}', 'NametagController@write')->middleware('auth', 'role:admin');
 });
 
+Route::group(['prefix' => 'confirm', 'middleware' => 'auth'], function () {
+    Route::get('/', 'ConfirmController@index')->name('confirm.index')->middleware('can:has-paid');
+    Route::post('/', 'ConfirmController@store')->name('confirm.store')->middleware('can:has-paid');
+//    Route::get('/nametag/{i}/{id}', 'ConfirmController@read')->middleware('auth', 'role:admin|council');
+//    Route::post('/nametag/f/{id}', 'ConfirmController@write')->middleware('auth', 'role:admin');
+});
+
+
 Route::group(['prefix' => 'data'], function () {
     Route::get('loginsearch', 'DataController@loginsearch');
     Route::get('camperlist', 'DataController@campers')->middleware('can:is-council');
