@@ -142,7 +142,7 @@
                         {{--                            {!! $camper->program->letter !!}--}}
                         {{--                        @endif--}}
                         <form class="form-horizontal medicalresponse" role="form" method="POST"
-                              action="{{ route('confirm.store', ['id' => $camper->yearattending_id]) }}">
+                              action="{{ url('/confirm') . '/y/' . $camper->yearattending_id }}">
                             @include('includes.flash')
 
                             @include('components.medical', ['camper' => $camper, 'first' => $loop->first])
