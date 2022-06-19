@@ -129,11 +129,11 @@
         <footer style="text-align: center;"><h4>See you next week!</h4></footer>
 
         @if(count($families) == 1)
-            <div class="accordion" id="medicalResponses">
+            <div class="accordion" id="accordion-medicalResponses">
                 @foreach($family->campers()->where('age', '<', '18')->get() as $camper)
                     @component('components.accordioncard', ['id' => $family->id, 'show' => $loop->first,
                         'heading' => $camper->firstname . ' ' . $camper->lastname, 'parent' => 'medicalResponses'])
-                        CMR: {{ print_r($camper->medicalresponse) }}
+                        CMR: {{ $camper->birthdate }}{{ isset($camper->medicalresponse) == true}}
                         @if(isset($camper->medicalresponse))
                             <div class="alert alert-success float-right">
                                 <i class="far fa-check" title="Medical Response Submitted"></i> Submitted!
