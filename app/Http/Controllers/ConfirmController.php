@@ -11,7 +11,7 @@ class ConfirmController extends Controller
 {
     public function store(Request $request)
     {
-        $logged_in = Auth::user()->thiscamper;
+        $logged_in = Auth::user()->camper;
 
         $messages = ['*-parent_name.required' => 'All children must identify their parent or guardian.',
             '*-mobile_phone.required' => 'All children must enter a mobile contact number in case of emergency.',
