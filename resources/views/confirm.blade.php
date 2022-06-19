@@ -146,7 +146,7 @@
 
                         <div class="container">
                             <form class="form-horizontal medicalresponse" role="form" method="POST"
-                                  action="{{ url('/confirm' }}">
+                                  action="{{ route('confirm.store') }}">
                                 @include('includes.flash')
 
                                 @include('components.medical', ['camper' => $camper, 'first' => $loop->first])
