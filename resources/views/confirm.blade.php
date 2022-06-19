@@ -133,7 +133,7 @@
                 @foreach($family->campers()->where('age', '<', '18')->get() as $camper)
                     {{--@component('component.accordioncard', ['id' => $chargetype->id, 'show' => true, 'heading' => $ddate, 'parent' => 'Example'])--}}
                     @component('components.accordioncard', ['id' => $family->id, 'show' => $loop->first, 'heading' => $camper->id,
-                        'title' => $camper->firstname . ' ' . $camper->lastname, 'closed' => $camper->medicalresponse])
+                        'title' => $camper->firstname . ' ' . $camper->lastname, 'closed' => $camper->medicalresponse, 'parent' => 'medicalResponses'])
                         @slot('badge')
                             @if($camper->medicalresponse)
                                 <span class="badge badge-primary">
