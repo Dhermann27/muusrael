@@ -132,7 +132,7 @@
             <div class="accordion" id="medicalResponses">
                 @foreach($family->campers()->where('age', '<', '18')->get() as $camper)
                     {{--@component('component.accordioncard', ['id' => $chargetype->id, 'show' => true, 'heading' => $ddate, 'parent' => 'Example'])--}}
-                    @component('components.accordioncard', ['id' => $family->id, 'show' => $loop->first(), 'heading' => $camper->id,
+                    @component('components.accordioncard', ['id' => $family->id, 'show' => $loop->first, 'heading' => $camper->id,
                         'title' => $camper->firstname . ' ' . $camper->lastname, 'closed' => $camper->medicalresponse])
                         @slot('badge')
                             @if($camper->medicalresponse)
