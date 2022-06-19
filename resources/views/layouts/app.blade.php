@@ -283,7 +283,7 @@
                                         {{--                                        <a href="{{ route('nametag.index') }}" class="dropdown-item">--}}
                                         {{--                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>--}}
                                         <a href="{{ route('confirm.index') }}" class="dropdown-item">
-                                            <i class="far fa-clipboard-medical fa-fw"></i> Medical Responses</a>
+                                            <i class="far fa-notes-medical fa-fw"></i> Medical Responses</a>
                                     @endif
                                 </div>
                             </div>

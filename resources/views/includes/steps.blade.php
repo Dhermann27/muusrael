@@ -67,7 +67,7 @@
                                class="nav-link @if(preg_match('/\/confirm/', url()->current(), $matches)) active @endif"
                                data-toggle="tooltip" data-placement="bottom" data-container="ul#littlesteps"
                                title="Medical Responses">
-                                <i class="far fa-clipboard-medical"></i>
+                                <i class="far fa-notes-medical"></i>
                             </a>
                         </li>
         @else
@@ -92,7 +92,7 @@
             <li class="nav-item mx-5">
                 <a href="#" class="nav-link lighter" data-toggle="tooltip" data-placement="bottom"
                    data-container="ul#littlesteps" title="Medical Responses">
-                    <i class="far fa-clipboard-medical"></i>
+                    <i class="far fa-notes-medical"></i>
                 </a>
             </li>
         @endif
