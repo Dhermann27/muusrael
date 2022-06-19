@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ConfirmController extends Controller
 {
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $logged_in = Auth::user()->thiscamper;
 
