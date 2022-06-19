@@ -130,46 +130,43 @@
 
         @if(count($families) == 1)
             <div class="accordion" id="medicalResponses">
-                @foreach($family->campers()->where('age', '<', '18')->get() as $camper)
-                    {{--@component('component.accordioncard', ['id' => $chargetype->id, 'show' => true, 'heading' => $ddate, 'parent' => 'Example'])--}}
+                @foreach($family->campers() as $camper)
+{{--                    ->where('age', '<', '18')->get() as $camper)--}}
                     @component('components.accordioncard', ['id' => $family->id, 'show' => $loop->first,
                         'heading' => $camper->firstname . ' ' . $camper->lastname, 'parent' => 'medicalResponses'])
                         @if($camper->medicalresponse)
-                            <span class="badge badge-primary float-right">
-                                <i class="far fa-check" title="Medical Response Submitted"></i>
-                            </span>
+                            <div class="alert alert-success float-right">
+                                <i class="far fa-check" title="Medical Response Submitted"></i> Submitted!
+                            </div>
                         @endif
                         {{--                        @if(count($families) == 1 && !empty($camper->program->letter))--}}
                         {{--                            {!! $camper->program->letter !!}--}}
                         {{--                        @endif--}}
+                        <form class="form-horizontal medicalresponse" role="form" method="POST"
+                              action="{{ route('confirm.store', ['id' => $camper->yearattending_id]) }}">
+                            @include('includes.flash')
 
-                        <div class="container">
-                            <form class="form-horizontal medicalresponse" role="form" method="POST"
-                                  action="{{ route('confirm.store') }}">
-                                @include('includes.flash')
+                            @include('components.medical', ['camper' => $camper, 'first' => $loop->first])
 
-                                @include('components.medical', ['camper' => $camper, 'first' => $loop->first])
-
-                                @if(!isset($readonly) || $readonly === false)
-                                    <div class="form-group row d-print-none">
-                                        <label for="submit" class="col-md-4 control-label">&nbsp;</label>
-                                        <div class="col-md-6">
-                                            <div class="text-lg-right">
-                                                @if($camper->medicalresponse)
-                                                    <button class="btn btn-lg btn-success submit py-3 px-4"><i
-                                                            class="far fa-check"></i> Saved
-                                                    </button>
-                                                @else
-                                                    <button class="btn btn-lg btn-primary submit py-3 px-4">Save
-                                                        Response
-                                                    </button>
-                                                @endif
-                                            </div>
+                            @if(!isset($readonly) || $readonly === false)
+                                <div class="form-group row d-print-none">
+                                    <label for="submit" class="col-md-4 control-label">&nbsp;</label>
+                                    <div class="col-md-6">
+                                        <div class="text-lg-right">
+                                            @if($camper->medicalresponse)
+                                                <button class="btn btn-lg btn-success submit py-3 px-4"><i
+                                                        class="far fa-check"></i> Saved
+                                                </button>
+                                            @else
+                                                <button class="btn btn-lg btn-primary submit py-3 px-4">Save
+                                                    Response
+                                                </button>
+                                            @endif
                                         </div>
                                     </div>
-                                @endif
-                            </form>
-                        </div>
+                                </div>
+                            @endif
+                        </form>
                     @endcomponent
                 @endforeach
                 <footer>Please print this page using your browser's print (Ctrl+P or &#8984+P) function. Regardless
