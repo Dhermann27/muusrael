@@ -131,7 +131,8 @@
         @if(count($families) == 1)
             <div class="accordion" id="medicalResponses">
                 @foreach($family->campers()->where('age', '<', '18')->get() as $camper)
-                    @component('components.accordioncard', ['id' => $family->id, 'loop' => $loop, 'heading' => $camper->id,
+                    {{--@component('component.accordioncard', ['id' => $chargetype->id, 'show' => true, 'heading' => $ddate, 'parent' => 'Example'])--}}
+                    @component('components.accordioncard', ['id' => $family->id, 'show' => $loop->first(), 'heading' => $camper->id,
                         'title' => $camper->firstname . ' ' . $camper->lastname, 'closed' => $camper->medicalresponse])
                         @slot('badge')
                             @if($camper->medicalresponse)
@@ -140,9 +141,9 @@
                             </span>
                             @endif
                         @endslot
-                        @if(count($families) == 1 && !empty($camper->program->letter))
-                            {!! $camper->program->letter !!}
-                        @endif
+{{--                        @if(count($families) == 1 && !empty($camper->program->letter))--}}
+{{--                            {!! $camper->program->letter !!}--}}
+{{--                        @endif--}}
 
                         <div class="container">
                             <form class="form-horizontal medicalresponse" role="form" method="POST"
