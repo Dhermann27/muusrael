@@ -40,7 +40,7 @@
     'formobject' => $camper->medicalresponse, 'label' => 'Please indicate if you carry health insurance for your child.',
     'list' => [['id' => '0', 'option' => 'No'], ['id' => '1', 'option' => 'Yes']]])
 
-TEST: {{ isset($camper->medicalresponse) == true }} {{ $camper->medicalresponse->is_insured }}---
+TEST: {{ isset($camper->medicalresponse) == true }}---
 <div class="insurance {{ !isset($camper->medicalresponse) || $camper->medicalresponse->is_insured == '0' ? 'd-none d-print-block' : '' }}">
     @include('includes.formgroup', ['label' => 'Policy Holder Name', 'formobject' => $camper->medicalresponse,
         'attribs' => ['name' => $camper->yearattending_id . '-holder_name']])
