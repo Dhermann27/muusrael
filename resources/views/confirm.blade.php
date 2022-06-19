@@ -130,8 +130,7 @@
 
         @if(count($families) == 1)
             <div class="accordion" id="medicalResponses">
-                @foreach($family->campers() as $camper)
-{{--                    ->where('age', '<', '18')->get() as $camper)--}}
+                @foreach($family->campers()->where('age', '<', '18')->get() as $camper)
                     @component('components.accordioncard', ['id' => $family->id, 'show' => $loop->first,
                         'heading' => $camper->firstname . ' ' . $camper->lastname, 'parent' => 'medicalResponses'])
                         @if($camper->medicalresponse)
