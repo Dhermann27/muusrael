@@ -131,10 +131,10 @@
         @if(count($families) == 1)
             <div class="accordion" id="accordion-medicalResponses">
                 @foreach($family->campers()->where('age', '<', '18')->get() as $camper)
-                    @component('components.accordioncard', ['id' => $family->id, 'show' => $loop->first,
+                    @component('components.accordioncard', ['id' => $camper->id, 'show' => $loop->first,
                         'heading' => $camper->firstname . ' ' . $camper->lastname, 'parent' => 'medicalResponses'])
                         @if(isset($camper->medicalresponse))
-                            <div class="alert alert-success float-right">
+                            <div class="alert alert-success float-right m-3">
                                 <i class="far fa-check" title="Medical Response Submitted"></i> Submitted!
                             </div>
                         @endif
@@ -220,7 +220,7 @@
                                 async: false,
                                 success: function (data) {
                                     form.before("<div class='alert alert-success'>" + data + "</div>");
-                                    form.find("button").val("Saved").addClass("btn-success").prop("disabled", false);
+                                    form.find("button").text("Saved").addClass("btn-success").prop("disabled", false);
                                     if (form.parents(".card").next(".card") !== undefined) {
                                         form.parents(".card").next(".card").find(".collapse").collapse('show');
                                     }
@@ -238,7 +238,7 @@
                                         $("span.invalid-feedback").show();
                                         form.before("<div class='alert alert-danger'>You have " + errorCount + " error(s) in your form. Please adjust your entries and resubmit.</div>");
                                     }
-                                    form.find("button").val("Resubmit").addClass("btn-danger").prop("disabled", false);
+                                    form.find("button").text("Resubmit").addClass("btn-danger").prop("disabled", false);
                                 }
                             });
                         });
