@@ -145,7 +145,6 @@
                               action="{{ route('confirm.store') }}">
                             @include('includes.flash')
 
-                            <input type="hidden" name="yearattending_id[]" value="{{ $camper->yearattending_id }}"
                             @include('components.medical', ['camper' => $camper, 'first' => $loop->first])
 
                             @if(!isset($readonly) || $readonly === false)
