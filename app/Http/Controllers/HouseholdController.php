@@ -27,11 +27,12 @@ class HouseholdController extends Controller
             'is_scholar' => 'required|in:0,1'
         ], $messages);
 
-        $family = new Family();
         if ($id > 0 && Gate::allows('is-super')) {
             $family = Family::findOrFail(Camper::findOrFail($id)->family_id);
         } else if ($id > 0 || !Gate::allows('is-super')) {
             $family = Family::findOrFail(Auth::user()->camper->family_id);
+        } else {
+            $family = new Family();
         }
         $family->address1 = $request->input('address1');
         $family->address2 = $request->input('address2');
