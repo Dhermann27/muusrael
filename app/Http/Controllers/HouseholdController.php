@@ -29,6 +29,7 @@ class HouseholdController extends Controller
 
         if (isset($id) && Gate::allows('is-super')) {
             $family = $id != 0 ? Family::findOrFail(Camper::findOrFail($id)->family_id) : new Family();
+            $family->is_address_current = $request->input('is_address_current');
         } else {
             $family = Family::findOrFail(Auth::user()->camper->family_id);
         }
@@ -38,23 +39,18 @@ class HouseholdController extends Controller
         $family->province_id = $request->input('province_id');
         $family->zipcd = $request->input('zipcd');
         $family->country = $request->input('country');
-        if ($id != null && Gate::allows('is-super')) {
-            $family->is_address_current = $request->input('is_address_current');
-        }
         $family->is_ecomm = $request->input('is_ecomm');
         $family->is_scholar = $request->input('is_scholar');
         $family->save();
 
         $request->session()->flash('success', 'Your information has been saved successfully.');
 
-        if ($id == 0 && Gate::allows('is-super')) {
+        if (isset($id) && $id == 0 && Gate::allows('is-super')) {
             $camper = new Camper();
             $camper->family_id = $family->id;
             $camper->firstname = "New Camper";
             $camper->foodoption_id = Foodoptionname::None;
             $camper->save();
-
-            $id = $camper->id;
         }
 
         return redirect()->route('household.index', ['id' => $id]);
