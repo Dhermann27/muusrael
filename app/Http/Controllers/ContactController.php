@@ -55,7 +55,7 @@ class ContactController extends Controller
             'date' => 'regex:/^\d{4}-\d{2}-\d{2}$/',
         ], $messages);
 
-        $request->pdf->storeAs('muses', str_replace('-', '', $request->input('date')) . '.pdf', 'public');
+        $request->pdf->storeAs('', str_replace('-', '', $request->input('date')) . '.pdf', 'muses');
 
         $request->session()->flash('success', 'Muse uploaded! Check the homepage "Latest Muse" link to ensure it is correct.');
 
