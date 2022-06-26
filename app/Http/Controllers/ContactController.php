@@ -42,7 +42,31 @@ class ContactController extends Controller
 
     public function refreshCaptcha()
     {
-        return response()->json(['captcha'=> captcha_img()]);
+        return response()->json(['captcha' => captcha_img()]);
+    }
+
+    public function museStore(Request $request)
+    {
+        $messages = [
+            'date.regex' => 'Please enter the eight-digit date in 2016-12-31 format.',
+            'g-recaptcha-response.required' => 'Please check the CAPTCHA box and follow any additional instructions.',
+        ];
+
+        $this->validate($request, [
+            'date' => 'regex:/^\d{4}-\d{2}-\d{2}$/',
+            'g-recaptcha-response' => 'required|captcha'
+        ], $messages);
+
+        $request->pdf->storeAs('public/muses', str_replace('-', '', $request->input('date')) . '.pdf');
+
+        $request->session()->flash('success', 'Muse uploaded! Check the homepage "Latest Muse" link to ensure it is correct.');
+
+        return redirect()->action('ContactController@museIndex');
+    }
+
+    public function museIndex()
+    {
+        return view('admin.muse');
     }
 
 }

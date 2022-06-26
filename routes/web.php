@@ -15,6 +15,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/contact', 'ContactController@contactIndex')->name('contact.index');
 Route::post('/contact', 'ContactController@contactStore')->name('contact.store');
 Route::get('/refreshcaptcha', 'ContactController@refreshCaptcha')->name('contact.refresh');
+Route::get('/museupload', 'ContactController@museIndex')->middleware('auth', 'can:is-council');
+Route::post('/museupload', 'ContactController@museStore')->middleware('auth', 'can:is-council');
 
 Route::get('/cost', 'HomeController@campcost')->name('cost');
 Route::get('/themespeaker', 'HomeController@themespeaker')->name('themespeaker');
