@@ -57,7 +57,7 @@ class ContactController extends Controller
             'captcha' => 'required|captcha'
         ], $messages);
 
-        $request->pdf->storeAs(public_path('muses'), str_replace('-', '', $request->input('date')) . '.pdf');
+        $request->pdf->storeAs('muses', str_replace('-', '', $request->input('date')) . '.pdf', 'public');
 
         $request->session()->flash('success', 'Muse uploaded! Check the homepage "Latest Muse" link to ensure it is correct.');
 

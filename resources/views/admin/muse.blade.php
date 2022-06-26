@@ -9,7 +9,7 @@
             <form id="muse" class="form-horizontal" role="form" method="POST"
                   action="{{ url('/museupload') }}" enctype="multipart/form-data">
                 @include('includes.flash')
-                
+
                 <div class="form-group row{{ $errors->has('date') ? ' has-danger' : '' }}">
                     <label for="date" class="col-md-4 control-label">Muse Date (yyyy-mm-dd)</label>
                     <div class="col-md-6">
