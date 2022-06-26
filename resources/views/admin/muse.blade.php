@@ -45,24 +45,7 @@
                     </div>
                 </div>
 
-                @include('includes.formgroup', ['type' => 'captcha', 'label' => 'CAPTCHA Test',
-                    'attribs' => ['name' => 'captcha']])
-
                 @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Upload']])
             </form>
         </div>
-@endsection
-
-@section('script')
-    <script type="text/javascript">
-        $('button#refreshcaptcha').click(function () {
-            $.ajax({
-                type: 'GET',
-                url: '/refreshcaptcha',
-                success: function (data) {
-                    $("span#captchaimg").html(data.captcha);
-                }
-            });
-        }).click();
-    </script>
 @endsection

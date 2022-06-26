@@ -49,12 +49,10 @@ class ContactController extends Controller
     {
         $messages = [
             'date.regex' => 'Please enter the eight-digit date in 2016-12-31 format.',
-            'captcha.required' => 'Please check the CAPTCHA box and follow any additional instructions.',
         ];
 
         $this->validate($request, [
             'date' => 'regex:/^\d{4}-\d{2}-\d{2}$/',
-            'captcha' => 'required|captcha'
         ], $messages);
 
         $request->pdf->storeAs('muses', str_replace('-', '', $request->input('date')) . '.pdf', 'public');
