@@ -60,7 +60,7 @@
                     </li>
                     @if($year->next_muse !== false)
                         <li class="list-inline-item">
-                            <a href="{{ route('themuse') }}">{{ $year->next_muse }}</a>
+                            <a href="{{ route('muse') }}">{{ $year->next_muse }}</a>
                         </li>
                     @else
                         <li class="list-inline-item">
