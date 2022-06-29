@@ -19,7 +19,9 @@
         display: none;
     }
 
-    footer {
+    footer, .page-break {
+        clear: left;
+        display: block;
         page-break-after: always;
     }
 
