@@ -44,7 +44,7 @@
                                         @if($choice->is_leader == '1')
                                             <strong>Leader</strong>
                                         @else
-                                            {{ $choice->created_at }}
+                                            {{ $choice->is_enrolled == 1 ? $choice->created_at : 'Waitlist' }}
                                         @endif
                                     </td>
                                     <td>
