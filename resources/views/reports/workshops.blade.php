@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="/css/print.css" />
+    <link rel="stylesheet" href="/css/print.css"/>
 @endsection
 
 @section('title')
@@ -63,6 +63,7 @@
                         @endfor
                         </tfoot>
                     </table>
+                    <div class="page-break"></div>
                 @endforeach
             </div>
         @endforeach
