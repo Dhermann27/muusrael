@@ -148,7 +148,7 @@ Route::get('/muse', function () {
     $muses = File::allFiles(public_path('muses'));
     $muse = array_pop($muses);
     return redirect('/muses/' . $muse->getBasename());//substr($muse, strpos($muse, '/20') + 1));
-});
+})->name('muse');
 Route::get('/brochure', function () {
     $year = date('Y');
     if (!is_file(public_path('MUUSA_' . $year . '_Brochure.pdf'))) $year--;
