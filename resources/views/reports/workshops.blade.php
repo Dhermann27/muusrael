@@ -48,6 +48,9 @@
                             <td colspan="3">Distribution list: {{ $workshop->emails }}
                             </td>
                         </tr>
+                        <tr class="d-none d-print-block">
+                            <td colspan="3"><h4>Walk Ins:</h4></td>
+                        </tr>
                         @for($i=count($workshop->choices); $i<min($workshop->capacity, count($workshop->choices)+5); $i++)
                             <tr class="d-none d-print-block">
                                 <td colspan="2" style="border-bottom: 1px solid black;">&nbsp;</td>

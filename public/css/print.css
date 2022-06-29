@@ -12,9 +12,10 @@
     .tab-content > .tab-pane {
         display: block !important;
         opacity: 1 !important;
+        visibility: visible !important;
     }
 
-    div.header, nav, ul.nav-pills, .nav-tabs {
+    header, nav, ul.nav-pills, .nav-tabs {
         display: none;
     }
 
