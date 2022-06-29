@@ -20,7 +20,7 @@
                     <h5>{{ $timeslot->start_time->format('g:i A') }} - {{ $timeslot->end_time->format('g:i A') }}</h5>
                 @endif
                 @foreach($timeslot->workshops->where('year_id', $year->id) as $workshop)
-                    <div style="page-break-after: avoid">
+                    <div style="page-break-inside: avoid">
                     <h4>{{ $workshop->name }} ({{ count($workshop->choices) }} / {{ $workshop->capacity }})</h4>
                     <table class="table">
                         <thead>
