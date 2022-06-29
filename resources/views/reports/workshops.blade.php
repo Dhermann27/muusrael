@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-    <link rel="stylesheet" href="/css/print.css" type="text/css" media="print"/>
+    <link rel="stylesheet" href="/css/print.css" />
 @endsection
 
 @section('title')
