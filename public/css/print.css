@@ -15,7 +15,7 @@
         visibility: visible !important;
     }
 
-    header, nav, ul.nav-pills, .nav-tabs {
+    div.header, header, nav, div.tagline, #navbar, ul.nav-pills, .nav-tabs {
         display: none;
     }
 

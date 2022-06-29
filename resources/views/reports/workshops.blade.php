@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+    <link rel="stylesheet" href="/css/print.css" type="text/css" media="print"/>
+@endsection
+
 @section('title')
     Workshop Attendees
 @endsection
