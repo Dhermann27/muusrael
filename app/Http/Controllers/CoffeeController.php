@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Coffeehouseact;
 use App\Http\Year;
-use App\Models\ThisyearCamper;
+use App\Http\ThisyearCamper;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
