@@ -45,7 +45,7 @@ class CoffeeController extends Controller
                 $workshop->year = $year->year;
                 $workshop->name = $request->input('name');
                 $workshop->equipment = $request->input('equipment');
-                $workshop->date = Carbon::createFromFormat('Y-m-d', $year->start_date, 'America/Chicago')
+                $workshop->date = Carbon::createFromFormat('Y-m-d', $year->checkin, 'America/Chicago')
                     ->addDays((int)$request->input('day'))->toDateString();
                 $workshop->order = $request->input('order');
                 $workshop->save();
@@ -62,7 +62,7 @@ class CoffeeController extends Controller
     public function index($day = null)
     {
         $year = $this->getInProgressYear();
-        $firstday = Carbon::createFromFormat('Y-m-d', $year->start_date, 'America/Chicago');
+        $firstday = Carbon::createFromFormat('Y-m-d', $year->checkin, 'America/Chicago');
         $acts = Coffeehouseact::where('year', $year->year)->orderBy('order')->get();
         $starttime = Carbon::now('America/Chicago')->hour(21)->minute(50);
 
@@ -82,7 +82,7 @@ class CoffeeController extends Controller
 
     public function getInProgressYear()
     {
-        $year = DB::table('years')->whereRaw('NOW() BETWEEN `start_date` and DATE_ADD(`start_date`, INTERVAL 7 DAY)')->first();
+        $year = DB::table('years')->whereRaw('NOW() BETWEEN `checkin` and DATE_ADD(`checkin`, INTERVAL 7 DAY)')->first();
         return $year != null ? $year : Year::where('is_current', '1')->first();
     }
 }
