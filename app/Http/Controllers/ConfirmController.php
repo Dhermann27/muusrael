@@ -87,7 +87,7 @@ class ConfirmController extends Controller
 
     public function all()
     {
-        return view('confirm', ['families' => ThisyearFamily::whereRaw('id IN (SELECT DISTINCT family_id FROM thisyear_campers tc WHERE tc.age<18 GROUP BY tc.family_id)')->orderBy('familyname')->get()]);
+        return view('confirm', ['families' => ThisyearFamily::orderBy('familyname')->get()]);
 
     }
 }
