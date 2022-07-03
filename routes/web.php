@@ -144,6 +144,9 @@ Route::group(['middleware' => ['can:is-super'], 'prefix' => 'admin'], function (
     Route::post('positions', 'AdminController@positionStore')->name('admin.positions.store');
 });
 
+Route::get('/coffeehouse/{day?}', 'CoffeeController@index')->middleware('auth');
+Route::post('/coffeehouse', 'CoffeeController@store')->middleware('auth');
+
 Route::get('/muse', function () {
     $muses = File::allFiles(public_path('muses'));
     $muse = array_pop($muses);
