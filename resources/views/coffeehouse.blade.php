@@ -27,7 +27,7 @@
 @section('content')
     <div class="container">
         <form id="coffeeform" class="form-horizontal" role="form" method="POST" action="{{ url('/coffeehouse') }}">
-            @include('snippet.flash')
+            @include('includes.flash')
 
             <ul class="nav nav-tabs flex-column flex-lg-row" role="tablist">
                 <li role="presentation" class="nav-item">
