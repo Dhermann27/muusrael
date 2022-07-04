@@ -254,39 +254,42 @@
 
                     <li class="nav-item mt-1">
                         @can('has-paid')
-                            <div class="dropdown">
-                                <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    Registration
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right mt-0">
-                                    <a href="{{ route('household.index') }}" class="dropdown-item">
-                                        <i class="far fa-home fa-fw"></i> Household</a>
-                                    <a href="{{ route('campers.index') }}" class="dropdown-item">
-                                        <i class="far fa-users fa-fw"></i> Campers</a>
-                                    <a href="{{ route('payment.index') }}" class="dropdown-item">
-                                        <i class="far fa-usd-square fa-fw"></i> Statement</a>
-                                    @if(!$year->is_live)
-                                        <div class="dropdown-divider"></div>
-                                        <h6 class="dropdown-header">
-                                            Opens {{ $year->brochure_date }}
-                                        </h6>
-                                        <a href="#" class="dropdown-item disabled">Workshop List</a>
-                                        <a href="#" class="dropdown-item disabled">Room Selection</a>
-                                        <a href="#" class="dropdown-item disabled">Nametags</a>
-                                        <a href="#" class="dropdown-item disabled">Confirmation</a>
-                                    @else
-                                        <a href="{{ route('workshopchoice.index') }}" class="dropdown-item">
-                                            <i class="far fa-rocket fa-fw"></i> Workshops</a>
-                                        <a href="{{ route('roomselection.index') }}" class="dropdown-item">
-                                            <i class="far fa-bed fa-fw"></i> Room Selection</a>
-                                        {{--                                        <a href="{{ route('nametag.index') }}" class="dropdown-item">--}}
-                                        {{--                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>--}}
-                                        <a href="{{ route('confirm.index') }}" class="dropdown-item">
-                                            <i class="far fa-notes-medical fa-fw"></i> Medical Responses</a>
-                                    @endif
-                                </div>
-                            </div>
+{{--                            <div class="dropdown">--}}
+{{--                                <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"--}}
+{{--                                   aria-haspopup="true" aria-expanded="false">--}}
+{{--                                    Registration--}}
+{{--                                </a>--}}
+{{--                                <div class="dropdown-menu dropdown-menu-right mt-0">--}}
+{{--                                    <a href="{{ route('household.index') }}" class="dropdown-item">--}}
+{{--                                        <i class="far fa-home fa-fw"></i> Household</a>--}}
+{{--                                    <a href="{{ route('campers.index') }}" class="dropdown-item">--}}
+{{--                                        <i class="far fa-users fa-fw"></i> Campers</a>--}}
+{{--                                    <a href="{{ route('payment.index') }}" class="dropdown-item">--}}
+{{--                                        <i class="far fa-usd-square fa-fw"></i> Statement</a>--}}
+{{--                                    @if(!$year->is_live)--}}
+{{--                                        <div class="dropdown-divider"></div>--}}
+{{--                                        <h6 class="dropdown-header">--}}
+{{--                                            Opens {{ $year->brochure_date }}--}}
+{{--                                        </h6>--}}
+{{--                                        <a href="#" class="dropdown-item disabled">Workshop List</a>--}}
+{{--                                        <a href="#" class="dropdown-item disabled">Room Selection</a>--}}
+{{--                                        <a href="#" class="dropdown-item disabled">Nametags</a>--}}
+{{--                                        <a href="#" class="dropdown-item disabled">Confirmation</a>--}}
+{{--                                    @else--}}
+{{--                                        <a href="{{ route('workshopchoice.index') }}" class="dropdown-item">--}}
+{{--                                            <i class="far fa-rocket fa-fw"></i> Workshops</a>--}}
+{{--                                        <a href="{{ route('roomselection.index') }}" class="dropdown-item">--}}
+{{--                                            <i class="far fa-bed fa-fw"></i> Room Selection</a>--}}
+{{--                                        --}}{{--                                        <a href="{{ route('nametag.index') }}" class="dropdown-item">--}}
+{{--                                        --}}{{--                                            <i class="far fa-id-card fa-fw"></i> Nametags</a>--}}
+{{--                                        <a href="{{ route('confirm.index') }}" class="dropdown-item">--}}
+{{--                                            <i class="far fa-notes-medical fa-fw"></i> Medical Responses</a>--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+                            <a href="/coffeehouse"
+                                             class="dropdown-item">Coffeehouse Schedule
+                            </a>
                         @else
                             <button type="button" class="btn btn-info btn-sm my-3" data-toggle="modal"
                                     data-target="#modal-register" dusk="register_now">
