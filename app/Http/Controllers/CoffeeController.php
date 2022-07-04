@@ -18,7 +18,7 @@ class CoffeeController extends Controller
         $readonly = true;
         $year = $this->getInProgressYear();
 
-        $positions = ThisyearStaff::whereIn('staffposition_id', ['1109', '1103', '1160'])->where('email', Auth::user()->email)->first();
+        $positions = ThisyearStaff::whereIn('staffposition_id', ['1109', '1103', '1160'])->where('email', Auth::user()->email)->get();
         if (count($positions) > 0) {
             $readonly = false;
         }
@@ -67,7 +67,7 @@ class CoffeeController extends Controller
         $acts = Coffeehouseact::where('year', $year->year)->orderBy('order')->get();
         $starttime = Carbon::now('America/Chicago')->hour(21)->minute(50);
 
-        $positions = ThisyearStaff::whereIn('staffposition_id', ['1109', '1103', '1160'])->where('email', Auth::user()->email)->first();
+        $positions = ThisyearStaff::whereIn('staffposition_id', ['1109', '1103', '1160'])->where('email', Auth::user()->email)->get();
         if (count($positions) > 0) {
             $readonly = false;
         }
