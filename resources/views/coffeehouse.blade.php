@@ -92,7 +92,6 @@
                     </div>
                 @endwhile
             </div>
-            @if($readonly === false)
                 <div class="well">
                     <h4>Add New Act</h4>
                     @include('includes.formgroup', ['type' => 'select', 'label' => 'Days', 'attribs' => ['name' => 'day'],
@@ -112,7 +111,6 @@
 
                     @include('includes.formgroup', ['type' => 'submit', 'label' => '', 'attribs' => ['name' => 'Save Changes']])
                 </div>
-            @endif
         </form>
     </div>
 @endsection
