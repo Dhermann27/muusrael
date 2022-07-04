@@ -14,6 +14,7 @@ class CoffeeController extends Controller
 {
     public function store(Request $request)
     {
+        $readonly = true;
         $year = $this->getInProgressYear();
         $camper = ThisyearCamper::where('year', $year->year)->where('email', Auth::user()->email)->first();
         if (isset($camper->yearattending->positions)) {
@@ -61,12 +62,12 @@ class CoffeeController extends Controller
 
     public function index($day = null)
     {
+        $readonly = true;
         $year = $this->getInProgressYear();
         $firstday = Carbon::createFromFormat('Y-m-d', $year->checkin, 'America/Chicago');
         $acts = Coffeehouseact::where('year', $year->year)->orderBy('order')->get();
         $starttime = Carbon::now('America/Chicago')->hour(21)->minute(50);
 
-        $camper = null;
         $camper = ThisyearCamper::where('year', $year->year)->where('email', Auth::user()->email)->first();
         if (isset($camper->yearattending->positions)) {
             foreach ($camper->yearattending->positions as $position) {
