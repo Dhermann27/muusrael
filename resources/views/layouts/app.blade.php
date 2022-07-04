@@ -287,9 +287,9 @@
 {{--                                    @endif--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
-                            <a href="/coffeehouse"
-                                             class="dropdown-item">Coffeehouse Schedule
-                            </a>
+                            <li class="nav-item mt-1"><a href="{{ url('/coffeehouse') }}" class="nav-link">Coffeehouse Schedule</a>
+                            </li>
+
                         @else
                             <button type="button" class="btn btn-info btn-sm my-3" data-toggle="modal"
                                     data-target="#modal-register" dusk="register_now">
