@@ -19,7 +19,7 @@ class CoffeeController extends Controller
         $camper = ThisyearCamper::where('year', $year->year)->where('email', Auth::user()->email)->first();
         if (isset($camper->yearattending->positions)) {
             foreach ($camper->yearattending->positions as $position) {
-                if ($position->staffposition_id == '1117' || $position->staffposition_id == '1103') {
+                if ($position->staffposition_id == '1109' || $position->staffposition_id == '1103' || $position->staffposition_id == '1160') {
                     $readonly = false;
                 }
             }
@@ -71,7 +71,7 @@ class CoffeeController extends Controller
         $camper = ThisyearCamper::where('year', $year->year)->where('email', Auth::user()->email)->first();
         if (isset($camper->yearattending->positions)) {
             foreach ($camper->yearattending->positions as $position) {
-                if ($position->staffposition_id == '1117' || $position->staffposition_id == '1103') {
+                if ($position->staffposition_id == '1109' || $position->staffposition_id == '1103' || $position->staffposition_id == '1160') {
                     $readonly = false;
                 }
             }
