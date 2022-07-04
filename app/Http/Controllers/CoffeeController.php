@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Coffeehouseact;
-use App\Http\Year;
 use App\Http\ThisyearCamper;
+use App\Http\ThisyearStaff;
+use App\Http\Year;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,14 +17,12 @@ class CoffeeController extends Controller
     {
         $readonly = true;
         $year = $this->getInProgressYear();
-        $camper = ThisyearCamper::where('year', $year->year)->where('email', Auth::user()->email)->first();
-        if (isset($camper->yearattending->positions)) {
-            foreach ($camper->yearattending->positions as $position) {
-                if ($position->staffposition_id == '1109' || $position->staffposition_id == '1103' || $position->staffposition_id == '1160') {
-                    $readonly = false;
-                }
-            }
+
+        $positions = ThisyearStaff::whereIn('staffposition_id', ['1109', '1103', '1160'])->where('email', Auth::user()->email)->first();
+        if (count($positions) > 0) {
+            $readonly = false;
         }
+
 
         if ($readonly === false) {
             foreach ($request->all() as $key => $value) {
@@ -68,13 +67,9 @@ class CoffeeController extends Controller
         $acts = Coffeehouseact::where('year', $year->year)->orderBy('order')->get();
         $starttime = Carbon::now('America/Chicago')->hour(21)->minute(50);
 
-        $camper = ThisyearCamper::where('year', $year->year)->where('email', Auth::user()->email)->first();
-        if (isset($camper->yearattending->positions)) {
-            foreach ($camper->yearattending->positions as $position) {
-                if ($position->staffposition_id == '1109' || $position->staffposition_id == '1103' || $position->staffposition_id == '1160') {
-                    $readonly = false;
-                }
-            }
+        $positions = ThisyearStaff::whereIn('staffposition_id', ['1109', '1103', '1160'])->where('email', Auth::user()->email)->first();
+        if (count($positions) > 0) {
+            $readonly = false;
         }
 
         return view('coffeehouse', ['firstday' => $firstday, 'day' => $day, 'acts' => $acts,
