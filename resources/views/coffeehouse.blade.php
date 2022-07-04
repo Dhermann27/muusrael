@@ -31,24 +31,24 @@
 
             <ul class="nav nav-tabs flex-column flex-lg-row" role="tablist">
                 <li role="presentation" class="nav-item">
-                    <a href="#1" aria-controls="1" role="tab"
+                    <a href="#tab-1" aria-controls="1" role="tab"
                        class="nav-link{{ $day == '1' || $day == null ? ' active' : '' }}"
                        data-toggle="tab">Monday</a>
                 </li>
                 <li role="presentation" class="nav-item">
-                    <a href="#2" aria-controls="2" role="tab" class="nav-link{{ $day == '2' ? ' active' : '' }}"
+                    <a href="#tab-2" aria-controls="2" role="tab" class="nav-link{{ $day == '2' ? ' active' : '' }}"
                        data-toggle="tab">Tuesday</a>
                 </li>
                 <li role="presentation" class="nav-item">
-                    <a href="#3" aria-controls="3" role="tab" class="nav-link{{ $day == '3' ? ' active' : '' }}"
+                    <a href="#tab-3" aria-controls="3" role="tab" class="nav-link{{ $day == '3' ? ' active' : '' }}"
                        data-toggle="tab">Wednesday</a>
                 </li>
                 <li role="presentation" class="nav-item">
-                    <a href="#4" aria-controls="4" role="tab" class="nav-link{{ $day == '4' ? ' active' : '' }}"
+                    <a href="#tab-4" aria-controls="4" role="tab" class="nav-link{{ $day == '4' ? ' active' : '' }}"
                        data-toggle="tab">Thursday (Raunch Night)</a>
                 </li>
                 <li role="presentation" class="nav-item">
-                    <a href="#5" aria-controls="5" role="tab" class="nav-link{{ $day == '5' ? ' active' : '' }}"
+                    <a href="#tab-5" aria-controls="5" role="tab" class="nav-link{{ $day == '5' ? ' active' : '' }}"
                        data-toggle="tab">Friday</a>
                 </li>
             </ul>
@@ -57,7 +57,7 @@
                     <div role="tabpanel"
                          class="tab-pane fade{{ $firstday->addDay()->dayOfWeek == $day || ($day == null && $firstday->dayOfWeek == 1) ? ' active show' : '' }}"
                          aria-expanded="{{ $firstday->dayOfWeek == $day || ($day == null && $firstday->dayOfWeek ==  1) ? 'true' : 'false' }}"
-                         id="{{ $firstday->dayOfWeek }}">
+                         id="tab-{{ $firstday->dayOfWeek }}">
                         <?php $starttime->hour(20)->minute(50); ?>
                         <h5>{{ $firstday->toDateString() }} </h5>
                         <ul class="list-group sortable col-md-10 col-sm-4">
