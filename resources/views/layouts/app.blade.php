@@ -287,14 +287,14 @@
 {{--                                    @endif--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
-                            <li class="nav-item mt-1"><a href="{{ url('/coffeehouse') }}" class="nav-link">Coffeehouse Schedule</a>
-                            </li>
+{{--                            <li class="nav-item mt-1"><a href="{{ url('/coffeehouse') }}" class="nav-link">Coffeehouse Schedule</a>--}}
+{{--                            </li>--}}
 
                         @else
-                            <button type="button" class="btn btn-info btn-sm my-3" data-toggle="modal"
-                                    data-target="#modal-register" dusk="register_now">
-                                Register Now <i class="fas fa-sign-in"></i>
-                            </button>
+{{--                            <button type="button" class="btn btn-info btn-sm my-3" data-toggle="modal"--}}
+{{--                                    data-target="#modal-register" dusk="register_now">--}}
+{{--                                Register Now <i class="fas fa-sign-in"></i>--}}
+{{--                            </button>--}}
                         @endif
                     </li>
                 </ul>
@@ -382,30 +382,30 @@
                     </div>
                     <div class="col-lg-2">
                         @can('has-paid')
-                            <h5 class="footer-title text-white mb-3">Registration</h5>
-                            <ul class="list-unstyled footer-list">
-                                <li><a href="{{ route('household.index') }}">Household</a></li>
-                                <li><a href="{{ route('campers.index') }}">Campers</a></li>
-                                <li><a href="{{ route('payment.index') }}">Statement</a></li>
-                                @if(!$year->is_live)
-                                    <hr/>
-                                    <h6 class="dropdown-header">Opens {{ $year->brochure_date }}</h6>
-                                    <li>Workshop Preferences</li>
-                                    <li>Room Selection</li>
-                                    <li>Nametags</li>
-                                    <li>Confirmation</li>
-                                @else
-                                    <li><a href="{{ route('workshopchoice.index') }}">Workshop Preferences</a></li>
-                                    <li><a href="{{ route('roomselection.index') }}">Room Selection</a></li>
-                                    {{--                                    <li><a href="{{ route('nametag.index') }}">Nametags</a></li>--}}
-                                                                            <li><a href="{{ route('confirm.index') }}">Medical Responses</a></li>
-                                @endif
-                            </ul>
+{{--                            <h5 class="footer-title text-white mb-3">Registration</h5>--}}
+{{--                            <ul class="list-unstyled footer-list">--}}
+{{--                                <li><a href="{{ route('household.index') }}">Household</a></li>--}}
+{{--                                <li><a href="{{ route('campers.index') }}">Campers</a></li>--}}
+{{--                                <li><a href="{{ route('payment.index') }}">Statement</a></li>--}}
+{{--                                @if(!$year->is_live)--}}
+{{--                                    <hr/>--}}
+{{--                                    <h6 class="dropdown-header">Opens {{ $year->brochure_date }}</h6>--}}
+{{--                                    <li>Workshop Preferences</li>--}}
+{{--                                    <li>Room Selection</li>--}}
+{{--                                    <li>Nametags</li>--}}
+{{--                                    <li>Confirmation</li>--}}
+{{--                                @else--}}
+{{--                                    <li><a href="{{ route('workshopchoice.index') }}">Workshop Preferences</a></li>--}}
+{{--                                    <li><a href="{{ route('roomselection.index') }}">Room Selection</a></li>--}}
+{{--                                    --}}{{--                                    <li><a href="{{ route('nametag.index') }}">Nametags</a></li>--}}
+{{--                                                                            <li><a href="{{ route('confirm.index') }}">Medical Responses</a></li>--}}
+{{--                                @endif--}}
+{{--                            </ul>--}}
                         @else
-                            <button type="button" class="btn btn-info font-weight-bold" data-toggle="modal"
-                                    data-target="#modal-register">
-                                Register Now <i class="fas fa-sign-in"></i>
-                            </button>
+{{--                            <button type="button" class="btn btn-info font-weight-bold" data-toggle="modal"--}}
+{{--                                    data-target="#modal-register">--}}
+{{--                                Register Now <i class="fas fa-sign-in"></i>--}}
+{{--                            </button>--}}
                         @endif
                     </div>
                 </div>
@@ -429,142 +429,142 @@
         <!-- footer end -->
 
         <!-- Modal -->
-        <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Get Registered for {{ $year->year }}!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid mx-0">
-                            <div class="row">
-                                <div class="col-md-6 pr-md-5">
-                                    <h5>Returning Campers</h5>
+{{--        <div class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-hidden="true">--}}
+{{--            <div class="modal-dialog modal-lg" role="document">--}}
+{{--                <div class="modal-content">--}}
+{{--                    <div class="modal-header">--}}
+{{--                        <h5 class="modal-title">Get Registered for {{ $year->year }}!</h5>--}}
+{{--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                            <span aria-hidden="true">&times;</span>--}}
+{{--                        </button>--}}
+{{--                    </div>--}}
+{{--                    <div class="modal-body">--}}
+{{--                        <div class="container-fluid mx-0">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-6 pr-md-5">--}}
+{{--                                    <h5>Returning Campers</h5>--}}
 
-                                    <form id="login" method="post" action="{{ url('/login') }}">
-                                        @csrf
+{{--                                    <form id="login" method="post" action="{{ url('/login') }}">--}}
+{{--                                        @csrf--}}
 
-                                        <div class="form-group row">
-                                            <label for="email_login" class="form-label">Email</label>
-                                            <input id="email_login" type="text" class="form-control"
-                                                   name="email" @auth value="{{ Auth::user()->email }}" @endif
-                                                   required>
-                                        </div>
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="email_login" class="form-label">Email</label>--}}
+{{--                                            <input id="email_login" type="text" class="form-control"--}}
+{{--                                                   name="email" @auth value="{{ Auth::user()->email }}" @endif--}}
+{{--                                                   required>--}}
+{{--                                        </div>--}}
 
-                                        <div class="form-group row">
-                                            <label for="password_login" class="form-label">Password</label>
-                                            <input id="password_login" type="password" class="form-control"
-                                                   name="password" required>
-                                        </div>
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="password_login" class="form-label">Password</label>--}}
+{{--                                            <input id="password_login" type="password" class="form-control"--}}
+{{--                                                   name="password" required>--}}
+{{--                                        </div>--}}
 
-                                        <div class="form-group row">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="remember"
-                                                       id="remember">
-                                                <label class="form-check-label" for="remember">
-                                                    Remember me on this computer?
-                                                </label>
-                                            </div>
-                                        </div>
+{{--                                        <div class="form-group row">--}}
+{{--                                            <div class="form-check">--}}
+{{--                                                <input class="form-check-input" type="checkbox" name="remember"--}}
+{{--                                                       id="remember">--}}
+{{--                                                <label class="form-check-label" for="remember">--}}
+{{--                                                    Remember me on this computer?--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
-                                        @if (Route::has('password.request'))
-                                            <div class="form-group row float-sm-right">
+{{--                                        @if (Route::has('password.request'))--}}
+{{--                                            <div class="form-group row float-sm-right">--}}
 
-                                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                                    {{ __('Forgot Your Password?') }}
-                                                </a>
-                                            </div>
-                                        @endif
+{{--                                                <a class="btn btn-link" href="{{ route('password.request') }}">--}}
+{{--                                                    {{ __('Forgot Your Password?') }}--}}
+{{--                                                </a>--}}
+{{--                                            </div>--}}
+{{--                                        @endif--}}
 
-                                        <a class="btn d-none" data-toggle="collapse" href="#login-searching"
-                                           role="button" aria-expanded="false">
-                                            #
-                                        </a>
-                                        <a class="btn d-none" data-toggle="collapse" href="#login-found"
-                                           role="button"
-                                           aria-expanded="false">
-                                            #
-                                        </a>
+{{--                                        <a class="btn d-none" data-toggle="collapse" href="#login-searching"--}}
+{{--                                           role="button" aria-expanded="false">--}}
+{{--                                            #--}}
+{{--                                        </a>--}}
+{{--                                        <a class="btn d-none" data-toggle="collapse" href="#login-found"--}}
+{{--                                           role="button"--}}
+{{--                                           aria-expanded="false">--}}
+{{--                                            #--}}
+{{--                                        </a>--}}
 
-                                        <div id="login-searching" class="alert alert-info w-100 collapse">
-                                            <h6>Welcome back!</h6>
-                                            <p>Retrieving your records... <i
-                                                    class="fad fa-spinner-third fa-spin"></i>
-                                            </p>
-                                        </div>
+{{--                                        <div id="login-searching" class="alert alert-info w-100 collapse">--}}
+{{--                                            <h6>Welcome back!</h6>--}}
+{{--                                            <p>Retrieving your records... <i--}}
+{{--                                                    class="fad fa-spinner-third fa-spin"></i>--}}
+{{--                                            </p>--}}
+{{--                                        </div>--}}
 
-                                        <div id="login-found" class="form-group row w-100 collapse">
-                                            <label for="password_login" class="form-label">Which campers will be
-                                                attending?</label>
-                                            <select id="login-campers" name="login-campers[]" class="custom-select"
-                                                    multiple data-toggle="tooltip" data-placement="top"
-                                                    title="Hold down CTRL or Command to select multiple campers.">
-                                            </select>
-                                            <button type="button" id="selectallcampers"
-                                                    class="btn btn-secondary btn-sm mt-1">
-                                                <i class="fas fa-users"></i> Select All
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-md-6 pl-md-5">
-                                    <h5>New Campers</h5>
+{{--                                        <div id="login-found" class="form-group row w-100 collapse">--}}
+{{--                                            <label for="password_login" class="form-label">Which campers will be--}}
+{{--                                                attending?</label>--}}
+{{--                                            <select id="login-campers" name="login-campers[]" class="custom-select"--}}
+{{--                                                    multiple data-toggle="tooltip" data-placement="top"--}}
+{{--                                                    title="Hold down CTRL or Command to select multiple campers.">--}}
+{{--                                            </select>--}}
+{{--                                            <button type="button" id="selectallcampers"--}}
+{{--                                                    class="btn btn-secondary btn-sm mt-1">--}}
+{{--                                                <i class="fas fa-users"></i> Select All--}}
+{{--                                            </button>--}}
+{{--                                        </div>--}}
+{{--                                    </form>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-6 pl-md-5">--}}
+{{--                                    <h5>New Campers</h5>--}}
 
-                                    <form id="create" method="post" action="{{ url('/register') }}">
-                                        @csrf
+{{--                                    <form id="create" method="post" action="{{ url('/register') }}">--}}
+{{--                                        @csrf--}}
 
-                                        <div class="form-group row">
-                                            <label for="email_create" class="form-label">Email</label>
-                                            <input id="email_create" type="text" class="form-control"
-                                                   name="email" required>
-                                        </div>
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="email_create" class="form-label">Email</label>--}}
+{{--                                            <input id="email_create" type="text" class="form-control"--}}
+{{--                                                   name="email" required>--}}
+{{--                                        </div>--}}
 
-                                        <div class="form-group row">
-                                            <label for="password_create" class="form-label">Password</label>
-                                            <input id="password_create" type="password" class="form-control"
-                                                   name="password" required>
-                                        </div>
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="password_create" class="form-label">Password</label>--}}
+{{--                                            <input id="password_create" type="password" class="form-control"--}}
+{{--                                                   name="password" required>--}}
+{{--                                        </div>--}}
 
-                                        <div class="form-group row">
-                                            <label for="confirm_create" class="form-label">Confirm Password</label>
-                                            <input id="confirm_create" type="password" class="form-control"
-                                                   name="password_confirmation" required>
-                                        </div>
+{{--                                        <div class="form-group row">--}}
+{{--                                            <label for="confirm_create" class="form-label">Confirm Password</label>--}}
+{{--                                            <input id="confirm_create" type="password" class="form-control"--}}
+{{--                                                   name="password_confirmation" required>--}}
+{{--                                        </div>--}}
 
-                                        <div class="form-group row">
-                                            <div class="number-spinner">
-                                                <label for="newcampers" class="form-label">How many campers will be
-                                                    attending?</label>
-                                                <div class="input-group float-sm-right">
-                                                    <div class="input-group-prepend">
-                                                        <button type="button" class="btn btn-default spinner"
-                                                                data-dir="up"><i class="far fa-plus"></i></button>
-                                                    </div>
-                                                    <input id="newcampers" class="form-control" name="newcampers"
-                                                           value="1"/>
-                                                    <div class="input-group-append">
-                                                        <button type="button" class="btn btn-default spinner"
-                                                                data-dir="dwn"><i class="far fa-minus"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="begin_reg" type="button" class="btn btn-primary">Begin Registration</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--                                        <div class="form-group row">--}}
+{{--                                            <div class="number-spinner">--}}
+{{--                                                <label for="newcampers" class="form-label">How many campers will be--}}
+{{--                                                    attending?</label>--}}
+{{--                                                <div class="input-group float-sm-right">--}}
+{{--                                                    <div class="input-group-prepend">--}}
+{{--                                                        <button type="button" class="btn btn-default spinner"--}}
+{{--                                                                data-dir="up"><i class="far fa-plus"></i></button>--}}
+{{--                                                    </div>--}}
+{{--                                                    <input id="newcampers" class="form-control" name="newcampers"--}}
+{{--                                                           value="1"/>--}}
+{{--                                                    <div class="input-group-append">--}}
+{{--                                                        <button type="button" class="btn btn-default spinner"--}}
+{{--                                                                data-dir="dwn"><i class="far fa-minus"></i>--}}
+{{--                                                        </button>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </form>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="modal-footer">--}}
+{{--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
+{{--                        <button id="begin_reg" type="button" class="btn btn-primary">Begin Registration</button>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <script src="{{ mix('js/app.js') }}"></script>
 
         @yield('script')

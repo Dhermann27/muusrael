@@ -145,18 +145,18 @@
                     @break
                 @endswitch
             </h3>
-            <div>
-                @can('has-paid')
-                    <a href="{{ route('campers.index') }}" class="btn btn-secondary">
-                        See Your Information for {{ $year->year }} <i class="fas fa-sign-in"></i>
-                    </a>
-                @else
-                    <button type="button" class="btn btn-secondary" data-toggle="modal"
-                            data-target="#modal-register">
-                        Register for {{ $year->year }} <i class="fas fa-sign-in"></i>
-                    </button>
-                @endif
-            </div>
+{{--            <div>--}}
+{{--                @can('has-paid')--}}
+{{--                    <a href="{{ route('campers.index') }}" class="btn btn-secondary">--}}
+{{--                        See Your Information for {{ $year->year }} <i class="fas fa-sign-in"></i>--}}
+{{--                    </a>--}}
+{{--                @else--}}
+{{--                    <button type="button" class="btn btn-secondary" data-toggle="modal"--}}
+{{--                            data-target="#modal-register">--}}
+{{--                        Register for {{ $year->year }} <i class="fas fa-sign-in"></i>--}}
+{{--                    </button>--}}
+{{--                @endif--}}
+{{--            </div>--}}
 
         </div>
     </div>
@@ -219,7 +219,7 @@
                 <h4 class="card-title">
                     Morning Celebrations
                 </h4>
-                <p class="card-text">Each morning, Dr. Glen Thomas Rideout will lead a multi-generational
+                <p class="card-text">Each morning, Rev. Misha Sanders will lead a multi-generational
                     service on the
                     theme topic. Services include children's stories and choral music from the Awesome Choir,
                     led by Pam
@@ -331,6 +331,13 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="paypal-button">
+        <form action="https://www.sandbox.paypal.com/donate" method="post" target="_top">
+            <input type="hidden" name="hosted_button_id" value="Y6DKE32BLDXP8" />
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+            <img alt="" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        </form>
     </div>
 
 @endsection
