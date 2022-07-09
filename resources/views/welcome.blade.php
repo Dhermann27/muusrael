@@ -2,23 +2,23 @@
 
 @section('content')
 
-    @auth
-        <div class="toast" style="position: absolute; top: 18%; right: 2%; z-index: 100;" data-delay="10000"
-             role="alert"
-             aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <i id="toast-icon" class="fa fa-check mr-2"></i>
-                <strong id="welcomeback" class="mr-auto"></strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <i class="fa fa-window-close"></i>
-                </button>
-            </div>
-            <a id="toast-link" href="#">
-                <div class="toast-body">
-                </div>
-            </a>
-        </div>
-    @endauth
+{{--    @auth--}}
+{{--        <div class="toast" style="position: absolute; top: 18%; right: 2%; z-index: 100;" data-delay="10000"--}}
+{{--             role="alert"--}}
+{{--             aria-live="assertive" aria-atomic="true">--}}
+{{--            <div class="toast-header">--}}
+{{--                <i id="toast-icon" class="fa fa-check mr-2"></i>--}}
+{{--                <strong id="welcomeback" class="mr-auto"></strong>--}}
+{{--                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">--}}
+{{--                    <i class="fa fa-window-close"></i>--}}
+{{--                </button>--}}
+{{--            </div>--}}
+{{--            <a id="toast-link" href="#">--}}
+{{--                <div class="toast-body">--}}
+{{--                </div>--}}
+{{--            </a>--}}
+{{--        </div>--}}
+{{--    @endauth--}}
 
     <div>
         <div id="carouselWelcome" class="carousel slide carousel-fade pt-xl-5" data-ride="carousel" data-pause="false">
