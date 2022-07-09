@@ -16,7 +16,7 @@
     <div class="container px-3 py-5 px-lg-10 py-lg-6 bg-grey mb-5">
         @component('components.blog', ['title' => 'Theme Speaker'])
             <p>
-                <img class="float-right p-3" src="/images/mishasm.jpg"
+                <img class="float-right p-3" src="/images/mishasm.png"
                      alt="Rev. Misha Sanders" data-no-retina/>
                 <strong>Rev. Misha Sanders</strong> (she/her/hers) is feeling very blessed to be the Senior Minister at
                 Northwest Unitarian Universalist Congregation in beautiful Sandy Springs, Georgia. She is a fiery
